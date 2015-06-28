@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="jf.h - algu"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/author/algu.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="website"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/author/algu.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>jf.h - algu | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span9">
+                <section>
+                    <ol id="posts-list" class="hfeed" start="9">
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/file-descriptor.html" rel="bookmark" title="Permalink to file descriptor">
+                                       file descriptor
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-09-07
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/wen-jian-miao-shu-fu.html">文件描述符</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/file-descriptor.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>和文件描述符有关的函数：</p>
+<ul>
+<li>open</li>
+<li>close</li>
+<li>dup</li>
+<li>dup2</li>
+<li>fcntl</li>
+</ul>
+<p>文件描述符为int整型变量，范围0-OPEN_MAX;</p>
+<p>在linux下OPEN_MAX未在limits.h下定义，使用sysconf(_SC_OPEN_MAX)获得其值．</p>
+<p>open打开文件返回文件描述符没什么好说的．</p>
+<p>close()关闭文件描述符，注意当有多个文件描述符指向同一文件表项时，必须close所有与之关联的描述符才能真正关闭文件．</p>
+<blockquote>
+<p>When all file descriptors associated with an open file description
+have been closed, the open file  description shall be freed.</p>
+</blockquote>
+<p>此时无法再对文件进行更改．</p>
+<p>dup(),dup2()复制现存的文件描述符，在内核数据中一个新的文件描述符被创建．当总数达到OPEN_MAX时，进程无法再打开文件．</p>
+<p>当cmd=F_DUPFD时 fcntl和dup,dup2功能类似．</p>
+<p>附测试程序 ...</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/file-descriptor.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/e4b8a2e8bda6e8b4bc.html" rel="bookmark" title="Permalink to 丢车贼">
+                                       丢车贼
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/xin-qing.html">心情</a>
+
+    on 2013-07-24
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/diu-che-zei.html">丢车贼</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/e4b8a2e8bda6e8b4bc.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>车丢了，心情极度郁闷.好吧，怪我，忘记锁上了.老妈可是刚买没俩月的车啊.我还真想偷别人一辆，无奈技术水平低，也就作罢.家里知道我丢了车之后，地位急转直下
+,虽说不让我自己买,但也是各种说我<strong>.</strong>又不能辩驳什么，是自己真的犯了错.不过，他们认为我就做不好事情，说我，以后不注意，会丢更多的东西.好吧，被他们说的差一点感觉自己矬了，要不是咱心理素质高，自信心强.哎，丢车确实感觉挺窝囊的.</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/e4b8a2e8bda6e8b4bc.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/e6849fe58aa8.html" rel="bookmark" title="Permalink to 感动">
+                                       感动
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/xin-qing.html">心情</a>
+
+    on 2013-07-20
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/gan-dong.html">感动</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/e6849fe58aa8.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>感动一个人容易，被一个人感动却不那么容易．</p>
+<p>感动你是我的权利和义务．</p>
+<p>反过来却不是．</p>
+<p>貌似我又矫情了．</p>
+<p>竟然让别人猜起喜欢什么来了．</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/e6849fe58aa8.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/e5a4a9e4bdbf.html" rel="bookmark" title="Permalink to 天使">
+                                       天使
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/xin-qing.html">心情</a>
+
+    on 2013-07-06
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/tian-shi.html">天使</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/e5a4a9e4bdbf.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>每个人都有一个守护天使，</p>
+<p>但你的守护天使却睡着了，</p>
+<p>我想摇醒他，</p>
+<p>但他睡得太死了。</p>
+<p>于是，我对上帝说，</p>
+<p>我想做你的守护天使，</p>
+<p>上帝同意了。</p>
+<p>你很高兴，</p>
+<p>因为你终于有了守护你的天使。</p>
+<p>但这个天使比较笨，</p>
+<p>没有一点经验，</p>
+<p>他只想能尽他所能对你好，</p>
+<p>但有时反而适得其反。</p>
+<p>不过他不会放弃的，</p>
+<p>他会好好吸取经验。</p>
+<p>不让你伤心，难过。</p>
+<p>我一直爱着你。</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/e5a4a9e4bdbf.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/jugs.html" rel="bookmark" title="Permalink to Jugs">
+                                       Jugs
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-05-30
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/hu-zhi-shu.html">互质数</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/jugs.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <style type="text/css"><!--<br />
+pre { font-family: monospace; color: #000000; background-color: #ffffff; } body { font-family: monospace; color: #000000; background-color: #ffffff; } .Type { color: #2e8b57; font-weight: bold; } .Statement { color: #804040; font-weight: bold; } .Constant { color: #ff00ff; } .PreProc { color: #a020f0; } --><br></br>
+--></style>
+
+<p>ZOJ Problem Set - 1005 Jugs  </p>
+<p>题目：<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1005">来源</a></p>
+<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">Ca</span><span class="p">,</span><span class="n">Cb</span><span class="p">,</span><span class="n">N</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">work</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a ...</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/jugs.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/anagrams-by-stack.html" rel="bookmark" title="Permalink to Anagrams by Stack">
+                                       Anagrams by Stack
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-05-29
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/stack.html">stack</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/anagrams-by-stack.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <style type="text/css"><!--<br />
+pre { font-family: monospace; color: #000000; background-color: #ffffff; } body { font-family: monospace; color: #000000; background-color: #ffffff; } .Special { color: #6a5acd; } .Comment { color: #0000ff; } .Type { color: #2e8b57; font-weight: bold; } .Statement { color: #804040; font-weight: bold; } .Constant { color: #ff00ff; } .PreProc { color: #a020f0; } --><br></br>
+--></style>
+
+<p>ZOJ Problem Set - 1004 Anagrams by Stack  </p>
+<p>题目：<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1004">来源</a></p>
+<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include&lt;cstring&gt;</span>
+<span class="k">using ...</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/anagrams-by-stack.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/crashing-balloon.html" rel="bookmark" title="Permalink to Crashing Balloon">
+                                       Crashing Balloon
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-05-24
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/zoj1003.html">ZOJ1003</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/crashing-balloon.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <style type="text/css"><!--<br />
+pre { font-family: monospace; color: #000000; background-color: #ffffff; } body { font-family: monospace; color: #000000; background-color: #ffffff; } .Comment { color: #0000ff; } .Type { color: #2e8b57; font-weight: bold; } .Statement { color: #804040; font-weight: bold; } .Constant { color: #ff00ff; } .PreProc { color: #a020f0; } --><br></br>
+--></style>
+
+<p>ZOJ Problem Set - 1003 Crashing Balloon</p>
+<div class="highlight"><pre><span class="cp">#include&lt;iostream&gt;</span>
+<span class="cp">#include&lt;cstring&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">cur</span><span class="p">[</span><span class="mi">101</span><span class="p">];</span><span class="c1">//记录1 ...</span></pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/crashing-balloon.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/e8af9de4b88de5afb9e6809de7bbb4.html" rel="bookmark" title="Permalink to 话不对思维">
+                                       话不对思维
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/xin-qing.html">心情</a>
+
+    on 2013-05-22
+
+
+
+        |
+        <a href="http://blog.junfeng.ca/e8af9de4b88de5afb9e6809de7bbb4.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>“什么面？”<br />
+“牛肉面.”<br />
+“辣椒要不？”<br />
+“少放点辣椒.”<br />
+“多放？”<br />
+“嗯.”<br />
+于是他就弄了一大勺辣椒酱.<br />
+我累那个后悔啊～</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/e8af9de4b88de5afb9e6809de7bbb4.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/fire-net.html" rel="bookmark" title="Permalink to Fire Net">
+                                       Fire Net
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-05-20
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/zoj1002.html">ZOJ1002</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/fire-net.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>ZOJ Problem Set - 1002</p>
+<style type="text/css"><!--<br />
+pre { font-family: monospace; color: #000000; background-color: #ffffff; } body { font-family: monospace; color: #000000; background-color: #ffffff; } .PreProc { color: #a020f0; } .Special { color: #6a5acd; } .Constant { color: #ff00ff; } .Identifier { color: #008080; } .Statement { color: #804040; font-weight: bold; } --><br></br>
+--></style>
+
+<div class="highlight"><pre>def Input(L,n):
+        if type(L)==list:
+                for i in range(0,n):
+                        L ...</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/fire-net.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/8e79a87e5908ee997aee9a298.html" rel="bookmark" title="Permalink to 8皇后问题">
+                                       8皇后问题
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-05-19
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/huang-hou-wen-ti.html">皇后问题</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/8e79a87e5908ee997aee9a298.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>传说中的问题。</p>
+<p>传说中的算法：回溯法</p>
+<p>Python实现：</p>
+<div>
+
+def place\_queen(l):
+
+</div>
+
+<div>
+
+    if type(l)==list:
+
+</div>
+
+<div>
+
+        tq=l[-1]
+
+</div>
+
+<div>
+
+        k=len(l)
+
+</div>
+
+<div>
+
+        for i,iq in enumerate(l[0:-1],start=1):
+
+</div>
+
+<div>
+
+            if iq==tq or abs(iq-tq)==abs(i-k):
+
+</div>
+
+<div>
+
+                return False
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+        return True
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+def output\_queens(number,l,n):
+
+</div>
+
+<div>
+
+    print "Solution:%d" % number ...</div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/8e79a87e5908ee997aee9a298.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    </ol><!-- /#posts-list -->
+<p class="paginator">
+        <a href="http://blog.junfeng.ca/author/algu.html">&laquo;</a>
+    Page 2 / 8
+        <a href="http://blog.junfeng.ca/author/algu3.html">&raquo;</a>
+</p>
+                </section><!-- /#content -->
+</div>
+<div class="span3">
+    <section id="sidebar">
+            <div>
+                <h2>Browse content by</h2>
+                <ul class="fa-ul">
+                <li><a href="http://blog.junfeng.ca/categories.html"><i class="fa-li fa fa-tags"></i> Categories</a></li>
+                <li><a href="http://blog.junfeng.ca/archives.html"><i class="fa-li fa fa-calendar"></i> Dates</a></li>
+                <li><a href="http://blog.junfeng.ca/tags.html"><i class="fa-li fa fa-tag"></i> Tags</a></li>
+
+                <li><a href="http://blog.junfeng.ca/feeds/all.atom.xml"><i class="fa-li fa fa-rss"></i> Feed</a></li>
+                </ul>
+            </div><!-- /.browse -->
+            <div>
+                <h2>Social</h2>
+                <ul>
+                    <li><a href="https://github.com/grepcook">GitHub</a></li>
+                    <li><a href="https://bitbucket.org/junfeng_hu">Bitbucket</a></li>
+                    <li><a href="https://twitter.com/grepcook">Twitter</a></li>
+                    <li><a href="http://weibo.com/junfeng7">Weibo</a></li>
+                    <li><a href="http://instagram.com/junfeng_hu">Instagram</a></li>
+                </ul>
+            </div><!-- /.social -->
+            <div>
+                <h2>Tags</h2>
+                <ul id="cloud">
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/bian-yi-cpp.html">编译cpp</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/xie-hou-tai.html">写后台</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/variable-scope.html">variable scope</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/xiao-yuan-feng-jing.html">校园风景</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/signal.html">signal</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/like-and-not-like.html">like and not like</a></li>
+                     <li class="tag-1"><a href="http://blog.junfeng.ca/tag/goagent.html">goagent</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/django_template.html">Django_Template</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/mysqldban-zhuang.html">MySQLdb安装</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/backslash.html">backslash</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/learning.html">learning</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/wen-jian-miao-shu-fu.html">文件描述符</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/wang-yu-shi.html">“王”与“士”</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/kindle.html">Kindle</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/da-yi-zong-jie.html">大一总结</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/zui-xiao-sheng-cheng-shu.html">最小生成树</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/ajax.html">Ajax</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/wei-bo-tong-bu.html">微博同步</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/gang-lian.html">钢炼</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/upan-qi-dong.html">U盘启动</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/lifetyle.html">lifetyle</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/struct.html">struct</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/android-sdk.html">android-sdk</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/mime.html">mime</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/js-event.html">js event</a></li>
+                     <li class="tag-1"><a href="http://blog.junfeng.ca/tag/unpv13e.html">unpv13e</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/huo-che.html">火车</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/duan-ban-yin-le.html">短板音乐</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/mysqld.html">mysqld</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/https.html">https</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/luo-hua.html">落花</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/xi-tong-chai-bie.html">系统差别</a></li>
+                     <li class="tag-2"><a href="http://blog.junfeng.ca/tag/javascript.html">JavaScript</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/ying-huo-chong-zhi-mu.html">萤火虫之墓</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/you.html">You</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/htmlbiao-ge.html">html表格</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/xia-zhe-teng.html">瞎折腾</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/desktop.html">desktop</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/grep.html">grep</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/21.html">2&gt;&amp;1</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/ubuntu.html">ubuntu</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/hu-zhi-shu.html">互质数</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/gan-dong.html">感动</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/cheng-chang-he-shu.html">成长和书</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/chuan-hua-you-xi.html">传话游戏</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/xuan-ke.html">选课</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/luo-kao.html">裸考</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/you-dian-leng.html">有点冷</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/shen-du-you-xian-sou-suo.html">深度优先搜索</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/bei-jing-yu-shang-xi-ya-tu.html">北京遇上西雅图</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/mount.html">mount</a></li>
+                     <li class="tag-1"><a href="http://blog.junfeng.ca/tag/python.html">Python</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/zoj1002.html">ZOJ1002</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/diu-che-zei.html">丢车贼</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/guan-bi-qqkong-jian.html">关闭QQ空间</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/zoj1003.html">ZOJ1003</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/xue-jing.html">雪景</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/signalltiebas.html">signalltiebas</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/bug.html">BUG</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/redis.html">Redis</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/vps128mb.html">vps(128MB)</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/endianness.html">endianness</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/archan-zhuang.html">arch安装</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/debianzhuang-google-chrome.html">Debian装google chrome</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/zi-zhu-can.html">自助餐</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/html.html">html</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/subprocess.html">subprocess</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/dian-nao-diao-xian.html">电脑掉线</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/python-server.html">python server</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/bearer.html">Bearer</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/tian-shi.html">天使</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/xi-huan-yi-ge-ren.html">喜欢一个人</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/ji-gong-jin-li-liao.html">急功近利了</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/nolocaljmp.html">nolocaljmp</a></li>
+                     <li class="tag-2"><a href="http://blog.junfeng.ca/tag/encode.html">encode</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/file-hole.html">file hole</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/nfs.html">NFS</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/mentohust.html">mentohust</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/jia-zhao-kao-shi.html">驾照考试</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/extensions.html">extensions</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/guo-qu.html">过去</a></li>
+                     <li class="tag-2"><a href="http://blog.junfeng.ca/tag/c.html">C++</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/cmake.html">CMake</a></li>
+                     <li class="tag-1"><a href="http://blog.junfeng.ca/tag/notes.html">notes</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/cheng-chang-zhi-lu.html">成长之路</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/tie-ba.html">贴吧</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/feng-leng-guang-nuan.html">风冷光暖</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/tu-de-zui-duan-lu-jing.html">图的最短路径</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/ma-nong.html">码农</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/huang-hou-wen-ti.html">皇后问题</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/debianan-zhuang.html">Debian安装</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/stack.html">stack</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/exams.html">exams</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/closure.html">closure</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/debian.html">Debian</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/python-tornado.html">python-tornado</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/oauth20.html">OAuth2.0</a></li>
+                </ul>
+             </div>
+<!-- /.Tags -->
+    </section><!-- /#sidebar -->
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

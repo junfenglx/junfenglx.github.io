@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="unpv13e chapter 2 notes"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/unpv13e-chapter-2-notes.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/unpv13e-chapter-2-notes.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>unpv13e chapter 2 notes | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/unpv13e-chapter-2-notes.html" rel="bookmark"
+             title="Permalink to unpv13e chapter 2 notes">unpv13e chapter 2 notes</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/junfeng.html">junfeng</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/unpv13e.html">unpv13e</a>
+
+    on 2014-06-08
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/unpv13e.html">unpv13e</a>
+        <a href="http://blog.junfeng.ca/tag/notes.html">notes</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/unpv13e-chapter-2-notes.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <h2>Overview of TCP/IP protocols.</h2>
+<p><img alt="unpv1_overview_TCP_IP_protocols.png" src="./images/unpv1_overview_TCP_IP_protocols.png" /></p>
+<h2>TCP</h2>
+<h3>Three-Way Handshake</h3>
+<p><img alt="TCP_three_way_handshake.png" src="./images/TCP_three_way_handshake.png" /></p>
+<h3>Packets exchanged when a TCP connection is closed.</h3>
+<p><img alt="packets_exchange_when_TCP_connections_terminal.png" src="./images/packets_exchange_when_TCP_connections_terminal.png" /></p>
+<h3>TCP State Transition Diagram</h3>
+<p><img alt="TCP_State_Transition_Diagram.png" src="./images/TCP_State_Transition_Diagram.png" /></p>
+<h3>TIME_WAIT State</h3>
+<p>Time: 2MSL</p>
+<p>Reasons:</p>
+<ul>
+<li>To implement TCP's full-duplex connection termination reliably</li>
+<li>To allow old duplicate segments to expire in the network</li>
+</ul>
+<h2>SCTP</h2>
+<h3>SCTP four-way handshake</h3>
+<p><img alt="SCTP_four_way_handshake.png" src="./images/SCTP_four_way_handshake.png" /></p>
+<h3>Packets exchanged when an SCTP association is closed</h3>
+<p><img alt="packets_exchanged_when_an_SCTP_association_is_closed.png" src="./images/packets_exchanged_when_an_SCTP_association_is_closed.png" /></p>
+<p>SCTP does not permit a "half-closed" association, does not have a TIME_WAIT state.</p>
+<h3>SCTP State Transition Diagram</h3>
+<p><img alt="SCTP_State_Transition_Diagram.png" src="./images/SCTP_State_Transition_Diagram.png" /></p>
+<h2>Socket Pair</h2>
+<ul>
+<li>TCP: the local IP address, local port, foreign IP address, and foreign port</li>
+<li>SCTP: a set of local IP addresses, a local port, a set of foreign IP
+  addresses, and a foreign port</li>
+</ul>
+<h2>Headers</h2>
+<h3>IPv4 Header</h3>
+<p><img alt="IPv4_header.png" src="./images/IPv4_header.png" /></p>
+<h3>IPv6 Header</h3>
+<p><img alt="IPv6_header.png" src="./images/IPv6_header.png" /></p>
+<h2>Buffer Sizes and Limitations</h2>
+<ul>
+<li>The maximum size of an IPv4 datagram is 65,535 bytes, including the IPv4
+  header.</li>
+<li>The maximum size of an IPv6 datagram is 65,575 bytes, including the 40-byte
+  IPv6 header.</li>
+<li>Many networks have an MTU which can be dictated by the hardware.<ul>
+<li>Ethernet MTU: 1500 bytes</li>
+<li>point-to-point links using the Point-to-Point Protocol (PPP): configurable MTU</li>
+<li>Older SLIP links often used an MTU of 1,006 or 296 bytes.</li>
+</ul>
+</li>
+<li>The minimum link MTU for IPv4 is 68 bytes (maximum-sized IPv4 header 60  and minimum-sized fragment).</li>
+<li>The minimum link MTU for IPv6 is 1,280 bytes.</li>
+<li>he smallest MTU in the path between two hosts is called the path MTU.</li>
+<li>minimum reassembly buffer size: IPv4 576 bytes, IPv6 1500 bytes</li>
+<li>TCP has a maximum segment size (MSS) that announces to the peer TCP the
+  maximum amount of TCP data that the peer can send per segment.</li>
+<li>SCTP keeps a fragmentation point based on the smallest path MTU found to all
+  the peer's addresses.</li>
+</ul>
+<p>Note:
+<em>Pv6 payload length field does not include the size of the IPv6header,</em>
+<em>while the IPv4 total length field does include the header size.</em></p>
+<h3>Retransmission</h3>
+<ul>
+<li>Positive Acknowledgement</li>
+<li>Negative Acknowledgment</li>
+<li>Selective Acknowledgment</li>
+<li>Cumulative Acknowledgment</li>
+</ul>
+<h2>Exercise</h2>
+<h3>2.1</h3>
+<p>version 0-1: Reserved</p>
+<p>version 2-3: Unassigned</p>
+<p>version 5: Internet Stream Protocol</p>
+<h3>2.2</h3>
+<p><a href="http://tools.ietf.org/html/rfc1190">rfc1190</a></p>
+<p><a href="http://en.wikipedia.org/wiki/Internet_Stream_Protocol">Internet_Stream_Protocol</a></p>
+<h3>2.3</h3>
+<p>The minimum reassembly buffer size for IPv4 is 576, it minus the 20-byte IPv4 header and minus
+the 20-byte TCP header is 536</p>
+<h3>2.4</h3>
+<p><img alt="2.4.jpeg" src="./images/2.4.jpeg" /></p>
+<h3>2.5</h3>
+<p>Token ring host can't send packets more than 1460 bytes of data, because peer MSS was 1460.
+Ethernet host can send no more than 4096 bytes data, but it's MTU is 1500 bytes, it will not exceed the MTU of the
+outgoing interface (the Ethernet) to avoid fragmentation. There for the max length of data is 1460 (1500-20-20)</p>
+<h3>2.6</h3>
+<p>89</p>
+<h3>2.7</h3>
+<blockquote>
+<p>A selective acknowledgment only indicates that the data covered by the
+sequence numbers reflected in the selective acknowledgment message was
+received. Only a cumulative acknowledgment says that the data up to and
+including the sequence number in the cumulative acknowledgment message
+was received. When freeing data from the send buffer based on a selective
+acknowledgment, the system may only free the exact data that was
+acknowledged, and not any before or after the selective acknowledgment.</p>
+</blockquote>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "unpv13e-chapter-2-notes.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

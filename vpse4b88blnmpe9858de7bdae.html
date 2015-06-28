@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="vps下lnmp配置"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/vpse4b88blnmpe9858de7bdae.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/vpse4b88blnmpe9858de7bdae.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>vps下lnmp配置 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/vpse4b88blnmpe9858de7bdae.html" rel="bookmark"
+             title="Permalink to vps下lnmp配置">vps下lnmp配置</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2014-01-10
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/mysqld.html">mysqld</a>
+        <a href="http://blog.junfeng.ca/tag/vps128mb.html">vps(128MB)</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/vpse4b88blnmpe9858de7bdae.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>换了hostigation的vps(128MB)之后，试了Debian，Ubuntu较新的版本都不行，总是提示说MySQL安装失败,最后不得已换上ubuntu
+10.04勉强把mysql装上,但网站连接十次要有9次连不上。知道是肯定是那装的那些软件版本太低，bug太多。但还是没管它。</p>
+<p>最近得有空闲时间，决定把问题给解决。<br />
+备份整个数据库：</p>
+<div class="highlight"><pre>mysqldump -p -u --all-databases &gt; all.sql
+</pre></div>
+
+
+<p>备份归档wordpress目录,nginx配置文件目录<br />
+然后安装fedora 18</p>
+<p>安装mysqld</p>
+<div class="highlight"><pre>yum update #升级现有包
+yum install mysql-server #mysqld
+</pre></div>
+
+
+<p>安装mysql-server<br />
+当启动mysqld时出现错误，无法启动。(折腾半天)<br />
+列出包里面的文件:</p>
+<div class="highlight"><pre>rpm -ql mysql-server
+</pre></div>
+
+
+<p>日志文件在/var/log/mysqld.log<br />
+查看mysqld.log发现错误信息：</p>
+<div class="highlight"><pre>vim /var/log/mysqld.log
+InnoDB: Error: pthread_create returned 11
+</pre></div>
+
+
+<p><strong>11 (EAGAIN)表示系统缺乏资源创建另一个线程。</strong><br />
+好像是明白了，<br />
+128MB的小内存VPS运行InnoDB直接运行不了。</p>
+<p>用my-small.cnf替换/etc/my.cnf</p>
+<div class="highlight"><pre>cp /usr/share/mysql/my-small.cnf /etc/my.cnf
+</pre></div>
+
+
+<p>同时修改my.cnf,在[mysqld]项下添加以下两行:</p>
+<div class="highlight"><pre>default-storage-engine=MYISAM
+innodb=OFF
+</pre></div>
+
+
+<p>用MYISAM替换InnoDB。</p>
+<div class="highlight"><pre>systemctl start mysqld  #没有错误
+systemctl enable mysqld #开机自启动
+/usr/bin/mysql_secure_installation #安全安装
+echo &quot;flush privileges;&quot; | mysql -p -u root #登陆到mysql,刷新权限,不然将出现数据库连接错误.
+</pre></div>
+
+
+<p>安装nginx</p>
+<div class="highlight"><pre>yum install nginx
+systemctl stop httpd
+#and
+yum erase httpd
+systemctl start nginx
+systemctl enable nginx
+#恢复nginx配置文件,然后
+systemctl reload nginx #配置信息生效
+</pre></div>
+
+
+<p>安装php(注意依赖)</p>
+<div class="highlight"><pre>yum install php-pecl-apc php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongo php-sqlite php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml php-fpm
+
+systemctl start php-fpm
+systemctl enable php-fpm
+</pre></div>
+
+
+<p>恢复备份的wordpress到/var/www/目录</p>
+<p>打开网站,一切正常。<br />
+迁移成功。<br />
+吐槽hostigation为什么没有archlinux的虚拟系统。</p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "vpse4b88blnmpe9858de7bdae.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

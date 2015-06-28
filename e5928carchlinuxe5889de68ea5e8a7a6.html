@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="和archlinux初接触"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/e5928carchlinuxe5889de68ea5e8a7a6.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/e5928carchlinuxe5889de68ea5e8a7a6.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>和archlinux初接触 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/e5928carchlinuxe5889de68ea5e8a7a6.html" rel="bookmark"
+             title="Permalink to 和archlinux初接触">和archlinux初接触</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2012-11-22
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/archan-zhuang.html">arch安装</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/e5928carchlinuxe5889de68ea5e8a7a6.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>我发现每隔一段时间都想装一下系统。今天在虚拟机里装了archlinux。用的是官方的livecd，确实是livecd，只是没有桌面环境而已。比较一下还是gentoo的livecd做的比较好，那叫一个漂亮，虽然它是最难装的。而arch的livecd就略显粗糙了，只有字符界面。由于是在virtualbox中装的，也就省了配置网络的步骤。直接分区，使用cgdisk把sda分成了两个区，一个做根，一个做home，格式化文件系统，挂载分区。然后设置好源，更新源。</p>
+<p># pacstrap /mnt base base-devel ／mnt是你挂载的根分区目录。<br />
+# genfstab -p /mnt >> /mnt/etc/fstab
+如果忘记这部，重启后文件系统会变成只读，不知道为什么。</p>
+<div class="highlight"><pre># arch-chroot /mnt 若出现“chroot failed to run command /bin/sh&#39; no such file or directory”
+
+ 则再依次键入上面三个命令，就不知道什么时候成功了。
+
+一系列配置后，卸载livecd，重启，登录系统，默认只有字符界面，
+
+#ping www.google.com 若出现unknow host，请继续使用livecd根据archlinux-wiki设置网络。
+
+好像在由chroot进入新系统可能ping的通，但若不配置网络，直接重装好的系统启动，会无法联网（虚拟机选择的是NAT方式联网）。
+
+设置好网络后，开始安装桌面环境。
+
+首先安装X11
+
+# pacman -S xorg-server xorg-xinit xorg-utils xorg-server-utils
+
+我们学校的源总是差几M造成无法安装，
+
+无奈在/etc/pacman.d/mirrorlist加上网易的源才算把X装上。
+
+虚拟机不用装显卡驱动，又省了不少事。
+
+安装输入设备驱动
+
+# pacman -S xf86-input-synaptics （笔记本所需）
+
+安装测试环境
+
+# pacman -S xorg-twm xorg-xclock xterm
+
+启动X 之前删除～／.xinitrc文件
+
+startx
+
+可以看到启动了一些窗口
+
+exit关闭X。
+
+然后苦难的日子就开始了。
+
+#pacman -S gnome gnome-extra 安装gnome，全部都装了下来，占用900多M空间，
+
+键入 vi ~/.xinitrc 创建.xinitrc文件 写入exec gnome-session
+
+startx 如图
+
+无法启动
+
+#pacman -Rsn gnome 删除gnome环境
+
+#pacman -S kde 安装kde，全装，占用1000多M
+
+同样在.xinitc文件中写入 exec startkde 但X提示无法找到startkde
+
+无奈安装openbox窗口管理器试试。
+
+成功启动。
+
+再装e17，没成功，源里没有。
+
+然后装lxde ，xfce4都成功启动，但水平太低，不会配置，深感难看。
+
+在这几个桌面环境，图形窗口都有同样的问题：
+
+在浏览器中，鼠标无法滚动网页，两边都有黑框。
+
+然后从中午一直折腾到现在，选修课也没去上。
+
+再看gentoo livecd 真心叫一个漂亮。
+
+各种桌面环境，软件都装的不少。
+
+觉得自己水平太渣。
+
+然后想把livecd直接复制到硬盘上，直接用。以为自己想到了一个好办法。
+
+一搜索，发现还真行，有教程，是2007年的。
+
+又要一段时间不折腾了。
+
+参考：arch新手指南
+</pre></div>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "e5928carchlinuxe5889de68ea5e8a7a6.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

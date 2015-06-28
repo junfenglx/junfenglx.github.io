@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="8皇后问题"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/8e79a87e5908ee997aee9a298.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/8e79a87e5908ee997aee9a298.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>8皇后问题 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/8e79a87e5908ee997aee9a298.html" rel="bookmark"
+             title="Permalink to 8皇后问题">8皇后问题</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-05-19
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/huang-hou-wen-ti.html">皇后问题</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/8e79a87e5908ee997aee9a298.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>传说中的问题。</p>
+<p>传说中的算法：回溯法</p>
+<p>Python实现：</p>
+<div>
+
+def place\_queen(l):
+
+</div>
+
+<div>
+
+    if type(l)==list:
+
+</div>
+
+<div>
+
+        tq=l[-1]
+
+</div>
+
+<div>
+
+        k=len(l)
+
+</div>
+
+<div>
+
+        for i,iq in enumerate(l[0:-1],start=1):
+
+</div>
+
+<div>
+
+            if iq==tq or abs(iq-tq)==abs(i-k):
+
+</div>
+
+<div>
+
+                return False
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+        return True
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+def output\_queens(number,l,n):
+
+</div>
+
+<div>
+
+    print "Solution:%d" % number
+
+</div>
+
+<div>
+
+    for i in range(1,n+1):
+
+</div>
+
+<div>
+
+        for j in range(1,n+1):
+
+</div>
+
+<div>
+
+            if j==l[i-1]:
+
+</div>
+
+<div>
+
+                print "1   ",
+
+</div>
+
+<div>
+
+            else:
+
+</div>
+
+<div>
+
+                print "0   ",
+
+</div>
+
+<div>
+
+        print ''
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+def n\_queens(l,n):
+
+</div>
+
+<div>
+
+    nCount=0
+
+</div>
+
+<div>
+
+    l.append(0)
+
+</div>
+
+<div>
+
+    while(len(l)):
+
+</div>
+
+<div>
+
+        l[-1]=l[-1]+1
+
+</div>
+
+<div>
+
+        while(l[-1]\<=n and not place\_queen(l)):
+
+</div>
+
+<div>
+
+            l[-1]+=1
+
+</div>
+
+<div>
+
+        if l[-1]\<=n:
+
+</div>
+
+<div>
+
+            if len(l)==n:
+
+</div>
+
+<div>
+
+                nCount+=1
+
+</div>
+
+<div>
+
+                output\_queens(nCount,l,n)
+
+</div>
+
+<div>
+
+            else:
+
+</div>
+
+<div>
+
+                 l.append(0)
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+        else:
+
+</div>
+
+<div>
+
+            l.pop()
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+    return nCount
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+def main():
+
+</div>
+
+<div>
+
+    n=12
+
+</div>
+
+<div>
+
+    l=[]
+
+</div>
+
+<div>
+
+    nCount=n\_queens(l,n)
+
+</div>
+
+<div>
+
+    print "There are %d solutions!" % nCount
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+if \_\_name\_\_=='\_\_main\_\_':
+
+</div>
+
+<div>
+
+    import time
+
+</div>
+
+<div>
+
+    start=time.clock()
+
+</div>
+
+<div>
+
+    main()
+
+</div>
+
+<div>
+
+    end=time.clock()
+
+</div>
+
+<div>
+
+    print "Run time: %f seconds " % (end-start)
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+<p>话说第一次感觉Python有点慢了。</p>
+<p>当n=8时命令行下需要0.852626s，IDLE运行则需要16.468123s。而当n=12命令行下时需要266.441883s，就不在IDLE下运行了。</p>
+<p>而C代码呢。n=8时，0.188s；n=12时，10.674s。</p>
+<p>C真的快的如此彪悍。</p>
+<p>附C代码：  </p>
+<p>出处：<a href="http://blog.csdn.net/livelylittlefish/article/details/2141142">链接</a></p>
+<div>
+
+\#include \<stdio.h\>
+
+</div>
+
+<div>
+
+\#include \<stdlib.h\>
+
+</div>
+
+<div>
+
+\#include \<math.h\>
+
+</div>
+
+<div>
+
+\#include \<conio.h\>
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+\#define MAXNUMBER 20
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+//判断当前得到的解向量是否满足问题的解
+
+</div>
+
+<div>
+
+bool place\_queen(int x[],int k)
+
+</div>
+
+<div>
+
+{
+
+</div>
+
+<div>
+
+    int i;
+
+</div>
+
+<div>
+
+    for(i=1;i\<k;i++)
+
+</div>
+
+<div>
+
+    {
+
+</div>
+
+<div>
+
+        if((x[i]==x[k]) || (abs(x[i]-x[k])==abs(i-k)))
+
+</div>
+
+<div>
+
+            return false;
+
+</div>
+
+<div>
+
+    }
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+    return true;
+
+</div>
+
+<div>
+
+}
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+//将结果简单信息打印到屏幕
+
+</div>
+
+<div>
+
+void output\_queens(int x[],int n)
+
+</div>
+
+<div>
+
+{
+
+</div>
+
+<div>
+
+    for(int i=1;i\<=n;i++)
+
+</div>
+
+<div>
+
+        printf("%3d",x[i]);
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+    printf("\\n");
+
+</div>
+
+<div>
+
+}
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+//将结果详细信息写入文件
+
+</div>
+
+<div>
+
+void output\_queens(FILE \*fp,int number,int x[],int n)
+
+</div>
+
+<div>
+
+{
+
+</div>
+
+<div>
+
+    fprintf(fp,"solution %d: ",number);
+
+</div>
+
+<div>
+
+    for(int i=1;i\<=n;i++)
+
+</div>
+
+<div>
+
+    {
+
+</div>
+
+<div>
+
+        for(int j=1;j\<=n;j++)
+
+</div>
+
+<div>
+
+        {
+
+</div>
+
+<div>
+
+            if(j==x[i])
+
+</div>
+
+<div>
+
+                fprintf(fp,"1  ");
+
+</div>
+
+<div>
+
+            else
+
+</div>
+
+<div>
+
+                fprintf(fp,"0  ");
+
+</div>
+
+<div>
+
+        }
+
+</div>
+
+<div>
+
+        fprintf(fp,"\\n");
+
+</div>
+
+<div>
+
+    }
+
+</div>
+
+<div>
+
+    fprintf(fp,"\\n");
+
+</div>
+
+<div>
+
+}
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+/\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
+
+</div>
+
+<div>
+
+ \*  n后问题求解
+
+</div>
+
+<div>
+
+ \*  input  : n, the number of queens
+
+</div>
+
+<div>
+
+ \*  output : the vector of solution, X
+
+</div>
+
+<div>
+
+ \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*/
+
+</div>
+
+<div>
+
+int n\_queens(FILE \*fp,int n,int x[])
+
+</div>
+
+<div>
+
+{
+
+</div>
+
+<div>
+
+    int nCount=0;    //解个数
+
+</div>
+
+<div>
+
+    int k=1;        //先处理第1个皇后
+
+</div>
+
+<div>
+
+    x[1]=0;
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+    while(k\>0)
+
+</div>
+
+<div>
+
+    {
+
+</div>
+
+<div>
+
+        x[k]=x[k]+1;//在当前列加1的位置开始搜索
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+        while(x[k]\<=n && !place\_queen(x,k))  
+ //当前列位置是否满足条件
+
+</div>
+
+<div>
+
+            x[k]=x[k]+1;    //不满足,继续搜索下一列位置
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+        if(x[k]\<=n)    //若存在满足条件的列
+
+</div>
+
+<div>
+
+        {
+
+</div>
+
+<div>
+
+            if(k==n)//是最后一个皇后，则得到一个最终解
+
+</div>
+
+<div>
+
+            {
+
+</div>
+
+<div>
+
+                //break;    //此处若break,则只能得到一个解
+
+</div>
+
+<div>
+
+                nCount++;
+
+</div>
+
+<div>
+
+                output\_queens(x,n);    //输出
+
+</div>
+
+<div>
+
+                output\_queens(fp,nCount,x,n);
+
+</div>
+
+<div>
+
+            }
+
+</div>
+
+<div>
+
+            else    //否则，处理下一个皇后,即第 k+1 个皇后
+
+</div>
+
+<div>
+
+            {
+
+</div>
+
+<div>
+
+                k++;
+
+</div>
+
+<div>
+
+                x[k]=0;
+
+</div>
+
+<div>
+
+            }
+
+</div>
+
+<div>
+
+        }
+
+</div>
+
+<div>
+
+        else        //若不存在满足条件的列,则回溯
+
+</div>
+
+<div>
+
+        {
+
+</div>
+
+<div>
+
+            x[k]=0;    //第k个皇后复位为0
+
+</div>
+
+<div>
+
+            k--;    //回溯到前一个皇后
+
+</div>
+
+<div>
+
+        }
+
+</div>
+
+<div>
+
+    }
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+    return nCount;
+
+</div>
+
+<div>
+
+}
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+int main()
+
+</div>
+
+<div>
+
+{
+
+</div>
+
+<div>
+
+    int n=8,x[MAXNUMBER]={0};
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+    FILE \*fp=fopen("8皇后问题的解.txt","w");
+
+</div>
+
+<div>
+
+    if(fp==NULL)
+
+</div>
+
+<div>
+
+    {
+
+</div>
+
+<div>
+
+        printf("can not wirte file!");
+
+</div>
+
+<div>
+
+        exit(0);
+
+</div>
+
+<div>
+
+    }
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+    printf("the queens are placed on the coloums : ");
+
+</div>
+
+<div>
+
+    //求解并写入文件
+
+</div>
+
+<div>
+
+    int nCount=n\_queens(fp,n,x);
+
+</div>
+
+<div>
+
+    printf("there are %d solutions! ",nCount);
+
+</div>
+
+<div>
+
+    fclose(fp);
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+    return 0;
+
+</div>
+
+<div>
+
+}
+
+</div>
+
+<div>
+
+</div>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "8e79a87e5908ee997aee9a298.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="ubuntu 使用mentohust连接校园网"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/ubuntu-e4bdbfe794a8mentohuste8bf9ee68ea5e6a0a1e59bade7bd91.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/ubuntu-e4bdbfe794a8mentohuste8bf9ee68ea5e6a0a1e59bade7bd91.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>ubuntu 使用mentohust连接校园网 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/ubuntu-e4bdbfe794a8mentohuste8bf9ee68ea5e6a0a1e59bade7bd91.html" rel="bookmark"
+             title="Permalink to ubuntu 使用mentohust连接校园网">ubuntu 使用mentohust连接校园网</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2012-10-31
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/mentohust.html">mentohust</a>
+        <a href="http://blog.junfeng.ca/tag/ubuntu.html">ubuntu</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/ubuntu-e4bdbfe794a8mentohuste8bf9ee68ea5e6a0a1e59bade7bd91.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>环境：XDU+Y470+分到静态IP</p>
+<p><strong>题外话</strong></p>
+<p>突然间收到了静态IP，windows已无法联网，只好立即装linux，先装的DebianAMD64，启动时出现花屏，以为是版本的问题，重装成i386，依旧花屏，使用mentohust，成功联网，但显卡驱动没装好，显示影响基本浏览，然后nvidia官网下载闭源驱动，总是提示gcc版本不匹配，装成它要求的版本还是不成功。无奈换成ubuntuAMD64，显示正常，也连上了网，但重启后，又是无法联网。于是再换DebianAMD64，依旧花屏，且汉字显示为块状，......又换回ubuntu。</p>
+<p><strong>正文</strong></p>
+<p>首先下载mentohust（见附件）</p>
+<p>sudo tar zxf mentohust.tar.gz -C / 解压到根目录。</p>
+<p>cd /mentohust 进入mentohust目录</p>
+<p>chmod a+x install 加入可执行权限</p>
+<p>sudo ./install 安装</p>
+<p>sudo gedit /etc/mentohust.conf</p>
+<p>填入用户名 密码</p>
+<p>dns设置为114.114.114.114 保存</p>
+<p>为网卡配置静态IP地址</p>
+<p>编辑文件/etc/network/interfaces:</p>
+<p>sudo gdeit /etc/network/interfaces</p>
+<p>并用下面的行来替换有关eth0的行:</p>
+<p># The primary network interface</p>
+<p>auto eth0</p>
+<p>iface eth0 inet static</p>
+<p>address IP地址</p>
+<p>gateway 网关</p>
+<p>netmask 子网掩码</p>
+<p>dns-nameservers 114.114.114.114</p>
+<p>保持和/etc/mentohust.conf 一致</p>
+<p>sudo /etc/init.d/networking restart 重启网络使配置生效。</p>
+<p>尽量不要在/etc/resolv.conf设置dns，每次重启后该文件都会被重置。</p>
+<p>然后 sudo mentohust，</p>
+<p>出现：</p>
+<p>认证成功!</p>
+<p>发送心跳包以保持在线...</p>
+<p>欢迎来到linux世界。</p>
+<p>参考资料：<a href="http://xdlinux.info/wiki/index.php/Linux%E8%BF%9E%E6%8E%A5%E6%A0%A1%E5%9B%AD%E7%BD%91">linux连接校园网</a></p>
+<p>附件：<a href="http://pan.baidu.com/share/link?shareid=114284&amp;uk=2887257007">mentohust.tar.gz</a></p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "ubuntu-e4bdbfe794a8mentohuste8bf9ee68ea5e6a0a1e59bade7bd91.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

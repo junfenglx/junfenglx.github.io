@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="python创建子进程"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/pythone5889be5bbbae5ad90e8bf9be7a88b.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/pythone5889be5bbbae5ad90e8bf9be7a88b.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>python创建子进程 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/pythone5889be5bbbae5ad90e8bf9be7a88b.html" rel="bookmark"
+             title="Permalink to python创建子进程">python创建子进程</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2012-10-24
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/subprocess.html">subprocess</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/pythone5889be5bbbae5ad90e8bf9be7a88b.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>在使用python的subprocess.Popen()创建的子进程死循环时，当设置shell=True时，使用subprocess.popen().kill()无法杀死子进程，然后换成</p>
+<p>os.kill(proc.pid,
+signal.SIGKILL),同样无法杀死，郁闷纠结之。在kill()后加上wait(),防止僵尸进程，同样无法结束。看来不是加不加wait()的事情。于是加了一条print
+"PID:%d" %
+proc.pid(),打印出子进程PID,发现问题了，打印出的进程号，和top显示的不一样，总是相差1，</p>
+<p>RT</p>
+<p><a href="http://jcodef.com/wp-content/uploads/2012/10/bug.png"><img alt="" src="http://jcodef.com/wp-content/uploads/2012/10/bug-300x168.png" title="bug" /></a></p>
+<p>于是把改成os.kill(proc.pid+1,signal.SIGKILL), 成功杀死子进程。</p>
+<p>于是很激动以为发现了python的bug，想着跟python社区发个邮件报告一下。</p>
+<p>当我查看subprocess的官方说明时，发现原来人家早有提示啊，</p>
+<blockquote>
+<dl>
+<dt><code>Popen.pid</code></dt>
+<dd>
+<p>The process ID of the child process.<span
+style="color: #ff0000;">Note that if you set the <em>shell</em> argument
+to <code>True</code>, this is the process ID of the spawned shell.</span>
+</p>
+<div></p>
+</div>
+
+</dd>
+</dl>
+<p>还是我看文档不够细心。<span
+style="color: #000000;">这句话的google翻译结果是：</span></p>
+</blockquote>
+<p><span
+style="color: #000000;">“需要注意的是，如果你的shell参数设置为True，这是衍生shell的进程ID。”</span></p>
+<p>但为什么相差总是相差1呢？官方也没给出解释。</p>
+<p>于是去掉shell=True,kill(),和os.kill(pid,signal.SIGKILL)都能工作。</p>
+<p>最终源代码：</p>
+<p><a href="http://jcodef.com/wp-content/uploads/2012/10/Screenshot-from-2012-10-24-195604.png"><img alt="" src="http://jcodef.com/wp-content/uploads/2012/10/Screenshot-from-2012-10-24-195604-300x215.png" title="Screenshot from 2012-10-24 19:56:04" /></a></p>
+<p>helloworld.c测试代码：</p>
+<p><a href="http://jcodef.com/wp-content/uploads/2012/10/Screenshot-from-2012-10-24-195532.png"><img alt="" src="http://jcodef.com/wp-content/uploads/2012/10/Screenshot-from-2012-10-24-195532-300x122.png" title="Screenshot from 2012-10-24 19:55:32" /></a></p>
+<p>主要是因为自己看文档不够细心，同时早就应该尝试把shell=True去掉的。也不至于浪费那么长时间。</p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "pythone5889be5bbbae5ad90e8bf9be7a88b.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

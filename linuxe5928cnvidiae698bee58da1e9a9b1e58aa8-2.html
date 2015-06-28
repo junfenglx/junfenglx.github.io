@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="Linux和Nvidia显卡驱动"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>Linux和Nvidia显卡驱动 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html" rel="bookmark"
+             title="Permalink to Linux和Nvidia显卡驱动">Linux和Nvidia显卡驱动</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-03-10
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/xia-zhe-teng.html">瞎折腾</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>由于lxde也用了将近一学期了，虽说lxde比较轻量，但显示效果实在不能说美观！又不想用GNOME或者KDE之流.它们会携带一大堆莫名其妙的软件，也受不了arch下GNOME那个样子，至于KDE,比GNOME好不了哪去.而xfce4也是直追GNOME.于是再次忍不住装上Enlightenment17,上次因为感觉e17CPU占用太多，删了.但这次为了显示效果，下决心把e17装了.跟着网上的教程算是把它配置的满意了.<br />
+但风扇也呼呼的转了起来,top命令下去，果然，Enlightenment
+CPU占用率百分之三十几，都是因为我的nvidia显卡没正常工作的缘故！而且貌似还在发热！你说你不工作去就算了，还拖累整个系统.BIOS中也没有关闭n卡的选项.无奈只有自食其力，上网搜解决方法.  </p>
+<p>貌似官方源里有nvidia驱动，但无奈nvidia-utility和mesa-libgl冲突,而后者被我系统里的大部分软件依赖.也就不敢装它了.然后用了aur中的bumblebee软件,但在装nvidia-bumblebee时无法安装，看wiki中说bbswitch可以关闭独显，但我也没装成功,bbswitch-git倒是装
+成功了，却不工作！无奈我又去nvidia官网下载驱动，倒是没有依赖问题,但装好之后，X服务器又启动不了了.把由nvidia-xconfig自动生成在/etc/X11/Xorg.conf删了之后才能启动桌面环境！可能是我没配置好什么.于是狠心去装官方源中的n卡驱动，大概把我电脑里的桌面程序都给删了，装上后X还是启动不了，于是删了X,最小安装Xorg,问题依旧，查看X日志发现错误信息中有“Intel”关键字，于是明白要装xf86-video-intel
+Intel集显的开源驱动，但它依赖mesa-libgl库，于是我明白怎么回事了：这是Intel和nvidia之间的矛盾.Fuck,可却害苦了我等
+草民！</p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="Linux菜鸟瞎折腾"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/linuxe88f9ce9b89fe79e8ee68a98e885be.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/linuxe88f9ce9b89fe79e8ee68a98e885be.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>Linux菜鸟瞎折腾 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/linuxe88f9ce9b89fe79e8ee68a98e885be.html" rel="bookmark"
+             title="Permalink to Linux菜鸟瞎折腾">Linux菜鸟瞎折腾</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2012-09-20
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/debianan-zhuang.html">Debian安装</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/linuxe88f9ce9b89fe79e8ee68a98e885be.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>昨天在命令行下输入了aptitude
+upgrade命令之后不知怎么的，linux内核竟然升级了，升级也挺好的，可关键是旧的版本也还存在。这样在开机时就出现了这种情况：<br />
+RT  </p>
+<p><a href="http://www.jcodef.com/wp-content/uploads/2012/09/buhuo1.jpg"><img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/buhuo1.jpg" title="buhuo1" /></a></p>
+<p>然后我就不爽了，本来一个内核就有两个选项：一个是图形界面，一个是命令行。现在又多了一个内核，也就有四个选项可以选择了。</p>
+<p>实在是看着不舒服，也就一个小小的虚拟机，看着貌似装了四个系统！</p>
+<p>于是就在ChinaUnix论坛询问，感谢网友们的热心回答，我知道了怎么删除那个旧内核的方法:</p>
+<p>在终端或命令行下输入：</p>
+<p>dpkg --get-selections|grep linux</p>
+<p>然后在root权限下输入：</p>
+<p>dpkg --purge --force-remove-essential linux-image-XXX</p>
+<p>XXX为要卸载的旧的版本号</p>
+<p>就这样，成功卸载了旧的linux内核</p>
+<p>如图：</p>
+<p><a href="http://www.jcodef.com/wp-content/uploads/2012/09/buhuo2.jpg"><img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/buhuo2.jpg" title="buhuo2" /></a></p>
+<p>但是前面还是有那个蓝色的画面。继续请教，得知;</p>
+<p>grub需要升级到grub2。</p>
+<p>我键入命令：</p>
+<p>upgrade-from-grub-legacy</p>
+<p>在让选择安装在哪个文件夹下的时候，我尝试了好几次，就是选不中，按enter键会提示你不装grub会怎么怎么。。。</p>
+<p>我想装上啊，可是选不中！没办法，我只好选否！然后就悲剧了！</p>
+<p>RT</p>
+<p><a href="http://www.jcodef.com/wp-content/uploads/2012/09/buhou3.jpg"><img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/buhou3.jpg" title="buhou3" /></a></p>
+<p>没了操作系统启动程序，然后就Error了！</p>
+<p>我又向高手提问，可能是高手嫌我水平太次了，我也感觉很后悔！要是在服务器下，我这样的话那损失就大了！！</p>
+<p>于是我上网搜解决方法，可网上很多都是删除GRUB的方法！！我无奈，只好重装系统。最笨的一种方法！</p>
+<p>刚开始一切顺利，因为以前也装过几次，这次选的就是图形专家模式，可在选择linux内核版本的时候，我为了最求最新版，选了一个比较新的版本，可是快装成功的时候，竟然提示该内核版本不支持我的CPU，也多次退回去重新操作，可是还是没成功！</p>
+<p>万般无奈，再次重装，这次选的是普通模式（install），在装到选择APT源的时候，发现无法更改APT源，只能从国外的源里下载，十几K的速度，麻木的再次重启、重装。依旧是Install模式，这次选择不从网上下载软件，可是选择之后，进度条却不走了！</p>
+<p>心理哭着再次重装、这次还是坚持第一次的选择吧！选择Advanced->Graphic
+Advanced Install，这次选择较低的linux版本 ，设置了学校的源，安装成功！！</p>
+<p>在安装的时候没选桌面环境，因为不想用默认的Gnome桌面管理环境。自己装了一个wmaker桌面环境，可是我水平比较菜，终端中文输出为乱码。也不知怎么解决，于是只好aptitude
+install gnome，然后就装好了！弄了一下午啊</p>
+<p>秀秀自己的桌面，还不怎么会设置，比较难看。</p>
+<p><a href="http://www.jcodef.com/wp-content/uploads/2012/09/buhuo4.jpg"><img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/buhuo4-300x229.jpg" title="buhuo4" /></a></p>
+<p>最后得到了几个教训，在Debian linux下慎用aptitude
+upgrade！不知道会出现什么东东！</p>
+<p>一定要养成做备份的习惯，关键时候会让你省很多力气的，</p>
+<p>不然有你哭的！</p>
+<p>当然“远离电脑，珍爱生命，没事不要瞎折腾！”是最好的了！！</p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "linuxe88f9ce9b89fe79e8ee68a98e885be.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

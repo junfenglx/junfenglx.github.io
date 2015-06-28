@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="Anagrams by Stack"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/anagrams-by-stack.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/anagrams-by-stack.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>Anagrams by Stack | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/anagrams-by-stack.html" rel="bookmark"
+             title="Permalink to Anagrams by Stack">Anagrams by Stack</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-05-29
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/stack.html">stack</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/anagrams-by-stack.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <style type="text/css"><!--<br />
+pre { font-family: monospace; color: #000000; background-color: #ffffff; } body { font-family: monospace; color: #000000; background-color: #ffffff; } .Special { color: #6a5acd; } .Comment { color: #0000ff; } .Type { color: #2e8b57; font-weight: bold; } .Statement { color: #804040; font-weight: bold; } .Constant { color: #ff00ff; } .PreProc { color: #a020f0; } --><br></br>
+--></style>
+
+<p>ZOJ Problem Set - 1004 Anagrams by Stack  </p>
+<p>题目：<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1004">来源</a></p>
+<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include&lt;cstring&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#define N 100</span>
+<span class="kt">char</span> <span class="n">source</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span><span class="c1">//原word</span>
+<span class="kt">char</span> <span class="n">target</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span><span class="c1">//目标word</span>
+<span class="kt">char</span> <span class="n">pop_push</span><span class="p">[</span><span class="mi">200</span><span class="p">];</span><span class="c1">//栈操作序列</span>
+<span class="kt">char</span> <span class="n">stackf</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span><span class="c1">//保存栈中栈中当前情况</span>
+<span class="kt">char</span> <span class="n">out</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span><span class="c1">//保存生成word</span>
+<span class="kt">void</span> <span class="nf">Search</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span><span class="c1">//递归出所有的进栈出栈操作</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="o">==</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="c1">//边界条件</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">o</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//s指向当前要进栈的字母，f指向栈顶，o指向out中当前可放位置</span>
+        <span class="k">for</span> <span class="p">(;</span><span class="n">i</span><span class="o">!=</span><span class="n">p</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">pop_push</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="sc">&#39;i&#39;</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="o">==</span><span class="n">n</span><span class="p">)</span>
+                    <span class="k">break</span><span class="p">;</span><span class="c1">//不合法的进栈，跳出</span>
+                <span class="n">stackf</span><span class="p">[</span><span class="n">f</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="n">source</span><span class="p">[</span><span class="n">s</span><span class="o">++</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">f</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="k">break</span><span class="p">;</span><span class="c1">//不合法的出栈，跳出</span>
+                <span class="n">out</span><span class="p">[</span><span class="n">o</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="n">stackf</span><span class="p">[</span><span class="o">--</span><span class="n">f</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">out</span><span class="p">[</span><span class="n">o</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="n">out</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">!=</span><span class="n">p</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="c1">//输出</span>
+                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">pop_push</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">pop_push</span><span class="p">[</span><span class="n">p</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;i&#39;</span><span class="p">;</span><span class="c1">//首先进栈</span>
+    <span class="n">Search</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">);</span><span class="c1">//递归到下一层</span>
+    <span class="n">pop_push</span><span class="p">[</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;o&#39;</span><span class="p">;</span><span class="c1">//退回，改成出栈</span>
+    <span class="n">Search</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">);</span><span class="c1">//下一层</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">source</span> <span class="o">&gt;&gt;</span> <span class="n">target</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">n</span><span class="o">=</span><span class="n">strlen</span><span class="p">(</span><span class="n">source</span><span class="p">);</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;[&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="n">Search</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;]&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>递归出所有栈操作，排除不合法的。找到满足条件的操作序列。</p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "anagrams-by-stack.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

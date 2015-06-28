@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="浅解电脑掉线"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/e6b585e8a7a3e68e89e7babf.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/e6b585e8a7a3e68e89e7babf.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>浅解电脑掉线 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/e6b585e8a7a3e68e89e7babf.html" rel="bookmark"
+             title="Permalink to 浅解电脑掉线">浅解电脑掉线</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2012-07-21
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/dian-nao-diao-xian.html">电脑掉线</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/e6b585e8a7a3e68e89e7babf.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>近日，研究起TCP/IP协议来了，话说那本《TCP/IP协议•卷一》真乃神书也，看的我是晕头雾里的！不过在我看那本书的时候，突然想起一个现象：我们都遇到过电脑不知怎么的突然掉线了的情况！这是为什么呢？看这本书的时候，大脑被刺激的突然想到一个可以解释的说法。</p>
+<p>以前刚接触电脑的时候，家里用的是拨号上网（那本书上叫SLIP），  </p>
+<p>开机时总要等一些时间才能连上网络。当时，不想等，遂请问高手，懂得手动设置一个IP地址，就能取消开机是要等的那段时间。果然这样上网速度快了很多。过不久，又经人提醒，明白手动设置IP地址的话，很容易被黑客攻击。这就相当于把你电脑在网络上的地址给公布了出去，如果网络遵循黑暗森林法则的话，这样不知死了多少次了！所幸，网络不处于黑暗森林状态，对于普通用户，黑客也不屑于去攻击。所以手动设置本机IP的人可以放心一些。</p>
+<p>那这件事又和网络掉线有什么关系呢？</p>
+<p>首先，A用户手动设置自己的本机IP后，假如是125.252.12.7，那么这个IP地址就变的特殊了。因为当A上线时，他的电脑一定会用这个IP地址的！。而当A下线后，这个IP是否还为A独有呢？当然不，网络运营商不可能这样浪费IP的，这样的话，这个IP就会被其他用户获取，作为他们电脑的地址。而掉线的发生，就是假如B的电脑在A不在线的情况下，获取了125.252.12.7这个IP，而当B玩地下城正玩得高兴的时候，这时A上线了，因为A把这个IP地址作为了他电脑的唯一地址，自然这个IP也就被A抢走了。而B的电脑就要重新获取新的IP，这样就造成B的电脑掉线了。</p>
+<p>假如在一个网段上有很多人，都手动设置了IP地址的话。那么自由的IP地址就会很少，因为IP地址始终是有限的。这样的话，掉线的情况就会经常发生在这个网络上。</p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "e6b585e8a7a3e68e89e7babf.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

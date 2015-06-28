@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="mount and grep"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/mount-and-grep.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/mount-and-grep.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>mount and grep | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/mount-and-grep.html" rel="bookmark"
+             title="Permalink to mount and grep">mount and grep</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/junfeng.html">junfeng</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/memo.html">memo</a>
+
+    on 2014-06-08
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/mount.html">mount</a>
+        <a href="http://blog.junfeng.ca/tag/grep.html">grep</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/mount-and-grep.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <h2>mount options</h2>
+<p><code>mount</code>display current partions mount options.
+Output like this:</p>
+<div class="highlight"><pre>/dev/sda2 on /home type ext4 (rw,relatime,data=ordered)
+/dev/sda5 on /media/sda5 type ext4 (rw,nosuid,nodev,noexec,relatime,data=ordered,user)
+/dev/sda7 on /media/sda7 type ext4 (rw,nosuid,nodev,noexec,relatime,data=ordered,user)
+/dev/sda6 on /media/sda6 type ext4 (rw,nosuid,nodev,noexec,relatime,data=ordered,user)
+</pre></div>
+
+
+<p>if you run a executable program on a partion with settiong noexec mount options, this program will not execute.</p>
+<p>And you got error message like <code>bash: ./a.out: Permission denied</code>.</p>
+<p>When you have a program that opens exec bit flag, but it can't run, even you have corret permission.</p>
+<p>then <code>mount</code> check mount options of the partion the program run on. Maybe just because you didn't open exec mount option.</p>
+<p><em>Caution:</em></p>
+<p>if you set partions auto mount on /et/fstab, check whether you set user mount option.</p>
+<p>according the mount man page says:</p>
+<blockquote>
+<p>Allow an ordinary user to mount the filesystem.
+  The name of the mounting user is written to mtab so that he can unmount the filesystem again.
+  This option implies the options noexec, nosuid, and nodev (unless overridden by subsequent options,
+  as in the option line user,exec,dev,suid).</p>
+</blockquote>
+<p>So if you want programs can run on these auto mount partions, add exec option if you setted user option.</p>
+<h2>grep options</h2>
+<p>If you want to search some words like <code>X-Forwarded-For</code> recursively, you type
+<code>grep -i "X-Forwarded-For" -r *</code>. It works, but search every type files.</p>
+<p>Maybe you want to recursively search just some type files like "*.py".</p>
+<p>Type <code>grep -i "X-Forwarded-For" -r *.py</code> is a naturaly derivation. But It doesn't work.
+It equals to <code>grep -i "X-Forwarded-For" *.py</code>, just search current directory "*.py" files.</p>
+<p>The right solution is:
+<code>grep -i "X-Forwarded-For" --include=*.py -r</code></p>
+<p>recursively search *.py files for <code>X-Forwarded-For</code></p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "mount-and-grep.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

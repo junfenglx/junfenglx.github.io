@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>jf.h</title><link>http://blog.junfeng.ca/</link><description>lylx</description><atom:link href="http://blog.junfeng.ca/feeds/bi-ji.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 15 Apr 2015 12:25:16 +0800</lastBuildDate><item><title>The Little Redis Book 笔记</title><link>http://blog.junfeng.ca/the-little-redis-book-bi-ji.html</link><description>&lt;p&gt;query limitations, data structures and Redis' way to store data in memory&lt;/p&gt;
+&lt;h3&gt;strings&lt;/h3&gt;
+&lt;p&gt;use cases: storing objects (complex or not) and counters&lt;/p&gt;
+&lt;h3&gt;hashes&lt;/h3&gt;
+&lt;p&gt;hash suits for structed objects
+hash implemention&lt;/p&gt;
+&lt;h3&gt;sets&lt;/h3&gt;
+&lt;p&gt;in op is O(1)?&lt;/p&gt;
+&lt;p&gt;use cases: Sets are great for tagging or tracking any other properties
+of a value for which duplicates don't make any sense
+(or where we want to apply set operations such as intersections and unions).&lt;/p&gt;
+&lt;h3&gt;sorted sets&lt;/h3&gt;
+&lt;p&gt;hashes are like strings but with fields,
+then sorted sets are like sets but with a score&lt;/p&gt;
+&lt;p&gt;use cases:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;leaderboard system&lt;/li&gt;
+&lt;li&gt;anything you want sorted by an some integer,
+  and be able to efficiently manipulate based on that score,&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Pseudo Multi Key Queries&lt;/h3&gt;
+&lt;p&gt;using hashes to make querying a little easier&lt;/p&gt;
+&lt;h3&gt;References and Indexes&lt;/h3&gt;
+&lt;p&gt;manage/update/delete these references manually is defficult&lt;/p&gt;
+&lt;h3&gt;Round Trips and Pipelining&lt;/h3&gt;
+&lt;h3&gt;Transactions&lt;/h3&gt;
+&lt;p&gt;Every Redis command is atomic, including the ones that do multiple things.
+Additionally, Redis has support for transactions when using multiple commands.&lt;/p&gt;
+&lt;p&gt;Redis is actually single-threaded,
+which is how every command is guaranteed to be atomic&lt;/p&gt;
+&lt;p&gt;starts &lt;em&gt;multi&lt;/em&gt; then some &lt;em&gt;commands&lt;/em&gt; ends with exec or discard&lt;/p&gt;
+&lt;h3&gt;Expiration&lt;/h3&gt;
+&lt;p&gt;commands:
+- EXPIRE
+- EXPIREAT
+- TTL
+- PERSIST
+- SETEX&lt;/p&gt;
+&lt;p&gt;ideal caching engine&lt;/p&gt;
+&lt;h3&gt;Lua Scripting&lt;/h3&gt;
+&lt;p&gt;keys with a TTL won't expire half-way through script execution&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;lua-time-limit&lt;/em&gt; defines how long a Lua script is allowed to
+execute before being terminated. Default is 5 seconds.&lt;/p&gt;
+&lt;h3&gt;Replication&lt;/h3&gt;
+&lt;p&gt;Redis replication doesn't yet provide automated failover,
+If the master dies, a slave needs to be manually promoted&lt;/p&gt;
+&lt;p&gt;Some commands are more expensive than others (sort for example)
+and offloading their execution to a slave can keep the overall
+system responsive to incoming queries&lt;/p&gt;
+&lt;h3&gt;Backups&lt;/h3&gt;
+&lt;p&gt;disable both snapshotting and the append-only file (aof) on
+the master and let a slave take care of this&lt;/p&gt;
+&lt;h3&gt;Redis Cluster&lt;/h3&gt;
+&lt;p&gt;Not only will this offer horizontal scaling, including rebalancing,
+but it'll also provide automated failover for high availability.&lt;/p&gt;
+&lt;h3&gt;End&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Redis is easy to learn&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;the real benefits Redis has to offer with its simplicity&lt;/em&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">junfeng</dc:creator><pubDate>Wed, 15 Apr 2015 12:25:16 +0800</pubDate><guid>tag:blog.junfeng.ca,2015-04-15:the-little-redis-book-bi-ji.html</guid><category>Redis</category><category>learning</category></item></channel></rss>

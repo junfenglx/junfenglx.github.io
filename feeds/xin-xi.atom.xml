@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://blog.junfeng.ca/" rel="alternate"></link><link href="http://blog.junfeng.ca/feeds/xin-xi.atom.xml" rel="self"></link><id>http://blog.junfeng.ca/</id><updated>2015-06-09T22:07:32+08:00</updated><entry><title>PEPS doc Kindle版本</title><link href="http://blog.junfeng.ca/peps-doc-kindleban-ben.html" rel="alternate"></link><updated>2015-06-09T22:07:32+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2015-06-09:peps-doc-kindleban-ben.html</id><summary type="html">&lt;h3&gt;介绍&lt;/h3&gt;
+&lt;p&gt;Python上遇到的很多问题搜到最后经常链接到PEP, 觉得PEPS需要研读一下.
+一时半会儿看不完的东西总想着放到Kindle里看(很有可能不会再看), 于是
+就制作了这个mobi版本的Python Enhancement Proposals.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://raw.githubusercontent.com/grepcook/peps_mobi/master/Python%20Enhancement%20Proposals.mobi"&gt;下载地址&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;过程&lt;/h3&gt;
+&lt;p&gt;hg clone下来, 然后转成html. 使用&lt;a href="https://github.com/grepcook/peps_mobi/blob/master/pep2mobi.py"&gt;代码&lt;/a&gt;解析html, 用kindlegen生成
+mobi文件.&lt;/p&gt;
+&lt;p&gt;吐槽:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Python官方积极推动代码移植到Python 3, 可peps中的转换代码都是
+   老版本的Python 2&lt;/li&gt;
+&lt;li&gt;kindlegen的&lt;code&gt;-c2&lt;/code&gt;选项很占用CPU, 且处理时间臭长, 但生成文件体积
+   变化并不大&lt;/li&gt;
+&lt;li&gt;PEP的两种格式处理起来带来不少麻烦, 并且其生成的html文档结构
+   很简单, 没有程序处理需要的元信息.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;TODO&lt;/h3&gt;
+&lt;p&gt;本来应该按照分类做成类似期刊格式的文档, 但时间不够用, 没有制作
+期刊的模板, 以后有时间再做.&lt;/p&gt;
+&lt;p&gt;应该免去转成html那一步, 直接利用原生格式, 需要学习PEP文档的两种
+格式.&lt;/p&gt;
+&lt;p&gt;Python应该统一PEP格式, 把两种格式使用程序转成一种.&lt;/p&gt;</summary><category term="Python"></category><category term="Kindle"></category></entry></feed>

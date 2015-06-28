@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://blog.junfeng.ca/" rel="alternate"></link><link href="http://blog.junfeng.ca/feeds/unpv13e.atom.xml" rel="self"></link><id>http://blog.junfeng.ca/</id><updated>2014-07-03T14:45:00+08:00</updated><entry><title>unpv13e chapter 3 notes</title><link href="http://blog.junfeng.ca/unpv13e-chapter-3-notes.html" rel="alternate"></link><updated>2014-07-03T14:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-07-03:unpv13e-chapter-3-notes.html</id><summary type="html">&lt;h3&gt;IPv4 Socket Address Structure&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="sockaddr_in.png" src="./images/sockaddr_in.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;Datatypes required by the POSIX specification&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="datatypes.png" src="./images/datatypes.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;Generic Socket Address Structure&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="sockaddr.png" src="./images/sockaddr.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;IPv6 Socket Address Structure&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="sockaddr_in6.png" src="./images/sockaddr_in6.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;New Generic Socket Address Structure&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="sockaddr_storage.png" src="./images/sockaddr_storage.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;Comparison of various socket address structures.&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="sockaddr_comparison.png" src="./images/sockaddr_comparison.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;Byte Ordering Functions&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="byte_ordering_functions.png" src="./images/byte_ordering_functions.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;Convert Addresses Between ASCII Strings And Network Byte Ordered Binary Values&lt;/h3&gt;
+&lt;h5&gt;Old Functions:&lt;/h5&gt;
+&lt;p&gt;&lt;img alt="inet_aton-inet_addr-inet_ntoa.png" src="./images/inet_aton-inet_addr-inet_ntoa.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;note 1: INADDR_NONE is typically 32 one-bits, so inet_addr cannot convert string 255.255.255.255&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;note 2: inet_ntoa's return value is in static memory, so it is not reentrant&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;note 3: inet_ntoa takes structures as it's argument, not a point&lt;/em&gt;&lt;/p&gt;
+&lt;h5&gt;New Functions:&lt;/h5&gt;
+&lt;p&gt;&lt;img alt="inet_pton-inet_ntop.png" src="./images/inet_pton-inet_ntop.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;#define INET_ADDRSTRLEN 16 /* for IPv4 dotted-decimal */&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;#define INET6_ADDRSTRLEN 46 /* for IPv6 hex string */&lt;/code&gt;&lt;/p&gt;
+&lt;h5&gt;Summary of address conversion functions&lt;/h5&gt;
+&lt;p&gt;&lt;img alt="address_conversion_functions.png" src="./images/address_conversion_functions.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Exercises&lt;/h2&gt;
+&lt;p&gt;3.1 In C the function can modify arguments only if arguments passed by reference.&lt;/p&gt;
+&lt;p&gt;3.2 because &lt;code&gt;sizeof(char)&lt;/code&gt; is one byte, read or write n chars equals n bytes data.&lt;/p&gt;
+&lt;p&gt;3.3&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*inet_pton_loose&lt;/span&gt;
+&lt;span class="cm"&gt; * author: junfeng*/&lt;/span&gt;
+
+&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include &amp;lt;string.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include &amp;lt;netinet/in.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include &amp;lt;arpa/inet.h&amp;gt;&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;inet_pton_loose&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;family&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;strptr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;addrptr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="cm"&gt;/*test*/&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;in_addr&lt;/span&gt; &lt;span class="n"&gt;a_in4_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;in6_addr&lt;/span&gt; &lt;span class="n"&gt;a_in6_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str_addr4&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;INET_ADDRSTRLEN&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;str_addr6&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;INET6_ADDRSTRLEN&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argc&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Usage:&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;%s str_addr&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inet_pton_loose&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;a_in4_addr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="n"&gt;inet_ntop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;a_in4_addr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;str_addr4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;INET_ADDRSTRLEN&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a_in4_addr: %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;str_addr4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inet_pton_loose&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AF_INET6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;a_in6_addr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="n"&gt;inet_ntop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AF_INET6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;a_in6_addr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;str_addr6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;INET6_ADDRSTRLEN&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a_in6_addr: %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;str_addr6&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;inet_pton_loose&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;family&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;strptr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;addrptr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;inet_pton&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;family&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;strptr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;addrptr&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;in_addr&lt;/span&gt; &lt;span class="n"&gt;in_val&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inet_aton&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;strptr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;in_val&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;family&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;memcpy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;addrptr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;in_val&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;in_addr&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;family&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;AF_INET6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;diff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;in6_addr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;in_addr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="n"&gt;memset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;addrptr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;diff&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="n"&gt;memset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;addrptr&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;diff&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;\
+                        &lt;span class="mh"&gt;0xff&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="n"&gt;memcpy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;addrptr&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;diff&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;in_val&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;in_addr&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>unpv13e chapter 2 notes</title><link href="http://blog.junfeng.ca/unpv13e-chapter-2-notes.html" rel="alternate"></link><updated>2014-06-08T15:41:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-06-08:unpv13e-chapter-2-notes.html</id><summary type="html">&lt;h2&gt;Overview of TCP/IP protocols.&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="unpv1_overview_TCP_IP_protocols.png" src="./images/unpv1_overview_TCP_IP_protocols.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;TCP&lt;/h2&gt;
+&lt;h3&gt;Three-Way Handshake&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="TCP_three_way_handshake.png" src="./images/TCP_three_way_handshake.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;Packets exchanged when a TCP connection is closed.&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="packets_exchange_when_TCP_connections_terminal.png" src="./images/packets_exchange_when_TCP_connections_terminal.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;TCP State Transition Diagram&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="TCP_State_Transition_Diagram.png" src="./images/TCP_State_Transition_Diagram.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;TIME_WAIT State&lt;/h3&gt;
+&lt;p&gt;Time: 2MSL&lt;/p&gt;
+&lt;p&gt;Reasons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To implement TCP's full-duplex connection termination reliably&lt;/li&gt;
+&lt;li&gt;To allow old duplicate segments to expire in the network&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;SCTP&lt;/h2&gt;
+&lt;h3&gt;SCTP four-way handshake&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="SCTP_four_way_handshake.png" src="./images/SCTP_four_way_handshake.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;Packets exchanged when an SCTP association is closed&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="packets_exchanged_when_an_SCTP_association_is_closed.png" src="./images/packets_exchanged_when_an_SCTP_association_is_closed.png" /&gt;&lt;/p&gt;
+&lt;p&gt;SCTP does not permit a "half-closed" association, does not have a TIME_WAIT state.&lt;/p&gt;
+&lt;h3&gt;SCTP State Transition Diagram&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="SCTP_State_Transition_Diagram.png" src="./images/SCTP_State_Transition_Diagram.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Socket Pair&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;TCP: the local IP address, local port, foreign IP address, and foreign port&lt;/li&gt;
+&lt;li&gt;SCTP: a set of local IP addresses, a local port, a set of foreign IP
+  addresses, and a foreign port&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Headers&lt;/h2&gt;
+&lt;h3&gt;IPv4 Header&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="IPv4_header.png" src="./images/IPv4_header.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;IPv6 Header&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="IPv6_header.png" src="./images/IPv6_header.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Buffer Sizes and Limitations&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The maximum size of an IPv4 datagram is 65,535 bytes, including the IPv4
+  header.&lt;/li&gt;
+&lt;li&gt;The maximum size of an IPv6 datagram is 65,575 bytes, including the 40-byte
+  IPv6 header.&lt;/li&gt;
+&lt;li&gt;Many networks have an MTU which can be dictated by the hardware.&lt;ul&gt;
+&lt;li&gt;Ethernet MTU: 1500 bytes&lt;/li&gt;
+&lt;li&gt;point-to-point links using the Point-to-Point Protocol (PPP): configurable MTU&lt;/li&gt;
+&lt;li&gt;Older SLIP links often used an MTU of 1,006 or 296 bytes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The minimum link MTU for IPv4 is 68 bytes (maximum-sized IPv4 header 60  and minimum-sized fragment).&lt;/li&gt;
+&lt;li&gt;The minimum link MTU for IPv6 is 1,280 bytes.&lt;/li&gt;
+&lt;li&gt;he smallest MTU in the path between two hosts is called the path MTU.&lt;/li&gt;
+&lt;li&gt;minimum reassembly buffer size: IPv4 576 bytes, IPv6 1500 bytes&lt;/li&gt;
+&lt;li&gt;TCP has a maximum segment size (MSS) that announces to the peer TCP the
+  maximum amount of TCP data that the peer can send per segment.&lt;/li&gt;
+&lt;li&gt;SCTP keeps a fragmentation point based on the smallest path MTU found to all
+  the peer's addresses.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note:
+&lt;em&gt;Pv6 payload length field does not include the size of the IPv6header,&lt;/em&gt;
+&lt;em&gt;while the IPv4 total length field does include the header size.&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;Retransmission&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Positive Acknowledgement&lt;/li&gt;
+&lt;li&gt;Negative Acknowledgment&lt;/li&gt;
+&lt;li&gt;Selective Acknowledgment&lt;/li&gt;
+&lt;li&gt;Cumulative Acknowledgment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Exercise&lt;/h2&gt;
+&lt;h3&gt;2.1&lt;/h3&gt;
+&lt;p&gt;version 0-1: Reserved&lt;/p&gt;
+&lt;p&gt;version 2-3: Unassigned&lt;/p&gt;
+&lt;p&gt;version 5: Internet Stream Protocol&lt;/p&gt;
+&lt;h3&gt;2.2&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://tools.ietf.org/html/rfc1190"&gt;rfc1190&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Internet_Stream_Protocol"&gt;Internet_Stream_Protocol&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;2.3&lt;/h3&gt;
+&lt;p&gt;The minimum reassembly buffer size for IPv4 is 576, it minus the 20-byte IPv4 header and minus
+the 20-byte TCP header is 536&lt;/p&gt;
+&lt;h3&gt;2.4&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="2.4.jpeg" src="./images/2.4.jpeg" /&gt;&lt;/p&gt;
+&lt;h3&gt;2.5&lt;/h3&gt;
+&lt;p&gt;Token ring host can't send packets more than 1460 bytes of data, because peer MSS was 1460.
+Ethernet host can send no more than 4096 bytes data, but it's MTU is 1500 bytes, it will not exceed the MTU of the
+outgoing interface (the Ethernet) to avoid fragmentation. There for the max length of data is 1460 (1500-20-20)&lt;/p&gt;
+&lt;h3&gt;2.6&lt;/h3&gt;
+&lt;p&gt;89&lt;/p&gt;
+&lt;h3&gt;2.7&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A selective acknowledgment only indicates that the data covered by the
+sequence numbers reflected in the selective acknowledgment message was
+received. Only a cumulative acknowledgment says that the data up to and
+including the sequence number in the cumulative acknowledgment message
+was received. When freeing data from the send buffer based on a selective
+acknowledgment, the system may only free the exact data that was
+acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>unpv13e chapter 1 notes</title><link href="http://blog.junfeng.ca/unpv13e-chapter-1-notes.html" rel="alternate"></link><updated>2014-06-04T14:16:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-06-04:unpv13e-chapter-1-notes.html</id><summary type="html">&lt;h2&gt;struct sockaddr&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Everytime one of the socket functions requires a pointer to a
+  socket address structure, that pointer must be cast to a pointer to a generic socket
+  address structure. This is because the socket functions predate the ANSI C standard,
+  so the void * pointer type was not available in the early 1980s when these functions
+  were developed.[p41]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;server model&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;iterative server&lt;/li&gt;
+&lt;li&gt;concurrent server&lt;ul&gt;
+&lt;li&gt;one process per client(creating one child process for each client)&lt;/li&gt;
+&lt;li&gt;one thread per client&lt;/li&gt;
+&lt;li&gt;pre-fork a fixed number process or threads&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;OSI model and Internet protocol suite&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="img" src="./images/osi_mode_and_internet_protocol.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Linux derived from Minix&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We also note that Linux, a popular, freely
+  available implementation of Unix, does not fit into the Berkeley-derived classification:
+  Its networking code and sockets API were developed from scratch.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Exercises&lt;/h2&gt;
+&lt;h3&gt;1.3&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;errno: 97 socket error: Address family not supported by protocol&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;define AF_* at include/linux/socket.h&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/* Supported address families. */&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_UNSPEC   0&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_UNIX     1   &lt;/span&gt;&lt;span class="cm"&gt;/* Unix domain sockets      */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_LOCAL    1   &lt;/span&gt;&lt;span class="cm"&gt;/* POSIX name for AF_UNIX   */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_INET     2   &lt;/span&gt;&lt;span class="cm"&gt;/* Internet IP Protocol     */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_AX25     3   &lt;/span&gt;&lt;span class="cm"&gt;/* Amateur Radio AX.25      */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_IPX      4   &lt;/span&gt;&lt;span class="cm"&gt;/* Novell IPX           */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_APPLETALK    5   &lt;/span&gt;&lt;span class="cm"&gt;/* AppleTalk DDP        */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_NETROM   6   &lt;/span&gt;&lt;span class="cm"&gt;/* Amateur Radio NET/ROM    */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_BRIDGE   7   &lt;/span&gt;&lt;span class="cm"&gt;/* Multiprotocol bridge     */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_ATMPVC   8   &lt;/span&gt;&lt;span class="cm"&gt;/* ATM PVCs         */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_X25      9   &lt;/span&gt;&lt;span class="cm"&gt;/* Reserved for X.25 project    */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_INET6    10  &lt;/span&gt;&lt;span class="cm"&gt;/* IP version 6         */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_ROSE     11  &lt;/span&gt;&lt;span class="cm"&gt;/* Amateur Radio X.25 PLP   */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_DECnet   12  &lt;/span&gt;&lt;span class="cm"&gt;/* Reserved for DECnet project  */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_NETBEUI  13  &lt;/span&gt;&lt;span class="cm"&gt;/* Reserved for 802.2LLC project*/&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_SECURITY 14  &lt;/span&gt;&lt;span class="cm"&gt;/* Security callback pseudo AF */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_KEY      15      &lt;/span&gt;&lt;span class="cm"&gt;/* PF_KEY key management API */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_NETLINK  16&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_ROUTE    AF_NETLINK &lt;/span&gt;&lt;span class="cm"&gt;/* Alias to emulate 4.4BSD */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_PACKET   17  &lt;/span&gt;&lt;span class="cm"&gt;/* Packet family        */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_ASH      18  &lt;/span&gt;&lt;span class="cm"&gt;/* Ash              */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_ECONET   19  &lt;/span&gt;&lt;span class="cm"&gt;/* Acorn Econet         */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_ATMSVC   20  &lt;/span&gt;&lt;span class="cm"&gt;/* ATM SVCs         */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_RDS      21  &lt;/span&gt;&lt;span class="cm"&gt;/* RDS sockets          */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_SNA      22  &lt;/span&gt;&lt;span class="cm"&gt;/* Linux SNA Project (nutters!) */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_IRDA     23  &lt;/span&gt;&lt;span class="cm"&gt;/* IRDA sockets         */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_PPPOX    24  &lt;/span&gt;&lt;span class="cm"&gt;/* PPPoX sockets        */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_WANPIPE  25  &lt;/span&gt;&lt;span class="cm"&gt;/* Wanpipe API Sockets */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_LLC      26  &lt;/span&gt;&lt;span class="cm"&gt;/* Linux LLC            */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_IB       27  &lt;/span&gt;&lt;span class="cm"&gt;/* Native InfiniBand address    */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_CAN      29  &lt;/span&gt;&lt;span class="cm"&gt;/* Controller Area Network      */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_TIPC     30  &lt;/span&gt;&lt;span class="cm"&gt;/* TIPC sockets         */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_BLUETOOTH    31  &lt;/span&gt;&lt;span class="cm"&gt;/* Bluetooth sockets        */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_IUCV     32  &lt;/span&gt;&lt;span class="cm"&gt;/* IUCV sockets         */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_RXRPC    33  &lt;/span&gt;&lt;span class="cm"&gt;/* RxRPC sockets        */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_ISDN     34  &lt;/span&gt;&lt;span class="cm"&gt;/* mISDN sockets        */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_PHONET   35  &lt;/span&gt;&lt;span class="cm"&gt;/* Phonet sockets       */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_IEEE802154   36  &lt;/span&gt;&lt;span class="cm"&gt;/* IEEE802154 sockets       */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_CAIF     37  &lt;/span&gt;&lt;span class="cm"&gt;/* CAIF sockets         */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_ALG      38  &lt;/span&gt;&lt;span class="cm"&gt;/* Algorithm sockets        */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_NFC      39  &lt;/span&gt;&lt;span class="cm"&gt;/* NFC sockets          */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_VSOCK    40  &lt;/span&gt;&lt;span class="cm"&gt;/* vSockets         */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define AF_MAX      41  &lt;/span&gt;&lt;span class="cm"&gt;/* For now.. */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;1.4&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include    &amp;quot;unp.h&amp;quot;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt;
+&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt;                 &lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;char&lt;/span&gt;                &lt;span class="n"&gt;recvline&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;MAXLINE&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt;  &lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;counter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argc&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;err_quit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;usage: a.out &amp;lt;IPaddress&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sockfd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SOCK_STREAM&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;err_sys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;socket error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;bzero&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_family&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_port&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;htons&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;    &lt;span class="cm"&gt;/* daytime server */&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inet_pton&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_addr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;err_quit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;inet_pton error for %s&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SA&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;err_sys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;connect error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;recvline&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;MAXLINE&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;recvline&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;    &lt;span class="cm"&gt;/* null terminate */&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fputs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;recvline&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stdout&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;EOF&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;err_sys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fputs error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;counter&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;err_sys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;read error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;counter: %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;counter&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;Output:&lt;/em&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Sun Jun  &lt;span class="m"&gt;8&lt;/span&gt; 14:36:06 2014
+counter: 1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;1.5&lt;/h3&gt;
+&lt;p&gt;Server:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include    &amp;quot;unp.h&amp;quot;&lt;/span&gt;
+&lt;span class="cp"&gt;#include    &amp;lt;time.h&amp;gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt;
+&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt;                 &lt;span class="n"&gt;listenfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;connfd&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt;  &lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;char&lt;/span&gt;                &lt;span class="n"&gt;buff&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;MAXLINE&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="kt"&gt;time_t&lt;/span&gt;              &lt;span class="n"&gt;ticks&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;len&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="n"&gt;listenfd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Socket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SOCK_STREAM&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;bzero&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_family&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_addr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;s_addr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;htonl&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;INADDR_ANY&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_port&lt;/span&gt;        &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;htons&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9999&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="cm"&gt;/* daytime server */&lt;/span&gt;
+
+    &lt;span class="n"&gt;Bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;listenfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SA&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+
+    &lt;span class="n"&gt;Listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;listenfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;LISTENQ&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;connfd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Accept&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;listenfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SA&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="n"&gt;ticks&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;snprintf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;buff&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;buff&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;%.24s&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ctime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;ticks&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+        &lt;span class="c1"&gt;//Write(connfd, buff, strlen(buff));&lt;/span&gt;
+        &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;len&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;strlen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;buff&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;len&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;Write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;connfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;buff&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="n"&gt;Close&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;connfd&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Client:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include    &amp;quot;unp.h&amp;quot;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt;
+&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt;                 &lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;char&lt;/span&gt;                &lt;span class="n"&gt;recvline&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;MAXLINE&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt;  &lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;counter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argc&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;err_quit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;usage: a.out &amp;lt;IPaddress&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sockfd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SOCK_STREAM&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;err_sys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;socket error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;bzero&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_family&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_port&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;htons&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9999&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  &lt;span class="cm"&gt;/* daytime server */&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inet_pton&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin_addr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;err_quit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;inet_pton error for %s&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SA&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servaddr&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;err_sys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;connect error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sockfd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;recvline&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;MAXLINE&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;recvline&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;    &lt;span class="cm"&gt;/* null terminate */&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fputs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;recvline&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stdout&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;EOF&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;err_sys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fputs error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;counter&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;err_sys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;read error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;counter: %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;counter&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;localhost test:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;./daytimetcpsrv &amp;amp;
+./daytimetcpcli 127.0.0.1
+#output:
+Sun Jun  8 14:53:29 2014
+counter: 1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Output on remote host test same as localhost&lt;/p&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>编译unpv13e源代码</title><link href="http://blog.junfeng.ca/bian-yi-unpv13eyuan-dai-ma.html" rel="alternate"></link><updated>2014-06-03T14:28:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-06-03:bian-yi-unpv13eyuan-dai-ma.html</id><summary type="html">&lt;p&gt;在&lt;a href="http://www.unpbook.com/unpv13e.tar.gz"&gt;这里&lt;/a&gt;下载源代码，根据README进行编译．&lt;/p&gt;
+&lt;p&gt;在make libfree下时需要修改inet_ntop.c, 将第60行的
+&lt;code&gt;size_t size&lt;/code&gt; 改成 &lt;code&gt;socklen_t size&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;貌似Linux不支持4.4BSD style routing sockets, 所以不需要编译libroute&lt;/p&gt;
+&lt;p&gt;测试intro/daytimetcpcli: &lt;code&gt;./daytimetcpcli 216.171.112.36&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;而书上给的IP地址会一直block.&lt;/p&gt;
+&lt;p&gt;Then start reading the famous classic book.&lt;/p&gt;</summary><category term="unpv13e"></category></entry></feed>

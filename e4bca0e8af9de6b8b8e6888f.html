@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="传话游戏"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/e4bca0e8af9de6b8b8e6888f.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/e4bca0e8af9de6b8b8e6888f.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>传话游戏 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/e4bca0e8af9de6b8b8e6888f.html" rel="bookmark"
+             title="Permalink to 传话游戏">传话游戏</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-04-06
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/chuan-hua-you-xi.html">传话游戏</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/e4bca0e8af9de6b8b8e6888f.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <div>
+
+非游戏规则，仅含代码．
+
+</div>
+
+<div>
+
+编程之美资格赛题一代码
+
+</div>
+
+<div>
+
+纯C++风格，那什么Ｃ风格弱暴了．
+
+</div>
+
+<div>
+
+大神轻拍．
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+<p>[code language="cpp"]</p>
+<p>#include\&lt;iostream><br />
+#include\&lt;string><br />
+#include\&lt;map><br />
+#include\&lt;vector><br />
+#include\&lt;cstdio><br />
+using namespace std;<br />
+map\&lt;string,string> word_change;<br />
+vector\&lt;string> sentence;<br />
+void change()<br />
+{<br />
+for(vector\&lt;string>::iterator
+be=sentence.begin();be!=sentence.end();++be)<br />
+{<br />
+if(word_change.count(*be)==0)<br />
+continue;<br />
+if(word_change.count(*be)==1)<br />
+*be=word_change[*be];<br />
+}<br />
+}<br />
+int main()<br />
+{<br />
+int T,N,M;<br />
+char en;<br />
+cin >> T;<br />
+string word,key,value;<br />
+for (int i=0 ;i!=T;++i)<br />
+{<br />
+cin >> N >> M;<br />
+for (int j=0;j!=M;++j)<br />
+{<br />
+cin >> key >> value;<br />
+word_change[key]=value;<br />
+}<br />
+while(cin >> word)<br />
+{</p>
+<p>sentence.push_back(word);<br />
+if((en=getchar())=='\n'|| en==EOF)<br />
+break;<br />
+}<br />
+for(int k=0;k!=N-1;k++)<br />
+change();<br />
+cout \&lt;\&lt; "Case #" \&lt;\&lt; i+1 \&lt;\&lt; ":";<br />
+for(vector\&lt;string>::iterator
+be=sentence.begin();be!=sentence.end();++be)<br />
+cout \&lt;\&lt; " " \&lt;\&lt; *be ;<br />
+cout \&lt;\&lt; endl;<br />
+word_change.clear();<br />
+sentence.clear();<br />
+}<br />
+return 0;<br />
+}</p>
+<p>[/code]</p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "e4bca0e8af9de6b8b8e6888f.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

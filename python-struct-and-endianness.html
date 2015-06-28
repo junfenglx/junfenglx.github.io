@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="Python struct and Endianness"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/python-struct-and-endianness.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/python-struct-and-endianness.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>Python struct and Endianness | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/python-struct-and-endianness.html" rel="bookmark"
+             title="Permalink to Python struct and Endianness">Python struct and Endianness</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2014-01-10
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/endianness.html">endianness</a>
+        <a href="http://blog.junfeng.ca/tag/struct.html">struct</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/python-struct-and-endianness.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>偶然间在stackoverflow上看到下面这个问题:</p>
+<blockquote>
+<div class="highlight"><pre><span class="nv">Please</span> <span class="s-Atom">explain</span> <span class="s-Atom">me</span> <span class="s-Atom">what</span> <span class="s-Atom">does</span> <span class="s-Atom">this</span> <span class="s-Atom">piece</span> <span class="s-Atom">of</span> <span class="s-Atom">code</span> <span class="s-Atom">do</span><span class="p">.</span>
+
+<span class="s-Atom">h</span> <span class="s-Atom">should</span> <span class="s-Atom">be</span> <span class="mi">32</span><span class="nv">Byte</span> <span class="s-Atom">result</span> <span class="s-Atom">from</span> <span class="s-Atom">sha256</span> <span class="s-Atom">calculation</span><span class="p">.</span>
+
+<span class="nv">I</span> <span class="s-Atom">am</span> <span class="s-Atom">rewriting</span> <span class="s-Atom">parts</span> <span class="s-Atom">of</span> <span class="s-Atom">this</span> <span class="s-Atom">code</span> <span class="s-Atom">for</span> <span class="s-Atom">my</span> <span class="s-Atom">project</span> <span class="s-Atom">in</span> <span class="nv">C</span><span class="s-Atom">++</span> <span class="s-Atom">and</span> <span class="nv">I</span><span class="s-Atom">&#39;m not sure if this switches byte order per 4byte chunk or change byte order on whole 32byte number.</span>
+
+<span class="s-Atom">def reverse_hash(h):</span>
+<span class="s-Atom">    return struct.pack(&#39;</span><span class="o">&gt;</span><span class="nv">IIIIIIII</span><span class="s-Atom">&#39;, *struct.unpack(&#39;</span><span class="o">&gt;</span><span class="nv">IIIIIIII</span><span class="err">&#39;</span><span class="p">,</span> <span class="s-Atom">h</span><span class="p">)[</span><span class="s-Atom">::-</span><span class="mi">1</span><span class="p">])[</span><span class="s-Atom">::-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nv">And</span><span class="p">,</span> <span class="s-Atom">how</span> <span class="s-Atom">does</span> <span class="s-Atom">this</span> <span class="s-Atom">array</span> <span class="s-Atom">index</span> <span class="s-Atom">work</span> <span class="s-Atom">?</span>
+
+   <span class="p">[</span><span class="s-Atom">::-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nv">Thanks</span> <span class="s-Atom">for</span> <span class="s-Atom">any</span> <span class="s-Atom">and</span> <span class="s-Atom">all</span> <span class="s-Atom">info</span>
+</pre></div>
+
+
+</blockquote>
+<p>Python的splice到还好理解.但对于代码里struct的使用倒是很是疑惑.<br />
+遂搜索struct module的使用.</p>
+<blockquote>
+<p>This module performs conversions between Python values and C structs
+represented as Python strings.</p>
+</blockquote>
+<p>用法也就参考文档.</p>
+<p>当遇到字节序的时候,产生了疑惑.  </p>
+<p>不同的架构有不同的字节序.大致有三种,大端(Big-endian),小端(Little-endian),双端(Bi-endian).(貌似还有Middle-endian).<br />
+简单来说,<br />
+大端是高位字节在低地址处,低位字节在高地址处,<br />
+小端是低位字节在低地址处,高位字节在高地址处.<br />
+双端是字节序可以配置.</p>
+<p>理解:<br />
+1. 内存中的数据写进去就不再改变.只是解析的顺序不同才有大端,小端一说.<br />
+2.
+字节序大端小端之说针对的是单个内存单元之内的字节顺序.单元与单元之间只是按地址线性增长.</p>
+<p>先看wiki上的一个例子:<br />
+字符串"XRAY"的存储分配.<br />
+XRAY 字符值表:</p>
+<hr />
+<p>X   0x58
+  R   0x52
+  A   0x41
+  Y   0x59</p>
+<hr />
+<dl>
+<dd>character int value</dd>
+</dl>
+<p>以一个字节为存储单元:</p>
+<hr />
+<p><code>...</code>   <code>"Y"</code>   <code>"A"</code>   <code>"R"</code>   <code>"X"</code>   <code>...</code></p>
+<hr />
+<dl>
+<dd>addresses from right to left</dd>
+</dl>
+<p>以两个字节为单位:<br />
+要表示"XRAY",内存实际分布:</p>
+<hr />
+<p><code>...</code>   <code>"AY"</code>   <code>"XR"</code>   <code>...</code></p>
+<hr />
+<dl>
+<dd>addresses from right to left</dd>
+</dl>
+<p>测试代码:</p>
+<div class="highlight"><pre><span class="c"># coding: utf-8</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+<span class="n">s</span><span class="o">=</span><span class="s">&quot;XRAY&quot;</span>
+<span class="n">little_s_uchar_hex</span><span class="o">=</span><span class="nb">map</span><span class="p">(</span><span class="nb">hex</span><span class="p">,</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&quot;BBBB&quot;</span><span class="p">,</span><span class="n">s</span><span class="p">))</span>
+<span class="k">print</span> <span class="s">&quot;big_s_uchar_hex:&quot;</span><span class="p">,</span><span class="n">big_s_uchar_hex</span>
+<span class="n">big_s_ushort_hex</span><span class="o">=</span><span class="nb">map</span><span class="p">(</span><span class="nb">hex</span><span class="p">,</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&quot;&gt;HH&quot;</span><span class="p">,</span><span class="n">s</span><span class="p">))</span>
+<span class="k">print</span> <span class="s">&quot;big_s_ushort_hex:&quot;</span><span class="p">,</span><span class="n">big_s_ushort_hex</span>
+<span class="c">#output:</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">little_s_uchar_hex: [&#39;0x58&#39;, &#39;0x52&#39;, &#39;0x41&#39;, &#39;0x59&#39;]</span>
+<span class="sd">little_s_ushort_hex: [&#39;0x5258&#39;, &#39;0x5941&#39;]</span>
+<span class="sd">big_s_uchar_hex: [&#39;0x58&#39;, &#39;0x52&#39;, &#39;0x41&#39;, &#39;0x59&#39;]</span>
+<span class="sd">big_s_ushort_hex: [&#39;0x5852&#39;, &#39;0x4159&#39;]</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+
+
+<p>观察little_s_ushort_hex的值.由于笔者使用的是x86的机子(小端字节序).<br />
+little_s_ushort_hex在内存中的存储序列是:<br />
+0x52 0x58 0x59 0x41<br />
+即为AYXR(地址从右向左增长)<br />
+和wiki中的表示相符.</p>
+<p>再来看一个例子<br />
+将一个8位的字符串unpack成8个unsigned char,4个unsigned short,2个unsigned
+int,1个unsigned long long</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/env python2</span>
+<span class="c"># coding: utf-8</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+
+<span class="n">string</span><span class="o">=</span><span class="s">&#39;hjflyllx&#39;</span> <span class="c"># my prefered string</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">&#39;string:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">string</span><span class="p">)</span>
+<span class="n">string_hex</span><span class="o">=</span><span class="nb">map</span><span class="p">(</span><span class="nb">hex</span><span class="p">,</span><span class="nb">map</span><span class="p">(</span><span class="nb">ord</span><span class="p">,</span><span class="n">string</span><span class="p">))</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">&#39;-&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">&#39;string_hex:&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">string_hex</span><span class="p">)</span>
+
+<span class="n">little_uchar_string</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&quot;BBBBBBBB&quot;</span><span class="p">,</span><span class="n">string</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">&#39;big_uchar_string:&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">big_uchar_string</span><span class="p">)</span>
+<span class="n">big_uchar_string_hex</span><span class="o">=</span><span class="nb">map</span><span class="p">(</span><span class="nb">hex</span><span class="p">,</span><span class="n">big_uchar_string</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">&#39;big_uchar_string_hex:&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">big_uchar_string_hex</span><span class="p">)</span>
+
+<span class="n">little_ushort_string</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&quot;HHHH&quot;</span><span class="p">,</span><span class="n">string</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">&#39;big_ushort_string:&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">big_ushort_string</span><span class="p">)</span>
+<span class="n">big_ushort_string_hex</span><span class="o">=</span><span class="nb">map</span><span class="p">(</span><span class="nb">hex</span><span class="p">,</span><span class="n">big_ushort_string</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">&#39;big_ushort_string_hex:&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">big_ushort_string_hex</span><span class="p">)</span>
+
+<span class="n">little_uint_string</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&quot;II&quot;</span><span class="p">,</span><span class="n">string</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">&#39;big_uint_string:&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">big_uint_string</span><span class="p">)</span>
+<span class="n">big_uint_string_hex</span><span class="o">=</span><span class="nb">map</span><span class="p">(</span><span class="nb">hex</span><span class="p">,</span><span class="n">big_uint_string</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">&#39;big_uint_string_hex:&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">big_uint_string_hex</span><span class="p">)</span>
+
+<span class="n">little_ullong_string</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&quot;Q&quot;</span><span class="p">,</span><span class="n">string</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">&#39;big_ullong_string:&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">big_ullong_string</span><span class="p">)</span>
+<span class="n">big_ullong_string_hex</span><span class="o">=</span><span class="nb">map</span><span class="p">(</span><span class="nb">hex</span><span class="p">,</span><span class="n">big_ullong_string</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">&#39;big_ullong_string_hex:&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">big_ullong_string_hex</span><span class="p">)</span>
+
+<span class="c">#output:</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">string:hjflyllx</span>
+<span class="sd">--------------------</span>
+<span class="sd">string_hex:</span>
+<span class="sd">[&#39;0x68&#39;, &#39;0x6a&#39;, &#39;0x66&#39;, &#39;0x6c&#39;, &#39;0x79&#39;, &#39;0x6c&#39;, &#39;0x6c&#39;, &#39;0x78&#39;]</span>
+<span class="sd">--------------------uchar big and little endianness--------------------</span>
+<span class="sd">little_uchar_string:</span>
+<span class="sd">(104, 106, 102, 108, 121, 108, 108, 120)</span>
+<span class="sd">little_uchar_string_hex:</span>
+<span class="sd">[&#39;0x68&#39;, &#39;0x6a&#39;, &#39;0x66&#39;, &#39;0x6c&#39;, &#39;0x79&#39;, &#39;0x6c&#39;, &#39;0x6c&#39;, &#39;0x78&#39;]</span>
+<span class="sd">big_uchar_string:</span>
+<span class="sd">(104, 106, 102, 108, 121, 108, 108, 120)</span>
+<span class="sd">big_uchar_string_hex:</span>
+<span class="sd">[&#39;0x68&#39;, &#39;0x6a&#39;, &#39;0x66&#39;, &#39;0x6c&#39;, &#39;0x79&#39;, &#39;0x6c&#39;, &#39;0x6c&#39;, &#39;0x78&#39;]</span>
+<span class="sd">--------------------ushort big and little endianness--------------------</span>
+<span class="sd">little_ushort_string:</span>
+<span class="sd">(27240, 27750, 27769, 30828)</span>
+<span class="sd">little_ushort_string_hex:</span>
+<span class="sd">[&#39;0x6a68&#39;, &#39;0x6c66&#39;, &#39;0x6c79&#39;, &#39;0x786c&#39;]</span>
+<span class="sd">big_ushort_string:</span>
+<span class="sd">(26730, 26220, 31084, 27768)</span>
+<span class="sd">big_ushort_string_hex:</span>
+<span class="sd">[&#39;0x686a&#39;, &#39;0x666c&#39;, &#39;0x796c&#39;, &#39;0x6c78&#39;]</span>
+<span class="sd">--------------------uint big and little endianness--------------------</span>
+<span class="sd">little_uint_string:</span>
+<span class="sd">(1818651240, 2020371577)</span>
+<span class="sd">little_uint_string_hex:</span>
+<span class="sd">[&#39;0x6c666a68&#39;, &#39;0x786c6c79&#39;]</span>
+<span class="sd">big_uint_string:</span>
+<span class="sd">(1751803500, 2037148792)</span>
+<span class="sd">big_uint_string_hex:</span>
+<span class="sd">[&#39;0x686a666c&#39;, &#39;0x796c6c78&#39;]</span>
+<span class="sd">--------------------ullong big and little endianness--------------------</span>
+<span class="sd">little_ullong_string:</span>
+<span class="sd">(8677429850801597032,)</span>
+<span class="sd">little_ullong_string_hex:</span>
+<span class="sd">[&#39;0x786c6c796c666a68&#39;]</span>
+<span class="sd">big_ullong_string:</span>
+<span class="sd">(7523938743555484792,)</span>
+<span class="sd">big_ullong_string_hex:</span>
+<span class="sd">[&#39;0x686a666c796c6c78&#39;]</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+</td></tr></table>
+
+<p>下面是一些表格,假设地址开始于100</p>
+<p>address   character   hex value</p>
+<hr />
+<dl>
+<dt>100       h           0x68</dt>
+<dt>  101       j           0x6a</dt>
+<dt>  102       f           0x66</dt>
+<dt>  103       l           0x6c</dt>
+<dt>  104       y           0x79</dt>
+<dt>  105       l           0x6c</dt>
+<dt>  106       l           0x6c</dt>
+<dt>  107       x           0x78</dt>
+<dd>
+<p>string</p>
+</dd>
+</dl>
+<p>address   characters   hex value</p>
+<hr />
+<dl>
+<dt>100       jh           0x6a68</dt>
+<dt>  102       lf           0x6c66</dt>
+<dt>  104       ly           0x6c79</dt>
+<dt>  106       xl           0x786c</dt>
+<dd>
+<p>little ushort</p>
+</dd>
+</dl>
+<p>address   characters   hex value</p>
+<hr />
+<dl>
+<dt>100       lfjh         0x6c666a68</dt>
+<dt>  104       xlly         0x786c6c79</dt>
+<dd>
+<p>little uint</p>
+</dd>
+</dl>
+<p>address   characters   hex value</p>
+<hr />
+<dl>
+<dt>100       xllylfjh     0x786c6c796c666a68</dt>
+<dd>
+<p>little ulonglong</p>
+</dd>
+</dl>
+<p>uchar那一项可以看出当内存单元大小是一个字节时,大端,小端字节序是一样的.  </p>
+<p>而其它多于1个字节的内存单元,可以看到<strong>相对应的项的字节顺序正好颠倒.但单元与单元之间的顺势都是递增的.</strong></p>
+<p>现在我们来看其中一个人的回答:</p>
+<blockquote>
+<div class="highlight"><pre><span class="s-Atom">&gt;&gt;&gt;</span> <span class="s-Atom">h</span> <span class="o">=</span> <span class="s-Atom">&#39;&#39;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nf">map</span><span class="p">(</span><span class="s-Atom">str</span><span class="p">,</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">21</span><span class="p">)))</span>
+<span class="s-Atom">&gt;&gt;&gt;</span> <span class="s-Atom">h</span>
+<span class="s-Atom">&#39;01234567891011121314151617181920&#39;</span>
+<span class="s-Atom">&gt;&gt;&gt;</span> <span class="s-Atom">struct</span><span class="p">.</span><span class="nf">pack</span><span class="p">(</span><span class="s-Atom">&#39;&gt;IIIIIIII&#39;</span><span class="p">,</span> <span class="o">*</span><span class="s-Atom">struct</span><span class="p">.</span><span class="nf">unpack</span><span class="p">(</span><span class="s-Atom">&#39;&gt;IIIIIIII&#39;</span><span class="p">,</span> <span class="s-Atom">h</span><span class="p">)[</span><span class="s-Atom">::-</span><span class="mi">1</span><span class="p">])[</span><span class="s-Atom">::-</span><span class="mi">1</span><span class="p">]</span>
+<span class="s-Atom">&#39;32107654019821114131615181710291&#39;</span>
+<span class="nv">Equivalent</span> <span class="nn">expression</span><span class="p">:</span>
+
+<span class="s-Atom">&gt;&gt;&gt;</span> <span class="s-Atom">struct</span><span class="p">.</span><span class="nf">pack</span><span class="p">(</span><span class="s-Atom">&#39;&lt;IIIIIIII&#39;</span><span class="p">,</span> <span class="o">*</span><span class="s-Atom">struct</span><span class="p">.</span><span class="nf">unpack</span><span class="p">(</span><span class="s-Atom">&#39;&gt;IIIIIIII&#39;</span><span class="p">,</span> <span class="s-Atom">h</span><span class="p">))</span>
+<span class="s-Atom">&#39;32107654019821114131615181710291&#39;</span>
+</pre></div>
+
+
+</blockquote>
+<p>主要看其给出的相等实现:</p>
+<div class="highlight"><pre>&gt;&gt;&gt; struct.pack(&#39;&lt;IIIIIIII&#39;, *struct.unpack(&#39;&gt;IIIIIIII&#39;, h))
+</pre></div>
+
+
+<p>为什么这个也能得出相同的结果?  </p>
+<p>采用不同的字节序进行unpack,pack一个字符串,就能得出单元内存内的字符串翻转.<br />
+你应该知道了为什么吧!</p>
+<p>同样假设开始内存地址是100,我们只分析一个内存单元(4个字节),</p>
+<p>见表:</p>
+<p>address   character</p>
+<hr />
+<p>100       '0'
+  101       '1'
+  102       '2'
+  103       '3'</p>
+<p>先是以大端字节序来unpack,读出的内容就是'0123'的内存表示的整数.  </p>
+<p>然后以小端来pack,小端是低位在前,高位在后,进行继续读,从103-100,读到的也就是'3210'了.<br />
+参考链接:<br />
+http://docs.python.org/2/library/struct.html<br />
+http://en.wikipedia.org/wiki/Endianness  </p>
+<p>http://stackoverflow.com/questions/20882693/what-does-this-piece-of-python-indexing-code-do</p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "python-struct-and-endianness.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

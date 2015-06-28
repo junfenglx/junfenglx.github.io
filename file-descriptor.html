@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="file descriptor"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/file-descriptor.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/file-descriptor.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>file descriptor | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/file-descriptor.html" rel="bookmark"
+             title="Permalink to file descriptor">file descriptor</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-09-07
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/wen-jian-miao-shu-fu.html">文件描述符</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/file-descriptor.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>和文件描述符有关的函数：</p>
+<ul>
+<li>open</li>
+<li>close</li>
+<li>dup</li>
+<li>dup2</li>
+<li>fcntl</li>
+</ul>
+<p>文件描述符为int整型变量，范围0-OPEN_MAX;</p>
+<p>在linux下OPEN_MAX未在limits.h下定义，使用sysconf(_SC_OPEN_MAX)获得其值．</p>
+<p>open打开文件返回文件描述符没什么好说的．</p>
+<p>close()关闭文件描述符，注意当有多个文件描述符指向同一文件表项时，必须close所有与之关联的描述符才能真正关闭文件．</p>
+<blockquote>
+<p>When all file descriptors associated with an open file description
+have been closed, the open file  description shall be freed.</p>
+</blockquote>
+<p>此时无法再对文件进行更改．</p>
+<p>dup(),dup2()复制现存的文件描述符，在内核数据中一个新的文件描述符被创建．当总数达到OPEN_MAX时，进程无法再打开文件．</p>
+<p>当cmd=F_DUPFD时 fcntl和dup,dup2功能类似．</p>
+<p>附测试程序：</p>
+<p>#include\&lt;unistd.h><br />
+#include\&lt;stdio.h><br />
+#include\&lt;limits.h><br />
+#include\&lt;fcntl.h><br />
+#include\&lt;errno.h><br />
+int main()<br />
+{<br />
+int i,f,open_max;<br />
+open_max=sysconf(_SC_OPEN_MAX);<br />
+for (i=3;i\&lt;open_max;++i)<br />
+dup(STDOUT_FILENO);<br />
+// close(open_max-1);<br />
+f=open("test",O_WRONLY|O_CREAT,S_IRUSR|S_IWUSR);<br />
+if (errno==EMFILE)<br />
+printf("ERROR\n");<br />
+else<br />
+printf("%d\n",f);<br />
+return 0;</p>
+<p>}</p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "file-descriptor.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

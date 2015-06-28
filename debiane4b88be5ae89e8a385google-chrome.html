@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="Debian下安装Google Chrome"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/debiane4b88be5ae89e8a385google-chrome.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/debiane4b88be5ae89e8a385google-chrome.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>Debian下安装Google Chrome | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/debiane4b88be5ae89e8a385google-chrome.html" rel="bookmark"
+             title="Permalink to Debian下安装Google Chrome">Debian下安装Google Chrome</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2012-09-21
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/debianzhuang-google-chrome.html">Debian装google chrome</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/debiane4b88be5ae89e8a385google-chrome.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>今天突然发现了一个小问题，wmaker下竟然没有一个可用的浏览器！自带的w3m实在过于奇葩，于是就在软件源里找可用的浏览器，可软件源今天也出问题了！不知怎么的竟然发现了我们学校的源没有公共许可密钥。于是开始自救。网上说在任意文件下新建个名为“key0x07DC563D1F41B907.asc”的文件。我建在home/下，键入命令：nano
+key0x07DC563D1F41B907.asc</p>
+<p>输入以下内容：</p>
+<blockquote>
+<p>-----BEGIN PGP PUBLIC KEY BLOCK-----<br />
+ Version: PGP Universal 2.0.3<br />
+ mQGiBDf3hHARBAC/pUIb79CHi2b1LdPI1pUgAMMVAcpLk+g+LRUcNnTVWrXBUkLv<br />
+ gjbraraA1jw728X7RE7BCqQc8TO2AkqZu4E16a4hFms58agPRtyXHcQMqRSBjkT2<br />
+ hXC73sO/nookcmtFNeiNSTTvrITcDabhs8rnVNYCJxpUm0yZBwnripzNlwCgl2OZ<br />
+ 7W3M0hMahh/nPO/pqkQIO60D/RUoWs5bBZ0BAeTfUJpCjGpE0SiT/cryZSF9sKEx<br />
+ cPN135PURKVytofxc8bv2ZSd9v1CG+iO2JcmQ8ie7CD+qnub6AW9Uf6uFFfDpdgG<br />
+ 2k2cZGoHMdiw6mnSb5fbvwCKgi9Nj3AOeDF7WcgFdQFLags28vfypL/RH2XhPfBe<br />
+ 4EV+A/9TZ1Kxgk69dn3l5BGpwudmzHiD1142G7eZI1JlM4pJuOw6YY+NRDeVEbcF<br />
+ iP5diGZWdcoRYgwEEfLpgl7ok0ScRN3wPfZtmUl3GACsAZbxh06utkP2X3Lptopd<br />
+ PuoJhlKD6FpK99TDD34TWy76tBmigzm/CkLaTI4gawpWs5D89LQoQ2hyaXN0aWFu<br />
+ IE1hcmlsbGF0IDxtYXJpbGxhdEBkZWJpYW4ub3JnPohGBBARAgAGBQI9GPl1AAoJ<br />
+ ELed76p6J6DMsMwAn2/I4VYcMENSdO/FM+6Yb/1PGv+HAJ4zn+3i7Z+R/iDhx7c+<br />
+ luDpfBTe+IhGBBARAgAGBQI9GWSJAAoJELz2xg9ugWnSt6AAoJPHD0N6LnQMUZxv<br />
+ 7MkcUIRE88CMAJwI5lVoJ0TCFHG/49pcjN7Lzbc1RohhBBMRAgAZBAsKBAMDFQMC<br />
+ AxYCAQIXgAUCQRiYygIZAQASB2VHUEcAAQEJEAfcVj0fQbkHn/IAmwahlSO4z8f3<br />
+ YToV+72CX6sWvkehAJ4q9zOytEMKy/Vk08w7h+3mOLR56IkBIgQQAQIADAUCQ7jd<br />
+ 6AUDABJ1AAAKCRCXELibyletfNmOB/9V5AMQgN8WCxrToFjWf8aEN3v+6frpfUa/<br />
+ 6u88J+31/6jGQI83lK1Kp9fIZQwA9JuZxT+hTwsmc6SiU3NnGQl8ZejupoJwvxex<br />
+ OPSB3CtzmhjB2VDNE5tU9yRq6Qpz9QNK0e4vl8pDvrUjkqHJH3VPz+ORYbPrsCHx<br />
+ afrIosI7alyjqv231i8mriOjFY5JDIXuj+xq4hMzGtFJOC4BNZWqtIH3tkFj2m/f<br />
+ l7SIwUa42YboT9IAfJ+ZVr2FZREOrXmVA9rDJPodAD8ComxS0VUWYxi85mE2KqPw<br />
+ HcARXGri10hmfSpiUBRH4snUZzJozEAgah5W/g/heSyiHYEGsPvtuQGNBDf3hM4Q<br />
+ BgCM2yVxcrBFgwUDOxbBqBbTEfYc5If3POLMRglvOuJ9/H1iEJ5Wk6+zcz21jxPa<br />
+ 4FQrk2F/faGeRV1cy0A7qmibmQpvewJwgzeY7wOIulPYlAd23+VQPhN53GYVwO75<br />
+ GA1vst0tI26VRKscpt73PatCcykrgNWHWjvDKmDC4V2T+OFz4okOC1VYc9qfcVvH<br />
+ F1R3lgAnFBTObx49K1+UyGatvWiZTtofETDZ8aHzsd0ObJoLHHmmHye5bgE9yRLj<br />
+ 5L8AAwUF/0L/TXmzjtJ3hmXC86OB7Vzqe/n8MVqWElq4OzzEXi0PxzbgLzcEN+KV<br />
+ o4iXaNZ2/oI79dLblYixS6wh/cG2XT6RTG1R1CiubmJXGiFn6xeAw5aiQTKZBjUi<br />
+ nXqFxR/ZtH4p8/ZAzk2SpAOEIp5Gqfg0OCxgHqWmNWR64vfPJKND6qcoQRQ8a+3V<br />
+ 77xq0ZurHejwprjaUf7FHOK/u6lc8eW7JdCKisZ7efdGdu8QVFnmkpeHvyCyDpkC<br />
+ rc4mmetj4ohGBBgRAgAGBQI394TOAAoJEAfcVj0fQbkHp0QAnA3/HBLEhjAydk5n<br />
+ Z+PeV+Fxs+h8AJoDew5wFKb477LBOz0qyWxe+byZzg==<br />
+ =oDfT<br />
+ -----END PGP PUBLIC KEY BLOCK-----</p>
+</blockquote>
+<p>Crtl+o保存，Crtl+x退出nano。</p>
+<p>再在root下输入命令：apt-key add key0x07DC563D1F41B907.asc</p>
+<p>更新源，成功认证！</p>
+<p>但google，firefox，opera在源里都找不到！于是再次上网，由于对google的怀旧，就找装google
+chrome的方法：</p>
+<p>nano /etc/apt/sources.list 打开源地址设置文件，追加google的源</p>
+<p>deb http://dl.google.com/linux/deb/ stable main</p>
+<p>同样要设置认证：</p>
+<p>输入：wget -q -O –
+https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key
+add -</p>
+<p>然后：apt-get update</p>
+<p>安装测试版：apt-get install google-chrome-beta</p>
+<p>不稳定版：apt-get install google-chrome-unstable</p>
+<p>不过貌似装下来比较大需要100多M的硬盘空间，这对爱惜内存、磁盘空间的linux用户可不算好。</p>
+<p>最后秀一下自己的劳动成果</p>
+<p><a href="http://www.jcodef.com/wp-content/uploads/2012/09/igc.jpg"><img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/igc-300x230.jpg" title="igc" /></a></p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "debiane4b88be5ae89e8a385google-chrome.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

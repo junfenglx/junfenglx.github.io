@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://blog.junfeng.ca/" rel="alternate"></link><link href="http://blog.junfeng.ca/feeds/configs.atom.xml" rel="self"></link><id>http://blog.junfeng.ca/</id><updated>2014-06-07T11:36:00+08:00</updated><entry><title>Debian 环境下的 beaglebone black NFS client 配置</title><link href="http://blog.junfeng.ca/debian-huan-jing-xia-de-beaglebone-black-nfs-client-pei-zhi.html" rel="alternate"></link><updated>2014-06-07T11:36:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-06-07:debian-huan-jing-xia-de-beaglebone-black-nfs-client-pei-zhi.html</id><summary type="html">&lt;p&gt;不知什么时候手贱把beaglebone black刷成了Debian(Archlinux 没刷成功), 然后就放那了.&lt;/p&gt;
+&lt;p&gt;今天要做实验, 就搭了下NFS.&lt;/p&gt;
+&lt;p&gt;NFS Server 使用 Archlinux, 配置参见&lt;a href="https://wiki.archlinux.org/index.php/Nfs"&gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;client 使用 Debian. 需要安装 nfs-common package&lt;/p&gt;
+&lt;p&gt;配置 BB-black 联网:&lt;/p&gt;
+&lt;p&gt;在板子下输入命令:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;/sbin/route add default gw 192.168.7.1
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;nameserver 114.114.114.114&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; /etc/resolv.conf
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在宿主机上输入:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo iptables -A POSTROUTING -t nat -j MASQUERADE
+&lt;span class="nb"&gt;echo &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sudo tee /proc/sys/net/ipv4/ip_forward &amp;gt; /dev/null
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;ping 你喜爱的网站查看是否能成功．&lt;/p&gt;
+&lt;p&gt;联网后:
+&lt;code&gt;vim /etc/apt/sources.list&lt;/code&gt; 添加以下几行软件源:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free
+  deb-src http://mirrors.ustc.edu.cn/debian stable main contrib non-free
+  deb http://mirrors.ustc.edu.cn/debian stable-proposed-updates main contrib non-free
+  deb-src http://mirrors.ustc.edu.cn/debian stable-proposed-updates main contrib non-free&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;aptitude update&lt;/code&gt; 更新 packages list
+执行 &lt;code&gt;aptitude -y install nfs-common&lt;/code&gt; 安装 所需软件包.
+然后 &lt;code&gt;mount -t nfs 192.168.7.1:/srv/nfs4/BBB nfs4&lt;/code&gt; 挂载即可&lt;/p&gt;
+&lt;p&gt;参考:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;http://www.server-world.info/en/note?os=Debian_7.0&amp;amp;p=nfs&amp;amp;f=2&lt;/li&gt;
+&lt;li&gt;https://lug.ustc.edu.cn/wiki/mirrors/help/debian&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Debian"></category><category term="NFS"></category></entry></feed>

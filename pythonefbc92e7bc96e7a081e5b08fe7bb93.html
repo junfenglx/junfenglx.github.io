@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="Python２编码小结"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/pythonefbc92e7bc96e7a081e5b08fe7bb93.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/pythonefbc92e7bc96e7a081e5b08fe7bb93.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>Python２编码小结 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/pythonefbc92e7bc96e7a081e5b08fe7bb93.html" rel="bookmark"
+             title="Permalink to Python２编码小结">Python２编码小结</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-03-12
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/encode.html">encode</a>
+        <a href="http://blog.junfeng.ca/tag/python.html">Python</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/pythonefbc92e7bc96e7a081e5b08fe7bb93.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>Python中的编码挺让人烦的．学习了一下，记录在此．首先查看你系统默认输入输出的编码．  </p>
+<p><code>#!/usr/bin/env python #!---coding=utf-8--- import sys print 'stdin_encoding:%s' % sys.stdin.encoding print 'stdout_encoding:%s' % sys.stdout.encoding</code></p>
+<p>OutpUt<br />
+stdin_encoding:UTF-8<br />
+stdout_encoding:UTF-8<br />
+</code>  </p>
+<p><code>&gt;&gt;&gt; a='你好' &gt;&gt;&gt; a 'xe4xbdxa0xe5xa5xbd' &gt;&gt;&gt; type(a) &lt;type 'str'&gt; &gt;&gt;&gt; b=a.decode('utf-8') &gt;&gt;&gt; type(b) &lt;type 'unicode'&gt; &gt;&gt;&gt; a.encode('gbk') Traceback (most recent call last): File "", line 1, in UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)</code><br />
+首先a的类型是str，其以UTF-8编码．str有两个关于编码的方法．<br />
+str.encode和str.decode<br />
+b=a.decode('utf-8') 将a解码，返回类型为unicode.<br />
+同时a又有encode方法．但a.encode('gbk')
+抛出了解码错误．那么encode方法又有什么用呢？？<br />
+看下面的例子：  </p>
+<p><code>&gt;&gt;&gt; c='Hello' &gt;&gt;&gt; c 'Hello' &gt;&gt;&gt; c.decode('utf-8') u'Hello' &gt;&gt;&gt; d=c.decode('utf-8') &gt;&gt;&gt; d u'Hello' &gt;&gt;&gt; d.encode('gbk') 'Hello' &gt;&gt;&gt; e=d.encode('gbk') &gt;&gt;&gt; e 'Hello'</code>  </p>
+<p>当str变量中只含有ascii字符时使用c.encode('gbk')顺利通过．我想c.encode()应该是先decode再encode的，而且默认是ascii来解码的．这样因为a中含有汉字，ascii也就无法解码了．  </p>
+<p><code>&gt;&gt;&gt; f=b.encode('gbk') &gt;&gt;&gt; f 'xc4xe3xbaxc3' &gt;&gt;&gt; g=f.decode('gbk') &gt;&gt;&gt; g u'u4f60u597d' &gt;&gt;&gt; g==b True &gt;&gt;&gt; f.decode('utf-8') Traceback (most recent call last):   File "", line 1, in    File "/usr/lib/python2.7/encodings/utf_8.py", line 16, in decode     return codecs.utf_8_decode(input, errors, True) UnicodeDecodeError: 'utf8' codec can't decode byte 0xc4 in position 0: invalid continuation byte</code>  </p>
+<p>从上面可以看出汉字在不同的编码下，码值是不同的，所以decode时就要传入正确的编码方式，不然就会抛出像上面这样的异常．</p>
+<p>在Python3中str取代了unicode类型，没有了decode方法．这样str类型的变量只能encode了，返回的是bytes类型．</p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "pythonefbc92e7bc96e7a081e5b08fe7bb93.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

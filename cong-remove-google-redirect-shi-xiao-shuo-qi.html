@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="从remove google redirect 失效说起"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/cong-remove-google-redirect-shi-xiao-shuo-qi.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/cong-remove-google-redirect-shi-xiao-shuo-qi.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>从remove google redirect 失效说起 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/cong-remove-google-redirect-shi-xiao-shuo-qi.html" rel="bookmark"
+             title="Permalink to 从remove google redirect 失效说起">从remove google redirect 失效说起</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/junfeng.html">junfeng</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/javascript.html">JavaScript</a>
+
+    on 2014-05-11
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/extensions.html">extensions</a>
+        <a href="http://blog.junfeng.ca/tag/js-event.html">js event</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/cong-remove-google-redirect-shi-xiao-shuo-qi.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>前段时间发现remove google redirect突然不能用了，在chrome web store的页面也没了。难道被google和谐了？对于我这个重度google使用者来说可不是一件好事情，搜索的结果都要先被google重定向，增加了不必要的加载时间。</p>
+<p>只想寻找解决办法：<a href="https://github.com/juffy/RecoverUrl/raw/master/recover%20url.0.0.1.crx">点击这里</a></p>
+<p>于是想着能不能改改那个插件的代码，修复这个bug，找到那个插件的源代码，发现一下子1200多行代码，这么复杂。感觉移除一个重定向链接不需要这么麻烦吧，决定自己实现一个。</p>
+<p>用的时候发现google在你点击一个链接时，会被替换成google的重定向链接。</p>
+<div class="highlight"><pre>http://en.wikipedia.org/wiki/Continuous_integration
+</pre></div>
+
+
+<p>会被替换成</p>
+<div class="highlight"><pre>https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;sqi=2&amp;ved=0CDUQFjAA&amp;url=%68%74%74%70%3a%2f%2f%65%6e%2e%77%69%6b%69%70%65%64%69%61%2e%6f%72%67%2f%77%69%6b%69%2f%43%6f%6e%74%69%6e%75%6f%75%73%5f%69%6e%74%65%67%72%61%74%69%6f%6e&amp;ei=W0NuU-OSBImQrQe0lYBw&amp;usg=AFQjCNHxUWTtSC_MArGdeBXVTWRAUUkL5Q&amp;sig2=dTBasnGxLNpeCYshC_LnbA
+</pre></div>
+
+
+<p>查询的url的值是原网址经过url encode转换的。本来想着用这
+个值得到原网址的。但google还算厚道，把原网址存到了属性data-url中了。原网址是得到了，关键是怎么恢复原网址。</p>
+<p>通过反复测试发现，刚开始搜索出来的链接是没有被处理的，但当你点击链接的时候却变成了google重定向的链接。因为google的某段js代码监听了mousedown事件，当你点击链接的时候，在鼠标按下时，google把链接修改了。这就好办了，我们可以监听mouseup事件，把网址再改回来，这样当点击后，浏览器看到的就是原网址了。(你要知道点击一次鼠标会先后触发mousedown, mouseup, click事件) 。如此就去掉了搜索结果的重定向。</p>
+<p>于是做了个小插件，只有24行代码</p>
+<p>下载地址：<a href="https://github.com/juffy/RecoverUrl/raw/master/recover%20url.0.0.1.crx">here</a>
+项目地址：<a href="https://github.com/juffy/RecoverUrl">here</a></p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "cong-remove-google-redirect-shi-xiao-shuo-qi.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

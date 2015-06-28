@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="unpv13e chapter 3 notes"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/unpv13e-chapter-3-notes.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/unpv13e-chapter-3-notes.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>unpv13e chapter 3 notes | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/unpv13e-chapter-3-notes.html" rel="bookmark"
+             title="Permalink to unpv13e chapter 3 notes">unpv13e chapter 3 notes</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/junfeng.html">junfeng</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/unpv13e.html">unpv13e</a>
+
+    on 2014-07-03
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/unpv13e.html">unpv13e</a>
+        <a href="http://blog.junfeng.ca/tag/notes.html">notes</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/unpv13e-chapter-3-notes.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <h3>IPv4 Socket Address Structure</h3>
+<p><img alt="sockaddr_in.png" src="./images/sockaddr_in.png" /></p>
+<h3>Datatypes required by the POSIX specification</h3>
+<p><img alt="datatypes.png" src="./images/datatypes.png" /></p>
+<h3>Generic Socket Address Structure</h3>
+<p><img alt="sockaddr.png" src="./images/sockaddr.png" /></p>
+<h3>IPv6 Socket Address Structure</h3>
+<p><img alt="sockaddr_in6.png" src="./images/sockaddr_in6.png" /></p>
+<h3>New Generic Socket Address Structure</h3>
+<p><img alt="sockaddr_storage.png" src="./images/sockaddr_storage.png" /></p>
+<h3>Comparison of various socket address structures.</h3>
+<p><img alt="sockaddr_comparison.png" src="./images/sockaddr_comparison.png" /></p>
+<h3>Byte Ordering Functions</h3>
+<p><img alt="byte_ordering_functions.png" src="./images/byte_ordering_functions.png" /></p>
+<h3>Convert Addresses Between ASCII Strings And Network Byte Ordered Binary Values</h3>
+<h5>Old Functions:</h5>
+<p><img alt="inet_aton-inet_addr-inet_ntoa.png" src="./images/inet_aton-inet_addr-inet_ntoa.png" /></p>
+<p><em>note 1: INADDR_NONE is typically 32 one-bits, so inet_addr cannot convert string 255.255.255.255</em></p>
+<p><em>note 2: inet_ntoa's return value is in static memory, so it is not reentrant</em></p>
+<p><em>note 3: inet_ntoa takes structures as it's argument, not a point</em></p>
+<h5>New Functions:</h5>
+<p><img alt="inet_pton-inet_ntop.png" src="./images/inet_pton-inet_ntop.png" /></p>
+<p><code>#define INET_ADDRSTRLEN 16 /* for IPv4 dotted-decimal */</code></p>
+<p><code>#define INET6_ADDRSTRLEN 46 /* for IPv6 hex string */</code></p>
+<h5>Summary of address conversion functions</h5>
+<p><img alt="address_conversion_functions.png" src="./images/address_conversion_functions.png" /></p>
+<h2>Exercises</h2>
+<p>3.1 In C the function can modify arguments only if arguments passed by reference.</p>
+<p>3.2 because <code>sizeof(char)</code> is one byte, read or write n chars equals n bytes data.</p>
+<p>3.3</p>
+<div class="highlight"><pre><span class="cm">/*inet_pton_loose</span>
+<span class="cm"> * author: junfeng*/</span>
+
+<span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;string.h&gt;</span>
+<span class="cp">#include &lt;netinet/in.h&gt;</span>
+<span class="cp">#include &lt;arpa/inet.h&gt;</span>
+<span class="kt">int</span> <span class="nf">inet_pton_loose</span><span class="p">(</span><span class="kt">int</span> <span class="n">family</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">strptr</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">addrptr</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="cm">/*test*/</span>
+    <span class="k">struct</span> <span class="n">in_addr</span> <span class="n">a_in4_addr</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">in6_addr</span> <span class="n">a_in6_addr</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">str_addr4</span><span class="p">[</span><span class="n">INET_ADDRSTRLEN</span><span class="p">],</span> <span class="n">str_addr6</span><span class="p">[</span><span class="n">INET6_ADDRSTRLEN</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Usage:</span><span class="se">\n</span><span class="s">%s str_addr</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">inet_pton_loose</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">a_in4_addr</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="n">inet_ntop</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a_in4_addr</span><span class="p">,</span> <span class="n">str_addr4</span><span class="p">,</span> <span class="n">INET_ADDRSTRLEN</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;a_in4_addr: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">str_addr4</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">inet_pton_loose</span><span class="p">(</span><span class="n">AF_INET6</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">a_in6_addr</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="n">inet_ntop</span><span class="p">(</span><span class="n">AF_INET6</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a_in6_addr</span><span class="p">,</span> <span class="n">str_addr6</span><span class="p">,</span> <span class="n">INET6_ADDRSTRLEN</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;a_in6_addr: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">str_addr6</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">inet_pton_loose</span><span class="p">(</span><span class="kt">int</span> <span class="n">family</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">strptr</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">addrptr</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="n">ret</span> <span class="o">=</span> <span class="n">inet_pton</span><span class="p">(</span><span class="n">family</span><span class="p">,</span> <span class="n">strptr</span><span class="p">,</span> <span class="n">addrptr</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ret</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">struct</span> <span class="n">in_addr</span> <span class="n">in_val</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">inet_aton</span><span class="p">(</span><span class="n">strptr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">in_val</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">family</span> <span class="o">==</span> <span class="n">AF_INET</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">memcpy</span><span class="p">(</span><span class="n">addrptr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">in_val</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">in_addr</span><span class="p">));</span>
+                <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">family</span> <span class="o">==</span> <span class="n">AF_INET6</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">size_t</span> <span class="n">diff</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">in6_addr</span><span class="p">)</span> <span class="o">-</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">in_addr</span><span class="p">);</span>
+                <span class="n">memset</span><span class="p">(</span><span class="n">addrptr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">diff</span><span class="p">);</span>
+                <span class="n">memset</span><span class="p">(</span><span class="n">addrptr</span> <span class="o">+</span> <span class="n">diff</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span>\
+                        <span class="mh">0xff</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+                <span class="n">memcpy</span><span class="p">(</span><span class="n">addrptr</span> <span class="o">+</span> <span class="n">diff</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">in_val</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">in_addr</span><span class="p">));</span>
+                <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "unpv13e-chapter-3-notes.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

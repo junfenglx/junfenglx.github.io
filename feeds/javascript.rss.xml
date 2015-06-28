@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>jf.h</title><link>http://blog.junfeng.ca/</link><description>lylx</description><atom:link href="http://blog.junfeng.ca/feeds/javascript.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 11 May 2014 00:37:00 +0800</lastBuildDate><item><title>从remove google redirect 失效说起</title><link>http://blog.junfeng.ca/cong-remove-google-redirect-shi-xiao-shuo-qi.html</link><description>&lt;p&gt;前段时间发现remove google redirect突然不能用了，在chrome web store的页面也没了。难道被google和谐了？对于我这个重度google使用者来说可不是一件好事情，搜索的结果都要先被google重定向，增加了不必要的加载时间。&lt;/p&gt;
+&lt;p&gt;只想寻找解决办法：&lt;a href="https://github.com/juffy/RecoverUrl/raw/master/recover%20url.0.0.1.crx"&gt;点击这里&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;于是想着能不能改改那个插件的代码，修复这个bug，找到那个插件的源代码，发现一下子1200多行代码，这么复杂。感觉移除一个重定向链接不需要这么麻烦吧，决定自己实现一个。&lt;/p&gt;
+&lt;p&gt;用的时候发现google在你点击一个链接时，会被替换成google的重定向链接。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;http://en.wikipedia.org/wiki/Continuous_integration
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;会被替换成&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;https://www.google.com/url?sa=t&amp;amp;rct=j&amp;amp;q=&amp;amp;esrc=s&amp;amp;source=web&amp;amp;cd=1&amp;amp;cad=rja&amp;amp;uact=8&amp;amp;sqi=2&amp;amp;ved=0CDUQFjAA&amp;amp;url=%68%74%74%70%3a%2f%2f%65%6e%2e%77%69%6b%69%70%65%64%69%61%2e%6f%72%67%2f%77%69%6b%69%2f%43%6f%6e%74%69%6e%75%6f%75%73%5f%69%6e%74%65%67%72%61%74%69%6f%6e&amp;amp;ei=W0NuU-OSBImQrQe0lYBw&amp;amp;usg=AFQjCNHxUWTtSC_MArGdeBXVTWRAUUkL5Q&amp;amp;sig2=dTBasnGxLNpeCYshC_LnbA
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;查询的url的值是原网址经过url encode转换的。本来想着用这
+个值得到原网址的。但google还算厚道，把原网址存到了属性data-url中了。原网址是得到了，关键是怎么恢复原网址。&lt;/p&gt;
+&lt;p&gt;通过反复测试发现，刚开始搜索出来的链接是没有被处理的，但当你点击链接的时候却变成了google重定向的链接。因为google的某段js代码监听了mousedown事件，当你点击链接的时候，在鼠标按下时，google把链接修改了。这就好办了，我们可以监听mouseup事件，把网址再改回来，这样当点击后，浏览器看到的就是原网址了。(你要知道点击一次鼠标会先后触发mousedown, mouseup, click事件) 。如此就去掉了搜索结果的重定向。&lt;/p&gt;
+&lt;p&gt;于是做了个小插件，只有24行代码&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href="https://github.com/juffy/RecoverUrl/raw/master/recover%20url.0.0.1.crx"&gt;here&lt;/a&gt;
+项目地址：&lt;a href="https://github.com/juffy/RecoverUrl"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Written with &lt;a href="https://stackedit.io/"&gt;StackEdit&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">junfeng</dc:creator><pubDate>Sun, 11 May 2014 00:37:00 +0800</pubDate><guid>tag:blog.junfeng.ca,2014-05-11:cong-remove-google-redirect-shi-xiao-shuo-qi.html</guid><category>extensions</category><category>js event</category></item></channel></rss>

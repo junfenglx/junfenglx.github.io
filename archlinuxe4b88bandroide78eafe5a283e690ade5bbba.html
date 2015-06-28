@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="archlinux下android环境搭建"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/archlinuxe4b88bandroide78eafe5a283e690ade5bbba.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/archlinuxe4b88bandroide78eafe5a283e690ade5bbba.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>archlinux下android环境搭建 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/archlinuxe4b88bandroide78eafe5a283e690ade5bbba.html" rel="bookmark"
+             title="Permalink to archlinux下android环境搭建">archlinux下android环境搭建</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2012-12-10
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/android-sdk.html">android-sdk</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/archlinuxe4b88bandroide78eafe5a283e690ade5bbba.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>由于系统中已有openjdk，就开始安装eclipse</p>
+<p>sudo pacman -S eclipse</p>
+<p>在选择java版本时纠结了，是选择sun-java呢，还是openjava？</p>
+<p>刚开始选择sun-java，但网速过于慢了，就又换回了openjava</p>
+<p>安装android-sdk，android-sdk-platform-tools无法解决依赖：</p>
+<p><a href="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-192629_740x485_scrot.png"><img alt="" src="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-192629_740x485_scrot-300x196.png" title="2012-12-09-192629_740x485_scrot" /></a></p>
+<p>在/etc/pacman.conf中启用multilib源</p>
+<p>sudo vim /etc/pacman.conf</p>
+<p>安装android-sdk，android-sdk-platform-tools</p>
+<p>sudo pacman -S android-sdk android-sdk-platform-tools</p>
+<p><a href="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-193119_737x460_scrot.png"><img alt="" src="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-193119_737x460_scrot-300x187.png" title="2012-12-09-193119_737x460_scrot" /></a></p>
+<p>感觉文件好大啊！但到后面装eclipse-android时真的是小巫见大巫了。</p>
+<p>android-sdk默认安装到/opt文件夹下。</p>
+<p>使用yaourt安装eclipse-android 使用pacman无法解决依赖。</p>
+<p>sudo yaourt  -S eclipse-android （非root用户也可以）</p>
+<p>会下载这三个东东eclipse-emf   eclipse-gef    eclipse-wtp-wst。</p>
+<p>平均每个都一百多M。</p>
+<p>cd /opt/android-sdk/tools</p>
+<p>运行android脚本启动android-sdk-manager：</p>
+<p>./android</p>
+<p>若遇到权限问题把/opt/android-sdk/文件夹及其所有内容的所有者改成你自己</p>
+<p>sudo chown -R user：users /opt/android-sdk</p>
+<p>sudo也可以。</p>
+<p>选择android API版本下载安装。</p>
+<p><a href="http://jcodef.com/wp-content/uploads/2012/12/2012-12-10-225726_668x470_scrot.png"><img alt="" src="http://jcodef.com/wp-content/uploads/2012/12/2012-12-10-225726_668x470_scrot-300x211.png" title="2012-12-10-225726_668x470_scrot" /></a></p>
+<p>启动eclipse，设置android-sdk路径。</p>
+<p>android开发环境已配置完成。</p>
+<h6>新建android虚拟机，测试环境：</h6>
+<p>在android-sdk-manager中找到tools->Manage AVDs，启动Android Virtual
+Device Manager。</p>
+<p>new新建android虚拟机。</p>
+<p>设置参数</p>
+<p><a href="http://jcodef.com/wp-content/uploads/2012/12/2012-12-10-223822_470x689_scrot.png"><img alt="" src="http://jcodef.com/wp-content/uploads/2012/12/2012-12-10-223822_470x689_scrot-204x300.png" title="2012-12-10-223822_470x689_scrot" /></a></p>
+<p>Start启动虚拟机</p>
+<p>若出现问题无法启动，按照提示提供的执行命令。</p>
+<p>若出现“fork(): Cannot allocate memory”错误，把内存调小一点试试。</p>
+<p>启动过程较慢，以为死掉，造成关了重新启动多次。</p>
+<p>最后出现android虚拟机：</p>
+<p><a href="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-233805_1366x768_scrot.png"><img alt="" src="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-233805_1366x768_scrot-300x168.png" title="2012-12-09-233805_1366x768_scrot" /></a></p>
+<p>成功</p>
+<p>时间主要花在下载android-sdk和android-sdk-platform-tools上，学校源中无此软件包，只能在官网上下载，但官网已限速，而且多次出现下载完后，返回莫名错误。</p>
+<p>用yaourt下载eclipse-android依赖包时也是花费较多时间。</p>
+<p>参考：<a href="https://wiki.archlinux.org/index.php/Android_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">Android
+(简体中文)</a></p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "archlinuxe4b88bandroide78eafe5a283e690ade5bbba.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

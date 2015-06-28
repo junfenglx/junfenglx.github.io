@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="jf.h - algu"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/author/algu.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="website"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/author/algu.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>jf.h - algu | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span9">
+                <section>
+                    <ol id="posts-list" class="hfeed" start="9">
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/pythonefbc92e7bc96e7a081e5b08fe7bb93.html" rel="bookmark" title="Permalink to Python２编码小结">
+                                       Python２编码小结
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-03-12
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/encode.html">encode</a>
+        <a href="http://blog.junfeng.ca/tag/python.html">Python</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/pythonefbc92e7bc96e7a081e5b08fe7bb93.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>Python中的编码挺让人烦的．学习了一下，记录在此．首先查看你系统默认输入输出的编码．  </p>
+<p><code>#!/usr/bin/env python #!---coding=utf-8--- import sys print 'stdin_encoding:%s' % sys.stdin.encoding print 'stdout_encoding:%s' % sys.stdout.encoding</code></p>
+<p>OutpUt<br />
+stdin_encoding:UTF-8<br />
+stdout_encoding:UTF-8<br />
+</code>  </p>
+<p><code>&gt;&gt;&gt; a='你好' &gt;&gt;&gt; a 'xe4xbdxa0xe5xa5xbd' &gt;&gt;&gt; type(a) &lt;type 'str'&gt; &gt;&gt;&gt; b=a.decode('utf-8') &gt;&gt;&gt; type(b) &lt;type 'unicode'&gt; &gt;&gt;&gt; a.encode('gbk') Traceback (most ...</code></p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/pythonefbc92e7bc96e7a081e5b08fe7bb93.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html" rel="bookmark" title="Permalink to Linux和Nvidia显卡驱动">
+                                       Linux和Nvidia显卡驱动
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-03-10
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/xia-zhe-teng.html">瞎折腾</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>由于lxde也用了将近一学期了，虽说lxde比较轻量，但显示效果实在不能说美观！又不想用GNOME或者KDE之流.它们会携带一大堆莫名其妙的软件，也受不了arch下GNOME那个样子，至于KDE,比GNOME好不了哪去.而xfce4也是直追GNOME.于是再次忍不住装上Enlightenment17,上次因为感觉e17CPU占用太多，删了.但这次为了显示效果，下决心把e17装了.跟着网上的教程算是把它配置的满意了.<br />
+但风扇也呼呼的转了起来,top命令下去，果然，Enlightenment
+CPU占用率百分之三十几，都是因为我的nvidia显卡没正常工作的缘故！而且貌似还在发热！你说你不工作去就算了，还拖累整个系统.BIOS中也没有关闭n卡的选项.无奈只有自食其力，上网搜解决方法.  </p>
+<p>貌似官方源里有nvidia驱动，但无奈nvidia-utility和mesa-libgl冲突,而后者被我系统里的大部分软件依赖.也就不敢装它了.然后用了aur中的bumblebee软件,但在装nvidia-bumblebee时无法安装，看wiki中说bbswitch可以关闭独显，但我也没装成功,bbswitch-git倒是装
+成功了，却不工作！无奈我又去nvidia官网下载驱动，倒是没有依赖问题,但装好之后，X服务器又启动不了了.把由nvidia-xconfig自动生成在/etc/X11/Xorg.conf删了之后才能启动桌面环境！可能是我没配置好什么.于是狠心去装官方源中的n卡驱动，大概把我电脑里的桌面程序都给删了 ...</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/e99baae699af.html" rel="bookmark" title="Permalink to 雪景">
+                                       雪景
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/ri-zhi.html">日志</a>
+
+    on 2013-02-19
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/xue-jing.html">雪景</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/e99baae699af.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p><a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0053.jpg"><img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0053.jpg" title="DSC_0053.jpg" /></a></p>
+<p><a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0052.jpg"><img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0052.jpg" title="DSC_0052.jpg" /></a></p>
+<p><a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg"><img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg" title="DSC_0051.jpg" /></a></p>
+<p><a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg"><img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0050.jpg" title="DSC_0050.jpg" /></a></p>
+<p><a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg"><img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0049.jpg" title="DSC_0049.jpg" /></a></p>
+<p><a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg"><img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0048.jpg" title="DSC_0048.jpg" /></a></p>
+<p><a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg"><img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0047.jpg" title="DSC_0047.jpg" /></a></p>
+<p><a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg"><img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0045.jpg" title="DSC_0045.jpg" /></a></p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/e99baae699af.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/signale587bde695b0e5928csigactione587bde695b0.html" rel="bookmark" title="Permalink to signal函数和sigaction函数">
+                                       signal函数和sigaction函数
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-02-16
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/signal.html">signal</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/signale587bde695b0e5928csigactione587bde695b0.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>环境:Linux version 3.6.10-1-ARCH</p>
+<p>当使用系统自带signal函数处理信号时,系统并未把被捕捉到的信号加到信号屏蔽字中.</p>
+<p>使用sigaction函数实现的signal函数(apue),在调用信号处理程序时,捕捉到的信号屏蔽字被加入到信号屏蔽字,处理程序返回后,恢复到原来的屏蔽字.</p>
+<p>看来敲敲代码还是能发现一些东西的.</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/signale587bde695b0e5928csigactione587bde695b0.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/e4b88de698afe68980e69c89e79a84httpse993bee68ea5e983bde698afe588a9e6b091e79a84.html" rel="bookmark" title="Permalink to 不是所有的https链接都是利民的">
+                                       不是所有的https链接都是利民的
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-02-02
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/goagent.html">goagent</a>
+        <a href="http://blog.junfeng.ca/tag/https.html">https</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/e4b88de698afe68980e69c89e79a84httpse993bee68ea5e983bde698afe588a9e6b091e79a84.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>话说git*hub又不能上了,开着代理,可以打开页面,但无法下载.</p>
+<p>git clone显示:</p>
+<p><span style="color: #0000ff;">\$ git clone
+https://github.com/bgolub/tornado-blog.git</span><br />
+<span style="color: #0000ff;"> 正克隆到 'tornado-blog'...</span><br />
+<span style="color: #0000ff;"> error: Could not resolve host: (nil);
+Unknown error while accessing
+https://github.com/bgolub/tornado-blog.git/info/refs?service=git-upload-pack</span><br />
+<span style="color: #0000ff;"> fatal: HTTP request failed</span><br />
+<span style="color: #0000ff;">\$ ping github.com</span><br />
+<span style="color: #0000ff;"> \^C</span></p>
+<p>下载zip文件吧,又出现这种情况:</p>
+<p><a href="http://jcodef.com/wp-content/uploads/2013/02/2013-02-02-210744_1366x768_scrot.png"><img alt="" src="http://jcodef.com/wp-content/uploads/2013/02/2013-02-02-210744_1366x768_scrot-300x168.png" title="2013-02-02-210744_1366x768_scrot" /></a></p>
+<p>我勒那个心情啊!让我们这些程序员情何以堪啊.</p>
+<p>最后把那个zip文件地址复制出来去掉url前面的https ...</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/e4b88de698afe68980e69c89e79a84httpse993bee68ea5e983bde698afe588a9e6b091e79a84.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/e5ae8ce7be8ee79a84goagent.html" rel="bookmark" title="Permalink to 完美的goagent">
+                                       完美的goagent
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-01-28
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/goagent.html">goagent</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/e5ae8ce7be8ee79a84goagent.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>给我们这些没钱买vpn又想出去的人带来了很大的方便。</p>
+<p>chromium 设置->高级设置-> 管理证书->授权中心->导入</p>
+<p>选择 goagent/local/CA.crt</p>
+<p>全部打勾，确定。</p>
+<p>ssl证书不受信任得到了解决。</p>
+<p>少部分要求证书的https也可以访问了。</p>
+<p>而在Android手机上，安装GaeProxy软件，打开，修改代理地址改成
+https://yourappid.appspot.com/fetch.py</p>
+<p>Google+,facebook,twitter什么的，都可以访问了。</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/e5ae8ce7be8ee79a84goagent.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/e8bf99e4b8aae586ace5a4a9e69c89e782b9e586b7.html" rel="bookmark" title="Permalink to 这个冬天有点冷">
+                                       这个冬天有点冷
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/xin-qing.html">心情</a>
+
+    on 2012-12-29
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/you-dian-leng.html">有点冷</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/e8bf99e4b8aae586ace5a4a9e69c89e782b9e586b7.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>从图书馆出来，走在路上。枯叶快速的来到脚下，又瞬间跑开了，继续它随风飘泊的生活。雷达实验室门上的锁，奋力的敲打着缚束它的铁门，它想离开注定要待一生的地方，随狂风流浪。风嗖嗖的刮着，呼吸都有点困难了。不禁感叹，这个冬天真的有点冷。</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/e8bf99e4b8aae586ace5a4a9e69c89e782b9e586b7.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/e68d89e899abe8aea1e4b880.html" rel="bookmark" title="Permalink to 捉虫记一">
+                                       捉虫记一
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2012-12-23
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/bug.html">BUG</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/e68d89e899abe8aea1e4b880.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>话说今天机考了。最后一道题没过，伤心，最小生成树我以前编过的！但今天再编的时候，却出现了bug。</p>
+<p>BUG1.</p>
+<div>
+
+    for(i=0;i\<G.arcnum;i++)
+
+</div>
+
+<div>
+
+    {
+
+</div>
+
+<div>
+
+        scanf("%d%d%d",&i,&j,&w);
+
+</div>
+
+<div>
+
+        G.a[i][j]=w;
+
+</div>
+
+<div>
+
+        G.a[j][i]=w;
+
+</div>
+
+<div>
+
+    }
+
+</div>
+
+<div>
+
+ i华丽丽的在我眼前突变了，神不知鬼不觉！
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+BUG2.
+
+</div>
+
+<div>
+
+<div>
+
+<div>
+
+int wp=INT\_MAX;
+
+</div>
+
+<div>
+
+......
+
+</div>
+
+<div>
+
+for(i=1;i\<G.vexnum;++i)
+
+</div>
+
+<div>
+
+ {
+
+</div>
+
+<div>
+
+        wp=INT\_MAX;//此前未加
+
+</div>
+
+<div>
+
+        for(j=0;j ...</div></div></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/e68d89e899abe8aea1e4b880.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/archlinuxe4b88bandroide78eafe5a283e690ade5bbba.html" rel="bookmark" title="Permalink to archlinux下android环境搭建">
+                                       archlinux下android环境搭建
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2012-12-10
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/android-sdk.html">android-sdk</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/archlinuxe4b88bandroide78eafe5a283e690ade5bbba.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>由于系统中已有openjdk，就开始安装eclipse</p>
+<p>sudo pacman -S eclipse</p>
+<p>在选择java版本时纠结了，是选择sun-java呢，还是openjava？</p>
+<p>刚开始选择sun-java，但网速过于慢了，就又换回了openjava</p>
+<p>安装android-sdk，android-sdk-platform-tools无法解决依赖：</p>
+<p><a href="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-192629_740x485_scrot.png"><img alt="" src="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-192629_740x485_scrot-300x196.png" title="2012-12-09-192629_740x485_scrot" /></a></p>
+<p>在/etc/pacman.conf中启用multilib源</p>
+<p>sudo vim /etc/pacman.conf</p>
+<p>安装android-sdk，android-sdk-platform-tools</p>
+<p>sudo pacman -S android-sdk android-sdk-platform-tools</p>
+<p><a href="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-193119_737x460_scrot.png"><img alt="" src="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-193119_737x460_scrot-300x187.png" title="2012-12-09-193119_737x460_scrot" /></a></p>
+<p>感觉文件好大啊！但到后面装eclipse-android时真的是小巫见大巫了。</p>
+<p>android-sdk默认安装到/opt文件夹下。</p>
+<p>使用yaourt安装eclipse-android 使用pacman无法解决依赖。</p>
+<p>sudo yaourt  -S eclipse-android （非root用户也可以）</p>
+<p>会下载这三个东东eclipse-emf   eclipse-gef    eclipse-wtp-wst。</p>
+<p>平均每个都一百多M。</p>
+<p>cd /opt/android-sdk/tools</p>
+<p>运行android脚本启动android-sdk-manager ...</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/archlinuxe4b88bandroide78eafe5a283e690ade5bbba.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://blog.junfeng.ca/windows-or-linux.html" rel="bookmark" title="Permalink to windows or linux ？">
+                                       windows or linux ？
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/ri-zhi.html">日志</a>
+
+    on 2012-12-07
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/xi-tong-chai-bie.html">系统差别</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/windows-or-linux.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>linux在友好度，和普及程度上确实比不上windows。</p>
+<p>但现在感觉ubuntu在图形界面上做的不比windows差，</p>
+<p>而且windows的普及很大程度上是由于人事因素。</p>
+<p>linux的优势在网络，服务器这一块。</p>
+<p>而且linux是开源免费的，更适合学习。</p>
+<p>而windows是收费闭源的。</p>
+<p>总的来说，windows更适合用户使用，linux适合系统，服务器方面的开发者使用。</p>
+<p>不过这一切都看个人爱好，无所谓高低之分。</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://blog.junfeng.ca/windows-or-linux.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    </ol><!-- /#posts-list -->
+<p class="paginator">
+        <a href="http://blog.junfeng.ca/author/algu3.html">&laquo;</a>
+    Page 4 / 8
+        <a href="http://blog.junfeng.ca/author/algu5.html">&raquo;</a>
+</p>
+                </section><!-- /#content -->
+</div>
+<div class="span3">
+    <section id="sidebar">
+            <div>
+                <h2>Browse content by</h2>
+                <ul class="fa-ul">
+                <li><a href="http://blog.junfeng.ca/categories.html"><i class="fa-li fa fa-tags"></i> Categories</a></li>
+                <li><a href="http://blog.junfeng.ca/archives.html"><i class="fa-li fa fa-calendar"></i> Dates</a></li>
+                <li><a href="http://blog.junfeng.ca/tags.html"><i class="fa-li fa fa-tag"></i> Tags</a></li>
+
+                <li><a href="http://blog.junfeng.ca/feeds/all.atom.xml"><i class="fa-li fa fa-rss"></i> Feed</a></li>
+                </ul>
+            </div><!-- /.browse -->
+            <div>
+                <h2>Social</h2>
+                <ul>
+                    <li><a href="https://github.com/grepcook">GitHub</a></li>
+                    <li><a href="https://bitbucket.org/junfeng_hu">Bitbucket</a></li>
+                    <li><a href="https://twitter.com/grepcook">Twitter</a></li>
+                    <li><a href="http://weibo.com/junfeng7">Weibo</a></li>
+                    <li><a href="http://instagram.com/junfeng_hu">Instagram</a></li>
+                </ul>
+            </div><!-- /.social -->
+            <div>
+                <h2>Tags</h2>
+                <ul id="cloud">
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/bian-yi-cpp.html">编译cpp</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/xie-hou-tai.html">写后台</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/variable-scope.html">variable scope</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/xiao-yuan-feng-jing.html">校园风景</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/signal.html">signal</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/like-and-not-like.html">like and not like</a></li>
+                     <li class="tag-1"><a href="http://blog.junfeng.ca/tag/goagent.html">goagent</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/django_template.html">Django_Template</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/mysqldban-zhuang.html">MySQLdb安装</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/backslash.html">backslash</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/learning.html">learning</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/wen-jian-miao-shu-fu.html">文件描述符</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/wang-yu-shi.html">“王”与“士”</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/kindle.html">Kindle</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/da-yi-zong-jie.html">大一总结</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/zui-xiao-sheng-cheng-shu.html">最小生成树</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/ajax.html">Ajax</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/wei-bo-tong-bu.html">微博同步</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/gang-lian.html">钢炼</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/upan-qi-dong.html">U盘启动</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/lifetyle.html">lifetyle</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/struct.html">struct</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/android-sdk.html">android-sdk</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/mime.html">mime</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/js-event.html">js event</a></li>
+                     <li class="tag-1"><a href="http://blog.junfeng.ca/tag/unpv13e.html">unpv13e</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/huo-che.html">火车</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/duan-ban-yin-le.html">短板音乐</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/mysqld.html">mysqld</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/https.html">https</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/luo-hua.html">落花</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/xi-tong-chai-bie.html">系统差别</a></li>
+                     <li class="tag-2"><a href="http://blog.junfeng.ca/tag/javascript.html">JavaScript</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/ying-huo-chong-zhi-mu.html">萤火虫之墓</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/you.html">You</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/htmlbiao-ge.html">html表格</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/xia-zhe-teng.html">瞎折腾</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/desktop.html">desktop</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/grep.html">grep</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/21.html">2&gt;&amp;1</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/ubuntu.html">ubuntu</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/hu-zhi-shu.html">互质数</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/gan-dong.html">感动</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/cheng-chang-he-shu.html">成长和书</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/chuan-hua-you-xi.html">传话游戏</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/xuan-ke.html">选课</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/luo-kao.html">裸考</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/you-dian-leng.html">有点冷</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/shen-du-you-xian-sou-suo.html">深度优先搜索</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/bei-jing-yu-shang-xi-ya-tu.html">北京遇上西雅图</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/mount.html">mount</a></li>
+                     <li class="tag-1"><a href="http://blog.junfeng.ca/tag/python.html">Python</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/zoj1002.html">ZOJ1002</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/diu-che-zei.html">丢车贼</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/guan-bi-qqkong-jian.html">关闭QQ空间</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/zoj1003.html">ZOJ1003</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/xue-jing.html">雪景</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/signalltiebas.html">signalltiebas</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/bug.html">BUG</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/redis.html">Redis</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/vps128mb.html">vps(128MB)</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/endianness.html">endianness</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/archan-zhuang.html">arch安装</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/debianzhuang-google-chrome.html">Debian装google chrome</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/zi-zhu-can.html">自助餐</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/html.html">html</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/subprocess.html">subprocess</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/dian-nao-diao-xian.html">电脑掉线</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/python-server.html">python server</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/bearer.html">Bearer</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/tian-shi.html">天使</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/xi-huan-yi-ge-ren.html">喜欢一个人</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/ji-gong-jin-li-liao.html">急功近利了</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/nolocaljmp.html">nolocaljmp</a></li>
+                     <li class="tag-2"><a href="http://blog.junfeng.ca/tag/encode.html">encode</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/file-hole.html">file hole</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/nfs.html">NFS</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/mentohust.html">mentohust</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/jia-zhao-kao-shi.html">驾照考试</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/extensions.html">extensions</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/guo-qu.html">过去</a></li>
+                     <li class="tag-2"><a href="http://blog.junfeng.ca/tag/c.html">C++</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/cmake.html">CMake</a></li>
+                     <li class="tag-1"><a href="http://blog.junfeng.ca/tag/notes.html">notes</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/cheng-chang-zhi-lu.html">成长之路</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/tie-ba.html">贴吧</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/feng-leng-guang-nuan.html">风冷光暖</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/tu-de-zui-duan-lu-jing.html">图的最短路径</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/ma-nong.html">码农</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/huang-hou-wen-ti.html">皇后问题</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/debianan-zhuang.html">Debian安装</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/stack.html">stack</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/exams.html">exams</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/closure.html">closure</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/debian.html">Debian</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/python-tornado.html">python-tornado</a></li>
+                     <li class="tag-4"><a href="http://blog.junfeng.ca/tag/oauth20.html">OAuth2.0</a></li>
+                </ul>
+             </div>
+<!-- /.Tags -->
+    </section><!-- /#sidebar -->
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="tieba sign"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/tieba-sign.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/tieba-sign.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>tieba sign | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/tieba-sign.html" rel="bookmark"
+             title="Permalink to tieba sign">tieba sign</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-05-09
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/tie-ba.html">贴吧</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/tieba-sign.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>贴吧批量签到</p>
+<p>使用requests,bs4</p>
+<p>[code language="python"]</p>
+<p>#!/usr/bin/env python<br />
+#!---coding=utf8---<br />
+import requests<br />
+import bs4</p>
+<p>urlt='http://tieba.baidu.com/f?kw='<br />
+signurl='http://tieba.baidu.com/sign/add'</p>
+<p>tieba=[]<br />
+f=open('tiebas.txt','r')<br />
+tieba=f.read().splitlines()<br />
+f.close()<br />
+headers={}<br />
+f=open('configs.txt','r')<br />
+for line in f:<br />
+if line[0]=='#':<br />
+continue<br />
+line=line.rstrip('\n')<br />
+key,value=line.split('=',1)<br />
+headers[key]=value<br />
+f.close()</p>
+<p>data={}<br />
+data['ie']='utf-8'</p>
+<p>for t in tieba:<br />
+data['kw']=t.decode('gbk').encode('utf-8')<br />
+#on linux<br />
+#data['kw']=t<br />
+#t=t.decode('utf-8').encode('gbk')<br />
+url=urlt+t<br />
+r=requests.get(url,headers=headers)  </p>
+<p>data['tbs']=bs4.BeautifulSoup(r.text).body.find('script').string.split('"')[1].encode('utf-8')<br />
+r=requests.post(signurl,headers=headers,data=data)<br />
+if r.url==signurl:<br />
+print t+'吧签到成功'.decode('utf-8').encode('gbk')<br />
+a=raw_input('Press Enter to exit:')</p>
+<p>[/code]</p>
+<p>使用PyInstaller打包成exe文件。</p>
+<p>下载地址：<a href="http://pan.baidu.com/share/link?shareid=495612&amp;uk=2887257007">文件</a></p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "tieba-sign.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

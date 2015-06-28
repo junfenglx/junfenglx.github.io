@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="Debian 环境下的 beaglebone black NFS client 配置"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/debian-huan-jing-xia-de-beaglebone-black-nfs-client-pei-zhi.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/debian-huan-jing-xia-de-beaglebone-black-nfs-client-pei-zhi.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>Debian 环境下的 beaglebone black NFS client 配置 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/debian-huan-jing-xia-de-beaglebone-black-nfs-client-pei-zhi.html" rel="bookmark"
+             title="Permalink to Debian 环境下的 beaglebone black NFS client 配置">Debian 环境下的 beaglebone black NFS client 配置</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/junfeng.html">junfeng</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/configs.html">configs</a>
+
+    on 2014-06-07
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/debian.html">Debian</a>
+        <a href="http://blog.junfeng.ca/tag/nfs.html">NFS</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/debian-huan-jing-xia-de-beaglebone-black-nfs-client-pei-zhi.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <p>不知什么时候手贱把beaglebone black刷成了Debian(Archlinux 没刷成功), 然后就放那了.</p>
+<p>今天要做实验, 就搭了下NFS.</p>
+<p>NFS Server 使用 Archlinux, 配置参见<a href="https://wiki.archlinux.org/index.php/Nfs">这里</a></p>
+<p>client 使用 Debian. 需要安装 nfs-common package</p>
+<p>配置 BB-black 联网:</p>
+<p>在板子下输入命令:</p>
+<div class="highlight"><pre>/sbin/route add default gw 192.168.7.1
+<span class="nb">echo</span> <span class="s2">&quot;nameserver 114.114.114.114&quot;</span> &gt;&gt; /etc/resolv.conf
+</pre></div>
+
+
+<p>在宿主机上输入:</p>
+<div class="highlight"><pre>sudo iptables -A POSTROUTING -t nat -j MASQUERADE
+<span class="nb">echo </span><span class="m">1</span> <span class="p">|</span> sudo tee /proc/sys/net/ipv4/ip_forward &gt; /dev/null
+</pre></div>
+
+
+<p>ping 你喜爱的网站查看是否能成功．</p>
+<p>联网后:
+<code>vim /etc/apt/sources.list</code> 添加以下几行软件源:</p>
+<blockquote>
+<p>deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free
+  deb-src http://mirrors.ustc.edu.cn/debian stable main contrib non-free
+  deb http://mirrors.ustc.edu.cn/debian stable-proposed-updates main contrib non-free
+  deb-src http://mirrors.ustc.edu.cn/debian stable-proposed-updates main contrib non-free</p>
+</blockquote>
+<p><code>aptitude update</code> 更新 packages list
+执行 <code>aptitude -y install nfs-common</code> 安装 所需软件包.
+然后 <code>mount -t nfs 192.168.7.1:/srv/nfs4/BBB nfs4</code> 挂载即可</p>
+<p>参考:</p>
+<ul>
+<li>http://www.server-world.info/en/note?os=Debian_7.0&amp;p=nfs&amp;f=2</li>
+<li>https://lug.ustc.edu.cn/wiki/mirrors/help/debian</li>
+</ul>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "debian-huan-jing-xia-de-beaglebone-black-nfs-client-pei-zhi.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

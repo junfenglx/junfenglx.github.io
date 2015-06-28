@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>jf.h</title><link>http://blog.junfeng.ca/</link><description>lylx</description><atom:link href="http://blog.junfeng.ca/feeds/memo.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 16 May 2015 18:42:50 +0800</lastBuildDate><item><title>right click menu items</title><link>http://blog.junfeng.ca/right-click-menu-items.html</link><description>&lt;p&gt;The list of program that is displayed when right-clicking on a file in PCManFM is the combination of:
+mimeinfo.cache
+mimeapps.list
+The default program that is launched when you double-click on a file in PCManFM is (first match wins):
+The one from ~/.local/share/applications/mimeapps.list
+The one from ~/.local/share/applications/defaults.list
+The one from /usr/local/share/applications/defaults.list
+The one from /usr/share/applications/defaults.list
+The first one from /usr/share/applications/mimeinfo.cache&lt;/p&gt;
+&lt;p&gt;From https://lkubaski.wordpress.com/2012/10/29/understanding-file-associations-in-lxde-and-pcmanfm/&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">junfeng</dc:creator><pubDate>Sat, 16 May 2015 18:42:50 +0800</pubDate><guid>tag:blog.junfeng.ca,2015-05-16:right-click-menu-items.html</guid><category>mime</category><category>desktop</category></item><item><title>mount and grep</title><link>http://blog.junfeng.ca/mount-and-grep.html</link><description>&lt;h2&gt;mount options&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;mount&lt;/code&gt;display current partions mount options.
+Output like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;/dev/sda2 on /home type ext4 (rw,relatime,data=ordered)
+/dev/sda5 on /media/sda5 type ext4 (rw,nosuid,nodev,noexec,relatime,data=ordered,user)
+/dev/sda7 on /media/sda7 type ext4 (rw,nosuid,nodev,noexec,relatime,data=ordered,user)
+/dev/sda6 on /media/sda6 type ext4 (rw,nosuid,nodev,noexec,relatime,data=ordered,user)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;if you run a executable program on a partion with settiong noexec mount options, this program will not execute.&lt;/p&gt;
+&lt;p&gt;And you got error message like &lt;code&gt;bash: ./a.out: Permission denied&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;When you have a program that opens exec bit flag, but it can't run, even you have corret permission.&lt;/p&gt;
+&lt;p&gt;then &lt;code&gt;mount&lt;/code&gt; check mount options of the partion the program run on. Maybe just because you didn't open exec mount option.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Caution:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;if you set partions auto mount on /et/fstab, check whether you set user mount option.&lt;/p&gt;
+&lt;p&gt;according the mount man page says:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Allow an ordinary user to mount the filesystem.
+  The name of the mounting user is written to mtab so that he can unmount the filesystem again.
+  This option implies the options noexec, nosuid, and nodev (unless overridden by subsequent options,
+  as in the option line user,exec,dev,suid).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So if you want programs can run on these auto mount partions, add exec option if you setted user option.&lt;/p&gt;
+&lt;h2&gt;grep options&lt;/h2&gt;
+&lt;p&gt;If you want to search some words like &lt;code&gt;X-Forwarded-For&lt;/code&gt; recursively, you type
+&lt;code&gt;grep -i "X-Forwarded-For" -r *&lt;/code&gt;. It works, but search every type files.&lt;/p&gt;
+&lt;p&gt;Maybe you want to recursively search just some type files like "*.py".&lt;/p&gt;
+&lt;p&gt;Type &lt;code&gt;grep -i "X-Forwarded-For" -r *.py&lt;/code&gt; is a naturaly derivation. But It doesn't work.
+It equals to &lt;code&gt;grep -i "X-Forwarded-For" *.py&lt;/code&gt;, just search current directory "*.py" files.&lt;/p&gt;
+&lt;p&gt;The right solution is:
+&lt;code&gt;grep -i "X-Forwarded-For" --include=*.py -r&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;recursively search *.py files for &lt;code&gt;X-Forwarded-For&lt;/code&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">junfeng</dc:creator><pubDate>Sun, 08 Jun 2014 21:45:00 +0800</pubDate><guid>tag:blog.junfeng.ca,2014-06-08:mount-and-grep.html</guid><category>mount</category><category>grep</category></item></channel></rss>

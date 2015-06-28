@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://blog.junfeng.ca/" rel="alternate"></link><link href="http://blog.junfeng.ca/feeds/zhao-pian-qiang.atom.xml" rel="self"></link><id>http://blog.junfeng.ca/</id><updated>2013-03-12T17:50:00+08:00</updated><entry><title>html页面编码</title><link href="http://blog.junfeng.ca/htmle9a1b5e99da2e7bc96e7a081.html" rel="alternate"></link><updated>2013-03-12T17:50:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-03-12:htmle9a1b5e99da2e7bc96e7a081.html</id><summary type="html">&lt;p&gt;html貌似比较简单，但今天程序却栽在设置html字符集上了．遇到这样一个页面．head头中这样写的：  &lt;/p&gt;
+&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/03/2013-03-12-175823_433x21_scrot.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2013/03/2013-03-12-175823_433x21_scrot-300x14.png" title="2013-03-12-175823_433x21_scrot" /&gt;&lt;/a&gt;  &lt;/p&gt;
+&lt;p&gt;本来是想把页面设置成utf-8编码的，但貌似这句meta没起作用，好像页面变成了gbk编码．我提交中文数据时，程序就因编码问题死掉了．等我注意到这上面的时候，整个程序的代码也快被我看完了．然后改成这样  &lt;/p&gt;
+&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/03/2013-03-12-180342_670x42_scrot.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2013/03/2013-03-12-180342_670x42_scrot-300x18.png" title="2013-03-12-180342_670x42_scrot" /&gt;&lt;/a&gt;&lt;br /&gt;
+果然顺利通过．这时间浪费的真冤枉．&lt;br /&gt;
+谁能想到错误竟然是由html页面造成的，看来细微之处别有洞天啊！&lt;/p&gt;</summary><category term="encode"></category><category term="html"></category></entry><entry><title>校园风光</title><link href="http://blog.junfeng.ca/e6a0a1e59bade9a38ee58589.html" rel="alternate"></link><updated>2012-08-18T15:56:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-08-18:e6a0a1e59bade9a38ee58589.html</id><summary type="html">&lt;p&gt;一学期下来，也拍了不少照片，特选几张来和大家分享！&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/75/b2/e3/227509d8bf24efefee730c38ed3faa7e.jpg" title="世园会吉祥物" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+style="text-align: center; color: #ff9900;"&gt;萌到自然呆的世园会吉祥物&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/c3/f2/30/a5c6310c4cb277277e4a2a3e18618117.jpg" title="红花" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="color: #ff9900;"&gt;拍的不好，多亏美景帮衬&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/2e/9c/0b/01b7ab6f9b9d2c0646bf90edc0fd423a.jpg" title="白花" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+style="color: #ff9900;"&gt;春天，每天都要经过的地方。在我们学校，什么样的植物都会开花&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/da/e9/78/24cec76ee7bba7f777bed48e5db04fc4.jpg" title="立体的花" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+style="color: #ff9900;"&gt;在上完某一次体育课回来时，见到的，忍不住拍了下来。好惬意的蜜蜂&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/10/4b/ec/0df938f86af2fd6ae270e90f51e6fc93.jpg" title="旷远" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+style="color: #ff9900;"&gt;难得在西安见到这么蓝的天空，那几根柱子我也不知道是干什么，只知道这是雷达实验室&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/a8/9d/c0/e5a66f3dc405f9f11f829ef9a2f39716.jpg" title="天空" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="color: #ff9900;"&gt;空旷的天空却不缺乏韵味&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/f0/8b/bd/95f21ced2645619242e7a2c7f6e897d6.jpg" title="教学楼" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+style="color: #ff9900;"&gt;刚开始以为是亚洲最长的教学楼，一百度，原来是最长的教学楼群。把所有教学楼建成一排，还真亏他们想起出来&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/8a/9a/53/63f92467c52ee00d2d77330803eb087c.jpg" title="相接" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="color: #ff9900;"&gt;好像有一种江南水乡的味道&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/ef/ba/84/17c6f1a38836e6694c2602a8438a0e8f.jpg" title="夕阳" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="color: #ff9900;"&gt;夕阳下的火烧云&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/fb/e8/48/b13580b171d4382344cc2f0bb2d453be.jpg" title="宿舍" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="color: #ff9900;"&gt;有点像寺庙哦&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/f7/ca/bc/7d881afbffc07f1bfa7c009e846ef5ab.jpg" title="鎏金" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="color: #ff9900;"&gt;鎏金的天空，房屋只剩剪影&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/16/0b/30/149fa65eea1dbd9299faef7fb0153d96.jpg" title="篮球场上" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="color: #ff9900;"&gt;惬意，充满朝气的大学生活&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/99/ee/26/6f7ff4b678994dc8e3e67010abf5d9ca.jpg" title="A楼" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="color: #ff9900;"&gt;算不上巍峨的教学楼吧&lt;/span&gt;&lt;/p&gt;</summary><category term="校园风景"></category></entry></feed>

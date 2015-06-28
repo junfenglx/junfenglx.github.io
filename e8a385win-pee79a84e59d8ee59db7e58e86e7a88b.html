@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="装Win PE的坎坷历程"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/e8a385win-pee79a84e59d8ee59db7e58e86e7a88b.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/e8a385win-pee79a84e59d8ee59db7e58e86e7a88b.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>装Win PE的坎坷历程 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/e8a385win-pee79a84e59d8ee59db7e58e86e7a88b.html" rel="bookmark"
+             title="Permalink to 装Win PE的坎坷历程">装Win PE的坎坷历程</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2012-09-01
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/upan-qi-dong.html">U盘启动</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/e8a385win-pee79a84e59d8ee59db7e58e86e7a88b.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <div>
+
+买了移动硬盘之后，慌着把数据转存过去。前几天，突然间想给硬盘装个U盘启动工具，我也知道装这个要格式化硬盘，可是硬盘上已经有了500多G的数据，实在不想再移出去，遂上网搜索如何在不格式化硬盘的前提下，装上Win
+PE，网上说在移动硬盘下扩展一个新的分区就可以装了，我赶紧这样弄了，下了大白菜U盘启动制作工具，照例要格式化，我以为格式化的只是那个分区，下面就是一般步骤了，等我装完之后，模拟启动一下，没出现那个界面，然后重启电脑准备检测一下，在启动的过程中，电脑报警了几下，就自动关机了，这时已经很晚了，我也就睡觉了。
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+第二天，等我起来后，打开电脑发现，移动硬盘不能用了，盘符打不开了。实在是无奈，提示格式化，这时我就知道，我那500多G的数据多半是保不住了。但当时实在没办法，也就狠心格式化了，期望着通过数据恢复工具能恢复。格式化之后，赶紧找金山数据恢复工具，可现实和理想差距是如此之大，数据恢复工具理论上确实可以恢复我硬盘里的数据，可却不知要等上几年。也只有认命，心疼那些我下了一个学期的数据。
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+ 但我还是没忘记我最初的目的：这次数据没了，装Win PE
+就没后顾之忧了。我换另一个叫电脑店的U盘制作工具，却发现它不支持移动硬盘，再次换回大白菜，又把硬盘分了几个区，还设置了活动分区，这次装成功了，我高兴地把电脑从硬盘上启动了，然后发现桌面上有个分区工具，就想给硬盘分一下区，分了之后，我很是高兴，但发现电脑却无法从硬盘启动了，悲催了，硬盘再次被格式化了，刚装好的PE也没了。我还以为不会格式化呢，系统怎么会格式化自己的数据呢？可是我错了，原来从U盘启动后，Win
+PE并不是运行在U盘上，而是运行在本机的硬盘上，所以，在Win
+PE下U盘、移动硬盘都只是普通的存盘而已，当然可以把它格式化了。最后，又重新做了一个启动盘，带着空空的硬盘来到了学校。
+
+</div>
+
+<div>
+
+       经过这次意外，让我知道：买硬盘后一定要先装Win
+PE。数据恢复工具是浮云。没事不要瞎折腾。呵呵
+
+</div>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "e8a385win-pee79a84e59d8ee59db7e58e86e7a88b.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

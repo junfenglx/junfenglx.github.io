@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="JavaScript closure"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/closure-of-programming-languages.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/closure-of-programming-languages.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>JavaScript closure | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/closure-of-programming-languages.html" rel="bookmark"
+             title="Permalink to JavaScript closure">JavaScript closure</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-10-23
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/closure.html">closure</a>
+        <a href="http://blog.junfeng.ca/tag/javascript.html">JavaScript</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/closure-of-programming-languages.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <blockquote>
+<p>a closure (also lexical closure or function closure) is a function or
+reference to a function together with a referencing environment—a
+table storing a reference to each of the non-local variables (also
+called free variables or upvalues) of that function.</p>
+<p><a href="http://en.wikipedia.org/wiki/Closure_(computer_science)">http://en.wikipedia.org/wiki/Closure_(computer_science)</a></p>
+</blockquote>
+<p>Notes:</p>
+<ol>
+<li>The initial values of the non-local variables depends on not where
+    the closure define,but where the closure call.</li>
+<li>Referencing environment ,not copy.Meaning when you call a variable
+    references to a closure twice,the environment maybe change.</li>
+<li>Every time you hold a returened closure using a varible
+    will initialize it's referencing enviroment.</li>
+</ol>
+<p>Example:</p>
+<div>
+
+var name="Window";
+
+</div>
+
+<div>
+
+var Top={
+
+</div>
+
+<div>
+
+    name:"top",
+
+</div>
+
+<div>
+
+    Inner:{
+
+</div>
+
+<div>
+
+        name:"inner",
+
+</div>
+
+<div>
+
+        getName:function(){
+
+</div>
+
+<div>
+
+            var that=this;
+
+</div>
+
+<div>
+
+            var i=0;//note1
+
+</div>
+
+<div>
+
+            function increase(){
+
+</div>
+
+<div>
+
+                var rt="this binding:"+this.name+"\\n\\n"+"number
+i:"+i;//this binding
+
+</div>
+
+<div>
+
+                i++;
+
+</div>
+
+<div>
+
+                return rt;
+
+</div>
+
+<div>
+
+            };
+
+</div>
+
+<div>
+
+            i++;//note1
+
+</div>
+
+<div>
+
+            return increase;
+
+</div>
+
+<div>
+
+        }
+
+</div>
+
+<div>
+
+    }
+
+</div>
+
+<div>
+
+};
+
+</div>
+
+<div>
+
+var closure1=Top.Inner.getName();
+
+</div>
+
+<div>
+
+alert("first call closure1"+"\\n"+closure1());//note1
+
+</div>
+
+<div>
+
+var closure2=Top.Inner.getName();
+
+</div>
+
+<div>
+
+alert("first call closure2"+"\\n"+closure2()); //note1,note3
+
+</div>
+
+<div>
+
+alert("againe call closure1"+"\\n"+closure1());//note2
+
+</div>
+
+<div>
+
+alert("againe call closure2"+"\\n"+closure2());//note2
+
+</div>
+
+<div>
+
+var closure21=closure2;
+
+</div>
+
+<div>
+
+alert("first call closure21"+"\\n"+closure3());//assign another varible
+has referencing enviroment
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+References
+----------
+
+<http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html>
+
+<http://coolshell.cn/articles/6731.html>
+
+<http://en.wikipedia.org/wiki/Closure_(computer_science)>
+
+</div>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "closure-of-programming-languages.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

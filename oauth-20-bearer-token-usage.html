@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="OAuth 2.0 Bearer Token Usage"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/oauth-20-bearer-token-usage.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/oauth-20-bearer-token-usage.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>OAuth 2.0 Bearer Token Usage | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/oauth-20-bearer-token-usage.html" rel="bookmark"
+             title="Permalink to OAuth 2.0 Bearer Token Usage">OAuth 2.0 Bearer Token Usage</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/junfeng.html">junfeng</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序员</a>
+
+    on 2015-06-08
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/oauth20.html">OAuth2.0</a>
+        <a href="http://blog.junfeng.ca/tag/bearer.html">Bearer</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/oauth-20-bearer-token-usage.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <h3>引入</h3>
+<p>在给Tornado编写豆瓣API的类时, 在查看文档时, 发现其access_token
+并不像其它网站那样是传在query或者body中的. 而是放入headers中.
+即: <code>headers["Authorization"] = Bearer &lt;access_token&gt;</code></p>
+<p>搜索OAuth2.0 Bearer, 在RFC 6750中找到了详细介绍</p>
+<h3>使用access_token方法</h3>
+<p>标准中给出了3种access_token的使用方法:</p>
+<ol>
+<li>使用headers的Authorization字段(格式如上)</li>
+<li>form字段形式放入POST请求的body中</li>
+<li>query形式放入url中</li>
+</ol>
+<p>标准推荐使用第一种方法. 第三种并不推荐, 因为access_token有可能泄漏.</p>
+<h3>参考</h3>
+<p>http://self-issued.info/docs/draft-ietf-oauth-v2-bearer.html</p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "oauth-20-bearer-token-usage.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

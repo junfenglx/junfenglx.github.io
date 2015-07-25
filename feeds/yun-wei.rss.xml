@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>jf.h</title><link>http://blog.junfeng.ca/</link><description>lylx</description><atom:link href="http://blog.junfeng.ca/feeds/yun-wei.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 25 Jul 2015 18:55:33 +0800</lastBuildDate><item><title>Hadoop secure Mode配置</title><link>http://blog.junfeng.ca/hadoop-secure-modepei-zhi.html</link><description>&lt;h3&gt;介绍&lt;/h3&gt;
+&lt;p&gt;老板让配Hadoop的安全模式,网上搜了些资料,
+具体过程略有出入,下面记录详细配置过程,&lt;/p&gt;
+&lt;h3&gt;环境&lt;/h3&gt;
+&lt;p&gt;Hadoop Version: Apache Hadoop 2.7.1&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/etc/hosts&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;192.168.1.100   hadoop1
+192.168.1.101   hadoop2
+192.168.1.102   hadoop3
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;hadoop1是master, 另外两台是slaves
+note:&lt;strong&gt;确保域名解析和反向域名解析在集群中正常工作&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/etc/profile&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#Hadoop&lt;/span&gt;
+&lt;span class="nv"&gt;HADOOP_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2.7.1
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/opt/hadoop-&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_VERSION&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;HADOOP_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;YARN_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;YARN_CONF_DIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/etc/hadoop
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;HADOOP_COMMON_LIB_NATIVE_DIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$HADOOP_PREFIX&lt;/span&gt;/lib/native
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;HADOOP_OPTS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-Djava.library.path=&lt;/span&gt;&lt;span class="nv"&gt;$HADOOP_PREFIX&lt;/span&gt;&lt;span class="s2"&gt;/lib&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/bin:&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/sbin:&lt;span class="nv"&gt;$PATH&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;三台机器同步&lt;code&gt;/etc/hosts&lt;/code&gt;和&lt;code&gt;/etc/profile&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;OS: Ubuntu 14.04.2 LTS&lt;/p&gt;
+&lt;p&gt;kdc和kadmind运行在hadoop1上&lt;/p&gt;
+&lt;h3&gt;Process&lt;/h3&gt;
+&lt;p&gt;首先确保非安全模式下Hadoop集群能够正常运行,
+确保集群各个节点时间同步&lt;/p&gt;
+&lt;p&gt;在hadoop1上安装Kerberos:
+&lt;code&gt;sudo apt-get install krb5-admin-server krb5-kdc&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;运行&lt;code&gt;sudo dpkg-reconfigure krb5-kdc&lt;/code&gt;重新配置Kerberos&lt;/p&gt;
+&lt;p&gt;在hadoop2, hadoop3上只需安装kerberos client:
+&lt;code&gt;sudo apt-get install krb5-user krb5-config&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;配置Kerberos参考&lt;a href="https://help.ubuntu.com/community/Kerberos"&gt;https://help.ubuntu.com/community/Kerberos&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;关于hadoop daemons是否使用单个用户还是按照官方文档分成
+hdfs,yarn,mapred取决于个人. 此处遵照官方文档.
+三个用户主组是hadoop, 确保ssh无密码登录正确配置.&lt;/p&gt;
+&lt;p&gt;在Kerberos中创建服务所需principals:
+按照官方文档的划分,不同服务器上的不同进程使用
+不同的principal. 创建了如下这些principals:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# principals about http service, need starts with HTTP&lt;/span&gt;
+HTTP/hadoop1@EXAMPLE.COM
+HTTP/hadoop2@EXAMPLE.COM
+HTTP/hadoop3@EXAMPLE.COM
+&lt;span class="c"&gt;# maybe used by ssh, just creates host/*&lt;/span&gt;
+&lt;span class="c"&gt;# to conform office document&lt;/span&gt;
+host/hadoop1@EXAMPLE.COM
+host/hadoop2@EXAMPLE.COM
+host/hadoop3@EXAMPLE.COM
+&lt;span class="c"&gt;# principals about hdfs&lt;/span&gt;
+nn/hadoop1@EXAMPLE.COM
+sn/hadoop1@EXAMPLE.COM
+dn/hadoop2@EXAMPLE.COM
+dn/hadoop3@EXAMPLE.COM
+&lt;span class="c"&gt;# principals about yarn&lt;/span&gt;
+rm/hadoop1@EXAMPLE.COM
+nm/hadoop2@EXAMPLE.COM
+nm/hadoop3@EXAMPLE.COM
+&lt;span class="c"&gt;# principal about job historyserver&lt;/span&gt;
+jhs/hadoop1@EXAMPLE.COM
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;有些principal应该是不需要创建的,但为了防出错,也一并创建.
+&lt;em&gt;需要进一步加深对Kerberos的了解&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;创建keytab, keytab的主要作用是使services自动通过Kerberos认证&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;hdfs@hadoop1:/opt/hadoop-2.7.1/etc/keytabs&lt;span class="nv"&gt;$ &lt;/span&gt;ls
+总用量 24K
+-r-------- &lt;span class="m"&gt;1&lt;/span&gt; hdfs   hadoop &lt;span class="m"&gt;806&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 19:05 HTTP.keytab
+-r-------- &lt;span class="m"&gt;1&lt;/span&gt; mapred hadoop &lt;span class="m"&gt;802&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 11:07 jhs.keytab
+-r-------- &lt;span class="m"&gt;1&lt;/span&gt; hdfs   hadoop &lt;span class="m"&gt;798&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 11:05 nn.keytab
+-r-------- &lt;span class="m"&gt;1&lt;/span&gt; yarn   hadoop &lt;span class="m"&gt;798&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 11:07 rm.keytab
+-r-------- &lt;span class="m"&gt;1&lt;/span&gt; hdfs   hadoop &lt;span class="m"&gt;798&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 11:06 sn.keytab
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;各个keytab中内容和官方文档所列类似,如下示例:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;hdfs@hadoop1:/opt/hadoop-2.7.1/etc/keytabs&lt;span class="nv"&gt;$ &lt;/span&gt;sudo klist -e -t -k nn.keytab
+Keytab name: FILE:nn.keytab
+KVNO Timestamp           Principal
+---- ------------------- ------------------------------------------------------
+   &lt;span class="m"&gt;7&lt;/span&gt; 2015-07-20T20:39:29 nn/hadoop1@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;aes256-cts-hmac-sha1-96&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;7&lt;/span&gt; 2015-07-20T20:39:29 nn/hadoop1@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;arcfour-hmac&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;7&lt;/span&gt; 2015-07-20T20:39:29 nn/hadoop1@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;des3-cbc-sha1&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;7&lt;/span&gt; 2015-07-20T20:39:29 nn/hadoop1@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;des-cbc-crc&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;4&lt;/span&gt; 2015-07-21T11:05:54 host/hadoop1@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;aes256-cts-hmac-sha1-96&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;4&lt;/span&gt; 2015-07-21T11:05:54 host/hadoop1@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;arcfour-hmac&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;4&lt;/span&gt; 2015-07-21T11:05:54 host/hadoop1@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;des3-cbc-sha1&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;4&lt;/span&gt; 2015-07-21T11:05:54 host/hadoop1@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;des-cbc-crc&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;并没有用到host/* principals&lt;/p&gt;
+&lt;p&gt;HTTP.keytab主要用于Web相关的服务, 内容如下:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;hdfs@hadoop1:/opt/hadoop-2.7.1/etc/keytabs&lt;span class="nv"&gt;$ &lt;/span&gt;sudo klist -e -t -k HTTP.keytab
+Keytab name: FILE:HTTP.keytab
+KVNO Timestamp           Principal
+---- ------------------- ------------------------------------------------------
+   &lt;span class="m"&gt;2&lt;/span&gt; 2015-07-21T19:04:19 HTTP/hadoop1@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;aes256-cts-hmac-sha1-96&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;2&lt;/span&gt; 2015-07-21T19:04:19 HTTP/hadoop1@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;arcfour-hmac&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;2&lt;/span&gt; 2015-07-21T19:04:19 HTTP/hadoop1@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;des3-cbc-sha1&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;2&lt;/span&gt; 2015-07-21T19:04:19 HTTP/hadoop1@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;des-cbc-crc&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;2&lt;/span&gt; 2015-07-21T19:04:20 HTTP/hadoop2@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;aes256-cts-hmac-sha1-96&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;2&lt;/span&gt; 2015-07-21T19:04:20 HTTP/hadoop2@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;arcfour-hmac&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;2&lt;/span&gt; 2015-07-21T19:04:20 HTTP/hadoop2@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;des3-cbc-sha1&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;2&lt;/span&gt; 2015-07-21T19:04:20 HTTP/hadoop2@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;des-cbc-crc&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;2&lt;/span&gt; 2015-07-21T19:04:20 HTTP/hadoop3@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;aes256-cts-hmac-sha1-96&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;2&lt;/span&gt; 2015-07-21T19:04:20 HTTP/hadoop3@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;arcfour-hmac&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;2&lt;/span&gt; 2015-07-21T19:04:20 HTTP/hadoop3@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;des3-cbc-sha1&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="m"&gt;2&lt;/span&gt; 2015-07-21T19:04:20 HTTP/hadoop3@EXAMPLE.COM &lt;span class="o"&gt;(&lt;/span&gt;des-cbc-crc&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;note:&lt;strong&gt;每次将某个princiapl加入keytab文件中时,Kerberos将会为该principal&lt;/strong&gt;
+&lt;strong&gt;随机生成新的密码,这样一个pricipal只能使用ktadd添加到一个keytab中,&lt;/strong&gt;
+&lt;strong&gt;可以使用ktutil合并keytab文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;生成keytab后,分发keytab到集群中所有节点,最终如下所示:
+hadoop1见上
+hadoop2:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;hdfs@hadoop2:/opt/hadoop-2.7.1/etc/keytabs&lt;span class="nv"&gt;$ &lt;/span&gt;ls -lh
+总用量 16K
+-r-------- &lt;span class="m"&gt;1&lt;/span&gt; hdfs hadoop &lt;span class="m"&gt;798&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 11:17 dn.keytab
+-r-------- &lt;span class="m"&gt;1&lt;/span&gt; hdfs hadoop &lt;span class="m"&gt;806&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 19:05 HTTP.keytab
+-r-------- &lt;span class="m"&gt;1&lt;/span&gt; yarn hadoop &lt;span class="m"&gt;798&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 11:17 nm.keytab
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;hadoop3:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;hdfs@hadoop3:/opt/hadoop-2.7.1/etc/keytabs&lt;span class="nv"&gt;$ &lt;/span&gt;ls -lh
+总用量 16K
+-r-------- &lt;span class="m"&gt;1&lt;/span&gt; hdfs hadoop &lt;span class="m"&gt;798&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 13:26 dn.keytab
+-r-------- &lt;span class="m"&gt;1&lt;/span&gt; hdfs hadoop &lt;span class="m"&gt;806&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 19:05 HTTP.keytab
+-r-------- &lt;span class="m"&gt;1&lt;/span&gt; yarn hadoop &lt;span class="m"&gt;798&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 13:26 nm.keytab
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;slaves节点上应该用不到HTTP.keytab(未验证)&lt;/p&gt;
+&lt;p&gt;在配置Hadoop之前还需要下载JCE Unlimited Version,不然
+hadoop服务无法通过验证.
+官方Java 8版本的对于Java 7来说也可以正常使用.&lt;/p&gt;
+&lt;p&gt;下面开始对Hadoop进行配置:
+core-site.xml:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;&amp;lt;?xml-stylesheet type=&amp;quot;text/xsl&amp;quot; href=&amp;quot;configuration.xsl&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
+  &lt;span class="c"&gt;&amp;lt;!-- change to avoid Deprecated --&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;fs.defaultFS&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;hdfs://hadoop1:9000&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;hadoop.security.authentication&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;kerberos&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;hadoop.security.authorization&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;true&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;hadoop.security.auth_to_local&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;
+        RULE:[2:$1](nn|dn|sn)s/^.*$/hdfs/
+        RULE:[2:$1](rm|nm)s/^.*$/yarn/
+        RULE:[2:$1](jhs)s/^.*$/mapred/
+        DEFAULT
+    &lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;hadoop.http.authentication.type&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;kerberos&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;hadoop.http.authentication.kerberos.keytab&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/opt/hadoop-2.7.1/etc/keytabs/HTTP.keytab&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;hadoop.http.authentication.kerberos.principal&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;HTTP/_HOST@EXAMPLE.COM&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;hdfs-site.xml:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;&amp;lt;?xml-stylesheet type=&amp;quot;text/xsl&amp;quot; href=&amp;quot;configuration.xsl&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.namenode.name.dir&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/var/data/hadoop/hdfs/nn&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.datanode.data.dir&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/var/data/hadoop/hdfs/dn&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.datanode.data.dir.perm&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;700&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.block.access.token.enable&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;true&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.web.authentication.kerberos.keytab&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/opt/hadoop-2.7.1/etc/keytabs/HTTP.keytab&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.web.authentication.kerberos.principal&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;HTTP/_HOST@EXAMPLE.COM&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.namenode.keytab.file&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/opt/hadoop-2.7.1/etc/keytabs/nn.keytab&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.namenode.kerberos.principal&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;nn/_HOST@EXAMPLE.COM&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.namenode.kerberos.internal.spnego.principal&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;HTTP/_HOST@EXAMPLE.COM&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.secondary.namenode.keytab.file&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/opt/hadoop-2.7.1/etc/keytabs/sn.keytab&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.secondary.namenode.kerberos.principal&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;sn/_HOST@EXAMPLE.COM&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.secondary.namenode.kerberos.internal.spnego.principal&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;HTTP/_HOST@EXAMPLE.COM&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.datanode.address&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;0.0.0.0:1004&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.datanode.http.address&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;0.0.0.0:1006&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.datanode.keytab.file&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/opt/hadoop-2.7.1/etc/keytabs/dn.keytab&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.datanode.kerberos.principal&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;dn/_HOST@EXAMPLE.COM&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="c"&gt;&amp;lt;!-- ACL --&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.permissions.enabled&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;true&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.namenode.acls.enabled&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;true&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;yarn-site.xml&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;&amp;lt;?xml-stylesheet type=&amp;quot;text/xsl&amp;quot; href=&amp;quot;configuration.xsl&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.namenode.name.dir&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/var/data/hadoop/hdfs/nn&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.datanode.data.dir&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/var/data/hadoop/hdfs/dn&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.datanode.data.dir.perm&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;700&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.block.access.token.enable&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;true&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.web.authentication.kerberos.keytab&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/opt/hadoop-2.7.1/etc/keytabs/HTTP.keytab&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.web.authentication.kerberos.principal&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;HTTP/_HOST@EXAMPLE.COM&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.namenode.keytab.file&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/opt/hadoop-2.7.1/etc/keytabs/nn.keytab&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.namenode.kerberos.principal&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;nn/_HOST@EXAMPLE.COM&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.namenode.kerberos.internal.spnego.principal&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;HTTP/_HOST@EXAMPLE.COM&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.secondary.namenode.keytab.file&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/opt/hadoop-2.7.1/etc/keytabs/sn.keytab&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.secondary.namenode.kerberos.principal&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;sn/_HOST@EXAMPLE.COM&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.secondary.namenode.kerberos.internal.spnego.principal&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;HTTP/_HOST@EXAMPLE.COM&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.datanode.address&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;0.0.0.0:1004&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.datanode.http.address&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;0.0.0.0:1006&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.datanode.keytab.file&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/opt/hadoop-2.7.1/etc/keytabs/dn.keytab&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.datanode.kerberos.principal&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;dn/_HOST@EXAMPLE.COM&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="c"&gt;&amp;lt;!-- ACL --&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.permissions.enabled&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;true&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.namenode.acls.enabled&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;true&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;container-executor.cfg&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;hdfs@hadoop1:/opt/hadoop-2.7.1/etc/hadoop&lt;span class="nv"&gt;$ &lt;/span&gt;ls container-executor.cfg
+-r-------- &lt;span class="m"&gt;1&lt;/span&gt; root hadoop &lt;span class="m"&gt;217&lt;/span&gt;  7月 &lt;span class="m"&gt;20&lt;/span&gt; 16:10 container-executor.cfg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="na"&gt;yarn.nodemanager.linux-container-executor.group&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;hadoop&lt;/span&gt;
+&lt;span class="na"&gt;banned.users&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;hdfs,yarn,mapred,bin&lt;/span&gt;
+&lt;span class="na"&gt;min.user.id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;1000#Prevent other super-users&lt;/span&gt;
+&lt;span class="na"&gt;allowed.system.users&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;##comma separated list of system users who CAN run applications&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;note:&lt;strong&gt;container-executor.cfg必须配置为如上权限,&lt;/strong&gt;
+&lt;strong&gt;并且其所在所有父文件夹需要设置为组和其ta不可写&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;mapred-site.xml:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;&amp;lt;?xml-stylesheet type=&amp;quot;text/xsl&amp;quot; href=&amp;quot;configuration.xsl&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;mapreduce.jobhistory.keytab&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/opt/hadoop-2.7.1/etc/keytabs/jhs.keytab&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;mapreduce.jobhistory.principal&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;jhs/_HOST@EXAMPLE.COM&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;完工,启动Hadoop集群即可,有错误看log files和Google.
+HBase, Hive等配置也就水到渠成了.&lt;/p&gt;
+&lt;p&gt;时间仓促,水平有限,见谅.&lt;/p&gt;
+&lt;p&gt;感谢王和我自己&lt;/p&gt;
+&lt;p&gt;参考:
+&lt;a href="https://help.ubuntu.com/community/Kerberos"&gt;https://help.ubuntu.com/community/Kerberos&lt;/a&gt;
+&lt;a href="http://tech.meituan.com/hadoop-security-practice.html"&gt;http://tech.meituan.com/hadoop-security-practice.html&lt;/a&gt;
+&lt;a href="http://blog.csdn.net/lalaguozhe/article/details/11570009"&gt;http://blog.csdn.net/lalaguozhe/article/details/11570009&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">pfw, junfeng</dc:creator><pubDate>Sat, 25 Jul 2015 18:55:33 +0800</pubDate><guid>tag:blog.junfeng.ca,2015-07-25:hadoop-secure-modepei-zhi.html</guid><category>Hadoop</category><category>Kerberos</category></item></channel></rss>

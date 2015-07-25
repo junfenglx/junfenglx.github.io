@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.junfeng.ca/</loc>
-<lastmod>2015-06-28T21:44:00-00:00</lastmod>
+<lastmod>2015-07-25T20:53:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.junfeng.ca/archives.html</loc>
-<lastmod>2015-06-28T21:44:00-00:00</lastmod>
+<lastmod>2015-07-25T20:53:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.junfeng.ca/tags.html</loc>
-<lastmod>2015-06-28T21:44:00-00:00</lastmod>
+<lastmod>2015-07-25T20:53:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.junfeng.ca/categories.html</loc>
-<lastmod>2015-06-28T21:44:00-00:00</lastmod>
+<lastmod>2015-07-25T20:53:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -36,6 +36,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-03-08T13:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.3</priority>
+</url>
+
+<url>
+<loc>http://blog.junfeng.ca/hadoop-secure-modepei-zhi.html</loc>
+<lastmod>2015-07-25T18:55:33+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -760,6 +767,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://blog.junfeng.ca/category/yun-wei.html</loc>
+<lastmod>2015-07-25T18:55:33+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://blog.junfeng.ca/category/zhao-pian-qiang.html</loc>
 <lastmod>2013-03-12T17:50:00+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -1236,6 +1250,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://blog.junfeng.ca/tag/kerberos.html</loc>
+<lastmod>2015-07-25T18:55:33+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://blog.junfeng.ca/tag/c.html</loc>
 <lastmod>2015-06-28T20:20:58+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -1369,6 +1390,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://blog.junfeng.ca/tag/hadoop.html</loc>
+<lastmod>2015-07-25T18:55:33+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://blog.junfeng.ca/tag/html.html</loc>
 <lastmod>2013-03-12T17:50:00+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -1469,6 +1497,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://blog.junfeng.ca/author/littlefish.html</loc>
 <lastmod>2012-11-18T12:43:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://blog.junfeng.ca/author/pfw-junfeng.html</loc>
+<lastmod>2015-07-25T18:55:33+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

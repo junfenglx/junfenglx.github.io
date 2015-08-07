@@ -387,7 +387,9 @@ core-site.xml:&lt;/p&gt;
 HBase, Hive等配置也就水到渠成了.&lt;/p&gt;
 &lt;p&gt;时间仓促,水平有限,见谅.&lt;/p&gt;
 &lt;p&gt;感谢王和我自己&lt;/p&gt;
-&lt;p&gt;参考:
-&lt;a href="https://help.ubuntu.com/community/Kerberos"&gt;https://help.ubuntu.com/community/Kerberos&lt;/a&gt;
-&lt;a href="http://tech.meituan.com/hadoop-security-practice.html"&gt;http://tech.meituan.com/hadoop-security-practice.html&lt;/a&gt;
-&lt;a href="http://blog.csdn.net/lalaguozhe/article/details/11570009"&gt;http://blog.csdn.net/lalaguozhe/article/details/11570009&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">pfw, junfeng</dc:creator><pubDate>Sat, 25 Jul 2015 18:55:33 +0800</pubDate><guid>tag:blog.junfeng.ca,2015-07-25:hadoop-secure-modepei-zhi.html</guid><category>Hadoop</category><category>Kerberos</category></item></channel></rss>
+&lt;p&gt;参考:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://help.ubuntu.com/community/Kerberos"&gt;https://help.ubuntu.com/community/Kerberos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://tech.meituan.com/hadoop-security-practice.html"&gt;http://tech.meituan.com/hadoop-security-practice.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.csdn.net/lalaguozhe/article/details/11570009"&gt;http://blog.csdn.net/lalaguozhe/article/details/11570009&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">pfw, junfeng</dc:creator><pubDate>Sat, 25 Jul 2015 18:55:33 +0800</pubDate><guid>tag:blog.junfeng.ca,2015-07-25:hadoop-secure-modepei-zhi.html</guid><category>Hadoop</category><category>Kerberos</category></item></channel></rss>

@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>jf.h</title><link>http://blog.junfeng.ca/</link><description>lylx</description><atom:link href="http://blog.junfeng.ca/feeds/junfeng.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 28 Jun 2015 20:20:58 +0800</lastBuildDate><item><title>C++ link and library usage</title><link>http://blog.junfeng.ca/c-link-and-library-usage.html</link><description>&lt;p&gt;When use a programming language produtively,
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>jf.h</title><link>http://blog.junfeng.ca/</link><description>lylx</description><atom:link href="http://blog.junfeng.ca/feeds/junfeng.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 07 Aug 2015 16:58:57 +0800</lastBuildDate><item><title>Spring Rest server and Apache Avro objects</title><link>http://blog.junfeng.ca/spring-rest-server-and-apache-avro-objects.html</link><description>&lt;h3&gt;1. Error handle class&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@ControllerAdvice&lt;/span&gt;
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ErrorHandler&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nd"&gt;@ExceptionHandler&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exception&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="nd"&gt;@ResponseStatus&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HttpStatus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;BAD_REQUEST&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="nd"&gt;@ResponseBody&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;ErrorResponse&lt;/span&gt; &lt;span class="nf"&gt;errorResponse&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Exception&lt;/span&gt; &lt;span class="n"&gt;exception&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;exception&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getMessage&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;then we can got clear error message&lt;/p&gt;
+&lt;h4&gt;Reference&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://www.importnew.com/7903.html"&gt;http://www.importnew.com/7903.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;2. Change response's content-type&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@RequestMapping&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RequestMethod&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;GET&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;produces&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MediaType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;APPLICATION_JSON_VALUE&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;need for just return JSON string&lt;/p&gt;
+&lt;h4&gt;Reference&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/4471584/in-spring-mvc-how-can-i-set-the-mime-type-header-when-using-responsebody"&gt;http://stackoverflow.com/questions/4471584/in-spring-mvc-how-can-i-set-the-mime-type-header-when-using-responsebody&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;3. Customize &lt;code&gt;MappingJackson2HttpMessageConverter&lt;/code&gt;'s behaviors&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@Bean&lt;/span&gt;
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Jackson2ObjectMapperBuilder&lt;/span&gt; &lt;span class="nf"&gt;objectMapperBuilder&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;Jackson2ObjectMapperBuilder&lt;/span&gt; &lt;span class="n"&gt;builder&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Jackson2ObjectMapperBuilder&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+    &lt;span class="c1"&gt;// configure ObjectMapper here&lt;/span&gt;
+    &lt;span class="c1"&gt;//builder.serializationInclusion(JsonInclude.Include.NON_NULL);&lt;/span&gt;
+    &lt;span class="n"&gt;builder&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;featuresToEnable&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MapperFeature&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;REQUIRE_SETTERS_FOR_GETTERS&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;builder&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;add the above code snippet to any of your Configuration classes&lt;/p&gt;
+&lt;h4&gt;Reference&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/28324352/how-to-customise-the-jackson-json-mapper-implicitly-used-by-spring-boot"&gt;http://stackoverflow.com/questions/28324352/how-to-customise-the-jackson-json-mapper-implicitly-used-by-spring-boot&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;4. Let Spring &lt;code&gt;@RestController&lt;/code&gt; gives Avro objects a hug&lt;/h3&gt;
+&lt;p&gt;make Avro generated class objects automatically converted to JSON string by
+&lt;code&gt;MappingJackson2HttpMessageConverter&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Two methods:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;avro_object.toStirng()&lt;/code&gt; and change response's content-type to application/json&lt;/li&gt;
+&lt;li&gt;configure &lt;code&gt;MapperFeature.REQUIRE_SETTERS_FOR_GETTERS&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt;
+   for Jackson's &lt;code&gt;ObjectMapper&lt;/code&gt;, use the method at above section.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;References&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://github.com/FasterXML/jackson-dataformat-avro/issues/16"&gt;https://github.com/FasterXML/jackson-dataformat-avro/issues/16&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">junfeng</dc:creator><pubDate>Fri, 07 Aug 2015 16:58:57 +0800</pubDate><guid>tag:blog.junfeng.ca,2015-08-07:spring-rest-server-and-apache-avro-objects.html</guid><category>Spring</category><category>Rest</category><category>Avro</category></item><item><title>C++ link and library usage</title><link>http://blog.junfeng.ca/c-link-and-library-usage.html</link><description>&lt;p&gt;When use a programming language produtively,
 We need use third parties libraries.&lt;/p&gt;
 &lt;p&gt;If we install libraries and header files in
 /usr/lib, /usr/local/lib and /usr/include/,

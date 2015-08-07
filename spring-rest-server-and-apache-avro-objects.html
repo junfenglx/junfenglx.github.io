@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="Spring Rest server and Apache Avro objects"/>
+    <meta property="og:url" content="http://blog.junfeng.ca/spring-rest-server-and-apache-avro-objects.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://blog.junfeng.ca/spring-rest-server-and-apache-avro-objects.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>Spring Rest server and Apache Avro objects | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://blog.junfeng.ca/theme/css/main.css" type="text/css" />
+    <link href="http://blog.junfeng.ca/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+    <link href="http://blog.junfeng.ca/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jf.h RSS Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://blog.junfeng.ca/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://blog.junfeng.ca/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://blog.junfeng.ca/spring-rest-server-and-apache-avro-objects.html" rel="bookmark"
+             title="Permalink to Spring Rest server and Apache Avro objects">Spring Rest server and Apache Avro objects</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://blog.junfeng.ca/author/junfeng.html">junfeng</a>
+    </address>
+
+    in <a href="http://blog.junfeng.ca/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2015-08-07
+
+        |
+        tags:         <a href="http://blog.junfeng.ca/tag/spring.html">Spring</a>
+        <a href="http://blog.junfeng.ca/tag/rest.html">Rest</a>
+        <a href="http://blog.junfeng.ca/tag/avro.html">Avro</a>
+
+
+        |
+        <a href="http://blog.junfeng.ca/spring-rest-server-and-apache-avro-objects.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <h3>1. Error handle class</h3>
+<div class="highlight"><pre><span class="nd">@ControllerAdvice</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ErrorHandler</span> <span class="o">{</span>
+    <span class="nd">@ExceptionHandler</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="n">Exception</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="nd">@ResponseStatus</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">BAD_REQUEST</span><span class="o">)</span>
+    <span class="nd">@ResponseBody</span>
+    <span class="kd">public</span> <span class="n">ErrorResponse</span> <span class="nf">errorResponse</span><span class="o">(</span><span class="n">Exception</span> <span class="n">exception</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">exception</span><span class="o">.</span><span class="na">getMessage</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>then we can got clear error message</p>
+<h4>Reference</h4>
+<p><a href="http://www.importnew.com/7903.html">http://www.importnew.com/7903.html</a></p>
+<h3>2. Change response's content-type</h3>
+<div class="highlight"><pre><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">,</span> <span class="n">produces</span> <span class="o">=</span> <span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON_VALUE</span><span class="o">)</span>
+</pre></div>
+
+
+<p>need for just return JSON string</p>
+<h4>Reference</h4>
+<p><a href="http://stackoverflow.com/questions/4471584/in-spring-mvc-how-can-i-set-the-mime-type-header-when-using-responsebody">http://stackoverflow.com/questions/4471584/in-spring-mvc-how-can-i-set-the-mime-type-header-when-using-responsebody</a></p>
+<h3>3. Customize <code>MappingJackson2HttpMessageConverter</code>'s behaviors</h3>
+<div class="highlight"><pre><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">Jackson2ObjectMapperBuilder</span> <span class="nf">objectMapperBuilder</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">Jackson2ObjectMapperBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Jackson2ObjectMapperBuilder</span><span class="o">();</span>
+    <span class="c1">// configure ObjectMapper here</span>
+    <span class="c1">//builder.serializationInclusion(JsonInclude.Include.NON_NULL);</span>
+    <span class="n">builder</span><span class="o">.</span><span class="na">featuresToEnable</span><span class="o">(</span><span class="n">MapperFeature</span><span class="o">.</span><span class="na">REQUIRE_SETTERS_FOR_GETTERS</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">builder</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>add the above code snippet to any of your Configuration classes</p>
+<h4>Reference</h4>
+<p><a href="http://stackoverflow.com/questions/28324352/how-to-customise-the-jackson-json-mapper-implicitly-used-by-spring-boot">http://stackoverflow.com/questions/28324352/how-to-customise-the-jackson-json-mapper-implicitly-used-by-spring-boot</a></p>
+<h3>4. Let Spring <code>@RestController</code> gives Avro objects a hug</h3>
+<p>make Avro generated class objects automatically converted to JSON string by
+<code>MappingJackson2HttpMessageConverter</code></p>
+<p>Two methods:</p>
+<ol>
+<li><code>avro_object.toStirng()</code> and change response's content-type to application/json</li>
+<li>configure <code>MapperFeature.REQUIRE_SETTERS_FOR_GETTERS</code> to <code>true</code>
+   for Jackson's <code>ObjectMapper</code>, use the method at above section.</li>
+</ol>
+<h4>References</h4>
+<p><a href="https://github.com/FasterXML/jackson-dataformat-avro/issues/16">https://github.com/FasterXML/jackson-dataformat-avro/issues/16</a></p>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "spring-rest-server-and-apache-avro-objects.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/bootstrap.min.js"></script>
+    <script src="http://blog.junfeng.ca/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://blog.junfeng.ca/theme/js/analyse.js"></script -->
+</body>
+</html>

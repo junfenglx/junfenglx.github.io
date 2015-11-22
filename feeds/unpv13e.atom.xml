@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://blog.junfeng.ca/" rel="alternate"></link><link href="http://blog.junfeng.ca/feeds/unpv13e.atom.xml" rel="self"></link><id>http://blog.junfeng.ca/</id><updated>2014-07-03T14:45:00+08:00</updated><entry><title>unpv13e chapter 3 notes</title><link href="http://blog.junfeng.ca/unpv13e-chapter-3-notes.html" rel="alternate"></link><updated>2014-07-03T14:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-07-03:unpv13e-chapter-3-notes.html</id><summary type="html">&lt;h3&gt;IPv4 Socket Address Structure&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfeng-hu.github.io/" rel="alternate"></link><link href="http://junfeng-hu.github.io/feeds/unpv13e.atom.xml" rel="self"></link><id>http://junfeng-hu.github.io/</id><updated>2014-07-03T14:45:00+08:00</updated><entry><title>unpv13e chapter 3 notes</title><link href="http://junfeng-hu.github.io/unpv13e-chapter-3-notes.html" rel="alternate"></link><updated>2014-07-03T14:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2014-07-03:unpv13e-chapter-3-notes.html</id><summary type="html">&lt;h3&gt;IPv4 Socket Address Structure&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="sockaddr_in.png" src="./images/sockaddr_in.png" /&gt;&lt;/p&gt;
 &lt;h3&gt;Datatypes required by the POSIX specification&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="datatypes.png" src="./images/datatypes.png" /&gt;&lt;/p&gt;
@@ -89,7 +89,7 @@
     &lt;span class="p"&gt;}&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>unpv13e chapter 2 notes</title><link href="http://blog.junfeng.ca/unpv13e-chapter-2-notes.html" rel="alternate"></link><updated>2014-06-08T15:41:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-06-08:unpv13e-chapter-2-notes.html</id><summary type="html">&lt;h2&gt;Overview of TCP/IP protocols.&lt;/h2&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>unpv13e chapter 2 notes</title><link href="http://junfeng-hu.github.io/unpv13e-chapter-2-notes.html" rel="alternate"></link><updated>2014-06-08T15:41:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2014-06-08:unpv13e-chapter-2-notes.html</id><summary type="html">&lt;h2&gt;Overview of TCP/IP protocols.&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="unpv1_overview_TCP_IP_protocols.png" src="./images/unpv1_overview_TCP_IP_protocols.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;TCP&lt;/h2&gt;
 &lt;h3&gt;Three-Way Handshake&lt;/h3&gt;
@@ -183,7 +183,7 @@ including the sequence number in the cumulative acknowledgment message
 was received. When freeing data from the send buffer based on a selective
 acknowledgment, the system may only free the exact data that was
 acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>unpv13e chapter 1 notes</title><link href="http://blog.junfeng.ca/unpv13e-chapter-1-notes.html" rel="alternate"></link><updated>2014-06-04T14:16:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-06-04:unpv13e-chapter-1-notes.html</id><summary type="html">&lt;h2&gt;struct sockaddr&lt;/h2&gt;
+&lt;/blockquote&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>unpv13e chapter 1 notes</title><link href="http://junfeng-hu.github.io/unpv13e-chapter-1-notes.html" rel="alternate"></link><updated>2014-06-04T14:16:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2014-06-04:unpv13e-chapter-1-notes.html</id><summary type="html">&lt;h2&gt;struct sockaddr&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Everytime one of the socket functions requires a pointer to a
   socket address structure, that pointer must be cast to a pointer to a generic socket
@@ -403,7 +403,7 @@ counter: 1
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Output on remote host test same as localhost&lt;/p&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>编译unpv13e源代码</title><link href="http://blog.junfeng.ca/bian-yi-unpv13eyuan-dai-ma.html" rel="alternate"></link><updated>2014-06-03T14:28:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-06-03:bian-yi-unpv13eyuan-dai-ma.html</id><summary type="html">&lt;p&gt;在&lt;a href="http://www.unpbook.com/unpv13e.tar.gz"&gt;这里&lt;/a&gt;下载源代码，根据README进行编译．&lt;/p&gt;
+&lt;p&gt;Output on remote host test same as localhost&lt;/p&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>编译unpv13e源代码</title><link href="http://junfeng-hu.github.io/bian-yi-unpv13eyuan-dai-ma.html" rel="alternate"></link><updated>2014-06-03T14:28:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2014-06-03:bian-yi-unpv13eyuan-dai-ma.html</id><summary type="html">&lt;p&gt;在&lt;a href="http://www.unpbook.com/unpv13e.tar.gz"&gt;这里&lt;/a&gt;下载源代码，根据README进行编译．&lt;/p&gt;
 &lt;p&gt;在make libfree下时需要修改inet_ntop.c, 将第60行的
 &lt;code&gt;size_t size&lt;/code&gt; 改成 &lt;code&gt;socklen_t size&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;貌似Linux不支持4.4BSD style routing sockets, 所以不需要编译libroute&lt;/p&gt;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://blog.junfeng.ca/" rel="alternate"></link><link href="http://blog.junfeng.ca/feeds/all.atom.xml" rel="self"></link><id>http://blog.junfeng.ca/</id><updated>2015-08-07T16:58:57+08:00</updated><entry><title>Spring Rest server and Apache Avro objects</title><link href="http://blog.junfeng.ca/spring-rest-server-and-apache-avro-objects.html" rel="alternate"></link><updated>2015-08-07T16:58:57+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2015-08-07:spring-rest-server-and-apache-avro-objects.html</id><summary type="html">&lt;h3&gt;1. Error handle class&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfeng-hu.github.io/" rel="alternate"></link><link href="http://junfeng-hu.github.io/feeds/all.atom.xml" rel="self"></link><id>http://junfeng-hu.github.io/</id><updated>2015-08-07T16:58:57+08:00</updated><entry><title>Spring Rest server and Apache Avro objects</title><link href="http://junfeng-hu.github.io/spring-rest-server-and-apache-avro-objects.html" rel="alternate"></link><updated>2015-08-07T16:58:57+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2015-08-07:spring-rest-server-and-apache-avro-objects.html</id><summary type="html">&lt;h3&gt;1. Error handle class&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@ControllerAdvice&lt;/span&gt;
 &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ErrorHandler&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
     &lt;span class="nd"&gt;@ExceptionHandler&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exception&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
@@ -48,7 +48,7 @@
    for Jackson's &lt;code&gt;ObjectMapper&lt;/code&gt;, use the method at above section.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h4&gt;References&lt;/h4&gt;
-&lt;p&gt;&lt;a href="https://github.com/FasterXML/jackson-dataformat-avro/issues/16"&gt;https://github.com/FasterXML/jackson-dataformat-avro/issues/16&lt;/a&gt;&lt;/p&gt;</summary><category term="Spring"></category><category term="Rest"></category><category term="Avro"></category></entry><entry><title>Hadoop secure Mode配置</title><link href="http://blog.junfeng.ca/hadoop-secure-modepei-zhi.html" rel="alternate"></link><updated>2015-07-25T18:55:33+08:00</updated><author><name>pfw, junfeng</name></author><id>tag:blog.junfeng.ca,2015-07-25:hadoop-secure-modepei-zhi.html</id><summary type="html">&lt;h3&gt;介绍&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://github.com/FasterXML/jackson-dataformat-avro/issues/16"&gt;https://github.com/FasterXML/jackson-dataformat-avro/issues/16&lt;/a&gt;&lt;/p&gt;</summary><category term="Spring"></category><category term="Rest"></category><category term="Avro"></category></entry><entry><title>Hadoop secure Mode配置</title><link href="http://junfeng-hu.github.io/hadoop-secure-modepei-zhi.html" rel="alternate"></link><updated>2015-07-25T18:55:33+08:00</updated><author><name>pfw, junfeng</name></author><id>tag:junfeng-hu.github.io,2015-07-25:hadoop-secure-modepei-zhi.html</id><summary type="html">&lt;h3&gt;介绍&lt;/h3&gt;
 &lt;p&gt;老板让配Hadoop的安全模式,网上搜了些资料,
 具体过程略有出入,下面记录详细配置过程,&lt;/p&gt;
 &lt;h3&gt;环境&lt;/h3&gt;
@@ -441,7 +441,7 @@ HBase, Hive等配置也就水到渠成了.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://help.ubuntu.com/community/Kerberos"&gt;https://help.ubuntu.com/community/Kerberos&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://tech.meituan.com/hadoop-security-practice.html"&gt;http://tech.meituan.com/hadoop-security-practice.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.csdn.net/lalaguozhe/article/details/11570009"&gt;http://blog.csdn.net/lalaguozhe/article/details/11570009&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</summary><category term="Hadoop"></category><category term="Kerberos"></category></entry><entry><title>C++ link and library usage</title><link href="http://blog.junfeng.ca/c-link-and-library-usage.html" rel="alternate"></link><updated>2015-06-28T20:20:58+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2015-06-28:c-link-and-library-usage.html</id><summary type="html">&lt;p&gt;When use a programming language produtively,
+&lt;/ol&gt;</summary><category term="Hadoop"></category><category term="Kerberos"></category></entry><entry><title>C++ link and library usage</title><link href="http://junfeng-hu.github.io/c-link-and-library-usage.html" rel="alternate"></link><updated>2015-06-28T20:20:58+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2015-06-28:c-link-and-library-usage.html</id><summary type="html">&lt;p&gt;When use a programming language produtively,
 We need use third parties libraries.&lt;/p&gt;
 &lt;p&gt;If we install libraries and header files in
 /usr/lib, /usr/local/lib and /usr/include/,
@@ -481,7 +481,7 @@ CMake provides lots of varaibles you can add paths for CMake to search.&lt;/p&gt
 &lt;p&gt;&lt;a href="http://www.rapidtables.com/code/linux/gcc.htm"&gt;http://www.rapidtables.com/code/linux/gcc.htm&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://manned.org/pkg-config.1"&gt;http://manned.org/pkg-config.1&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Rpath"&gt;https://en.wikipedia.org/wiki/Rpath&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.cmake.org/documentation/"&gt;http://www.cmake.org/documentation/&lt;/a&gt;&lt;/p&gt;</summary><category term="C++"></category><category term="CMake"></category></entry><entry><title>backslash in C++</title><link href="http://blog.junfeng.ca/backslash-in-c.html" rel="alternate"></link><updated>2015-06-21T18:24:19+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2015-06-21:backslash-in-c.html</id><summary type="html">&lt;p&gt;Use backslash to format long long lines. Oops, I nerver use it in C++.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.cmake.org/documentation/"&gt;http://www.cmake.org/documentation/&lt;/a&gt;&lt;/p&gt;</summary><category term="C++"></category><category term="CMake"></category></entry><entry><title>backslash in C++</title><link href="http://junfeng-hu.github.io/backslash-in-c.html" rel="alternate"></link><updated>2015-06-21T18:24:19+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2015-06-21:backslash-in-c.html</id><summary type="html">&lt;p&gt;Use backslash to format long long lines. Oops, I nerver use it in C++.&lt;/p&gt;
 &lt;p&gt;How to use backslash?&lt;/p&gt;
 &lt;p&gt;This is an example:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
@@ -513,7 +513,7 @@ CMake provides lots of varaibles you can add paths for CMake to search.&lt;/p&gt
 
 
 &lt;p&gt;Maybe from now I need write one variable in one line, and document every variable.&lt;/p&gt;
-&lt;p&gt;Hope I can get &lt;em&gt;clean code&lt;/em&gt;&lt;/p&gt;</summary><category term="backslash"></category><category term="C++"></category></entry><entry><title>PEPS doc Kindle版本</title><link href="http://blog.junfeng.ca/peps-doc-kindleban-ben.html" rel="alternate"></link><updated>2015-06-09T22:07:32+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2015-06-09:peps-doc-kindleban-ben.html</id><summary type="html">&lt;h3&gt;介绍&lt;/h3&gt;
+&lt;p&gt;Hope I can get &lt;em&gt;clean code&lt;/em&gt;&lt;/p&gt;</summary><category term="backslash"></category><category term="C++"></category></entry><entry><title>PEPS doc Kindle版本</title><link href="http://junfeng-hu.github.io/peps-doc-kindleban-ben.html" rel="alternate"></link><updated>2015-06-09T22:07:32+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2015-06-09:peps-doc-kindleban-ben.html</id><summary type="html">&lt;h3&gt;介绍&lt;/h3&gt;
 &lt;p&gt;Python上遇到的很多问题搜到最后经常链接到PEP, 觉得PEPS需要研读一下.
 一时半会儿看不完的东西总想着放到Kindle里看(很有可能不会再看), 于是
 就制作了这个mobi版本的Python Enhancement Proposals.&lt;/p&gt;
@@ -535,7 +535,7 @@ mobi文件.&lt;/p&gt;
 期刊的模板, 以后有时间再做.&lt;/p&gt;
 &lt;p&gt;应该免去转成html那一步, 直接利用原生格式, 需要学习PEP文档的两种
 格式.&lt;/p&gt;
-&lt;p&gt;Python应该统一PEP格式, 把两种格式使用程序转成一种.&lt;/p&gt;</summary><category term="Python"></category><category term="Kindle"></category></entry><entry><title>OAuth 2.0 Bearer Token Usage</title><link href="http://blog.junfeng.ca/oauth-20-bearer-token-usage.html" rel="alternate"></link><updated>2015-06-08T16:17:44+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2015-06-08:oauth-20-bearer-token-usage.html</id><summary type="html">&lt;h3&gt;引入&lt;/h3&gt;
+&lt;p&gt;Python应该统一PEP格式, 把两种格式使用程序转成一种.&lt;/p&gt;</summary><category term="Python"></category><category term="Kindle"></category></entry><entry><title>OAuth 2.0 Bearer Token Usage</title><link href="http://junfeng-hu.github.io/oauth-20-bearer-token-usage.html" rel="alternate"></link><updated>2015-06-08T16:17:44+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2015-06-08:oauth-20-bearer-token-usage.html</id><summary type="html">&lt;h3&gt;引入&lt;/h3&gt;
 &lt;p&gt;在给Tornado编写豆瓣API的类时, 在查看文档时, 发现其access_token
 并不像其它网站那样是传在query或者body中的. 而是放入headers中.
 即: &lt;code&gt;headers["Authorization"] = Bearer &amp;lt;access_token&amp;gt;&lt;/code&gt;&lt;/p&gt;
@@ -549,7 +549,7 @@ mobi文件.&lt;/p&gt;
 &lt;/ol&gt;
 &lt;p&gt;标准推荐使用第一种方法. 第三种并不推荐, 因为access_token有可能泄漏.&lt;/p&gt;
 &lt;h3&gt;参考&lt;/h3&gt;
-&lt;p&gt;http://self-issued.info/docs/draft-ietf-oauth-v2-bearer.html&lt;/p&gt;</summary><category term="OAuth2.0"></category><category term="Bearer"></category></entry><entry><title>right click menu items</title><link href="http://blog.junfeng.ca/right-click-menu-items.html" rel="alternate"></link><updated>2015-05-16T18:42:50+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2015-05-16:right-click-menu-items.html</id><summary type="html">&lt;p&gt;The list of program that is displayed when right-clicking on a file in PCManFM is the combination of:
+&lt;p&gt;http://self-issued.info/docs/draft-ietf-oauth-v2-bearer.html&lt;/p&gt;</summary><category term="OAuth2.0"></category><category term="Bearer"></category></entry><entry><title>right click menu items</title><link href="http://junfeng-hu.github.io/right-click-menu-items.html" rel="alternate"></link><updated>2015-05-16T18:42:50+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2015-05-16:right-click-menu-items.html</id><summary type="html">&lt;p&gt;The list of program that is displayed when right-clicking on a file in PCManFM is the combination of:
 mimeinfo.cache
 mimeapps.list
 The default program that is launched when you double-click on a file in PCManFM is (first match wins):
@@ -558,7 +558,7 @@ The one from ~/.local/share/applications/defaults.list
 The one from /usr/local/share/applications/defaults.list
 The one from /usr/share/applications/defaults.list
 The first one from /usr/share/applications/mimeinfo.cache&lt;/p&gt;
-&lt;p&gt;From https://lkubaski.wordpress.com/2012/10/29/understanding-file-associations-in-lxde-and-pcmanfm/&lt;/p&gt;</summary><category term="mime"></category><category term="desktop"></category></entry><entry><title>The Little Redis Book 笔记</title><link href="http://blog.junfeng.ca/the-little-redis-book-bi-ji.html" rel="alternate"></link><updated>2015-04-15T12:25:16+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2015-04-15:the-little-redis-book-bi-ji.html</id><summary type="html">&lt;p&gt;query limitations, data structures and Redis' way to store data in memory&lt;/p&gt;
+&lt;p&gt;From https://lkubaski.wordpress.com/2012/10/29/understanding-file-associations-in-lxde-and-pcmanfm/&lt;/p&gt;</summary><category term="mime"></category><category term="desktop"></category></entry><entry><title>The Little Redis Book 笔记</title><link href="http://junfeng-hu.github.io/the-little-redis-book-bi-ji.html" rel="alternate"></link><updated>2015-04-15T12:25:16+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2015-04-15:the-little-redis-book-bi-ji.html</id><summary type="html">&lt;p&gt;query limitations, data structures and Redis' way to store data in memory&lt;/p&gt;
 &lt;h3&gt;strings&lt;/h3&gt;
 &lt;p&gt;use cases: storing objects (complex or not) and counters&lt;/p&gt;
 &lt;h3&gt;hashes&lt;/h3&gt;
@@ -615,17 +615,17 @@ the master and let a slave take care of this&lt;/p&gt;
 but it'll also provide automated failover for high availability.&lt;/p&gt;
 &lt;h3&gt;End&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;Redis is easy to learn&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;the real benefits Redis has to offer with its simplicity&lt;/em&gt;&lt;/p&gt;</summary><category term="Redis"></category><category term="learning"></category></entry><entry><title>天朝火车硬座的乱想</title><link href="http://blog.junfeng.ca/tian-zhao-huo-che-ying-zuo-de-luan-xiang.html" rel="alternate"></link><updated>2015-01-06T22:00:00+08:00</updated><author><name>junfeng_hu</name></author><id>tag:blog.junfeng.ca,2015-01-06:tian-zhao-huo-che-ying-zuo-de-luan-xiang.html</id><summary type="html">&lt;p&gt;明里着让你好好休息，然后光明正大的卖着什么租电影的服务，偏偏还有傻X,
+&lt;p&gt;&lt;em&gt;the real benefits Redis has to offer with its simplicity&lt;/em&gt;&lt;/p&gt;</summary><category term="Redis"></category><category term="learning"></category></entry><entry><title>天朝火车硬座的乱想</title><link href="http://junfeng-hu.github.io/tian-zhao-huo-che-ying-zuo-de-luan-xiang.html" rel="alternate"></link><updated>2015-01-06T22:00:00+08:00</updated><author><name>junfeng_hu</name></author><id>tag:junfeng-hu.github.io,2015-01-06:tian-zhao-huo-che-ying-zuo-de-luan-xiang.html</id><summary type="html">&lt;p&gt;明里着让你好好休息，然后光明正大的卖着什么租电影的服务，偏偏还有傻X,
 愿意看“铁路工作人员”嘴里所谓的最新的电影。其实你想多了，让你好好休息
 哪是对我们这些坐硬座的人说的。什么都有不一样，都有特权阶级。大家都想
 着自己能成为所谓特权阶级的一分子，努力的往上爬，却丝毫不考虑这种设定
 的合理不合理性。那人也整个是脑子里都是面糊，自己不睡觉，也不让大家睡觉。
 自觉性，应该是与生俱来的品质了吧，但在大多数人身上却看不到一丁点。懊悔
-自己没有超凡的能力，这样扰民的人就应该从火车上扔出去&lt;/p&gt;</summary><category term="火车"></category></entry><entry><title>换位置</title><link href="http://blog.junfeng.ca/huan-wei-zhi.html" rel="alternate"></link><updated>2014-12-22T10:07:00+08:00</updated><author><name>junfeng_hu</name></author><id>tag:blog.junfeng.ca,2014-12-22:huan-wei-zhi.html</id><summary type="html">&lt;p&gt;想着能在那个座位待到考研结束，也算是一种坚持。
+自己没有超凡的能力，这样扰民的人就应该从火车上扔出去&lt;/p&gt;</summary><category term="火车"></category></entry><entry><title>换位置</title><link href="http://junfeng-hu.github.io/huan-wei-zhi.html" rel="alternate"></link><updated>2014-12-22T10:07:00+08:00</updated><author><name>junfeng_hu</name></author><id>tag:junfeng-hu.github.io,2014-12-22:huan-wei-zhi.html</id><summary type="html">&lt;p&gt;想着能在那个座位待到考研结束，也算是一种坚持。
 但仅剩一个星期之际，却搞什么搬书移书，直接把
 那间馆藏室给关了。又正值考试临近，换的位置感
 觉不舒坦。图书馆里整个闹嗡嗡的，配上此天的心情，
-也是一种滋味。&lt;/p&gt;</summary><category term="exams"></category></entry><entry><title>unpv13e chapter 3 notes</title><link href="http://blog.junfeng.ca/unpv13e-chapter-3-notes.html" rel="alternate"></link><updated>2014-07-03T14:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-07-03:unpv13e-chapter-3-notes.html</id><summary type="html">&lt;h3&gt;IPv4 Socket Address Structure&lt;/h3&gt;
+也是一种滋味。&lt;/p&gt;</summary><category term="exams"></category></entry><entry><title>unpv13e chapter 3 notes</title><link href="http://junfeng-hu.github.io/unpv13e-chapter-3-notes.html" rel="alternate"></link><updated>2014-07-03T14:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2014-07-03:unpv13e-chapter-3-notes.html</id><summary type="html">&lt;h3&gt;IPv4 Socket Address Structure&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="sockaddr_in.png" src="./images/sockaddr_in.png" /&gt;&lt;/p&gt;
 &lt;h3&gt;Datatypes required by the POSIX specification&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="datatypes.png" src="./images/datatypes.png" /&gt;&lt;/p&gt;
@@ -715,7 +715,7 @@ but it'll also provide automated failover for high availability.&lt;/p&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>mount and grep</title><link href="http://blog.junfeng.ca/mount-and-grep.html" rel="alternate"></link><updated>2014-06-08T21:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-06-08:mount-and-grep.html</id><summary type="html">&lt;h2&gt;mount options&lt;/h2&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>mount and grep</title><link href="http://junfeng-hu.github.io/mount-and-grep.html" rel="alternate"></link><updated>2014-06-08T21:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2014-06-08:mount-and-grep.html</id><summary type="html">&lt;h2&gt;mount options&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;mount&lt;/code&gt;display current partions mount options.
 Output like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;/dev/sda2 on /home type ext4 (rw,relatime,data=ordered)
@@ -747,7 +747,7 @@ Output like this:&lt;/p&gt;
 It equals to &lt;code&gt;grep -i "X-Forwarded-For" *.py&lt;/code&gt;, just search current directory "*.py" files.&lt;/p&gt;
 &lt;p&gt;The right solution is:
 &lt;code&gt;grep -i "X-Forwarded-For" --include=*.py -r&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;recursively search *.py files for &lt;code&gt;X-Forwarded-For&lt;/code&gt;&lt;/p&gt;</summary><category term="mount"></category><category term="grep"></category></entry><entry><title>unpv13e chapter 2 notes</title><link href="http://blog.junfeng.ca/unpv13e-chapter-2-notes.html" rel="alternate"></link><updated>2014-06-08T15:41:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-06-08:unpv13e-chapter-2-notes.html</id><summary type="html">&lt;h2&gt;Overview of TCP/IP protocols.&lt;/h2&gt;
+&lt;p&gt;recursively search *.py files for &lt;code&gt;X-Forwarded-For&lt;/code&gt;&lt;/p&gt;</summary><category term="mount"></category><category term="grep"></category></entry><entry><title>unpv13e chapter 2 notes</title><link href="http://junfeng-hu.github.io/unpv13e-chapter-2-notes.html" rel="alternate"></link><updated>2014-06-08T15:41:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2014-06-08:unpv13e-chapter-2-notes.html</id><summary type="html">&lt;h2&gt;Overview of TCP/IP protocols.&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="unpv1_overview_TCP_IP_protocols.png" src="./images/unpv1_overview_TCP_IP_protocols.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;TCP&lt;/h2&gt;
 &lt;h3&gt;Three-Way Handshake&lt;/h3&gt;
@@ -841,7 +841,7 @@ including the sequence number in the cumulative acknowledgment message
 was received. When freeing data from the send buffer based on a selective
 acknowledgment, the system may only free the exact data that was
 acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>Debian 环境下的 beaglebone black NFS client 配置</title><link href="http://blog.junfeng.ca/debian-huan-jing-xia-de-beaglebone-black-nfs-client-pei-zhi.html" rel="alternate"></link><updated>2014-06-07T11:36:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-06-07:debian-huan-jing-xia-de-beaglebone-black-nfs-client-pei-zhi.html</id><summary type="html">&lt;p&gt;不知什么时候手贱把beaglebone black刷成了Debian(Archlinux 没刷成功), 然后就放那了.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>Debian 环境下的 beaglebone black NFS client 配置</title><link href="http://junfeng-hu.github.io/debian-huan-jing-xia-de-beaglebone-black-nfs-client-pei-zhi.html" rel="alternate"></link><updated>2014-06-07T11:36:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2014-06-07:debian-huan-jing-xia-de-beaglebone-black-nfs-client-pei-zhi.html</id><summary type="html">&lt;p&gt;不知什么时候手贱把beaglebone black刷成了Debian(Archlinux 没刷成功), 然后就放那了.&lt;/p&gt;
 &lt;p&gt;今天要做实验, 就搭了下NFS.&lt;/p&gt;
 &lt;p&gt;NFS Server 使用 Archlinux, 配置参见&lt;a href="https://wiki.archlinux.org/index.php/Nfs"&gt;这里&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;client 使用 Debian. 需要安装 nfs-common package&lt;/p&gt;
@@ -874,7 +874,7 @@ acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt
 &lt;ul&gt;
 &lt;li&gt;http://www.server-world.info/en/note?os=Debian_7.0&amp;amp;p=nfs&amp;amp;f=2&lt;/li&gt;
 &lt;li&gt;https://lug.ustc.edu.cn/wiki/mirrors/help/debian&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Debian"></category><category term="NFS"></category></entry><entry><title>unpv13e chapter 1 notes</title><link href="http://blog.junfeng.ca/unpv13e-chapter-1-notes.html" rel="alternate"></link><updated>2014-06-04T14:16:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-06-04:unpv13e-chapter-1-notes.html</id><summary type="html">&lt;h2&gt;struct sockaddr&lt;/h2&gt;
+&lt;/ul&gt;</summary><category term="Debian"></category><category term="NFS"></category></entry><entry><title>unpv13e chapter 1 notes</title><link href="http://junfeng-hu.github.io/unpv13e-chapter-1-notes.html" rel="alternate"></link><updated>2014-06-04T14:16:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2014-06-04:unpv13e-chapter-1-notes.html</id><summary type="html">&lt;h2&gt;struct sockaddr&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Everytime one of the socket functions requires a pointer to a
   socket address structure, that pointer must be cast to a pointer to a generic socket
@@ -1094,20 +1094,20 @@ counter: 1
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Output on remote host test same as localhost&lt;/p&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>编译unpv13e源代码</title><link href="http://blog.junfeng.ca/bian-yi-unpv13eyuan-dai-ma.html" rel="alternate"></link><updated>2014-06-03T14:28:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-06-03:bian-yi-unpv13eyuan-dai-ma.html</id><summary type="html">&lt;p&gt;在&lt;a href="http://www.unpbook.com/unpv13e.tar.gz"&gt;这里&lt;/a&gt;下载源代码，根据README进行编译．&lt;/p&gt;
+&lt;p&gt;Output on remote host test same as localhost&lt;/p&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>编译unpv13e源代码</title><link href="http://junfeng-hu.github.io/bian-yi-unpv13eyuan-dai-ma.html" rel="alternate"></link><updated>2014-06-03T14:28:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2014-06-03:bian-yi-unpv13eyuan-dai-ma.html</id><summary type="html">&lt;p&gt;在&lt;a href="http://www.unpbook.com/unpv13e.tar.gz"&gt;这里&lt;/a&gt;下载源代码，根据README进行编译．&lt;/p&gt;
 &lt;p&gt;在make libfree下时需要修改inet_ntop.c, 将第60行的
 &lt;code&gt;size_t size&lt;/code&gt; 改成 &lt;code&gt;socklen_t size&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;貌似Linux不支持4.4BSD style routing sockets, 所以不需要编译libroute&lt;/p&gt;
 &lt;p&gt;测试intro/daytimetcpcli: &lt;code&gt;./daytimetcpcli 216.171.112.36&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;而书上给的IP地址会一直block.&lt;/p&gt;
-&lt;p&gt;Then start reading the famous classic book.&lt;/p&gt;</summary><category term="unpv13e"></category></entry><entry><title>history</title><link href="http://blog.junfeng.ca/history.html" rel="alternate"></link><updated>2014-06-01T14:13:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-06-01:history.html</id><summary type="html">&lt;p&gt;“我不喜欢历史”&lt;/p&gt;
+&lt;p&gt;Then start reading the famous classic book.&lt;/p&gt;</summary><category term="unpv13e"></category></entry><entry><title>history</title><link href="http://junfeng-hu.github.io/history.html" rel="alternate"></link><updated>2014-06-01T14:13:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2014-06-01:history.html</id><summary type="html">&lt;p&gt;“我不喜欢历史”&lt;/p&gt;
 &lt;p&gt;“你只是讨厌你的过去而已”&lt;/p&gt;
 &lt;p&gt;语言对人的伤害仅次于身体的伤害。&lt;/p&gt;
 &lt;p&gt;过去过去了，但它一直活在现在里。&lt;/p&gt;
 &lt;p&gt;过去的事情有时候连自己都记不清楚，于是现在的你粉饰着，装点着你的过去。
 直到你自己相信那是一段美好的恍若你亲身经历。&lt;/p&gt;
 &lt;p&gt;但真实的过去永远在那，等待着机会吞噬你，吞噬你亲近的人。&lt;/p&gt;
-&lt;p&gt;过去永远支配着现在的你，而现在又将过去。&lt;/p&gt;</summary><category term="过去"></category></entry><entry><title>从remove google redirect 失效说起</title><link href="http://blog.junfeng.ca/cong-remove-google-redirect-shi-xiao-shuo-qi.html" rel="alternate"></link><updated>2014-05-11T00:37:00+08:00</updated><author><name>junfeng</name></author><id>tag:blog.junfeng.ca,2014-05-11:cong-remove-google-redirect-shi-xiao-shuo-qi.html</id><summary type="html">&lt;p&gt;前段时间发现remove google redirect突然不能用了，在chrome web store的页面也没了。难道被google和谐了？对于我这个重度google使用者来说可不是一件好事情，搜索的结果都要先被google重定向，增加了不必要的加载时间。&lt;/p&gt;
+&lt;p&gt;过去永远支配着现在的你，而现在又将过去。&lt;/p&gt;</summary><category term="过去"></category></entry><entry><title>从remove google redirect 失效说起</title><link href="http://junfeng-hu.github.io/cong-remove-google-redirect-shi-xiao-shuo-qi.html" rel="alternate"></link><updated>2014-05-11T00:37:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2014-05-11:cong-remove-google-redirect-shi-xiao-shuo-qi.html</id><summary type="html">&lt;p&gt;前段时间发现remove google redirect突然不能用了，在chrome web store的页面也没了。难道被google和谐了？对于我这个重度google使用者来说可不是一件好事情，搜索的结果都要先被google重定向，增加了不必要的加载时间。&lt;/p&gt;
 &lt;p&gt;只想寻找解决办法：&lt;a href="https://github.com/juffy/RecoverUrl/raw/master/recover%20url.0.0.1.crx"&gt;点击这里&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;于是想着能不能改改那个插件的代码，修复这个bug，找到那个插件的源代码，发现一下子1200多行代码，这么复杂。感觉移除一个重定向链接不需要这么麻烦吧，决定自己实现一个。&lt;/p&gt;
 &lt;p&gt;用的时候发现google在你点击一个链接时，会被替换成google的重定向链接。&lt;/p&gt;
@@ -1128,7 +1128,7 @@ counter: 1
 项目地址：&lt;a href="https://github.com/juffy/RecoverUrl"&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Written with &lt;a href="https://stackedit.io/"&gt;StackEdit&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="extensions"></category><category term="js event"></category></entry><entry><title>Python struct and Endianness</title><link href="http://blog.junfeng.ca/python-struct-and-endianness.html" rel="alternate"></link><updated>2014-01-10T21:02:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2014-01-10:python-struct-and-endianness.html</id><summary type="html">&lt;p&gt;偶然间在stackoverflow上看到下面这个问题:&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="extensions"></category><category term="js event"></category></entry><entry><title>Python struct and Endianness</title><link href="http://junfeng-hu.github.io/python-struct-and-endianness.html" rel="alternate"></link><updated>2014-01-10T21:02:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2014-01-10:python-struct-and-endianness.html</id><summary type="html">&lt;p&gt;偶然间在stackoverflow上看到下面这个问题:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="s-Atom"&gt;explain&lt;/span&gt; &lt;span class="s-Atom"&gt;me&lt;/span&gt; &lt;span class="s-Atom"&gt;what&lt;/span&gt; &lt;span class="s-Atom"&gt;does&lt;/span&gt; &lt;span class="s-Atom"&gt;this&lt;/span&gt; &lt;span class="s-Atom"&gt;piece&lt;/span&gt; &lt;span class="s-Atom"&gt;of&lt;/span&gt; &lt;span class="s-Atom"&gt;code&lt;/span&gt; &lt;span class="s-Atom"&gt;do&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 
@@ -1464,7 +1464,7 @@ int,1个unsigned long long&lt;/p&gt;
 参考链接:&lt;br /&gt;
 http://docs.python.org/2/library/struct.html&lt;br /&gt;
 http://en.wikipedia.org/wiki/Endianness  &lt;/p&gt;
-&lt;p&gt;http://stackoverflow.com/questions/20882693/what-does-this-piece-of-python-indexing-code-do&lt;/p&gt;</summary><category term="endianness"></category><category term="struct"></category></entry><entry><title>vps下lnmp配置</title><link href="http://blog.junfeng.ca/vpse4b88blnmpe9858de7bdae.html" rel="alternate"></link><updated>2014-01-10T00:37:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2014-01-10:vpse4b88blnmpe9858de7bdae.html</id><summary type="html">&lt;p&gt;换了hostigation的vps(128MB)之后，试了Debian，Ubuntu较新的版本都不行，总是提示说MySQL安装失败,最后不得已换上ubuntu
+&lt;p&gt;http://stackoverflow.com/questions/20882693/what-does-this-piece-of-python-indexing-code-do&lt;/p&gt;</summary><category term="endianness"></category><category term="struct"></category></entry><entry><title>vps下lnmp配置</title><link href="http://junfeng-hu.github.io/vpse4b88blnmpe9858de7bdae.html" rel="alternate"></link><updated>2014-01-10T00:37:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2014-01-10:vpse4b88blnmpe9858de7bdae.html</id><summary type="html">&lt;p&gt;换了hostigation的vps(128MB)之后，试了Debian，Ubuntu较新的版本都不行，总是提示说MySQL安装失败,最后不得已换上ubuntu
 10.04勉强把mysql装上,但网站连接十次要有9次连不上。知道是肯定是那装的那些软件版本太低，bug太多。但还是没管它。&lt;/p&gt;
 &lt;p&gt;最近得有空闲时间，决定把问题给解决。&lt;br /&gt;
 备份整个数据库：&lt;/p&gt;
@@ -1539,19 +1539,19 @@ systemctl enable php-fpm
 &lt;p&gt;恢复备份的wordpress到/var/www/目录&lt;/p&gt;
 &lt;p&gt;打开网站,一切正常。&lt;br /&gt;
 迁移成功。&lt;br /&gt;
-吐槽hostigation为什么没有archlinux的虚拟系统。&lt;/p&gt;</summary><category term="mysqld"></category><category term="vps(128MB)"></category></entry><entry><title>setjmp and longjmp</title><link href="http://blog.junfeng.ca/setjmp-and-longjmp.html" rel="alternate"></link><updated>2013-11-03T15:35:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-11-03:setjmp-and-longjmp.html</id><summary type="html">&lt;p&gt;&lt;img alt="" src="http://ww4.sinaimg.cn/large/894981ddtw1ea7v9y0qdsj20gx0stwj3.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;全局,静态,易失变量不受优化影响保存在存储器中,存放在存储器中的变量具有调用longjmp()时的值;进行优化后自动,寄存器变量保存寄存器中,CPU和浮点寄存器中的值恢复为调用setjmp()时的值.不进行优化,五种变量全部保存在存储器中.(来自APUE)&lt;/p&gt;</summary><category term="nolocaljmp"></category></entry><entry><title>file hole</title><link href="http://blog.junfeng.ca/file-hole.html" rel="alternate"></link><updated>2013-11-03T14:48:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-11-03:file-hole.html</id><summary type="html">&lt;p&gt;当lseek设置文件偏移量超过文件尾端,并写了某些数据后,就会产生文件空洞.&lt;/p&gt;
+吐槽hostigation为什么没有archlinux的虚拟系统。&lt;/p&gt;</summary><category term="mysqld"></category><category term="vps(128MB)"></category></entry><entry><title>setjmp and longjmp</title><link href="http://junfeng-hu.github.io/setjmp-and-longjmp.html" rel="alternate"></link><updated>2013-11-03T15:35:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-11-03:setjmp-and-longjmp.html</id><summary type="html">&lt;p&gt;&lt;img alt="" src="http://ww4.sinaimg.cn/large/894981ddtw1ea7v9y0qdsj20gx0stwj3.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;全局,静态,易失变量不受优化影响保存在存储器中,存放在存储器中的变量具有调用longjmp()时的值;进行优化后自动,寄存器变量保存寄存器中,CPU和浮点寄存器中的值恢复为调用setjmp()时的值.不进行优化,五种变量全部保存在存储器中.(来自APUE)&lt;/p&gt;</summary><category term="nolocaljmp"></category></entry><entry><title>file hole</title><link href="http://junfeng-hu.github.io/file-hole.html" rel="alternate"></link><updated>2013-11-03T14:48:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-11-03:file-hole.html</id><summary type="html">&lt;p&gt;当lseek设置文件偏移量超过文件尾端,并写了某些数据后,就会产生文件空洞.&lt;/p&gt;
 &lt;p&gt;文件长度st_size:&lt;/p&gt;
 &lt;p&gt;文件中的空洞会影响文件的长度,read读含有空洞的文件时,会把空洞填0.read读空洞也会读到0值.&lt;/p&gt;
 &lt;p&gt;文件占用磁盘大小:&lt;/p&gt;
 &lt;p&gt;文件在磁盘中是以4k的逻辑块进行存储的.每个文件占用的磁盘大小都是4k的整数倍.&lt;/p&gt;
 &lt;p&gt;write()写,实际内核是一次写4k数据到磁盘的.文件一般是块缓冲的.物理写大小为4k.&lt;/p&gt;
 &lt;p&gt;空洞占用的物理空间最多不超过2个逻辑块(8k).&lt;/p&gt;
-&lt;p&gt;若空洞将要使文件磁盘大小增长多于１个逻辑块大小时,将进行取余.&lt;/p&gt;</summary><category term="file hole"></category></entry><entry><title>Teiba Cookie</title><link href="http://blog.junfeng.ca/teiba-cookie.html" rel="alternate"></link><updated>2013-10-28T14:00:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-10-28:teiba-cookie.html</id><summary type="html">&lt;p&gt;首先访问&lt;a href="http://tieba.baidu.com/"&gt;http://tieba.baidu.com/&lt;/a&gt;,登陆要勾选记住我的登陆状态(即自动登录),这样Cookie才能长期有效.&lt;/p&gt;
+&lt;p&gt;若空洞将要使文件磁盘大小增长多于１个逻辑块大小时,将进行取余.&lt;/p&gt;</summary><category term="file hole"></category></entry><entry><title>Teiba Cookie</title><link href="http://junfeng-hu.github.io/teiba-cookie.html" rel="alternate"></link><updated>2013-10-28T14:00:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-10-28:teiba-cookie.html</id><summary type="html">&lt;p&gt;首先访问&lt;a href="http://tieba.baidu.com/"&gt;http://tieba.baidu.com/&lt;/a&gt;,登陆要勾选记住我的登陆状态(即自动登录),这样Cookie才能长期有效.&lt;/p&gt;
 &lt;p&gt;对于Chrome浏览器:&lt;/p&gt;
 &lt;p&gt;右键审查元素,打开开发者工具,选择Network,刷新贴吧首页.然后上滑找到tieba.baidu.com那一项,点击headers,在Request
 Headers中找到Cookie那一项,很长的一串字符串.复制到&lt;a href="http://signalltiebas.duapp.com/settings"&gt;http://signalltiebas.duapp.com/settings&lt;/a&gt;页面中的Cookie框中提交就可以了.&lt;/p&gt;
-&lt;p&gt;其它浏览器类似.&lt;/p&gt;</summary><category term="signalltiebas"></category></entry><entry><title>JavaScript closure</title><link href="http://blog.junfeng.ca/closure-of-programming-languages.html" rel="alternate"></link><updated>2013-10-23T16:35:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-10-23:closure-of-programming-languages.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;其它浏览器类似.&lt;/p&gt;</summary><category term="signalltiebas"></category></entry><entry><title>JavaScript closure</title><link href="http://junfeng-hu.github.io/closure-of-programming-languages.html" rel="alternate"></link><updated>2013-10-23T16:35:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-10-23:closure-of-programming-languages.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;a closure (also lexical closure or function closure) is a function or
 reference to a function together with a referencing environment—a
 table storing a reference to each of the non-local variables (also
@@ -1745,9 +1745,9 @@ References
 
 &lt;http://en.wikipedia.org/wiki/Closure_(computer_science)&gt;
 
-&lt;/div&gt;</summary><category term="closure"></category><category term="JavaScript"></category></entry><entry><title>Ajax初级使用</title><link href="http://blog.junfeng.ca/ajaxe5889de7baa7e4bdbfe794a8.html" rel="alternate"></link><updated>2013-10-15T13:03:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-10-15:ajaxe5889de7baa7e4bdbfe794a8.html</id><summary type="html">&lt;p&gt;当一个页面有多个地方需要使用Ajax与服务器通信时，应该尽量把发送Ajax封装成一个函数，在这个函数里面处理各种不同的请求．这样能适当减少代码的重复.&lt;/p&gt;
+&lt;/div&gt;</summary><category term="closure"></category><category term="JavaScript"></category></entry><entry><title>Ajax初级使用</title><link href="http://junfeng-hu.github.io/ajaxe5889de7baa7e4bdbfe794a8.html" rel="alternate"></link><updated>2013-10-15T13:03:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-10-15:ajaxe5889de7baa7e4bdbfe794a8.html</id><summary type="html">&lt;p&gt;当一个页面有多个地方需要使用Ajax与服务器通信时，应该尽量把发送Ajax封装成一个函数，在这个函数里面处理各种不同的请求．这样能适当减少代码的重复.&lt;/p&gt;
 &lt;p&gt;Ajax使用流程,
-new XMLHttpRequest(),open(),send(),然后处理响应，根据响应内容判断，给予用户提示．大体就是这种流程．&lt;/p&gt;</summary><category term="Ajax"></category></entry><entry><title>the variable scope of list comprehensions</title><link href="http://blog.junfeng.ca/the-variable-scope-of-list-comprehensions.html" rel="alternate"></link><updated>2013-10-14T23:34:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-10-14:the-variable-scope-of-list-comprehensions.html</id><summary type="html">&lt;p&gt;When using list comprehensions,the scope of temp variable doesn't
+new XMLHttpRequest(),open(),send(),然后处理响应，根据响应内容判断，给予用户提示．大体就是这种流程．&lt;/p&gt;</summary><category term="Ajax"></category></entry><entry><title>the variable scope of list comprehensions</title><link href="http://junfeng-hu.github.io/the-variable-scope-of-list-comprehensions.html" rel="alternate"></link><updated>2013-10-14T23:34:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-10-14:the-variable-scope-of-list-comprehensions.html</id><summary type="html">&lt;p&gt;When using list comprehensions,the scope of temp variable doesn't
 express as you expect.&lt;/p&gt;
 &lt;p&gt;For example&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1786,7 +1786,7 @@ were disappear.&lt;/p&gt;
  &gt;&gt;&gt; L=[i for i in range(10)]&lt;br /&gt;
  &gt;&gt;&gt; print (i)&lt;br /&gt;
  2&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="Python"></category><category term="variable scope"></category></entry><entry><title>JavaScript实践初步</title><link href="http://blog.junfeng.ca/javascripte5ae9ee8b7b5e5889de6ada5.html" rel="alternate"></link><updated>2013-09-18T00:19:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-09-18:javascripte5ae9ee8b7b5e5889de6ada5.html</id><summary type="html">&lt;p&gt;\&amp;lt;\&amp;lt;JavaScript高级程序设计&gt;&gt;也看了大半本了,但却发现不会写JS程序,对界面设计什么的总是有一种畏惧的心理,最近这几天迷上了Chrome_Extensions开发了,想做一个插件来着．顺便练习了下JS编程,补充一下苍白的实践经验．&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="Python"></category><category term="variable scope"></category></entry><entry><title>JavaScript实践初步</title><link href="http://junfeng-hu.github.io/javascripte5ae9ee8b7b5e5889de6ada5.html" rel="alternate"></link><updated>2013-09-18T00:19:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-09-18:javascripte5ae9ee8b7b5e5889de6ada5.html</id><summary type="html">&lt;p&gt;\&amp;lt;\&amp;lt;JavaScript高级程序设计&gt;&gt;也看了大半本了,但却发现不会写JS程序,对界面设计什么的总是有一种畏惧的心理,最近这几天迷上了Chrome_Extensions开发了,想做一个插件来着．顺便练习了下JS编程,补充一下苍白的实践经验．&lt;/p&gt;
 &lt;p&gt;虽然一个晚上,options.html页面都没做完,但还是学到了些知识．本来这些关于代码的没有必要写出来的，但今天晚上和JS作战,领悟了些许编程思想,觉得还是值得分享的.&lt;/p&gt;
 &lt;p&gt;关于模块化编程有了些许理解,它不在是教科书中的古板,毫无印象的概念.&lt;/p&gt;
 &lt;ol&gt;
@@ -1797,7 +1797,7 @@ were disappear.&lt;/p&gt;
 &lt;p&gt;一个tab空格健无意间在parent的childNodes插入了一个Text
 Node.造成至少有半个小时的调试.&lt;/p&gt;
 &lt;p&gt;突然发现学DOM的一个好工具:&lt;/p&gt;
-&lt;p&gt;Chromium自带的开发者工具看某个element的属性比www.w3schools.com的JavaScript在线教程舒服多了.&lt;/p&gt;</summary><category term="JavaScript"></category></entry><entry><title>2&gt;&amp;1</title><link href="http://blog.junfeng.ca/21.html" rel="alternate"></link><updated>2013-09-13T10:43:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-09-13:21.html</id><summary type="html">&lt;p&gt;&lt;span
+&lt;p&gt;Chromium自带的开发者工具看某个element的属性比www.w3schools.com的JavaScript在线教程舒服多了.&lt;/p&gt;</summary><category term="JavaScript"></category></entry><entry><title>2&gt;&amp;1</title><link href="http://junfeng-hu.github.io/21.html" rel="alternate"></link><updated>2013-09-13T10:43:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-09-13:21.html</id><summary type="html">&lt;p&gt;&lt;span
 style="font-size: 1rem; line-height: 1.714285714;"&gt;在shell中,digit1 &gt;&amp;amp;
 digit2表示将描述符digit1重定向到描述符digit2的同一文件.&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;那么:&lt;/p&gt;
@@ -1846,7 +1846,7 @@ write(STDERR_FILENO,err,strlen(err));&lt;br /&gt;
 write(STDERR_FILENO,buf,n);//write to stderr&lt;br /&gt;
 }&lt;br /&gt;
 return 0;&lt;br /&gt;
-}&lt;/p&gt;</summary><category term="2&amp;gt;&amp;amp;1"></category></entry><entry><title>file descriptor</title><link href="http://blog.junfeng.ca/file-descriptor.html" rel="alternate"></link><updated>2013-09-07T11:39:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-09-07:file-descriptor.html</id><summary type="html">&lt;p&gt;和文件描述符有关的函数：&lt;/p&gt;
+}&lt;/p&gt;</summary><category term="2&amp;gt"></category><category term="&amp;amp"></category><category term="1"></category></entry><entry><title>file descriptor</title><link href="http://junfeng-hu.github.io/file-descriptor.html" rel="alternate"></link><updated>2013-09-07T11:39:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-09-07:file-descriptor.html</id><summary type="html">&lt;p&gt;和文件描述符有关的函数：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;open&lt;/li&gt;
 &lt;li&gt;close&lt;/li&gt;
@@ -1884,12 +1884,12 @@ printf("ERROR\n");&lt;br /&gt;
 else&lt;br /&gt;
 printf("%d\n",f);&lt;br /&gt;
 return 0;&lt;/p&gt;
-&lt;p&gt;}&lt;/p&gt;</summary><category term="文件描述符"></category></entry><entry><title>丢车贼</title><link href="http://blog.junfeng.ca/e4b8a2e8bda6e8b4bc.html" rel="alternate"></link><updated>2013-07-24T06:37:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-07-24:e4b8a2e8bda6e8b4bc.html</id><summary type="html">&lt;p&gt;车丢了，心情极度郁闷.好吧，怪我，忘记锁上了.老妈可是刚买没俩月的车啊.我还真想偷别人一辆，无奈技术水平低，也就作罢.家里知道我丢了车之后，地位急转直下
-,虽说不让我自己买,但也是各种说我&lt;strong&gt;.&lt;/strong&gt;又不能辩驳什么，是自己真的犯了错.不过，他们认为我就做不好事情，说我，以后不注意，会丢更多的东西.好吧，被他们说的差一点感觉自己矬了，要不是咱心理素质高，自信心强.哎，丢车确实感觉挺窝囊的.&lt;/p&gt;</summary><category term="丢车贼"></category></entry><entry><title>感动</title><link href="http://blog.junfeng.ca/e6849fe58aa8.html" rel="alternate"></link><updated>2013-07-20T19:19:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-07-20:e6849fe58aa8.html</id><summary type="html">&lt;p&gt;感动一个人容易，被一个人感动却不那么容易．&lt;/p&gt;
+&lt;p&gt;}&lt;/p&gt;</summary><category term="文件描述符"></category></entry><entry><title>丢车贼</title><link href="http://junfeng-hu.github.io/e4b8a2e8bda6e8b4bc.html" rel="alternate"></link><updated>2013-07-24T06:37:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-07-24:e4b8a2e8bda6e8b4bc.html</id><summary type="html">&lt;p&gt;车丢了，心情极度郁闷.好吧，怪我，忘记锁上了.老妈可是刚买没俩月的车啊.我还真想偷别人一辆，无奈技术水平低，也就作罢.家里知道我丢了车之后，地位急转直下
+,虽说不让我自己买,但也是各种说我&lt;strong&gt;.&lt;/strong&gt;又不能辩驳什么，是自己真的犯了错.不过，他们认为我就做不好事情，说我，以后不注意，会丢更多的东西.好吧，被他们说的差一点感觉自己矬了，要不是咱心理素质高，自信心强.哎，丢车确实感觉挺窝囊的.&lt;/p&gt;</summary><category term="丢车贼"></category></entry><entry><title>感动</title><link href="http://junfeng-hu.github.io/e6849fe58aa8.html" rel="alternate"></link><updated>2013-07-20T19:19:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-07-20:e6849fe58aa8.html</id><summary type="html">&lt;p&gt;感动一个人容易，被一个人感动却不那么容易．&lt;/p&gt;
 &lt;p&gt;感动你是我的权利和义务．&lt;/p&gt;
 &lt;p&gt;反过来却不是．&lt;/p&gt;
 &lt;p&gt;貌似我又矫情了．&lt;/p&gt;
-&lt;p&gt;竟然让别人猜起喜欢什么来了．&lt;/p&gt;</summary><category term="感动"></category></entry><entry><title>天使</title><link href="http://blog.junfeng.ca/e5a4a9e4bdbf.html" rel="alternate"></link><updated>2013-07-06T00:24:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-07-06:e5a4a9e4bdbf.html</id><summary type="html">&lt;p&gt;每个人都有一个守护天使，&lt;/p&gt;
+&lt;p&gt;竟然让别人猜起喜欢什么来了．&lt;/p&gt;</summary><category term="感动"></category></entry><entry><title>天使</title><link href="http://junfeng-hu.github.io/e5a4a9e4bdbf.html" rel="alternate"></link><updated>2013-07-06T00:24:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-07-06:e5a4a9e4bdbf.html</id><summary type="html">&lt;p&gt;每个人都有一个守护天使，&lt;/p&gt;
 &lt;p&gt;但你的守护天使却睡着了，&lt;/p&gt;
 &lt;p&gt;我想摇醒他，&lt;/p&gt;
 &lt;p&gt;但他睡得太死了。&lt;/p&gt;
@@ -1905,7 +1905,7 @@ return 0;&lt;/p&gt;
 &lt;p&gt;不过他不会放弃的，&lt;/p&gt;
 &lt;p&gt;他会好好吸取经验。&lt;/p&gt;
 &lt;p&gt;不让你伤心，难过。&lt;/p&gt;
-&lt;p&gt;我一直爱着你。&lt;/p&gt;</summary><category term="天使"></category></entry><entry><title>Jugs</title><link href="http://blog.junfeng.ca/jugs.html" rel="alternate"></link><updated>2013-05-30T00:05:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-05-30:jugs.html</id><summary type="html">&lt;style type="text/css"&gt;&lt;!--&lt;br /&gt;
+&lt;p&gt;我一直爱着你。&lt;/p&gt;</summary><category term="天使"></category></entry><entry><title>Jugs</title><link href="http://junfeng-hu.github.io/jugs.html" rel="alternate"></link><updated>2013-05-30T00:05:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-05-30:jugs.html</id><summary type="html">&lt;style type="text/css"&gt;&lt;!--&lt;br /&gt;
 pre { font-family: monospace; color: #000000; background-color: #ffffff; } body { font-family: monospace; color: #000000; background-color: #ffffff; } .Type { color: #2e8b57; font-weight: bold; } .Statement { color: #804040; font-weight: bold; } .Constant { color: #ff00ff; } .PreProc { color: #a020f0; } --&gt;&lt;br&gt;&lt;/br&gt;
 --&gt;&lt;/style&gt;
 
@@ -1972,7 +1972,7 @@ pre { font-family: monospace; color: #000000; background-color: #ffffff; } body 
 
 &lt;p&gt;回溯，深度优先搜索，直接死循环了。  &lt;/p&gt;
 &lt;p&gt;然后搜到了互质数的一个性质。貌似广度优先搜索也可以，没试，层次比较深的话，估计会超出内存限制。  &lt;/p&gt;
-&lt;p&gt;参考：&lt;a href="http://www.cnblogs.com/phinecos/archive/2008/09/21/1295472.html"&gt;链接&lt;/a&gt;&lt;/p&gt;</summary><category term="互质数"></category></entry><entry><title>Anagrams by Stack</title><link href="http://blog.junfeng.ca/anagrams-by-stack.html" rel="alternate"></link><updated>2013-05-29T23:40:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-05-29:anagrams-by-stack.html</id><summary type="html">&lt;style type="text/css"&gt;&lt;!--&lt;br /&gt;
+&lt;p&gt;参考：&lt;a href="http://www.cnblogs.com/phinecos/archive/2008/09/21/1295472.html"&gt;链接&lt;/a&gt;&lt;/p&gt;</summary><category term="互质数"></category></entry><entry><title>Anagrams by Stack</title><link href="http://junfeng-hu.github.io/anagrams-by-stack.html" rel="alternate"></link><updated>2013-05-29T23:40:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-05-29:anagrams-by-stack.html</id><summary type="html">&lt;style type="text/css"&gt;&lt;!--&lt;br /&gt;
 pre { font-family: monospace; color: #000000; background-color: #ffffff; } body { font-family: monospace; color: #000000; background-color: #ffffff; } .Special { color: #6a5acd; } .Comment { color: #0000ff; } .Type { color: #2e8b57; font-weight: bold; } .Statement { color: #804040; font-weight: bold; } .Constant { color: #ff00ff; } .PreProc { color: #a020f0; } --&gt;&lt;br&gt;&lt;/br&gt;
 --&gt;&lt;/style&gt;
 
@@ -2036,7 +2036,7 @@ pre { font-family: monospace; color: #000000; background-color: #ffffff; } body 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;递归出所有栈操作，排除不合法的。找到满足条件的操作序列。&lt;/p&gt;</summary><category term="stack"></category></entry><entry><title>Crashing Balloon</title><link href="http://blog.junfeng.ca/crashing-balloon.html" rel="alternate"></link><updated>2013-05-24T17:15:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-05-24:crashing-balloon.html</id><summary type="html">&lt;style type="text/css"&gt;&lt;!--&lt;br /&gt;
+&lt;p&gt;递归出所有栈操作，排除不合法的。找到满足条件的操作序列。&lt;/p&gt;</summary><category term="stack"></category></entry><entry><title>Crashing Balloon</title><link href="http://junfeng-hu.github.io/crashing-balloon.html" rel="alternate"></link><updated>2013-05-24T17:15:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-05-24:crashing-balloon.html</id><summary type="html">&lt;style type="text/css"&gt;&lt;!--&lt;br /&gt;
 pre { font-family: monospace; color: #000000; background-color: #ffffff; } body { font-family: monospace; color: #000000; background-color: #ffffff; } .Comment { color: #0000ff; } .Type { color: #2e8b57; font-weight: bold; } .Statement { color: #804040; font-weight: bold; } .Constant { color: #ff00ff; } .PreProc { color: #a020f0; } --&gt;&lt;br&gt;&lt;/br&gt;
 --&gt;&lt;/style&gt;
 
@@ -2144,14 +2144,14 @@ pre { font-family: monospace; color: #000000; background-color: #ffffff; } body 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;两个函数似乎可以合成一个。算了，AC了就行。算是用了一下回溯思想。&lt;/p&gt;</summary><category term="ZOJ1003"></category></entry><entry><title>话不对思维</title><link href="http://blog.junfeng.ca/e8af9de4b88de5afb9e6809de7bbb4.html" rel="alternate"></link><updated>2013-05-22T21:01:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-05-22:e8af9de4b88de5afb9e6809de7bbb4.html</id><summary type="html">&lt;p&gt;“什么面？”&lt;br /&gt;
+&lt;p&gt;两个函数似乎可以合成一个。算了，AC了就行。算是用了一下回溯思想。&lt;/p&gt;</summary><category term="ZOJ1003"></category></entry><entry><title>话不对思维</title><link href="http://junfeng-hu.github.io/e8af9de4b88de5afb9e6809de7bbb4.html" rel="alternate"></link><updated>2013-05-22T21:01:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-05-22:e8af9de4b88de5afb9e6809de7bbb4.html</id><summary type="html">&lt;p&gt;“什么面？”&lt;br /&gt;
 “牛肉面.”&lt;br /&gt;
 “辣椒要不？”&lt;br /&gt;
 “少放点辣椒.”&lt;br /&gt;
 “多放？”&lt;br /&gt;
 “嗯.”&lt;br /&gt;
 于是他就弄了一大勺辣椒酱.&lt;br /&gt;
-我累那个后悔啊～&lt;/p&gt;</summary></entry><entry><title>Fire Net</title><link href="http://blog.junfeng.ca/fire-net.html" rel="alternate"></link><updated>2013-05-20T20:24:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-05-20:fire-net.html</id><summary type="html">&lt;p&gt;ZOJ Problem Set - 1002&lt;/p&gt;
+我累那个后悔啊～&lt;/p&gt;</summary></entry><entry><title>Fire Net</title><link href="http://junfeng-hu.github.io/fire-net.html" rel="alternate"></link><updated>2013-05-20T20:24:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-05-20:fire-net.html</id><summary type="html">&lt;p&gt;ZOJ Problem Set - 1002&lt;/p&gt;
 &lt;style type="text/css"&gt;&lt;!--&lt;br /&gt;
 pre { font-family: monospace; color: #000000; background-color: #ffffff; } body { font-family: monospace; color: #000000; background-color: #ffffff; } .PreProc { color: #a020f0; } .Special { color: #6a5acd; } .Constant { color: #ff00ff; } .Identifier { color: #008080; } .Statement { color: #804040; font-weight: bold; } --&gt;&lt;br&gt;&lt;/br&gt;
 --&gt;&lt;/style&gt;
@@ -2232,7 +2232,7 @@ if __name__==&amp;#39;__main__&amp;#39;:
 
 &lt;p&gt;突然发现我没有用回溯法哎。&lt;/p&gt;
 &lt;p&gt;Python做算法可以偷懒。呵呵&lt;/p&gt;
-&lt;p&gt;参考：&lt;a href="http://www.cnblogs.com/phinecos/archive/2008/09/18/1293017.html"&gt;链接&lt;/a&gt;&lt;/p&gt;</summary><category term="ZOJ1002"></category></entry><entry><title>8皇后问题</title><link href="http://blog.junfeng.ca/8e79a87e5908ee997aee9a298.html" rel="alternate"></link><updated>2013-05-19T01:28:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-05-19:8e79a87e5908ee997aee9a298.html</id><summary type="html">&lt;p&gt;传说中的问题。&lt;/p&gt;
+&lt;p&gt;参考：&lt;a href="http://www.cnblogs.com/phinecos/archive/2008/09/18/1293017.html"&gt;链接&lt;/a&gt;&lt;/p&gt;</summary><category term="ZOJ1002"></category></entry><entry><title>8皇后问题</title><link href="http://junfeng-hu.github.io/8e79a87e5908ee997aee9a298.html" rel="alternate"></link><updated>2013-05-19T01:28:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-05-19:8e79a87e5908ee997aee9a298.html</id><summary type="html">&lt;p&gt;传说中的问题。&lt;/p&gt;
 &lt;p&gt;传说中的算法：回溯法&lt;/p&gt;
 &lt;p&gt;Python实现：&lt;/p&gt;
 &lt;div&gt;
@@ -3184,9 +3184,9 @@ int main()
 
 &lt;div&gt;
 
-&lt;/div&gt;</summary><category term="皇后问题"></category></entry><entry><title>We are belong to each other</title><link href="http://blog.junfeng.ca/we-are-belong-to-each-other.html" rel="alternate"></link><updated>2013-05-18T23:54:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-05-18:we-are-belong-to-each-other.html</id><summary type="html">&lt;p&gt;虽然，我不信仰任何神。但今天还是要感谢一下，上帝，感谢一下爱神。&lt;/p&gt;
+&lt;/div&gt;</summary><category term="皇后问题"></category></entry><entry><title>We are belong to each other</title><link href="http://junfeng-hu.github.io/we-are-belong-to-each-other.html" rel="alternate"></link><updated>2013-05-18T23:54:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-05-18:we-are-belong-to-each-other.html</id><summary type="html">&lt;p&gt;虽然，我不信仰任何神。但今天还是要感谢一下，上帝，感谢一下爱神。&lt;/p&gt;
 &lt;p&gt;当然了，更要感谢她，宽容了我。&lt;/p&gt;
-&lt;p&gt;I am yours ，You are mine,We are belong to each other.&lt;/p&gt;</summary><category term="You"></category></entry><entry><title>tieba sign</title><link href="http://blog.junfeng.ca/tieba-sign.html" rel="alternate"></link><updated>2013-05-09T17:22:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-05-09:tieba-sign.html</id><summary type="html">&lt;p&gt;贴吧批量签到&lt;/p&gt;
+&lt;p&gt;I am yours ，You are mine,We are belong to each other.&lt;/p&gt;</summary><category term="You"></category></entry><entry><title>tieba sign</title><link href="http://junfeng-hu.github.io/tieba-sign.html" rel="alternate"></link><updated>2013-05-09T17:22:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-05-09:tieba-sign.html</id><summary type="html">&lt;p&gt;贴吧批量签到&lt;/p&gt;
 &lt;p&gt;使用requests,bs4&lt;/p&gt;
 &lt;p&gt;[code language="python"]&lt;/p&gt;
 &lt;p&gt;#!/usr/bin/env python&lt;br /&gt;
@@ -3224,7 +3224,7 @@ print t+'吧签到成功'.decode('utf-8').encode('gbk')&lt;br /&gt;
 a=raw_input('Press Enter to exit:')&lt;/p&gt;
 &lt;p&gt;[/code]&lt;/p&gt;
 &lt;p&gt;使用PyInstaller打包成exe文件。&lt;/p&gt;
-&lt;p&gt;下载地址：&lt;a href="http://pan.baidu.com/share/link?shareid=495612&amp;amp;uk=2887257007"&gt;文件&lt;/a&gt;&lt;/p&gt;</summary><category term="贴吧"></category></entry><entry><title>萤火虫之墓</title><link href="http://blog.junfeng.ca/e890a4e781abe899abe4b98be5a293.html" rel="alternate"></link><updated>2013-04-14T23:24:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-04-14:e890a4e781abe899abe4b98be5a293.html</id><summary type="html">&lt;p&gt;话说好久没看宫崎骏的动画片了，想着看一部来洗涤一下我那世俗的心.然后就下了《萤火虫之墓》,看完之后没感觉到以往那种小清新的心情，反而更加沉重了.&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href="http://pan.baidu.com/share/link?shareid=495612&amp;amp;uk=2887257007"&gt;文件&lt;/a&gt;&lt;/p&gt;</summary><category term="贴吧"></category></entry><entry><title>萤火虫之墓</title><link href="http://junfeng-hu.github.io/e890a4e781abe899abe4b98be5a293.html" rel="alternate"></link><updated>2013-04-14T23:24:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-04-14:e890a4e781abe899abe4b98be5a293.html</id><summary type="html">&lt;p&gt;话说好久没看宫崎骏的动画片了，想着看一部来洗涤一下我那世俗的心.然后就下了《萤火虫之墓》,看完之后没感觉到以往那种小清新的心情，反而更加沉重了.&lt;/p&gt;
 &lt;p&gt;以往宫崎骏的电影都是讲小女生的成长经历的，而《萤火虫之墓》却是侧面反应战争，以亲情为表现力，同时又深刻特写着世俗.那几幅场景画面感十足，没有语言，就是一组镜头让你体会到世俗，人情世故的凄凉和心酸.&lt;/p&gt;
 &lt;p&gt;战争时期，人们姓名都朝不保夕，也不能奢求那些个千千万万的类似阿姨和农夫的人有大无畏的善心.可是，看着阿姨把哥哥从废墟的家中带来的食物，极其自然的拿走，农夫漠视哥哥的苦苦哀求时，心中还是犹如被硬塞了什么东西似的.可能以前温馨情节看多了，总是期待有陌生人的善举.但现实是自始自终都没有出现.而阿姨两次盛饭的举动，对比感十足，每次吃完饭，妹妹叫着饿更是对阿姨这种行为的控诉，当然也不能说阿姨这种行为有错，她只是在做大众都会做的事情.但是她确以一句“为祖国做贡献的人就应该多得“来粉饰她的这种私心和世俗，好让她显得貌似多爱国似的，令人心生厌恶，你偏向你家人就偏吧，但这实在是和爱国没有一毛线的关系.&lt;/p&gt;
 &lt;p&gt;而和周围人的冷漠强烈对比的是哥哥一直对妹妹的爱.哥哥一直照顾着妹妹的纯真心灵.为了不让妹妹在防空洞里感到害怕，哥哥抓来萤火虫装点.哥哥一直在想法子让妹妹开心.就像《美丽人生》中父亲为儿子做的那样.哥哥甚至为了妹妹去偷东西.&lt;/p&gt;
@@ -3232,11 +3232,11 @@ a=raw_input('Press Enter to exit:')&lt;/p&gt;
 ，人们的冷漠也一直在空气中永不散去.&lt;/p&gt;
 &lt;p&gt;影片最后，战后，人们重新回到了家乡，回到了正常的生活状态，几个女孩子笑着说：“还是和以前一样.”不，对于某些人来说，生活永远都不一样了，因为战争夺走了他最爱的家人们.&lt;/p&gt;
 &lt;p&gt;就像最后歌中唱的那样:There is no place like
-home.我想对于有过寄人篱下经历的，或者还漂泊在外的人来说，这句歌词听起来不会感到平淡吧&lt;/p&gt;</summary><category term="萤火虫之墓"></category></entry><entry><title>心情</title><link href="http://blog.junfeng.ca/404.html" rel="alternate"></link><updated>2013-04-11T23:36:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-04-11:404.html</id><summary type="html">&lt;p&gt;蓝颜是由爱情不得而进化过来的，&lt;br /&gt;
+home.我想对于有过寄人篱下经历的，或者还漂泊在外的人来说，这句歌词听起来不会感到平淡吧&lt;/p&gt;</summary><category term="萤火虫之墓"></category></entry><entry><title>心情</title><link href="http://junfeng-hu.github.io/404.html" rel="alternate"></link><updated>2013-04-11T23:36:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-04-11:404.html</id><summary type="html">&lt;p&gt;蓝颜是由爱情不得而进化过来的，&lt;br /&gt;
 而爱情最终又会变成亲情吧.&lt;br /&gt;
 亲情呢，会变成什么？&lt;br /&gt;
 她说：也许每个蓝颜都是不甘心的.&lt;br /&gt;
-是吧.&lt;/p&gt;</summary></entry><entry><title>传话游戏</title><link href="http://blog.junfeng.ca/e4bca0e8af9de6b8b8e6888f.html" rel="alternate"></link><updated>2013-04-06T23:38:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-04-06:e4bca0e8af9de6b8b8e6888f.html</id><summary type="html">&lt;div&gt;
+是吧.&lt;/p&gt;</summary></entry><entry><title>传话游戏</title><link href="http://junfeng-hu.github.io/e4bca0e8af9de6b8b8e6888f.html" rel="alternate"></link><updated>2013-04-06T23:38:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-04-06:e4bca0e8af9de6b8b8e6888f.html</id><summary type="html">&lt;div&gt;
 
 非游戏规则，仅含代码．
 
@@ -3320,7 +3320,7 @@ sentence.clear();&lt;br /&gt;
 }&lt;br /&gt;
 return 0;&lt;br /&gt;
 }&lt;/p&gt;
-&lt;p&gt;[/code]&lt;/p&gt;</summary><category term="传话游戏"></category></entry><entry><title>花湖</title><link href="http://blog.junfeng.ca/e88ab1e6b996efbc8de8a5bfe794b5.html" rel="alternate"></link><updated>2013-04-05T23:41:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-04-05:e88ab1e6b996efbc8de8a5bfe794b5.html</id><summary type="html">&lt;p&gt;&lt;span style="color: #ff00ff;"&gt;落花一片&lt;/span&gt;&lt;br /&gt;
+&lt;p&gt;[/code]&lt;/p&gt;</summary><category term="传话游戏"></category></entry><entry><title>花湖</title><link href="http://junfeng-hu.github.io/e88ab1e6b996efbc8de8a5bfe794b5.html" rel="alternate"></link><updated>2013-04-05T23:41:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-04-05:e88ab1e6b996efbc8de8a5bfe794b5.html</id><summary type="html">&lt;p&gt;&lt;span style="color: #ff00ff;"&gt;落花一片&lt;/span&gt;&lt;br /&gt;
 &lt;img alt="" src="http://ww3.sinaimg.cn/mw690/894981ddtw1e3f88nxpwgj.jpg" /&gt;&lt;br /&gt;
 &lt;span style="color: #ff00ff;"&gt;不能称作花海，就叫花湖吧&lt;/span&gt;&lt;br /&gt;
 &lt;img alt="" src="http://ww2.sinaimg.cn/mw690/894981ddtw1e3f88t3hsmj.jpg" /&gt;&lt;br /&gt;
@@ -3329,8 +3329,8 @@ return 0;&lt;br /&gt;
 &lt;span style="color: #ff00ff;"&gt;照相的人也会被照进风景中&lt;/span&gt;&lt;br /&gt;
 &lt;img alt="" src="http://ww4.sinaimg.cn/mw690/894981ddtw1e3f894kggkj.jpg" /&gt;&lt;br /&gt;
 &lt;span style="color: #ff00ff;"&gt;花与花之间的距离&lt;/span&gt;&lt;br /&gt;
-&lt;img alt="" src="http://ww3.sinaimg.cn/mw690/894981ddtw1e3f899hoemj.jpg" /&gt;&lt;/p&gt;</summary><category term="落花"></category></entry><entry><title>自助餐的心理</title><link href="http://blog.junfeng.ca/e887aae58aa9e9a490e79a84e5bf83e79086.html" rel="alternate"></link><updated>2013-04-05T23:17:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-04-05:e887aae58aa9e9a490e79a84e5bf83e79086.html</id><summary type="html">&lt;p&gt;吃什么的最有爱了，特别是吃自助餐．花一定数目的钱，让你随便吃，总是听起来有吸引力的．反正那么多钱也交了，不大吃，特吃就对不起自己花的钱了．话说，我虽然想吃回本，但无奈战斗力太弱，拼命吃，也吃不会本．再看他们，从坐下到站起，战斗力是和x轴垂直的．吃不回本总是令人沮丧的．于是我这样安慰自己：正因为有我们这样的人，自助餐才能开下去的．但我又饿得快，等饿的时候，有懊悔自己怎么没多吃点呢？那么多好吃的．&lt;/p&gt;
-&lt;p&gt;唉，奇怪的心理．&lt;/p&gt;</summary><category term="自助餐"></category></entry><entry><title>北京遇上西雅图</title><link href="http://blog.junfeng.ca/e58c97e4baace98187e4b88ae8a5bfe99b85e59bbe.html" rel="alternate"></link><updated>2013-04-04T23:47:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-04-04:e58c97e4baace98187e4b88ae8a5bfe99b85e59bbe.html</id><summary type="html">&lt;p&gt;&lt;img alt="" src="http://img3.douban.com/view/photo/photo/public/p1882696732.jpg" /&gt;&lt;/p&gt;
+&lt;img alt="" src="http://ww3.sinaimg.cn/mw690/894981ddtw1e3f899hoemj.jpg" /&gt;&lt;/p&gt;</summary><category term="落花"></category></entry><entry><title>自助餐的心理</title><link href="http://junfeng-hu.github.io/e887aae58aa9e9a490e79a84e5bf83e79086.html" rel="alternate"></link><updated>2013-04-05T23:17:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-04-05:e887aae58aa9e9a490e79a84e5bf83e79086.html</id><summary type="html">&lt;p&gt;吃什么的最有爱了，特别是吃自助餐．花一定数目的钱，让你随便吃，总是听起来有吸引力的．反正那么多钱也交了，不大吃，特吃就对不起自己花的钱了．话说，我虽然想吃回本，但无奈战斗力太弱，拼命吃，也吃不会本．再看他们，从坐下到站起，战斗力是和x轴垂直的．吃不回本总是令人沮丧的．于是我这样安慰自己：正因为有我们这样的人，自助餐才能开下去的．但我又饿得快，等饿的时候，有懊悔自己怎么没多吃点呢？那么多好吃的．&lt;/p&gt;
+&lt;p&gt;唉，奇怪的心理．&lt;/p&gt;</summary><category term="自助餐"></category></entry><entry><title>北京遇上西雅图</title><link href="http://junfeng-hu.github.io/e58c97e4baace98187e4b88ae8a5bfe99b85e59bbe.html" rel="alternate"></link><updated>2013-04-04T23:47:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-04-04:e58c97e4baace98187e4b88ae8a5bfe99b85e59bbe.html</id><summary type="html">&lt;p&gt;&lt;img alt="" src="http://img3.douban.com/view/photo/photo/public/p1882696732.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;一部物质和温情较量的爱情片．&lt;/p&gt;
 &lt;p&gt;影片开头文佳佳一身金色的行头，看起来十足的傍大款的小三形象．再看Frank
 ,那大叔形象．仿佛就把失败写在了脸上．大叔为人很好，但却遇到了比他要强的老婆，大叔遂成全了老婆的理想，但他老婆却不懂他的好，结局也只能是离婚．而文佳佳呢，发现她得到的仅仅是一个一个名牌包之后，心中有了困惑．她虽然能够毫无顾忌的花钱．　但并不怎么高兴．因为她想要的是有人关心她，照顾她．而不是仅仅满足物质上的需求．&lt;/p&gt;
@@ -3345,18 +3345,18 @@ style="font-size: 1rem;"&gt;真的&lt;/span&gt;&lt;span
 style="line-height: 1.714285714; font-size: 1rem;"&gt;喜欢你没什么关系．当然他喜欢你，肯定愿意为你效劳的．&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;而对于男人来说，真的不能靠女人养着．相信Frank被人叫着ＤＢ心里一定不好受．&lt;/p&gt;
 &lt;p&gt;找到真我，不放弃自我．这样的人生活着才有动力．&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://img3.douban.com/view/photo/photo/public/p1890826645.jpg" /&gt;&lt;/p&gt;</summary><category term="北京遇上西雅图"></category></entry><entry><title>喜欢一个人</title><link href="http://blog.junfeng.ca/e5969ce6aca2e4b880e4b8aae4baba.html" rel="alternate"></link><updated>2013-03-20T23:53:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-03-20:e5969ce6aca2e4b880e4b8aae4baba.html</id><summary type="html">&lt;p&gt;喜欢一个人，应该是一件很幸福的事！漂泊的心有了依靠.不再焦虑，不再彷徨.远离了低级趣味,生活有了目标.&lt;br /&gt;
+&lt;p&gt;&lt;img alt="" src="http://img3.douban.com/view/photo/photo/public/p1890826645.jpg" /&gt;&lt;/p&gt;</summary><category term="北京遇上西雅图"></category></entry><entry><title>喜欢一个人</title><link href="http://junfeng-hu.github.io/e5969ce6aca2e4b880e4b8aae4baba.html" rel="alternate"></link><updated>2013-03-20T23:53:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-03-20:e5969ce6aca2e4b880e4b8aae4baba.html</id><summary type="html">&lt;p&gt;喜欢一个人，应该是一件很幸福的事！漂泊的心有了依靠.不再焦虑，不再彷徨.远离了低级趣味,生活有了目标.&lt;br /&gt;
 真心喜欢一个人，不会再想其她女生，走路都不再左顾右盼.&lt;br /&gt;
 喜欢一个人，碰巧她也喜欢你.世界为之晴朗.
 暖暖的阳光，可爱的绿叶，鲜艳的花朵，清新的空气，都在为你们祝福.  &lt;/p&gt;
 &lt;p&gt;喜欢一个人，不巧她不喜欢你，庆幸的是她没有喜欢的人.永远可以把她作为你女神，心中留有希望：突然间她会喜欢你.你喜欢她，她虽不喜欢你，但这都是你们两个人之间的事.不会心生无谓情绪.  &lt;/p&gt;
 &lt;p&gt;喜欢一个人，可她却有了喜欢的人，而且过的还很不错，你发现女神突然变成凡人，精神瞬间没了支柱.自卑，嫉妒，怨恨，无奈.多数人在这种局面选择忘记，一遍一遍伤着自己的心.最后直至不再喜欢.可能还是不够喜欢吧？很多人都做不了金岳霖老先生,一辈子只喜欢一个女子，而不论她嫁人与否.这就是爱吧！大多数人都承受不了其中的煎熬.我想金老先生也是凡人,他也能感受到那些情绪,但他一一承受，足件其对爱情之认真.&lt;br /&gt;
-真心喜欢一个人，就能承受她带来的所有，虽然会很难，但爱情战胜一切.&lt;/p&gt;</summary><category term="喜欢一个人"></category></entry><entry><title>html页面编码</title><link href="http://blog.junfeng.ca/htmle9a1b5e99da2e7bc96e7a081.html" rel="alternate"></link><updated>2013-03-12T17:50:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-03-12:htmle9a1b5e99da2e7bc96e7a081.html</id><summary type="html">&lt;p&gt;html貌似比较简单，但今天程序却栽在设置html字符集上了．遇到这样一个页面．head头中这样写的：  &lt;/p&gt;
+真心喜欢一个人，就能承受她带来的所有，虽然会很难，但爱情战胜一切.&lt;/p&gt;</summary><category term="喜欢一个人"></category></entry><entry><title>html页面编码</title><link href="http://junfeng-hu.github.io/htmle9a1b5e99da2e7bc96e7a081.html" rel="alternate"></link><updated>2013-03-12T17:50:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-03-12:htmle9a1b5e99da2e7bc96e7a081.html</id><summary type="html">&lt;p&gt;html貌似比较简单，但今天程序却栽在设置html字符集上了．遇到这样一个页面．head头中这样写的：  &lt;/p&gt;
 &lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/03/2013-03-12-175823_433x21_scrot.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2013/03/2013-03-12-175823_433x21_scrot-300x14.png" title="2013-03-12-175823_433x21_scrot" /&gt;&lt;/a&gt;  &lt;/p&gt;
 &lt;p&gt;本来是想把页面设置成utf-8编码的，但貌似这句meta没起作用，好像页面变成了gbk编码．我提交中文数据时，程序就因编码问题死掉了．等我注意到这上面的时候，整个程序的代码也快被我看完了．然后改成这样  &lt;/p&gt;
 &lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/03/2013-03-12-180342_670x42_scrot.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2013/03/2013-03-12-180342_670x42_scrot-300x18.png" title="2013-03-12-180342_670x42_scrot" /&gt;&lt;/a&gt;&lt;br /&gt;
 果然顺利通过．这时间浪费的真冤枉．&lt;br /&gt;
-谁能想到错误竟然是由html页面造成的，看来细微之处别有洞天啊！&lt;/p&gt;</summary><category term="encode"></category><category term="html"></category></entry><entry><title>Python２编码小结</title><link href="http://blog.junfeng.ca/pythonefbc92e7bc96e7a081e5b08fe7bb93.html" rel="alternate"></link><updated>2013-03-12T17:10:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-03-12:pythonefbc92e7bc96e7a081e5b08fe7bb93.html</id><summary type="html">&lt;p&gt;Python中的编码挺让人烦的．学习了一下，记录在此．首先查看你系统默认输入输出的编码．  &lt;/p&gt;
+谁能想到错误竟然是由html页面造成的，看来细微之处别有洞天啊！&lt;/p&gt;</summary><category term="encode"></category><category term="html"></category></entry><entry><title>Python２编码小结</title><link href="http://junfeng-hu.github.io/pythonefbc92e7bc96e7a081e5b08fe7bb93.html" rel="alternate"></link><updated>2013-03-12T17:10:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-03-12:pythonefbc92e7bc96e7a081e5b08fe7bb93.html</id><summary type="html">&lt;p&gt;Python中的编码挺让人烦的．学习了一下，记录在此．首先查看你系统默认输入输出的编码．  &lt;/p&gt;
 &lt;p&gt;&lt;code&gt;#!/usr/bin/env python #!---coding=utf-8--- import sys print 'stdin_encoding:%s' % sys.stdin.encoding print 'stdout_encoding:%s' % sys.stdout.encoding&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;OutpUt&lt;br /&gt;
 stdin_encoding:UTF-8&lt;br /&gt;
@@ -3373,23 +3373,23 @@ b=a.decode('utf-8') 将a解码，返回类型为unicode.&lt;br /&gt;
 &lt;p&gt;当str变量中只含有ascii字符时使用c.encode('gbk')顺利通过．我想c.encode()应该是先decode再encode的，而且默认是ascii来解码的．这样因为a中含有汉字，ascii也就无法解码了．  &lt;/p&gt;
 &lt;p&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; f=b.encode('gbk') &amp;gt;&amp;gt;&amp;gt; f 'xc4xe3xbaxc3' &amp;gt;&amp;gt;&amp;gt; g=f.decode('gbk') &amp;gt;&amp;gt;&amp;gt; g u'u4f60u597d' &amp;gt;&amp;gt;&amp;gt; g==b True &amp;gt;&amp;gt;&amp;gt; f.decode('utf-8') Traceback (most recent call last):   File "", line 1, in    File "/usr/lib/python2.7/encodings/utf_8.py", line 16, in decode     return codecs.utf_8_decode(input, errors, True) UnicodeDecodeError: 'utf8' codec can't decode byte 0xc4 in position 0: invalid continuation byte&lt;/code&gt;  &lt;/p&gt;
 &lt;p&gt;从上面可以看出汉字在不同的编码下，码值是不同的，所以decode时就要传入正确的编码方式，不然就会抛出像上面这样的异常．&lt;/p&gt;
-&lt;p&gt;在Python3中str取代了unicode类型，没有了decode方法．这样str类型的变量只能encode了，返回的是bytes类型．&lt;/p&gt;</summary><category term="encode"></category><category term="Python"></category></entry><entry><title>Linux和Nvidia显卡驱动</title><link href="http://blog.junfeng.ca/linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html" rel="alternate"></link><updated>2013-03-10T23:46:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-03-10:linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html</id><summary type="html">&lt;p&gt;由于lxde也用了将近一学期了，虽说lxde比较轻量，但显示效果实在不能说美观！又不想用GNOME或者KDE之流.它们会携带一大堆莫名其妙的软件，也受不了arch下GNOME那个样子，至于KDE,比GNOME好不了哪去.而xfce4也是直追GNOME.于是再次忍不住装上Enlightenment17,上次因为感觉e17CPU占用太多，删了.但这次为了显示效果，下决心把e17装了.跟着网上的教程算是把它配置的满意了.&lt;br /&gt;
+&lt;p&gt;在Python3中str取代了unicode类型，没有了decode方法．这样str类型的变量只能encode了，返回的是bytes类型．&lt;/p&gt;</summary><category term="encode"></category><category term="Python"></category></entry><entry><title>Linux和Nvidia显卡驱动</title><link href="http://junfeng-hu.github.io/linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html" rel="alternate"></link><updated>2013-03-10T23:46:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-03-10:linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html</id><summary type="html">&lt;p&gt;由于lxde也用了将近一学期了，虽说lxde比较轻量，但显示效果实在不能说美观！又不想用GNOME或者KDE之流.它们会携带一大堆莫名其妙的软件，也受不了arch下GNOME那个样子，至于KDE,比GNOME好不了哪去.而xfce4也是直追GNOME.于是再次忍不住装上Enlightenment17,上次因为感觉e17CPU占用太多，删了.但这次为了显示效果，下决心把e17装了.跟着网上的教程算是把它配置的满意了.&lt;br /&gt;
 但风扇也呼呼的转了起来,top命令下去，果然，Enlightenment
 CPU占用率百分之三十几，都是因为我的nvidia显卡没正常工作的缘故！而且貌似还在发热！你说你不工作去就算了，还拖累整个系统.BIOS中也没有关闭n卡的选项.无奈只有自食其力，上网搜解决方法.  &lt;/p&gt;
 &lt;p&gt;貌似官方源里有nvidia驱动，但无奈nvidia-utility和mesa-libgl冲突,而后者被我系统里的大部分软件依赖.也就不敢装它了.然后用了aur中的bumblebee软件,但在装nvidia-bumblebee时无法安装，看wiki中说bbswitch可以关闭独显，但我也没装成功,bbswitch-git倒是装
 成功了，却不工作！无奈我又去nvidia官网下载驱动，倒是没有依赖问题,但装好之后，X服务器又启动不了了.把由nvidia-xconfig自动生成在/etc/X11/Xorg.conf删了之后才能启动桌面环境！可能是我没配置好什么.于是狠心去装官方源中的n卡驱动，大概把我电脑里的桌面程序都给删了，装上后X还是启动不了，于是删了X,最小安装Xorg,问题依旧，查看X日志发现错误信息中有“Intel”关键字，于是明白要装xf86-video-intel
 Intel集显的开源驱动，但它依赖mesa-libgl库，于是我明白怎么回事了：这是Intel和nvidia之间的矛盾.Fuck,可却害苦了我等
-草民！&lt;/p&gt;</summary><category term="瞎折腾"></category></entry><entry><title>雪景</title><link href="http://blog.junfeng.ca/e99baae699af.html" rel="alternate"></link><updated>2013-02-19T12:44:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-02-19:e99baae699af.html</id><summary type="html">&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0053.jpg"&gt;&lt;img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0053.jpg" title="DSC_0053.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+草民！&lt;/p&gt;</summary><category term="瞎折腾"></category></entry><entry><title>雪景</title><link href="http://junfeng-hu.github.io/e99baae699af.html" rel="alternate"></link><updated>2013-02-19T12:44:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-02-19:e99baae699af.html</id><summary type="html">&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0053.jpg"&gt;&lt;img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0053.jpg" title="DSC_0053.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0052.jpg"&gt;&lt;img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0052.jpg" title="DSC_0052.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg"&gt;&lt;img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg" title="DSC_0051.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg"&gt;&lt;img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0050.jpg" title="DSC_0050.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg"&gt;&lt;img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0049.jpg" title="DSC_0049.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg"&gt;&lt;img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0048.jpg" title="DSC_0048.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg"&gt;&lt;img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0047.jpg" title="DSC_0047.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg"&gt;&lt;img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0045.jpg" title="DSC_0045.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;</summary><category term="雪景"></category></entry><entry><title>signal函数和sigaction函数</title><link href="http://blog.junfeng.ca/signale587bde695b0e5928csigactione587bde695b0.html" rel="alternate"></link><updated>2013-02-16T13:43:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-02-16:signale587bde695b0e5928csigactione587bde695b0.html</id><summary type="html">&lt;p&gt;环境:Linux version 3.6.10-1-ARCH&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg"&gt;&lt;img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0045.jpg" title="DSC_0045.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;</summary><category term="雪景"></category></entry><entry><title>signal函数和sigaction函数</title><link href="http://junfeng-hu.github.io/signale587bde695b0e5928csigactione587bde695b0.html" rel="alternate"></link><updated>2013-02-16T13:43:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-02-16:signale587bde695b0e5928csigactione587bde695b0.html</id><summary type="html">&lt;p&gt;环境:Linux version 3.6.10-1-ARCH&lt;/p&gt;
 &lt;p&gt;当使用系统自带signal函数处理信号时,系统并未把被捕捉到的信号加到信号屏蔽字中.&lt;/p&gt;
 &lt;p&gt;使用sigaction函数实现的signal函数(apue),在调用信号处理程序时,捕捉到的信号屏蔽字被加入到信号屏蔽字,处理程序返回后,恢复到原来的屏蔽字.&lt;/p&gt;
-&lt;p&gt;看来敲敲代码还是能发现一些东西的.&lt;/p&gt;</summary><category term="signal"></category></entry><entry><title>不是所有的https链接都是利民的</title><link href="http://blog.junfeng.ca/e4b88de698afe68980e69c89e79a84httpse993bee68ea5e983bde698afe588a9e6b091e79a84.html" rel="alternate"></link><updated>2013-02-02T21:23:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-02-02:e4b88de698afe68980e69c89e79a84httpse993bee68ea5e983bde698afe588a9e6b091e79a84.html</id><summary type="html">&lt;p&gt;话说git*hub又不能上了,开着代理,可以打开页面,但无法下载.&lt;/p&gt;
+&lt;p&gt;看来敲敲代码还是能发现一些东西的.&lt;/p&gt;</summary><category term="signal"></category></entry><entry><title>不是所有的https链接都是利民的</title><link href="http://junfeng-hu.github.io/e4b88de698afe68980e69c89e79a84httpse993bee68ea5e983bde698afe588a9e6b091e79a84.html" rel="alternate"></link><updated>2013-02-02T21:23:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-02-02:e4b88de698afe68980e69c89e79a84httpse993bee68ea5e983bde698afe588a9e6b091e79a84.html</id><summary type="html">&lt;p&gt;话说git*hub又不能上了,开着代理,可以打开页面,但无法下载.&lt;/p&gt;
 &lt;p&gt;git clone显示:&lt;/p&gt;
 &lt;p&gt;&lt;span style="color: #0000ff;"&gt;\$ git clone
 https://github.com/bgolub/tornado-blog.git&lt;/span&gt;&lt;br /&gt;
@@ -3405,7 +3405,7 @@ https://github.com/bgolub/tornado-blog.git/info/refs?service=git-upload-pack&lt;
 &lt;p&gt;我勒那个心情啊!让我们这些程序员情何以堪啊.&lt;/p&gt;
 &lt;p&gt;最后把那个zip文件地址复制出来去掉url前面的https://,竟然成功了.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/02/2013-02-02-210744_1366x768_scrot1.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2013/02/2013-02-02-210744_1366x768_scrot1-300x168.png" title="2013-02-02-210744_1366x768_scrot" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;看来什么都是被逼出来的.&lt;/p&gt;</summary><category term="goagent"></category><category term="https"></category></entry><entry><title>完美的goagent</title><link href="http://blog.junfeng.ca/e5ae8ce7be8ee79a84goagent.html" rel="alternate"></link><updated>2013-01-28T17:30:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2013-01-28:e5ae8ce7be8ee79a84goagent.html</id><summary type="html">&lt;p&gt;给我们这些没钱买vpn又想出去的人带来了很大的方便。&lt;/p&gt;
+&lt;p&gt;看来什么都是被逼出来的.&lt;/p&gt;</summary><category term="goagent"></category><category term="https"></category></entry><entry><title>完美的goagent</title><link href="http://junfeng-hu.github.io/e5ae8ce7be8ee79a84goagent.html" rel="alternate"></link><updated>2013-01-28T17:30:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-01-28:e5ae8ce7be8ee79a84goagent.html</id><summary type="html">&lt;p&gt;给我们这些没钱买vpn又想出去的人带来了很大的方便。&lt;/p&gt;
 &lt;p&gt;chromium 设置-&gt;高级设置-&gt; 管理证书-&gt;授权中心-&gt;导入&lt;/p&gt;
 &lt;p&gt;选择 goagent/local/CA.crt&lt;/p&gt;
 &lt;p&gt;全部打勾，确定。&lt;/p&gt;
@@ -3413,7 +3413,7 @@ https://github.com/bgolub/tornado-blog.git/info/refs?service=git-upload-pack&lt;
 &lt;p&gt;少部分要求证书的https也可以访问了。&lt;/p&gt;
 &lt;p&gt;而在Android手机上，安装GaeProxy软件，打开，修改代理地址改成
 https://yourappid.appspot.com/fetch.py&lt;/p&gt;
-&lt;p&gt;Google+,facebook,twitter什么的，都可以访问了。&lt;/p&gt;</summary><category term="goagent"></category></entry><entry><title>这个冬天有点冷</title><link href="http://blog.junfeng.ca/e8bf99e4b8aae586ace5a4a9e69c89e782b9e586b7.html" rel="alternate"></link><updated>2012-12-29T13:06:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-12-29:e8bf99e4b8aae586ace5a4a9e69c89e782b9e586b7.html</id><summary type="html">&lt;p&gt;从图书馆出来，走在路上。枯叶快速的来到脚下，又瞬间跑开了，继续它随风飘泊的生活。雷达实验室门上的锁，奋力的敲打着缚束它的铁门，它想离开注定要待一生的地方，随狂风流浪。风嗖嗖的刮着，呼吸都有点困难了。不禁感叹，这个冬天真的有点冷。&lt;/p&gt;</summary><category term="有点冷"></category></entry><entry><title>捉虫记一</title><link href="http://blog.junfeng.ca/e68d89e899abe8aea1e4b880.html" rel="alternate"></link><updated>2012-12-23T18:48:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-12-23:e68d89e899abe8aea1e4b880.html</id><summary type="html">&lt;p&gt;话说今天机考了。最后一道题没过，伤心，最小生成树我以前编过的！但今天再编的时候，却出现了bug。&lt;/p&gt;
+&lt;p&gt;Google+,facebook,twitter什么的，都可以访问了。&lt;/p&gt;</summary><category term="goagent"></category></entry><entry><title>这个冬天有点冷</title><link href="http://junfeng-hu.github.io/e8bf99e4b8aae586ace5a4a9e69c89e782b9e586b7.html" rel="alternate"></link><updated>2012-12-29T13:06:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-12-29:e8bf99e4b8aae586ace5a4a9e69c89e782b9e586b7.html</id><summary type="html">&lt;p&gt;从图书馆出来，走在路上。枯叶快速的来到脚下，又瞬间跑开了，继续它随风飘泊的生活。雷达实验室门上的锁，奋力的敲打着缚束它的铁门，它想离开注定要待一生的地方，随狂风流浪。风嗖嗖的刮着，呼吸都有点困难了。不禁感叹，这个冬天真的有点冷。&lt;/p&gt;</summary><category term="有点冷"></category></entry><entry><title>捉虫记一</title><link href="http://junfeng-hu.github.io/e68d89e899abe8aea1e4b880.html" rel="alternate"></link><updated>2012-12-23T18:48:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-12-23:e68d89e899abe8aea1e4b880.html</id><summary type="html">&lt;p&gt;话说今天机考了。最后一道题没过，伤心，最小生成树我以前编过的！但今天再编的时候，却出现了bug。&lt;/p&gt;
 &lt;p&gt;BUG1.&lt;/p&gt;
 &lt;div&gt;
 
@@ -3595,7 +3595,7 @@ for(i=1;i\&lt;G.vexnum;++i)
 
 &lt;div&gt;
 
-&lt;/div&gt;</summary><category term="BUG"></category></entry><entry><title>archlinux下android环境搭建</title><link href="http://blog.junfeng.ca/archlinuxe4b88bandroide78eafe5a283e690ade5bbba.html" rel="alternate"></link><updated>2012-12-10T22:56:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-12-10:archlinuxe4b88bandroide78eafe5a283e690ade5bbba.html</id><summary type="html">&lt;p&gt;由于系统中已有openjdk，就开始安装eclipse&lt;/p&gt;
+&lt;/div&gt;</summary><category term="BUG"></category></entry><entry><title>archlinux下android环境搭建</title><link href="http://junfeng-hu.github.io/archlinuxe4b88bandroide78eafe5a283e690ade5bbba.html" rel="alternate"></link><updated>2012-12-10T22:56:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-12-10:archlinuxe4b88bandroide78eafe5a283e690ade5bbba.html</id><summary type="html">&lt;p&gt;由于系统中已有openjdk，就开始安装eclipse&lt;/p&gt;
 &lt;p&gt;sudo pacman -S eclipse&lt;/p&gt;
 &lt;p&gt;在选择java版本时纠结了，是选择sun-java呢，还是openjava？&lt;/p&gt;
 &lt;p&gt;刚开始选择sun-java，但网速过于慢了，就又换回了openjava&lt;/p&gt;
@@ -3638,27 +3638,27 @@ Device Manager。&lt;/p&gt;
 &lt;p&gt;时间主要花在下载android-sdk和android-sdk-platform-tools上，学校源中无此软件包，只能在官网上下载，但官网已限速，而且多次出现下载完后，返回莫名错误。&lt;/p&gt;
 &lt;p&gt;用yaourt下载eclipse-android依赖包时也是花费较多时间。&lt;/p&gt;
 &lt;p&gt;参考：&lt;a href="https://wiki.archlinux.org/index.php/Android_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)"&gt;Android
-(简体中文)&lt;/a&gt;&lt;/p&gt;</summary><category term="android-sdk"></category></entry><entry><title>windows or linux ？</title><link href="http://blog.junfeng.ca/windows-or-linux.html" rel="alternate"></link><updated>2012-12-07T22:59:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-12-07:windows-or-linux.html</id><summary type="html">&lt;p&gt;linux在友好度，和普及程度上确实比不上windows。&lt;/p&gt;
+(简体中文)&lt;/a&gt;&lt;/p&gt;</summary><category term="android-sdk"></category></entry><entry><title>windows or linux ？</title><link href="http://junfeng-hu.github.io/windows-or-linux.html" rel="alternate"></link><updated>2012-12-07T22:59:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-12-07:windows-or-linux.html</id><summary type="html">&lt;p&gt;linux在友好度，和普及程度上确实比不上windows。&lt;/p&gt;
 &lt;p&gt;但现在感觉ubuntu在图形界面上做的不比windows差，&lt;/p&gt;
 &lt;p&gt;而且windows的普及很大程度上是由于人事因素。&lt;/p&gt;
 &lt;p&gt;linux的优势在网络，服务器这一块。&lt;/p&gt;
 &lt;p&gt;而且linux是开源免费的，更适合学习。&lt;/p&gt;
 &lt;p&gt;而windows是收费闭源的。&lt;/p&gt;
 &lt;p&gt;总的来说，windows更适合用户使用，linux适合系统，服务器方面的开发者使用。&lt;/p&gt;
-&lt;p&gt;不过这一切都看个人爱好，无所谓高低之分。&lt;/p&gt;</summary><category term="系统差别"></category></entry><entry><title>I like ,I don't like</title><link href="http://blog.junfeng.ca/i-like-i-dont-like.html" rel="alternate"></link><updated>2012-12-07T22:24:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-12-07:i-like-i-dont-like.html</id><summary type="html">&lt;p&gt;我喜欢有阳光的窗下，读一些不厌恶的书。&lt;/p&gt;
+&lt;p&gt;不过这一切都看个人爱好，无所谓高低之分。&lt;/p&gt;</summary><category term="系统差别"></category></entry><entry><title>I like ,I don't like</title><link href="http://junfeng-hu.github.io/i-like-i-dont-like.html" rel="alternate"></link><updated>2012-12-07T22:24:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-12-07:i-like-i-dont-like.html</id><summary type="html">&lt;p&gt;我喜欢有阳光的窗下，读一些不厌恶的书。&lt;/p&gt;
 &lt;p&gt;我喜欢平淡的心情，不因什么外物痴狂，或愤怒。&lt;/p&gt;
 &lt;p&gt;我喜欢大家都有自己真正的追求，有不同的路，每人皆有所长，皆有尊敬的地方。&lt;/p&gt;
 &lt;p&gt;我不喜欢自己沉迷于什么，不能自拔，或癫或狂。&lt;/p&gt;
 &lt;p&gt;我不喜欢统一化的价值追求，被裹挟着，身不由己。&lt;/p&gt;
 &lt;p&gt;我不喜欢追逐大家都追逐的东西，太拥挤。
 我不喜欢领导他人，也不喜欢被他人领导。&lt;/p&gt;
-&lt;p&gt;(感谢睿思版聊)&lt;/p&gt;</summary><category term="like and not like"></category></entry><entry><title>gcc无法编译cpp文件</title><link href="http://blog.junfeng.ca/gcce697a0e6b395e7bc96e8af91cppe69687e4bbb6.html" rel="alternate"></link><updated>2012-11-30T17:49:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-11-30:gcce697a0e6b395e7bc96e8af91cppe69687e4bbb6.html</id><summary type="html">&lt;p&gt;[junfeng7@junfeng7 shortestpath]\$ gcc shortestpath.cpp  &lt;/p&gt;
+&lt;p&gt;(感谢睿思版聊)&lt;/p&gt;</summary><category term="like and not like"></category></entry><entry><title>gcc无法编译cpp文件</title><link href="http://junfeng-hu.github.io/gcce697a0e6b395e7bc96e8af91cppe69687e4bbb6.html" rel="alternate"></link><updated>2012-11-30T17:49:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-11-30:gcce697a0e6b395e7bc96e8af91cppe69687e4bbb6.html</id><summary type="html">&lt;p&gt;[junfeng7@junfeng7 shortestpath]\$ gcc shortestpath.cpp  &lt;/p&gt;
 &lt;p&gt;/tmp/ccsHwAHv.o:(.eh_frame+0x13)：对‘__gxx_personality_v0’未定义的引用&lt;br /&gt;
 collect2: 错误：ld 返回 1&lt;/p&gt;
 &lt;p&gt;google之：&lt;/p&gt;
 &lt;p&gt;解决方法使用g++编译cpp文件。gcc不会帮你链接c++的运行库，但g++会。（&lt;a href="http://joanscut.blog.163.com/blog/static/2173596020072892740595/"&gt;来源&lt;/a&gt;）&lt;/p&gt;
 &lt;p&gt;但我在ubuntu环境下，我记得gcc也成功链接了。换了个环境gcc也变脾气了。&lt;/p&gt;
-&lt;p&gt;备忘&lt;/p&gt;</summary><category term="编译cpp"></category></entry><entry><title>图的最短路径</title><link href="http://blog.junfeng.ca/e59bbee79a84e69c80e79fade8b7afe5be84.html" rel="alternate"></link><updated>2012-11-24T00:56:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-11-24:e59bbee79a84e69c80e79fade8b7afe5be84.html</id><summary type="html">&lt;p&gt;迪杰斯特拉算法&lt;/p&gt;
+&lt;p&gt;备忘&lt;/p&gt;</summary><category term="编译cpp"></category></entry><entry><title>图的最短路径</title><link href="http://junfeng-hu.github.io/e59bbee79a84e69c80e79fade8b7afe5be84.html" rel="alternate"></link><updated>2012-11-24T00:56:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-11-24:e59bbee79a84e69c80e79fade8b7afe5be84.html</id><summary type="html">&lt;p&gt;迪杰斯特拉算法&lt;/p&gt;
 &lt;div&gt;
 
 -----------data.txt-----------
@@ -4298,7 +4298,7 @@ v0v3v4v2
 
 &lt;/div&gt;
 
-&lt;/div&gt;</summary><category term="图的最短路径"></category></entry><entry><title>和archlinux初接触</title><link href="http://blog.junfeng.ca/e5928carchlinuxe5889de68ea5e8a7a6.html" rel="alternate"></link><updated>2012-11-22T22:49:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-11-22:e5928carchlinuxe5889de68ea5e8a7a6.html</id><summary type="html">&lt;p&gt;我发现每隔一段时间都想装一下系统。今天在虚拟机里装了archlinux。用的是官方的livecd，确实是livecd，只是没有桌面环境而已。比较一下还是gentoo的livecd做的比较好，那叫一个漂亮，虽然它是最难装的。而arch的livecd就略显粗糙了，只有字符界面。由于是在virtualbox中装的，也就省了配置网络的步骤。直接分区，使用cgdisk把sda分成了两个区，一个做根，一个做home，格式化文件系统，挂载分区。然后设置好源，更新源。&lt;/p&gt;
+&lt;/div&gt;</summary><category term="图的最短路径"></category></entry><entry><title>和archlinux初接触</title><link href="http://junfeng-hu.github.io/e5928carchlinuxe5889de68ea5e8a7a6.html" rel="alternate"></link><updated>2012-11-22T22:49:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-11-22:e5928carchlinuxe5889de68ea5e8a7a6.html</id><summary type="html">&lt;p&gt;我发现每隔一段时间都想装一下系统。今天在虚拟机里装了archlinux。用的是官方的livecd，确实是livecd，只是没有桌面环境而已。比较一下还是gentoo的livecd做的比较好，那叫一个漂亮，虽然它是最难装的。而arch的livecd就略显粗糙了，只有字符界面。由于是在virtualbox中装的，也就省了配置网络的步骤。直接分区，使用cgdisk把sda分成了两个区，一个做根，一个做home，格式化文件系统，挂载分区。然后设置好源，更新源。&lt;/p&gt;
 &lt;p&gt;# pacstrap /mnt base base-devel ／mnt是你挂载的根分区目录。&lt;br /&gt;
 # genfstab -p /mnt &gt;&gt; /mnt/etc/fstab
 如果忘记这部，重启后文件系统会变成只读，不知道为什么。&lt;/p&gt;
@@ -4383,7 +4383,7 @@ startx 如图
 又要一段时间不折腾了。
 
 参考：arch新手指南
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="arch安装"></category></entry><entry><title>光影声色</title><link href="http://blog.junfeng.ca/e58589e5bdb1e5a3b0e889b2.html" rel="alternate"></link><updated>2012-11-18T12:43:00+08:00</updated><author><name>LittleFish</name></author><id>tag:blog.junfeng.ca,2012-11-18:e58589e5bdb1e5a3b0e889b2.html</id><summary type="html">&lt;p&gt;by Littlefish&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="arch安装"></category></entry><entry><title>光影声色</title><link href="http://junfeng-hu.github.io/e58589e5bdb1e5a3b0e889b2.html" rel="alternate"></link><updated>2012-11-18T12:43:00+08:00</updated><author><name>LittleFish</name></author><id>tag:junfeng-hu.github.io,2012-11-18:e58589e5bdb1e5a3b0e889b2.html</id><summary type="html">&lt;p&gt;by Littlefish&lt;/p&gt;
 &lt;p&gt;小小的四方院落，堆满杂物的水泥花池里是和我同岁的石榴树，它一天天老了，每年都会长出新的皱纹和疤痕，有一天当它终于忍受不住虫子年复一年的啃噬，受不了越来越不正常的天气，受不了一辈又一辈的攀爬和掠夺，当它以不在一个新的春天重新发芽的姿态来宣告自己放弃了的时候，我们会可惜地把它移出那个小方坑，补种上其他的树木，可能还会重修打理那个小花池，使它真正的娇艳美丽。这样，就好像要昭示天下：“看，这是新的。”&lt;/p&gt;
 &lt;p&gt;可是当老树不在了，我就失去了一个见证。我一直在想，和过去说再见了，就真的是再也不见了。&lt;/p&gt;
 &lt;p&gt;幼儿园，出疹子&lt;/p&gt;
@@ -4393,7 +4393,7 @@ startx 如图
 &lt;p&gt;窗口与其他&lt;/p&gt;
 &lt;p&gt;春末夏初午时悠长，我的窗前的石榴树茂密着。我的初中，黑暗与阳光并存。阳光最令人愿意回想，那是初二下学期的阳光，摆脱了初一的不堪和混乱，被贴着头皮剪短的头发也表现出可喜的样子，乖乖地学习，和一些人交朋友，学他们的沉默，也学会了安静的笑。那时的阳光不清淡也不张扬，空气是透明的，灰尘是可见的，终日裹着长长的裤子，心中将一份小小的幻想压到最低，只在将头埋在胳膊里午睡的时候才会暗暗的让自己喜欢着······那个接踵而至的多雨的暑假，重新将自己交给了书店。有阳光的日子，就在中午街道上空无一人时走在软软的柏油路上朝着那个小小的书店前进；夏雨淫淫时，打着伞走在湿漉漉的气团里却知道我没有发霉，而是在重生，积累着重生的力量，至少，至少不再是混混噩噩的孩子了，学会与大部分人交往的技巧，没有了突兀。&lt;/p&gt;
 &lt;p&gt;阳光是不能直入我的屋子，这使得我的屋子稍比外面的酷热令人舒服，刚刚适合睡午觉。可是不能睡啊！初三了，不满两个月后就要中考了，今天刚做的卷子上出错的题目还没记下，从老师那里借来的英语磁带还要再听一个练习，过会儿还要早早的去学校继续看没有看完的数学物理化学······好像好像，整个初中在初三的下学期完成了自己的第一次改变，很清楚自己想要做什么，会按部就班的心无旁骛的学习，与别人的交流更少了，更会观察了，但更漠不关心了，那是成长的初次胜利，只是那种宁静满足的感觉再也没有过了······&lt;/p&gt;
-&lt;p&gt;15岁后，流于他人相同，再无故事。时隔4年，没有成长。&lt;/p&gt;</summary><category term="成长和书"></category></entry><entry><title>图的最小生成树</title><link href="http://blog.junfeng.ca/e59bbee79a84e69c80e5b08fe7949fe68890e6a091.html" rel="alternate"></link><updated>2012-11-17T23:34:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-11-17:e59bbee79a84e69c80e5b08fe7949fe68890e6a091.html</id><summary type="html">&lt;p&gt;普里姆算法&lt;/p&gt;
+&lt;p&gt;15岁后，流于他人相同，再无故事。时隔4年，没有成长。&lt;/p&gt;</summary><category term="成长和书"></category></entry><entry><title>图的最小生成树</title><link href="http://junfeng-hu.github.io/e59bbee79a84e69c80e5b08fe7949fe68890e6a091.html" rel="alternate"></link><updated>2012-11-17T23:34:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-11-17:e59bbee79a84e69c80e5b08fe7949fe68890e6a091.html</id><summary type="html">&lt;p&gt;普里姆算法&lt;/p&gt;
 &lt;p&gt;----------data.txt-----------&lt;/p&gt;
 &lt;div&gt;
 
@@ -4956,7 +4956,7 @@ int main()
 (v2,v5)  
 weight=15
 
-&lt;/div&gt;</summary><category term="最小生成树"></category></entry><entry><title>深度优先搜索图</title><link href="http://blog.junfeng.ca/e6b7b1e5baa6e4bc98e58588e6909ce7b4a2e59bbe.html" rel="alternate"></link><updated>2012-11-16T17:36:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-11-16:e6b7b1e5baa6e4bc98e58588e6909ce7b4a2e59bbe.html</id><summary type="html">&lt;p&gt;邻接矩阵&lt;/p&gt;
+&lt;/div&gt;</summary><category term="最小生成树"></category></entry><entry><title>深度优先搜索图</title><link href="http://junfeng-hu.github.io/e6b7b1e5baa6e4bc98e58588e6909ce7b4a2e59bbe.html" rel="alternate"></link><updated>2012-11-16T17:36:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-11-16:e6b7b1e5baa6e4bc98e58588e6909ce7b4a2e59bbe.html</id><summary type="html">&lt;p&gt;邻接矩阵&lt;/p&gt;
 &lt;p&gt;------------data.txt-----------&lt;/p&gt;
 &lt;div&gt;
 
@@ -5848,7 +5848,7 @@ int main()
 
 &lt;/div&gt;
 
-&lt;/div&gt;</summary><category term="深度优先搜索"></category></entry><entry><title>专注</title><link href="http://blog.junfeng.ca/e4b893e6b3a8.html" rel="alternate"></link><updated>2012-11-10T23:51:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-11-10:e4b893e6b3a8.html</id><summary type="html">&lt;p&gt;专注，一种难能可贵的品质，在我身上正在减少。&lt;/p&gt;
+&lt;/div&gt;</summary><category term="深度优先搜索"></category></entry><entry><title>专注</title><link href="http://junfeng-hu.github.io/e4b893e6b3a8.html" rel="alternate"></link><updated>2012-11-10T23:51:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-11-10:e4b893e6b3a8.html</id><summary type="html">&lt;p&gt;专注，一种难能可贵的品质，在我身上正在减少。&lt;/p&gt;
 &lt;p&gt;这学期去自习的时间少了，似乎自己能有更多时间来学习自己喜欢的东西，但事实却不是这样的。&lt;/p&gt;
 &lt;p&gt;对着电脑，点点这个，点点那个，时间就过去了。总是被一些事情拖住，装了xfce4，又删，装了e17，再删，来来回回好几次，这时间就过去了，最后留在了gnome-classic下，把ubuntu默认的unity删了，已经不想再折腾了。&lt;/p&gt;
 &lt;p&gt;我喜欢专注的产品，坚信一种产品只做一种功能的理念。&lt;/p&gt;
@@ -5867,7 +5867,7 @@ int main()
 &lt;p&gt;电脑只是用来工作。&lt;/p&gt;
 &lt;p&gt;找回专注，make an effort for life&lt;/p&gt;
 &lt;p&gt;专注可以提高效率，可以给人满足感，可以给人以安宁，带给人快乐。&lt;/p&gt;
-&lt;p&gt;你又有多久没专注过了呢？？&lt;/p&gt;</summary><category term="lifetyle"></category></entry><entry><title>向往中的午后时光</title><link href="http://blog.junfeng.ca/e59091e5be80e4b8ade79a84e58d88e5908ee697b6e58589.html" rel="alternate"></link><updated>2012-11-03T22:36:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-11-03:e59091e5be80e4b8ade79a84e58d88e5908ee697b6e58589.html</id><summary type="html">&lt;p&gt;秋去冬来，西安的秋天如别人所说那样短暂，穿上了松松的毛衣，准备迎接冬的亲密接触。这时候更显示出了西安一天如四季的奇葩气候。而今天又加了点料：风冷光暖。犹豫再三，终于是去自习去了。来到教室，找了个靠窗的位置，冷天的阳光似乎更珍贵。而对于我这种不经常见阳光的人来说，更是如此。阳光照在身上，心情也一下子变好了。接杯热水，放在阳光下，树叶摇摆着，桌上忽明忽暗。这应该就是我想要的午后时光。近段时间，似乎一直在给自己压力，心情不是很舒畅。想要学各种知识，但却快连必修课都无法搞定了。早已明白，自己已不如去年努力了。心变得有点浮躁了。&lt;/p&gt;</summary><category term="风冷光暖"></category></entry><entry><title>ubuntu 使用mentohust连接校园网</title><link href="http://blog.junfeng.ca/ubuntu-e4bdbfe794a8mentohuste8bf9ee68ea5e6a0a1e59bade7bd91.html" rel="alternate"></link><updated>2012-10-31T18:52:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-10-31:ubuntu-e4bdbfe794a8mentohuste8bf9ee68ea5e6a0a1e59bade7bd91.html</id><summary type="html">&lt;p&gt;环境：XDU+Y470+分到静态IP&lt;/p&gt;
+&lt;p&gt;你又有多久没专注过了呢？？&lt;/p&gt;</summary><category term="lifetyle"></category></entry><entry><title>向往中的午后时光</title><link href="http://junfeng-hu.github.io/e59091e5be80e4b8ade79a84e58d88e5908ee697b6e58589.html" rel="alternate"></link><updated>2012-11-03T22:36:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-11-03:e59091e5be80e4b8ade79a84e58d88e5908ee697b6e58589.html</id><summary type="html">&lt;p&gt;秋去冬来，西安的秋天如别人所说那样短暂，穿上了松松的毛衣，准备迎接冬的亲密接触。这时候更显示出了西安一天如四季的奇葩气候。而今天又加了点料：风冷光暖。犹豫再三，终于是去自习去了。来到教室，找了个靠窗的位置，冷天的阳光似乎更珍贵。而对于我这种不经常见阳光的人来说，更是如此。阳光照在身上，心情也一下子变好了。接杯热水，放在阳光下，树叶摇摆着，桌上忽明忽暗。这应该就是我想要的午后时光。近段时间，似乎一直在给自己压力，心情不是很舒畅。想要学各种知识，但却快连必修课都无法搞定了。早已明白，自己已不如去年努力了。心变得有点浮躁了。&lt;/p&gt;</summary><category term="风冷光暖"></category></entry><entry><title>ubuntu 使用mentohust连接校园网</title><link href="http://junfeng-hu.github.io/ubuntu-e4bdbfe794a8mentohuste8bf9ee68ea5e6a0a1e59bade7bd91.html" rel="alternate"></link><updated>2012-10-31T18:52:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-10-31:ubuntu-e4bdbfe794a8mentohuste8bf9ee68ea5e6a0a1e59bade7bd91.html</id><summary type="html">&lt;p&gt;环境：XDU+Y470+分到静态IP&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;题外话&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;突然间收到了静态IP，windows已无法联网，只好立即装linux，先装的DebianAMD64，启动时出现花屏，以为是版本的问题，重装成i386，依旧花屏，使用mentohust，成功联网，但显卡驱动没装好，显示影响基本浏览，然后nvidia官网下载闭源驱动，总是提示gcc版本不匹配，装成它要求的版本还是不成功。无奈换成ubuntuAMD64，显示正常，也连上了网，但重启后，又是无法联网。于是再换DebianAMD64，依旧花屏，且汉字显示为块状，......又换回ubuntu。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;正文&lt;/strong&gt;&lt;/p&gt;
@@ -5899,7 +5899,7 @@ int main()
 &lt;p&gt;发送心跳包以保持在线...&lt;/p&gt;
 &lt;p&gt;欢迎来到linux世界。&lt;/p&gt;
 &lt;p&gt;参考资料：&lt;a href="http://xdlinux.info/wiki/index.php/Linux%E8%BF%9E%E6%8E%A5%E6%A0%A1%E5%9B%AD%E7%BD%91"&gt;linux连接校园网&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;附件：&lt;a href="http://pan.baidu.com/share/link?shareid=114284&amp;amp;uk=2887257007"&gt;mentohust.tar.gz&lt;/a&gt;&lt;/p&gt;</summary><category term="mentohust"></category><category term="ubuntu"></category></entry><entry><title>python创建子进程</title><link href="http://blog.junfeng.ca/pythone5889be5bbbae5ad90e8bf9be7a88b.html" rel="alternate"></link><updated>2012-10-24T19:50:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-10-24:pythone5889be5bbbae5ad90e8bf9be7a88b.html</id><summary type="html">&lt;p&gt;在使用python的subprocess.Popen()创建的子进程死循环时，当设置shell=True时，使用subprocess.popen().kill()无法杀死子进程，然后换成&lt;/p&gt;
+&lt;p&gt;附件：&lt;a href="http://pan.baidu.com/share/link?shareid=114284&amp;amp;uk=2887257007"&gt;mentohust.tar.gz&lt;/a&gt;&lt;/p&gt;</summary><category term="mentohust"></category><category term="ubuntu"></category></entry><entry><title>python创建子进程</title><link href="http://junfeng-hu.github.io/pythone5889be5bbbae5ad90e8bf9be7a88b.html" rel="alternate"></link><updated>2012-10-24T19:50:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-10-24:pythone5889be5bbbae5ad90e8bf9be7a88b.html</id><summary type="html">&lt;p&gt;在使用python的subprocess.Popen()创建的子进程死循环时，当设置shell=True时，使用subprocess.popen().kill()无法杀死子进程，然后换成&lt;/p&gt;
 &lt;p&gt;os.kill(proc.pid,
 signal.SIGKILL),同样无法杀死，郁闷纠结之。在kill()后加上wait(),防止僵尸进程，同样无法结束。看来不是加不加wait()的事情。于是加了一条print
 "PID:%d" %
@@ -5933,21 +5933,21 @@ style="color: #000000;"&gt;“需要注意的是，如果你的shell参数设置
 &lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2012/10/Screenshot-from-2012-10-24-195604.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2012/10/Screenshot-from-2012-10-24-195604-300x215.png" title="Screenshot from 2012-10-24 19:56:04" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;helloworld.c测试代码：&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2012/10/Screenshot-from-2012-10-24-195532.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2012/10/Screenshot-from-2012-10-24-195532-300x122.png" title="Screenshot from 2012-10-24 19:55:32" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;主要是因为自己看文档不够细心，同时早就应该尝试把shell=True去掉的。也不至于浪费那么长时间。&lt;/p&gt;</summary><category term="subprocess"></category></entry><entry><title>linux下成功着陆facebook</title><link href="http://blog.junfeng.ca/linux-e4b88b-e68890e58a9fe79d80e99986facebook.html" rel="alternate"></link><updated>2012-10-24T15:49:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-10-24:linux-e4b88b-e68890e58a9fe79d80e99986facebook.html</id><summary type="html">&lt;p&gt;许久不发日志，今天想发日志来着，发现我进不了我的网站了。生在和谐社会，无奈只好配置一下goagent。因为已换linux，虽然那个插件被google同步过来了，但程序还是要下载滴。简单配置一下，成功着陆facebook。貌似goagent那个软件包还是linux和windows下都可以用啊！看着那些exe文件挺怪异的。&lt;/p&gt;</summary><category term="goagent"></category></entry><entry><title>一周心情（一）</title><link href="http://blog.junfeng.ca/e4b880e591a8e5bf83e68385efbc88e4b880efbc89.html" rel="alternate"></link><updated>2012-10-06T00:49:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-10-06:e4b880e591a8e5bf83e68385efbc88e4b880efbc89.html</id><summary type="html">&lt;ul&gt;
+&lt;p&gt;主要是因为自己看文档不够细心，同时早就应该尝试把shell=True去掉的。也不至于浪费那么长时间。&lt;/p&gt;</summary><category term="subprocess"></category></entry><entry><title>linux下成功着陆facebook</title><link href="http://junfeng-hu.github.io/linux-e4b88b-e68890e58a9fe79d80e99986facebook.html" rel="alternate"></link><updated>2012-10-24T15:49:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-10-24:linux-e4b88b-e68890e58a9fe79d80e99986facebook.html</id><summary type="html">&lt;p&gt;许久不发日志，今天想发日志来着，发现我进不了我的网站了。生在和谐社会，无奈只好配置一下goagent。因为已换linux，虽然那个插件被google同步过来了，但程序还是要下载滴。简单配置一下，成功着陆facebook。貌似goagent那个软件包还是linux和windows下都可以用啊！看着那些exe文件挺怪异的。&lt;/p&gt;</summary><category term="goagent"></category></entry><entry><title>一周心情（一）</title><link href="http://junfeng-hu.github.io/e4b880e591a8e5bf83e68385efbc88e4b880efbc89.html" rel="alternate"></link><updated>2012-10-06T00:49:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-10-06:e4b880e591a8e5bf83e68385efbc88e4b880efbc89.html</id><summary type="html">&lt;ul&gt;
 &lt;li&gt;一年前的这个时候我们还是新人，然后我们就老了！&lt;/li&gt;
 &lt;li&gt;想学各种技术，还想一下子学完、学会，但我不是天才。有点累&lt;/li&gt;
 &lt;li&gt;生活中不应该只有代码，还要有音乐、电影、动漫、摄影。貌似这短时间把这些忽略了。&lt;/li&gt;
 &lt;li&gt;苦逼的程序猿，敲代码敲了一天。&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="急功近利了"></category></entry><entry><title>熟悉的界面回来了</title><link href="http://blog.junfeng.ca/e7869fe68289e79a84e7958ce99da2e59b9ee69da5e4ba86.html" rel="alternate"></link><updated>2012-10-04T01:59:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-10-04:e7869fe68289e79a84e7958ce99da2e59b9ee69da5e4ba86.html</id><summary type="html">&lt;p&gt;在这将近两点的时刻，我终于把wordpress完整的召唤回来了！&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="急功近利了"></category></entry><entry><title>熟悉的界面回来了</title><link href="http://junfeng-hu.github.io/e7869fe68289e79a84e7958ce99da2e59b9ee69da5e4ba86.html" rel="alternate"></link><updated>2012-10-04T01:59:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-10-04:e7869fe68289e79a84e7958ce99da2e59b9ee69da5e4ba86.html</id><summary type="html">&lt;p&gt;在这将近两点的时刻，我终于把wordpress完整的召唤回来了！&lt;/p&gt;
 &lt;p&gt;我不该删服务器上的wordpress文件的，虽然我备份了，但却还原不了！&lt;/p&gt;
 &lt;p&gt;之所以没成功，可能是我挂代理太频繁了，然后往服务器上上传不了文件，也没法重新安装！&lt;/p&gt;
 &lt;p&gt;Cpanel自带的备份还原真心不好用，可能是我不会用。&lt;/p&gt;
 &lt;p&gt;本来是想换成python后台脚本的，可是貌似服务器不支持python-django架设。&lt;/p&gt;
-&lt;p&gt;而且我太鲁莽了！应该再测试一下的！&lt;/p&gt;</summary><category term="写后台"></category></entry><entry><title>Python安装MySQLdb</title><link href="http://blog.junfeng.ca/pythone5ae89e8a385mysqldb.html" rel="alternate"></link><updated>2012-09-28T00:02:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-09-28:pythone5ae89e8a385mysqldb.html</id><summary type="html">&lt;p&gt;本来装的Python2.7.3，后来因为一些原因换成了2.5.2，而在今天装MySQLdb的时候出问题了。在该&lt;a href="http://www.djangoproject.com/r/python-mysql/"&gt;http://www.djangoproject.com/r/python-mysql/&lt;/a&gt;下下载MySQLdbWindows安装包，装完之后，在Python环境下import
+&lt;p&gt;而且我太鲁莽了！应该再测试一下的！&lt;/p&gt;</summary><category term="写后台"></category></entry><entry><title>Python安装MySQLdb</title><link href="http://junfeng-hu.github.io/pythone5ae89e8a385mysqldb.html" rel="alternate"></link><updated>2012-09-28T00:02:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-28:pythone5ae89e8a385mysqldb.html</id><summary type="html">&lt;p&gt;本来装的Python2.7.3，后来因为一些原因换成了2.5.2，而在今天装MySQLdb的时候出问题了。在该&lt;a href="http://www.djangoproject.com/r/python-mysql/"&gt;http://www.djangoproject.com/r/python-mysql/&lt;/a&gt;下下载MySQLdbWindows安装包，装完之后，在Python环境下import
  MySQLdb&lt;/p&gt;
 &lt;p&gt;出错。然后上网搜，各种教程。都没解决，抱着试一下的态度，重新装了Python2.7.3，再重装MySQLdb，装的时候，识别出Python2.7，就明白弄对了。cmd-&gt;python
 import MySQLdb 无异常抛出，成功。&lt;/p&gt;
-&lt;p&gt;看来有时更新版本是必须的，这样能节省很多麻烦。但MySQLdb竟然不能识别低版本的Python解释器，这有何尝不是一个小bug呢！&lt;/p&gt;</summary><category term="MySQLdb安装"></category></entry><entry><title>Django Template</title><link href="http://blog.junfeng.ca/django-template.html" rel="alternate"></link><updated>2012-09-27T18:48:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-09-27:django-template.html</id><summary type="html">&lt;p&gt;跟着《The_Django_Book》敲代码，在第四章创建模版对象的时候遇到了问题，我按着书上的代码，敲了一遍又一遍，还是出错&lt;/p&gt;
+&lt;p&gt;看来有时更新版本是必须的，这样能节省很多麻烦。但MySQLdb竟然不能识别低版本的Python解释器，这有何尝不是一个小bug呢！&lt;/p&gt;</summary><category term="MySQLdb安装"></category></entry><entry><title>Django Template</title><link href="http://junfeng-hu.github.io/django-template.html" rel="alternate"></link><updated>2012-09-27T18:48:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-27:django-template.html</id><summary type="html">&lt;p&gt;跟着《The_Django_Book》敲代码，在第四章创建模版对象的时候遇到了问题，我按着书上的代码，敲了一遍又一遍，还是出错&lt;/p&gt;
 &lt;p&gt;RT：&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/template1.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/template1-300x184.jpg" title="template1" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;出错信息提示环境变量未设置，然后赶紧把/site-packages/django加入环境变量，再运行，还是不对，但我记得昨天明明成功了，遂上网百度，然后了解到昨天我是从我建立的那个项目进入的，于是试验之，&lt;/p&gt;
@@ -5955,11 +5955,11 @@ import MySQLdb 无异常抛出，成功。&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/template2.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/template2-300x168.jpg" title="template2" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;从manage.py 进入python的交互式界面，mysite/settings.py
 会导入好所需程序的环境变量。然后python就不会抛出异常了&lt;/p&gt;
-&lt;p&gt;哎！引以为鉴&lt;/p&gt;</summary><category term="Django_Template"></category></entry><entry><title>python server.py</title><link href="http://blog.junfeng.ca/python-server-py.html" rel="alternate"></link><updated>2012-09-21T23:25:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-09-21:python-server-py.html</id><summary type="html">&lt;p&gt;server.py源代码：&lt;/p&gt;
+&lt;p&gt;哎！引以为鉴&lt;/p&gt;</summary><category term="Django_Template"></category></entry><entry><title>python server.py</title><link href="http://junfeng-hu.github.io/python-server-py.html" rel="alternate"></link><updated>2012-09-21T23:25:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-21:python-server-py.html</id><summary type="html">&lt;p&gt;server.py源代码：&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/serverpy.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/serverpy-300x166.jpg" title="serverpy" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;运行结果：&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/telnetpy.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/telnetpy.jpg" title="telnetpy" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;通过服务器实现和本机交互！&lt;/p&gt;</summary><category term="python server"></category></entry><entry><title>Debian下安装Google Chrome</title><link href="http://blog.junfeng.ca/debiane4b88be5ae89e8a385google-chrome.html" rel="alternate"></link><updated>2012-09-21T20:52:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-09-21:debiane4b88be5ae89e8a385google-chrome.html</id><summary type="html">&lt;p&gt;今天突然发现了一个小问题，wmaker下竟然没有一个可用的浏览器！自带的w3m实在过于奇葩，于是就在软件源里找可用的浏览器，可软件源今天也出问题了！不知怎么的竟然发现了我们学校的源没有公共许可密钥。于是开始自救。网上说在任意文件下新建个名为“key0x07DC563D1F41B907.asc”的文件。我建在home/下，键入命令：nano
+&lt;p&gt;通过服务器实现和本机交互！&lt;/p&gt;</summary><category term="python server"></category></entry><entry><title>Debian下安装Google Chrome</title><link href="http://junfeng-hu.github.io/debiane4b88be5ae89e8a385google-chrome.html" rel="alternate"></link><updated>2012-09-21T20:52:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-21:debiane4b88be5ae89e8a385google-chrome.html</id><summary type="html">&lt;p&gt;今天突然发现了一个小问题，wmaker下竟然没有一个可用的浏览器！自带的w3m实在过于奇葩，于是就在软件源里找可用的浏览器，可软件源今天也出问题了！不知怎么的竟然发现了我们学校的源没有公共许可密钥。于是开始自救。网上说在任意文件下新建个名为“key0x07DC563D1F41B907.asc”的文件。我建在home/下，键入命令：nano
 key0x07DC563D1F41B907.asc&lt;/p&gt;
 &lt;p&gt;输入以下内容：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -6015,7 +6015,7 @@ add -&lt;/p&gt;
 &lt;p&gt;不稳定版：apt-get install google-chrome-unstable&lt;/p&gt;
 &lt;p&gt;不过貌似装下来比较大需要100多M的硬盘空间，这对爱惜内存、磁盘空间的linux用户可不算好。&lt;/p&gt;
 &lt;p&gt;最后秀一下自己的劳动成果&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/igc.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/igc-300x230.jpg" title="igc" /&gt;&lt;/a&gt;&lt;/p&gt;</summary><category term="Debian装google chrome"></category></entry><entry><title>Linux菜鸟瞎折腾</title><link href="http://blog.junfeng.ca/linuxe88f9ce9b89fe79e8ee68a98e885be.html" rel="alternate"></link><updated>2012-09-20T23:37:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-09-20:linuxe88f9ce9b89fe79e8ee68a98e885be.html</id><summary type="html">&lt;p&gt;昨天在命令行下输入了aptitude
+&lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/igc.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/igc-300x230.jpg" title="igc" /&gt;&lt;/a&gt;&lt;/p&gt;</summary><category term="Debian装google chrome"></category></entry><entry><title>Linux菜鸟瞎折腾</title><link href="http://junfeng-hu.github.io/linuxe88f9ce9b89fe79e8ee68a98e885be.html" rel="alternate"></link><updated>2012-09-20T23:37:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-20:linuxe88f9ce9b89fe79e8ee68a98e885be.html</id><summary type="html">&lt;p&gt;昨天在命令行下输入了aptitude
 upgrade命令之后不知怎么的，linux内核竟然升级了，升级也挺好的，可关键是旧的版本也还存在。这样在开机时就出现了这种情况：&lt;br /&gt;
 RT  &lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/buhuo1.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/buhuo1.jpg" title="buhuo1" /&gt;&lt;/a&gt;&lt;/p&gt;
@@ -6053,7 +6053,7 @@ install gnome，然后就装好了！弄了一下午啊&lt;/p&gt;
 upgrade！不知道会出现什么东东！&lt;/p&gt;
 &lt;p&gt;一定要养成做备份的习惯，关键时候会让你省很多力气的，&lt;/p&gt;
 &lt;p&gt;不然有你哭的！&lt;/p&gt;
-&lt;p&gt;当然“远离电脑，珍爱生命，没事不要瞎折腾！”是最好的了！！&lt;/p&gt;</summary><category term="Debian安装"></category></entry><entry><title>python-tornado起步</title><link href="http://blog.junfeng.ca/python-tornadoe8b5b7e6ada5.html" rel="alternate"></link><updated>2012-09-19T00:01:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-09-19:python-tornadoe8b5b7e6ada5.html</id><summary type="html">&lt;p&gt;今天终于在linux、windows下把python tornado web server 搭建好了&lt;/p&gt;
+&lt;p&gt;当然“远离电脑，珍爱生命，没事不要瞎折腾！”是最好的了！！&lt;/p&gt;</summary><category term="Debian安装"></category></entry><entry><title>python-tornado起步</title><link href="http://junfeng-hu.github.io/python-tornadoe8b5b7e6ada5.html" rel="alternate"></link><updated>2012-09-19T00:01:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-19:python-tornadoe8b5b7e6ada5.html</id><summary type="html">&lt;p&gt;今天终于在linux、windows下把python tornado web server 搭建好了&lt;/p&gt;
 &lt;p&gt;但在linux下编这个程序的时候发现通过不了（windows下可以通过）&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tornado.ioloop&lt;/span&gt;
@@ -6088,16 +6088,16 @@ tornado.ioloop.IOLoop.instance().start()&lt;/code&gt;&lt;/p&gt;
 可能还是linux下的tornado没装好！！
 
 明天再研究！！
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="python-tornado"></category></entry><entry><title>选课记</title><link href="http://blog.junfeng.ca/e98089e8afbee8aeb0.html" rel="alternate"></link><updated>2012-09-16T00:27:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-09-16:e98089e8afbee8aeb0.html</id><summary type="html">&lt;p&gt;大一时，导员跟我们说：“军训完之后，你们才是真正的大学生。”我要说：“你不经历过大学的选课，怎么好意思说自己是Big
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="python-tornado"></category></entry><entry><title>选课记</title><link href="http://junfeng-hu.github.io/e98089e8afbee8aeb0.html" rel="alternate"></link><updated>2012-09-16T00:27:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-16:e98089e8afbee8aeb0.html</id><summary type="html">&lt;p&gt;大一时，导员跟我们说：“军训完之后，你们才是真正的大学生。”我要说：“你不经历过大学的选课，怎么好意思说自己是Big
 Student！”&lt;/p&gt;
 &lt;p&gt;在我们学校，最近流行一句新的问候语:“你今天选课了吗？选上了吗？”那个人就会无精打采的给你说：“通宵刷教务处的网站，却连学习主页都没进去。”而时下最能证明你RP高的就是选上课了！&lt;/p&gt;
 &lt;p&gt;本人是个不喜欢熬夜做什么的！所以，见教务处刷不进去，也就顺其自然了！学长说，可以直接去找老师，我们也就决定去找老师了。可是，在星期二的时候，当我回到宿舍，听舍友们说，老师可以帮你登记，但教务处那里不一定认可。听到这句话后，他们不淡定了，决定：十点睡觉，半夜两三点起来刷选课。他们睡这么早在这之前我还没看到过，感到一丝惊讶，可我却不想半夜爬起来，有什么能比得上睡觉重要呢！我还是11点半睡觉，不打算半夜起来......&lt;/p&gt;
 &lt;p&gt;然后，在五点多我醒了，本来他们约定要一起，两点多起来的。可结果：闹钟没叫响设置闹钟的人，只叫醒了一个人。我们的胖胖，他一直从两点多开始刷到五点多，终于是选上了。然后他把我们就都叫醒了。我也决定下去试一下。打开电脑，登录教务处，登入，选一门课，再选一门课，一次完成，中间没有出现什么加载失败、页面过期啊！而他们两个，比我起来得早，却没选上！上帝在和我们开玩笑。只能说，我比较幸运，RP高。当然，第二天白天不爽了一天，不过选上课了，也完成了一件事，还可以。&lt;/p&gt;
 &lt;p&gt;星期三晚上，他们俩发誓要选上课。然后开始准备各种利器，浏览器换成google，去其他网速比较好的宿舍选。还真的刷了一夜，但悲剧的是，舍友还是没选上。这又让我感觉自己的RP不是一般的高啊！&lt;/p&gt;
 &lt;p&gt;最后，看这么多人选不上课，教务处终于优化了他们的服务器！以前，每个人为了选上课，一次开7、8个窗口。这样本来就有五六千人，再乘以7，就更难登上了，大家都抢着要选上课，可是这样谁也选不上。而教务处禁了这种方式，这样相对，服务器负载就不会那么大了，终于今天，舍友们差不多都选上了！&lt;/p&gt;
-&lt;p&gt;为选课熬过夜，这才能说是真正的校内人！！！！&lt;/p&gt;</summary><category term="选课"></category></entry><entry><title>短板之音乐</title><link href="http://blog.junfeng.ca/e79fade69dbfe4b98be99fb3e4b990.html" rel="alternate"></link><updated>2012-09-12T13:08:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-09-12:e79fade69dbfe4b98be99fb3e4b990.html</id><summary type="html">&lt;p&gt;前几天，伟大的选课开始了。同学们使出各种招数，有通宵熬夜的，有逃课去选课的，却仍没选上。然后，我们学校的服务器就挂了！在学长们的指导下，我毅然决然的直接找老师了。&lt;/p&gt;
+&lt;p&gt;为选课熬过夜，这才能说是真正的校内人！！！！&lt;/p&gt;</summary><category term="选课"></category></entry><entry><title>短板之音乐</title><link href="http://junfeng-hu.github.io/e79fade69dbfe4b98be99fb3e4b990.html" rel="alternate"></link><updated>2012-09-12T13:08:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-12:e79fade69dbfe4b98be99fb3e4b990.html</id><summary type="html">&lt;p&gt;前几天，伟大的选课开始了。同学们使出各种招数，有通宵熬夜的，有逃课去选课的，却仍没选上。然后，我们学校的服务器就挂了！在学长们的指导下，我毅然决然的直接找老师了。&lt;/p&gt;
 &lt;p&gt;本着想多学一点东西的原则，选择了电脑音乐制作这门课。去听的时候，这已经是第三节课了，原来一开学课就开始了。“不过没关系，前面没讲什么重要的。”老师说。他就开始讲什么音符、音程、什么八度啊！让我感觉犹如听天书。好久没这种感觉了。我发现在乐理、五线谱、简谱这些方面真的是一窍不通。隔行如隔山啊，教室里应该有一百多人，像我这样的人还不少，也是工科学生的普遍现象。虽说也听一些歌，但完全不懂什么音调，节奏。&lt;/p&gt;
-&lt;p&gt;一大短板啊！看来我选择这门课，还真是选对了，至少应该可以学一些基本的乐理知识！&lt;/p&gt;</summary><category term="短板音乐"></category></entry><entry><title>裸考数学竞赛</title><link href="http://blog.junfeng.ca/e8a3b8e88083e695b0e5ada6e7ab9ee8b59b.html" rel="alternate"></link><updated>2012-09-08T23:29:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-09-08:e8a3b8e88083e695b0e5ada6e7ab9ee8b59b.html</id><summary type="html">&lt;div&gt;
+&lt;p&gt;一大短板啊！看来我选择这门课，还真是选对了，至少应该可以学一些基本的乐理知识！&lt;/p&gt;</summary><category term="短板音乐"></category></entry><entry><title>裸考数学竞赛</title><link href="http://junfeng-hu.github.io/e8a3b8e88083e695b0e5ada6e7ab9ee8b59b.html" rel="alternate"></link><updated>2012-09-08T23:29:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-08:e8a3b8e88083e695b0e5ada6e7ab9ee8b59b.html</id><summary type="html">&lt;div&gt;
 
        
 上学期不知哪根筋不对了，报了数学竞赛，花了25元报名费，暑假前也得到了一本历年数学竞赛试题。暑假前，计划着每天做一些，应该可以做完。在暑假里，却没心情做，也不太会做，总是觉得剩下的时间还很多。于是到了最后几天，发现一点也没做，慌了，心理安慰自己，竞赛不是在9月吗，还有时间。于是，一个暑假没做什么事情，放假前计划的是多么的好啊，要看这个，要学那个。可是到了暑假，身在其中，就不知道时间的珍贵了。总是以为时间还有很多，把事情一直往后推，最后没时间做了，就破罐子破摔，反正你就是摔了自己，在大学也没人管你。于是乎，明白：上学时不宜计划放假中的事情。
@@ -6123,7 +6123,7 @@ Student！”&lt;/p&gt;
 
            走出教室，我这样安慰自己：重在参与！
 
-&lt;/div&gt;</summary><category term="裸考"></category></entry><entry><title>装Win PE的坎坷历程</title><link href="http://blog.junfeng.ca/e8a385win-pee79a84e59d8ee59db7e58e86e7a88b.html" rel="alternate"></link><updated>2012-09-01T23:48:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-09-01:e8a385win-pee79a84e59d8ee59db7e58e86e7a88b.html</id><summary type="html">&lt;div&gt;
+&lt;/div&gt;</summary><category term="裸考"></category></entry><entry><title>装Win PE的坎坷历程</title><link href="http://junfeng-hu.github.io/e8a385win-pee79a84e59d8ee59db7e58e86e7a88b.html" rel="alternate"></link><updated>2012-09-01T23:48:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-01:e8a385win-pee79a84e59d8ee59db7e58e86e7a88b.html</id><summary type="html">&lt;div&gt;
 
 买了移动硬盘之后，慌着把数据转存过去。前几天，突然间想给硬盘装个U盘启动工具，我也知道装这个要格式化硬盘，可是硬盘上已经有了500多G的数据，实在不想再移出去，遂上网搜索如何在不格式化硬盘的前提下，装上Win
 PE，网上说在移动硬盘下扩展一个新的分区就可以装了，我赶紧这样弄了，下了大白菜U盘启动制作工具，照例要格式化，我以为格式化的只是那个分区，下面就是一般步骤了，等我装完之后，模拟启动一下，没出现那个界面，然后重启电脑准备检测一下，在启动的过程中，电脑报警了几下，就自动关机了，这时已经很晚了，我也就睡觉了。
@@ -6158,7 +6158,7 @@ PE下U盘、移动硬盘都只是普通的存盘而已，当然可以把它格�
        经过这次意外，让我知道：买硬盘后一定要先装Win
 PE。数据恢复工具是浮云。没事不要瞎折腾。呵呵
 
-&lt;/div&gt;</summary><category term="U盘启动"></category></entry><entry><title>路上的路</title><link href="http://blog.junfeng.ca/e8b7afe4b88ae79a84e8b7af.html" rel="alternate"></link><updated>2012-08-24T23:04:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-08-24:e8b7afe4b88ae79a84e8b7af.html</id><summary type="html">&lt;div&gt;
+&lt;/div&gt;</summary><category term="U盘启动"></category></entry><entry><title>路上的路</title><link href="http://junfeng-hu.github.io/e8b7afe4b88ae79a84e8b7af.html" rel="alternate"></link><updated>2012-08-24T23:04:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-08-24:e8b7afe4b88ae79a84e8b7af.html</id><summary type="html">&lt;div&gt;
 
        
 鲁迅曾说过：世界上本没有路，走的人多了，也就成了路。但世界上如此多人，走出了那么多的路，我到底应该走哪条？一年前，我就这样纠结着。美国诗人弗罗斯特在两条路之间选择了芳草萋萋，十分幽寂的路。他认为这条路显得更诱人，更美丽。但我却不是诗人，没有他的勇气，仅仅选择了一条，看似极其普通的路，并且就算我想走人少的路，中国的路很多，可是由于人口众多，我发现我想到的每条路都有很多人走过了！还为自己如此普通而郁闷过。
@@ -6203,7 +6203,7 @@ PE。数据恢复工具是浮云。没事不要瞎折腾。呵呵
 
 &lt;/div&gt;
 
-&lt;/div&gt;</summary><category term="大一总结"></category></entry><entry><title>微博们的同步</title><link href="http://blog.junfeng.ca/109.html" rel="alternate"></link><updated>2012-08-22T21:56:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-08-22:109.html</id><summary type="html">&lt;p&gt;楼主偏爱新浪微博，可是我的好友大都在QQ空间、腾讯微博，本来是想推广自己的新浪微博的，无奈一月下来，也没接几个人过来，在新浪微博有点寂寞，于是决定重新打理QQ空间，腾讯微博，但我又不想相同的内容同时发几遍（比较懒）。再看，各大权贵网站的微博却不互联，没什么合作，但天无绝人之路，终于找到了提供微博之间同步服务的网站，看来和我有相同需求的人还不少。&lt;/p&gt;
+&lt;/div&gt;</summary><category term="大一总结"></category></entry><entry><title>微博们的同步</title><link href="http://junfeng-hu.github.io/109.html" rel="alternate"></link><updated>2012-08-22T21:56:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-08-22:109.html</id><summary type="html">&lt;p&gt;楼主偏爱新浪微博，可是我的好友大都在QQ空间、腾讯微博，本来是想推广自己的新浪微博的，无奈一月下来，也没接几个人过来，在新浪微博有点寂寞，于是决定重新打理QQ空间，腾讯微博，但我又不想相同的内容同时发几遍（比较懒）。再看，各大权贵网站的微博却不互联，没什么合作，但天无绝人之路，终于找到了提供微博之间同步服务的网站，看来和我有相同需求的人还不少。&lt;/p&gt;
 &lt;p&gt;我在网上找到了几个这样的网站，在此说一下：&lt;/p&gt;
 &lt;p&gt;&lt;span
 style="color: #000000; position: relative; left: -2em;"&gt;微博通（原名亨拍微博通，不知怎么改名了），网址：&lt;a href="http://www.wbto.cn/"&gt;&lt;span
@@ -6216,7 +6216,7 @@ style="color: #000000;"&gt;http://www.wbto.cn&lt;/span&gt;&lt;/a&gt;&lt;strong&g
 &lt;/ul&gt;
 &lt;p&gt;&lt;span
 style="color: #000000; position: relative; ; left: -2em;"&gt;其他还有诸如&lt;/span&gt;：  &lt;/p&gt;
-&lt;p&gt;另一个也叫微博通的网站（界面不是很漂亮，比较简洁），玛莎网（名字起得很好，功能和亨拍微博通也差不多，但不支持QQ空间的同步），这些算是比较出名的。提供微博同步的还有很多网站，找到你感觉顺眼、顺手的就可以了！&lt;/p&gt;</summary><category term="微博同步"></category></entry><entry><title>校园风光</title><link href="http://blog.junfeng.ca/e6a0a1e59bade9a38ee58589.html" rel="alternate"></link><updated>2012-08-18T15:56:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-08-18:e6a0a1e59bade9a38ee58589.html</id><summary type="html">&lt;p&gt;一学期下来，也拍了不少照片，特选几张来和大家分享！&lt;/p&gt;
+&lt;p&gt;另一个也叫微博通的网站（界面不是很漂亮，比较简洁），玛莎网（名字起得很好，功能和亨拍微博通也差不多，但不支持QQ空间的同步），这些算是比较出名的。提供微博同步的还有很多网站，找到你感觉顺眼、顺手的就可以了！&lt;/p&gt;</summary><category term="微博同步"></category></entry><entry><title>校园风光</title><link href="http://junfeng-hu.github.io/e6a0a1e59bade9a38ee58589.html" rel="alternate"></link><updated>2012-08-18T15:56:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-08-18:e6a0a1e59bade9a38ee58589.html</id><summary type="html">&lt;p&gt;一学期下来，也拍了不少照片，特选几张来和大家分享！&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/75/b2/e3/227509d8bf24efefee730c38ed3faa7e.jpg" title="世园会吉祥物" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span
 style="text-align: center; color: #ff9900;"&gt;萌到自然呆的世园会吉祥物&lt;/span&gt;&lt;/p&gt;
@@ -6247,7 +6247,7 @@ style="color: #ff9900;"&gt;刚开始以为是亚洲最长的教学楼，一百�
 &lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/16/0b/30/149fa65eea1dbd9299faef7fb0153d96.jpg" title="篮球场上" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span style="color: #ff9900;"&gt;惬意，充满朝气的大学生活&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/99/ee/26/6f7ff4b678994dc8e3e67010abf5d9ca.jpg" title="A楼" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="color: #ff9900;"&gt;算不上巍峨的教学楼吧&lt;/span&gt;&lt;/p&gt;</summary><category term="校园风景"></category></entry><entry><title>驾校怪谈</title><link href="http://blog.junfeng.ca/e9a9bee6a0a1e680aae8b088.html" rel="alternate"></link><updated>2012-08-06T22:37:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-08-06:e9a9bee6a0a1e680aae8b088.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;前奏&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="color: #ff9900;"&gt;算不上巍峨的教学楼吧&lt;/span&gt;&lt;/p&gt;</summary><category term="校园风景"></category></entry><entry><title>驾校怪谈</title><link href="http://junfeng-hu.github.io/e9a9bee6a0a1e680aae8b088.html" rel="alternate"></link><updated>2012-08-06T22:37:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-08-06:e9a9bee6a0a1e680aae8b088.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;前奏&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;要不是我昨天打电话问了一下，就会错过今天传说中的驾考第一试，虽然电话服务员态度不好，不过总算告诉我让今天早上六点半之前到驾校集合，我等了20多天终于有了进展（回来的时候，听见一哥们说等了1个多月才排到这次考试，我顿时感觉我太幸运了）。她当记一大功！可哪位神人让我们这么早就去集合啊！人家公务员八点才上班啊！&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;起床&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;为了我能够在六点半之前起床，特意设了六点的闹铃！可我今天才发现我的手机竟然快了一个小时，闹铃当然没听到了！幸亏老妈准时在六点叫醒了我！困得要了我的命了。到了驾校发现已经来了这么多人！赶巧，我刚到，教练就叫我们考科目一的集合了，当时一阵高兴！但还是有点迷糊、犯困。&lt;/p&gt;
@@ -6261,7 +6261,7 @@ style="color: #ff9900;"&gt;刚开始以为是亚洲最长的教学楼，一百�
 &lt;p&gt;等到两点的时候终于念到了我的名字，该我考试了，但老天今天精神特别好，和我开起了玩笑！两点半的时候，按照估计本来就该我考试了！却来了一群社会大考的人，何为社会大考呢？就是违章到一定程度重考科目一交通理论知识的！参加社会大考的人都是些社会上的人，他们懒散惯了，哪像我们学生这么听话，让你几点到，肯定只早不晚。但他们却很悠闲，到了三点，还有三三两两踱步而来。起初有位很彪悍的哥们不满，像校长问起话来了，当然他被无情镇压了！校长说：“你们先出去休息一下，过了40分钟后再回来考试。”她又对那位服务生说：“参加社会大考的人准考证只收到2点半!之后来的六点以后再考试!”想法确实很好！可是三点以后，交通局长的儿子的朋友来了，三点半以后，局长的朋友来了！四点的时候，考官的儿子来了。无奈，我们的校长只能亲自迎到考场。就这样，本来该是40分钟结束的社会大考，一直持续到4点半！&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;10小时和20分钟&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;我等啊，等啊，到最后连等的力气都没有了！终于，佛祖休息去了，轮到我考试了。我走进考场，遇到了几个教材上没有的题，全蒙错了，顿时有点慌了我。不过佛祖真的睡着了！我以微弱优势过了驾考科目一。我等了十个小时，仅用了不到20分钟考试，呵呵。经过这次经历真心明白，组织考试是个技术活，不是什么急购都能弄好的！还是学校组织考试靠谱。&lt;/p&gt;
-&lt;p&gt;真是多姿多彩的一天啊！&lt;/p&gt;</summary><category term="驾照考试"></category></entry><entry><title>我为什么关了QQ空间？</title><link href="http://blog.junfeng.ca/e68891e4b8bae4bb80e4b988e585b3e4ba86qqe7a9bae997b4efbc9f.html" rel="alternate"></link><updated>2012-07-23T16:28:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-07-23:e68891e4b8bae4bb80e4b988e585b3e4ba86qqe7a9bae997b4efbc9f.html</id><summary type="html">&lt;p&gt;QQ空间是腾讯2006年开发出的具有博客功能的个性空间。我用QQ空间也三年了。按说我不应该关了QQ空间，放在那即使不更新内容也没什么影响，但本人认为既然不用了，放在那里碍眼，遂关闭了QQ空间。&lt;/p&gt;
+&lt;p&gt;真是多姿多彩的一天啊！&lt;/p&gt;</summary><category term="驾照考试"></category></entry><entry><title>我为什么关了QQ空间？</title><link href="http://junfeng-hu.github.io/e68891e4b8bae4bb80e4b988e585b3e4ba86qqe7a9bae997b4efbc9f.html" rel="alternate"></link><updated>2012-07-23T16:28:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-07-23:e68891e4b8bae4bb80e4b988e585b3e4ba86qqe7a9bae997b4efbc9f.html</id><summary type="html">&lt;p&gt;QQ空间是腾讯2006年开发出的具有博客功能的个性空间。我用QQ空间也三年了。按说我不应该关了QQ空间，放在那即使不更新内容也没什么影响，但本人认为既然不用了，放在那里碍眼，遂关闭了QQ空间。&lt;/p&gt;
 &lt;p&gt;再说我为什么不用QQ空间？&lt;/p&gt;
 &lt;p&gt;QQ空间的确很好，但它给用户的权限太低。我想自定义一下背景音乐，就要掏钱；我想自己定义一下空间的界面，也要掏钱；而我想自己编辑一下空间的的代码，但却没有权限。有时候什么东西都给你做好了，反而感觉不爽。即使QQ空间里的那些漂亮的主题免费给我用，我还是会离开QQ空间的！因为我相信，如果用着自己设计的主题，即使它不那么漂亮，但这种感觉是用现成的主题永远比不了的！我现在虽然设计不了完整的主题，但前几天我改了一下自己网站的代码，让它的排版感觉更漂亮一点，我就高兴地不得了！&lt;/p&gt;
 &lt;p&gt;再说在内容上，大多是好友心情的发表，原创的blog文章少之又少！一篇文章能被多个好友转发，有次看到一篇文章出现了7、8次，我都崩溃了！我认为现在我们使用的QQ空间的功能，微博完全可以胜任。&lt;/p&gt;
@@ -6275,16 +6275,16 @@ style="color: #ff9900;"&gt;刚开始以为是亚洲最长的教学楼，一百�
 &lt;embed width="257" height="33" type="application/x-shockwave-flash" src="http://www.xiami.com/widget/0_1770127756/singlePlayer.swf" wmode="transparent"&gt;
 &lt;/embed&gt;
 &lt;/object&gt;
-&lt;/p&gt;</summary><category term="关闭QQ空间"></category></entry><entry><title>浅解电脑掉线</title><link href="http://blog.junfeng.ca/e6b585e8a7a3e68e89e7babf.html" rel="alternate"></link><updated>2012-07-21T21:31:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-07-21:e6b585e8a7a3e68e89e7babf.html</id><summary type="html">&lt;p&gt;近日，研究起TCP/IP协议来了，话说那本《TCP/IP协议•卷一》真乃神书也，看的我是晕头雾里的！不过在我看那本书的时候，突然想起一个现象：我们都遇到过电脑不知怎么的突然掉线了的情况！这是为什么呢？看这本书的时候，大脑被刺激的突然想到一个可以解释的说法。&lt;/p&gt;
+&lt;/p&gt;</summary><category term="关闭QQ空间"></category></entry><entry><title>浅解电脑掉线</title><link href="http://junfeng-hu.github.io/e6b585e8a7a3e68e89e7babf.html" rel="alternate"></link><updated>2012-07-21T21:31:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-07-21:e6b585e8a7a3e68e89e7babf.html</id><summary type="html">&lt;p&gt;近日，研究起TCP/IP协议来了，话说那本《TCP/IP协议•卷一》真乃神书也，看的我是晕头雾里的！不过在我看那本书的时候，突然想起一个现象：我们都遇到过电脑不知怎么的突然掉线了的情况！这是为什么呢？看这本书的时候，大脑被刺激的突然想到一个可以解释的说法。&lt;/p&gt;
 &lt;p&gt;以前刚接触电脑的时候，家里用的是拨号上网（那本书上叫SLIP），  &lt;/p&gt;
 &lt;p&gt;开机时总要等一些时间才能连上网络。当时，不想等，遂请问高手，懂得手动设置一个IP地址，就能取消开机是要等的那段时间。果然这样上网速度快了很多。过不久，又经人提醒，明白手动设置IP地址的话，很容易被黑客攻击。这就相当于把你电脑在网络上的地址给公布了出去，如果网络遵循黑暗森林法则的话，这样不知死了多少次了！所幸，网络不处于黑暗森林状态，对于普通用户，黑客也不屑于去攻击。所以手动设置本机IP的人可以放心一些。&lt;/p&gt;
 &lt;p&gt;那这件事又和网络掉线有什么关系呢？&lt;/p&gt;
 &lt;p&gt;首先，A用户手动设置自己的本机IP后，假如是125.252.12.7，那么这个IP地址就变的特殊了。因为当A上线时，他的电脑一定会用这个IP地址的！。而当A下线后，这个IP是否还为A独有呢？当然不，网络运营商不可能这样浪费IP的，这样的话，这个IP就会被其他用户获取，作为他们电脑的地址。而掉线的发生，就是假如B的电脑在A不在线的情况下，获取了125.252.12.7这个IP，而当B玩地下城正玩得高兴的时候，这时A上线了，因为A把这个IP地址作为了他电脑的唯一地址，自然这个IP也就被A抢走了。而B的电脑就要重新获取新的IP，这样就造成B的电脑掉线了。&lt;/p&gt;
-&lt;p&gt;假如在一个网段上有很多人，都手动设置了IP地址的话。那么自由的IP地址就会很少，因为IP地址始终是有限的。这样的话，掉线的情况就会经常发生在这个网络上。&lt;/p&gt;</summary><category term="电脑掉线"></category></entry><entry><title>无"家"可归的窘迫</title><link href="http://blog.junfeng.ca/e697a0e5aeb6e58fafe5bd92e79a84e7aa98e8bfab.html" rel="alternate"></link><updated>2012-07-17T22:32:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-07-17:e697a0e5aeb6e58fafe5bd92e79a84e7aa98e8bfab.html</id><summary type="html">&lt;p&gt;年前回家，自己的屋子被弟弟占了，电脑也成了他私有的了！前几天回来，看着他像房间的主人一样安然的立在我住过的房间里，而我就像一个客人一样。突然间发现我成了无家可归的人了！虽然说这样的话，好像有点不知好歹。我每天待的地方叫什么!?我在这个家里天天什么事不做，整天就玩玩电脑，看看电视，实在是惬意的很！这一切不都是这个家提供个你的吗？&lt;/p&gt;
+&lt;p&gt;假如在一个网段上有很多人，都手动设置了IP地址的话。那么自由的IP地址就会很少，因为IP地址始终是有限的。这样的话，掉线的情况就会经常发生在这个网络上。&lt;/p&gt;</summary><category term="电脑掉线"></category></entry><entry><title>无"家"可归的窘迫</title><link href="http://junfeng-hu.github.io/e697a0e5aeb6e58fafe5bd92e79a84e7aa98e8bfab.html" rel="alternate"></link><updated>2012-07-17T22:32:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-07-17:e697a0e5aeb6e58fafe5bd92e79a84e7aa98e8bfab.html</id><summary type="html">&lt;p&gt;年前回家，自己的屋子被弟弟占了，电脑也成了他私有的了！前几天回来，看着他像房间的主人一样安然的立在我住过的房间里，而我就像一个客人一样。突然间发现我成了无家可归的人了！虽然说这样的话，好像有点不知好歹。我每天待的地方叫什么!?我在这个家里天天什么事不做，整天就玩玩电脑，看看电视，实在是惬意的很！这一切不都是这个家提供个你的吗？&lt;/p&gt;
 &lt;p&gt;你怎么能说无家可归了呢？&lt;/p&gt;
 &lt;p&gt;是的，我也喜欢这个家，老妈也把这个家整理的很干净。她把这里真的当成了家来维护。当然对她来说这里的确是她的家。但这里不是我的家。我在这个家里是作为儿子的角色的！老妈总是说我不干一点家务，她说要是她不帮我兄弟俩打扫房间，我们的房间两天地上就能蒙上一层灰！她说：“你就不能把你房间打扫打扫吗？”而每次我也没打扫，我也在想，为什么我不愿打扫？应该是我感觉这里不是我的家吧,老家才是我的家，但现在我也回不去了，老家已没人住，回不去了！现在这个家也慢慢地变得陌生，但我和弟弟吵架时，他已能理直气壮地说这是他的家！是啊！我已不属于这个家，我终究是要走的！但他还要在这个家呆很长时间！当然把它当成家了！我们一年也就呆在家里三、四个月，这里当然也对我们生疏了，同时我们也期望着建立属于自己的家，无奈在求学路上，无经济实力建立属于自己的家！故而我发现竟然无“家”可归了！&lt;/p&gt;
 &lt;p&gt;我们真的来到了这样一个年龄，我们正在慢慢的被时间拽离我们所心爱的家，在这个家里生活，我们不用担心生计，即使什么事都不做，父母顶多说说我们，也无碍大事！可是我们不得不承认我们真的已经是成年人了，面对成年人我们也叫起大哥大姐了，而我们被叫做叔叔阿姨的次数也越来越多，从第一次被这样叫的惶恐，但最后的理所当然。我们应经到了该承担责任的年龄，虽然割舍注定会痛苦，但新的创造也在吸引着我们。让我们走出一直庇护我们的家，去创造属于我们自己的家吧！&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Ladies and Gentlemen ，Go！&lt;/strong&gt;&lt;/p&gt;</summary><category term="成长之路"></category></entry><entry><title>《钢之炼金术师》小评</title><link href="http://blog.junfeng.ca/e3808ae992a2e4b98be782bce98791e69cafe5b888e3808be5b08fe8af84.html" rel="alternate"></link><updated>2012-07-15T22:03:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-07-15:e3808ae992a2e4b98be782bce98791e69cafe5b888e3808be5b08fe8af84.html</id><summary type="html">&lt;p&gt;与这部动漫相遇首先得感谢舍友，他向我推荐这部动漫。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Ladies and Gentlemen ，Go！&lt;/strong&gt;&lt;/p&gt;</summary><category term="成长之路"></category></entry><entry><title>《钢之炼金术师》小评</title><link href="http://junfeng-hu.github.io/e3808ae992a2e4b98be782bce98791e69cafe5b888e3808be5b08fe8af84.html" rel="alternate"></link><updated>2012-07-15T22:03:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-07-15:e3808ae992a2e4b98be782bce98791e69cafe5b888e3808be5b08fe8af84.html</id><summary type="html">&lt;p&gt;与这部动漫相遇首先得感谢舍友，他向我推荐这部动漫。&lt;/p&gt;
 &lt;p&gt;《钢炼》无疑是一部好的作品，不靠画面，不靠后宫元素，仅仅主打剧情，就能让你深陷其中。虽连载了64集，但跟着剧情走，也不会感觉亢长。真的很佩服荒川弘的想象力，虚构出了“贤者之石”这种东西，其材料竟然是活人，而她又将其取名为“贤者之石”，真的不能不说是一种讽刺。那个世界是炼金术盛行的世界。炼金术师都要遵循的的基本法则是等价交换原则。但贤者之石却可以打破这个法则，同时贤者之石又可以使人长生不老（以人的生命能源为材料的贤者之石有此功效也合情合理）。&lt;/p&gt;
 &lt;p&gt;主人公是爱德华，和阿尔两兄弟，他们都是炼金术师。为了见到他们已死去的母亲，而年少无知的触犯了禁忌，进行人体炼成，为此爱德华失去了一只脚，而阿尔则失去身体，灵魂只能固定在空空的铠甲上。因此他们踏上了寻找让自己身体恢复的“贤者之石”的旅程。在旅途中，爱德华加入了军队，成为国家炼金术师，名为“钢之炼金术师”。但国家炼金术师因为在伊修巴尔歼灭战中被军队作为人形兵器大肆屠杀伊修巴尔人，名声不那么好。在旅途过程中，他们遇到了一系列事情，有伊修巴尔武僧专门针对国家炼金术师的杀戮，也有一个终极阴谋围绕着他们。当一个个善良的人无辜而死后，他们发誓，再也不会让任何一个人在他们面前死去，爱德华两兄弟决定再也不会逃避，就是拼了自己的命，也要保护身边的人。而当他们知道贤者之石是由活人炼出来的的时候，他们也发誓不用贤者之石来恢复自己的身体。&lt;/p&gt;
 &lt;p&gt;最后在与烧瓶中的小人决斗时，阿尔为了救危难中的哥哥爱德。用自己的灵魂交换了留在真理那边的哥哥的胳膊。而作为代价，他则永远留在真理之门的那边。当爱德打败人造人时，他又为救阿尔，以自己的真理之门和真理做交换，救回了阿尔，但自己却无法再使用炼金术。因为爱德华明白不论什么贤者之石啊，炼金术啊都比不上有亲人，朋友在身边好。&lt;/p&gt;
@@ -6297,8 +6297,8 @@ style="color: #ff9900;"&gt;刚开始以为是亚洲最长的教学楼，一百�
 &lt;embed width="480" height="400" type="application/x-shockwave-flash" src="http://www.tudou.com/v/-KUp0duwI88/&amp;amp;resourceId=0_05_05_99&amp;amp;bid=05/v.swf" allowscriptaccess="always" allowfullscreen="true" wmode="opaque"&gt;
 &lt;/embed&gt;
 &lt;/object&gt;
-&lt;/p&gt;</summary><category term="钢炼"></category></entry><entry><title>九牧王与九牧士</title><link href="http://blog.junfeng.ca/e4b99de789a7e78e8be4b88ee4b99de789a7e5a3ab.html" rel="alternate"></link><updated>2012-07-09T11:23:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-07-09:e4b99de789a7e78e8be4b88ee4b99de789a7e5a3ab.html</id><summary type="html">&lt;p&gt;走在街上，无意间看到九牧王的一家店，上面挂着一条横幅，说来也巧，这条幅上“九牧王”中的“王”字少了上面的一横，变成了“九牧士”。感觉“九牧士”这个名字更好一点，“九牧王”虽霸气，但“九牧士”更有韵味一点。&lt;/p&gt;
-&lt;p&gt;而在生活中，我们一味的追寻着成为王，想方设法的往上爬，想要成为指挥他人的领导，可又有多少人能成功呢？很多人没成为了王，却把本身的“士”的气质给丢了！！悲乎？！&lt;/p&gt;</summary><category term="“王”与“士”"></category></entry><entry><title>HTML新手之旅之表格</title><link href="http://blog.junfeng.ca/htmle696b0e6898be4b98be69785e4b98be8a1a8e6a0bc.html" rel="alternate"></link><updated>2012-07-08T18:44:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-07-08:htmle696b0e6898be4b98be69785e4b98be8a1a8e6a0bc.html</id><summary type="html">&lt;p&gt;做了一个很简单的课程表表格。&lt;/p&gt;
+&lt;/p&gt;</summary><category term="钢炼"></category></entry><entry><title>九牧王与九牧士</title><link href="http://junfeng-hu.github.io/e4b99de789a7e78e8be4b88ee4b99de789a7e5a3ab.html" rel="alternate"></link><updated>2012-07-09T11:23:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-07-09:e4b99de789a7e78e8be4b88ee4b99de789a7e5a3ab.html</id><summary type="html">&lt;p&gt;走在街上，无意间看到九牧王的一家店，上面挂着一条横幅，说来也巧，这条幅上“九牧王”中的“王”字少了上面的一横，变成了“九牧士”。感觉“九牧士”这个名字更好一点，“九牧王”虽霸气，但“九牧士”更有韵味一点。&lt;/p&gt;
+&lt;p&gt;而在生活中，我们一味的追寻着成为王，想方设法的往上爬，想要成为指挥他人的领导，可又有多少人能成功呢？很多人没成为了王，却把本身的“士”的气质给丢了！！悲乎？！&lt;/p&gt;</summary><category term="“王”与“士”"></category></entry><entry><title>HTML新手之旅之表格</title><link href="http://junfeng-hu.github.io/htmle696b0e6898be4b98be69785e4b98be8a1a8e6a0bc.html" rel="alternate"></link><updated>2012-07-08T18:44:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-07-08:htmle696b0e6898be4b98be69785e4b98be8a1a8e6a0bc.html</id><summary type="html">&lt;p&gt;做了一个很简单的课程表表格。&lt;/p&gt;
 &lt;p&gt;html代码如下：&lt;/p&gt;
 &lt;p&gt;\&amp;lt;html&gt;&lt;br /&gt;
 \&amp;lt;body&gt;&lt;br /&gt;
@@ -6607,7 +6607,7 @@ bordercolor="#35a2f3"&gt;&lt;br /&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</summary><category term="html表格"></category></entry><entry><title>Hello，World</title><link href="http://blog.junfeng.ca/helloefbc8cworld.html" rel="alternate"></link><updated>2012-07-07T16:58:00+08:00</updated><author><name>algu</name></author><id>tag:blog.junfeng.ca,2012-07-07:helloefbc8cworld.html</id><summary type="html">&lt;p&gt;爱科学，爱文学，爱艺术，爱编程；&lt;/p&gt;
+&lt;/table&gt;</summary><category term="html表格"></category></entry><entry><title>Hello，World</title><link href="http://junfeng-hu.github.io/helloefbc8cworld.html" rel="alternate"></link><updated>2012-07-07T16:58:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-07-07:helloefbc8cworld.html</id><summary type="html">&lt;p&gt;爱科学，爱文学，爱艺术，爱编程；&lt;/p&gt;
 &lt;p&gt;码农的世界你们永远不懂；&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/07/image.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/07/image.jpg" title="image" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span style="color: #00ccff;"&gt;（图片来自果壳）&lt;/span&gt;&lt;/p&gt;</summary><category term="码农"></category></entry></feed>

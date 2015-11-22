@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://blog.junfeng.ca/" rel="alternate"></link><link href="http://blog.junfeng.ca/feeds/yun-wei.atom.xml" rel="self"></link><id>http://blog.junfeng.ca/</id><updated>2015-07-25T18:55:33+08:00</updated><entry><title>Hadoop secure Mode配置</title><link href="http://blog.junfeng.ca/hadoop-secure-modepei-zhi.html" rel="alternate"></link><updated>2015-07-25T18:55:33+08:00</updated><author><name>pfw, junfeng</name></author><id>tag:blog.junfeng.ca,2015-07-25:hadoop-secure-modepei-zhi.html</id><summary type="html">&lt;h3&gt;介绍&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfeng-hu.github.io/" rel="alternate"></link><link href="http://junfeng-hu.github.io/feeds/yun-wei.atom.xml" rel="self"></link><id>http://junfeng-hu.github.io/</id><updated>2015-07-25T18:55:33+08:00</updated><entry><title>Hadoop secure Mode配置</title><link href="http://junfeng-hu.github.io/hadoop-secure-modepei-zhi.html" rel="alternate"></link><updated>2015-07-25T18:55:33+08:00</updated><author><name>pfw, junfeng</name></author><id>tag:junfeng-hu.github.io,2015-07-25:hadoop-secure-modepei-zhi.html</id><summary type="html">&lt;h3&gt;介绍&lt;/h3&gt;
 &lt;p&gt;老板让配Hadoop的安全模式,网上搜了些资料,
 具体过程略有出入,下面记录详细配置过程,&lt;/p&gt;
 &lt;h3&gt;环境&lt;/h3&gt;

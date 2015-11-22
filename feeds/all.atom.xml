@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfeng-hu.github.io/" rel="alternate"></link><link href="http://junfeng-hu.github.io/feeds/all.atom.xml" rel="self"></link><id>http://junfeng-hu.github.io/</id><updated>2015-08-07T16:58:57+08:00</updated><entry><title>Spring Rest server and Apache Avro objects</title><link href="http://junfeng-hu.github.io/spring-rest-server-and-apache-avro-objects.html" rel="alternate"></link><updated>2015-08-07T16:58:57+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2015-08-07:spring-rest-server-and-apache-avro-objects.html</id><summary type="html">&lt;h3&gt;1. Error handle class&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfeng-hu.github.io/" rel="alternate"></link><link href="http://junfeng-hu.github.io/feeds/all.atom.xml" rel="self"></link><id>http://junfeng-hu.github.io/</id><updated>2015-11-22T16:49:39+08:00</updated><entry><title>Spring Rest server and Apache Avro objects</title><link href="http://junfeng-hu.github.io/spring-rest-server-and-apache-avro-objects.html" rel="alternate"></link><updated>2015-08-07T16:58:57+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2015-08-07:spring-rest-server-and-apache-avro-objects.html</id><summary type="html">&lt;h3&gt;1. Error handle class&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@ControllerAdvice&lt;/span&gt;
 &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ErrorHandler&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
     &lt;span class="nd"&gt;@ExceptionHandler&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exception&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
@@ -1539,8 +1539,7 @@ systemctl enable php-fpm
 &lt;p&gt;恢复备份的wordpress到/var/www/目录&lt;/p&gt;
 &lt;p&gt;打开网站,一切正常。&lt;br /&gt;
 迁移成功。&lt;br /&gt;
-吐槽hostigation为什么没有archlinux的虚拟系统。&lt;/p&gt;</summary><category term="mysqld"></category><category term="vps(128MB)"></category></entry><entry><title>setjmp and longjmp</title><link href="http://junfeng-hu.github.io/setjmp-and-longjmp.html" rel="alternate"></link><updated>2013-11-03T15:35:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-11-03:setjmp-and-longjmp.html</id><summary type="html">&lt;p&gt;&lt;img alt="" src="http://ww4.sinaimg.cn/large/894981ddtw1ea7v9y0qdsj20gx0stwj3.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;全局,静态,易失变量不受优化影响保存在存储器中,存放在存储器中的变量具有调用longjmp()时的值;进行优化后自动,寄存器变量保存寄存器中,CPU和浮点寄存器中的值恢复为调用setjmp()时的值.不进行优化,五种变量全部保存在存储器中.(来自APUE)&lt;/p&gt;</summary><category term="nolocaljmp"></category></entry><entry><title>file hole</title><link href="http://junfeng-hu.github.io/file-hole.html" rel="alternate"></link><updated>2013-11-03T14:48:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-11-03:file-hole.html</id><summary type="html">&lt;p&gt;当lseek设置文件偏移量超过文件尾端,并写了某些数据后,就会产生文件空洞.&lt;/p&gt;
+吐槽hostigation为什么没有archlinux的虚拟系统。&lt;/p&gt;</summary><category term="mysqld"></category><category term="vps(128MB)"></category></entry><entry><title>setjmp and longjmp</title><link href="http://junfeng-hu.github.io/setjmp-and-longjmp.html" rel="alternate"></link><updated>2013-11-03T15:35:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2013-11-03:setjmp-and-longjmp.html</id><summary type="html">&lt;p&gt;全局,静态,易失变量不受优化影响保存在存储器中,存放在存储器中的变量具有调用longjmp()时的值;进行优化后自动,寄存器变量保存寄存器中,CPU和浮点寄存器中的值恢复为调用setjmp()时的值.不进行优化,五种变量全部保存在存储器中.(来自APUE)&lt;/p&gt;</summary><category term="nolocaljmp"></category></entry><entry><title>file hole</title><link href="http://junfeng-hu.github.io/file-hole.html" rel="alternate"></link><updated>2013-11-03T14:48:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-11-03:file-hole.html</id><summary type="html">&lt;p&gt;当lseek设置文件偏移量超过文件尾端,并写了某些数据后,就会产生文件空洞.&lt;/p&gt;
 &lt;p&gt;文件长度st_size:&lt;/p&gt;
 &lt;p&gt;文件中的空洞会影响文件的长度,read读含有空洞的文件时,会把空洞填0.read读空洞也会读到0值.&lt;/p&gt;
 &lt;p&gt;文件占用磁盘大小:&lt;/p&gt;
@@ -3320,18 +3319,8 @@ sentence.clear();&lt;br /&gt;
 }&lt;br /&gt;
 return 0;&lt;br /&gt;
 }&lt;/p&gt;
-&lt;p&gt;[/code]&lt;/p&gt;</summary><category term="传话游戏"></category></entry><entry><title>花湖</title><link href="http://junfeng-hu.github.io/e88ab1e6b996efbc8de8a5bfe794b5.html" rel="alternate"></link><updated>2013-04-05T23:41:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-04-05:e88ab1e6b996efbc8de8a5bfe794b5.html</id><summary type="html">&lt;p&gt;&lt;span style="color: #ff00ff;"&gt;落花一片&lt;/span&gt;&lt;br /&gt;
-&lt;img alt="" src="http://ww3.sinaimg.cn/mw690/894981ddtw1e3f88nxpwgj.jpg" /&gt;&lt;br /&gt;
-&lt;span style="color: #ff00ff;"&gt;不能称作花海，就叫花湖吧&lt;/span&gt;&lt;br /&gt;
-&lt;img alt="" src="http://ww2.sinaimg.cn/mw690/894981ddtw1e3f88t3hsmj.jpg" /&gt;&lt;br /&gt;
-&lt;span style="color: #ff00ff;"&gt;难得在学校见到这么有诗意的画面&lt;/span&gt;&lt;br /&gt;
-&lt;img alt="" src="http://ww2.sinaimg.cn/mw690/894981ddtw1e3f88z9l0jj.jpg" /&gt;&lt;br /&gt;
-&lt;span style="color: #ff00ff;"&gt;照相的人也会被照进风景中&lt;/span&gt;&lt;br /&gt;
-&lt;img alt="" src="http://ww4.sinaimg.cn/mw690/894981ddtw1e3f894kggkj.jpg" /&gt;&lt;br /&gt;
-&lt;span style="color: #ff00ff;"&gt;花与花之间的距离&lt;/span&gt;&lt;br /&gt;
-&lt;img alt="" src="http://ww3.sinaimg.cn/mw690/894981ddtw1e3f899hoemj.jpg" /&gt;&lt;/p&gt;</summary><category term="落花"></category></entry><entry><title>自助餐的心理</title><link href="http://junfeng-hu.github.io/e887aae58aa9e9a490e79a84e5bf83e79086.html" rel="alternate"></link><updated>2013-04-05T23:17:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-04-05:e887aae58aa9e9a490e79a84e5bf83e79086.html</id><summary type="html">&lt;p&gt;吃什么的最有爱了，特别是吃自助餐．花一定数目的钱，让你随便吃，总是听起来有吸引力的．反正那么多钱也交了，不大吃，特吃就对不起自己花的钱了．话说，我虽然想吃回本，但无奈战斗力太弱，拼命吃，也吃不会本．再看他们，从坐下到站起，战斗力是和x轴垂直的．吃不回本总是令人沮丧的．于是我这样安慰自己：正因为有我们这样的人，自助餐才能开下去的．但我又饿得快，等饿的时候，有懊悔自己怎么没多吃点呢？那么多好吃的．&lt;/p&gt;
-&lt;p&gt;唉，奇怪的心理．&lt;/p&gt;</summary><category term="自助餐"></category></entry><entry><title>北京遇上西雅图</title><link href="http://junfeng-hu.github.io/e58c97e4baace98187e4b88ae8a5bfe99b85e59bbe.html" rel="alternate"></link><updated>2013-04-04T23:47:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-04-04:e58c97e4baace98187e4b88ae8a5bfe99b85e59bbe.html</id><summary type="html">&lt;p&gt;&lt;img alt="" src="http://img3.douban.com/view/photo/photo/public/p1882696732.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;一部物质和温情较量的爱情片．&lt;/p&gt;
+&lt;p&gt;[/code]&lt;/p&gt;</summary><category term="传话游戏"></category></entry><entry><title>自助餐的心理</title><link href="http://junfeng-hu.github.io/e887aae58aa9e9a490e79a84e5bf83e79086.html" rel="alternate"></link><updated>2013-04-05T23:17:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-04-05:e887aae58aa9e9a490e79a84e5bf83e79086.html</id><summary type="html">&lt;p&gt;吃什么的最有爱了，特别是吃自助餐．花一定数目的钱，让你随便吃，总是听起来有吸引力的．反正那么多钱也交了，不大吃，特吃就对不起自己花的钱了．话说，我虽然想吃回本，但无奈战斗力太弱，拼命吃，也吃不会本．再看他们，从坐下到站起，战斗力是和x轴垂直的．吃不回本总是令人沮丧的．于是我这样安慰自己：正因为有我们这样的人，自助餐才能开下去的．但我又饿得快，等饿的时候，有懊悔自己怎么没多吃点呢？那么多好吃的．&lt;/p&gt;
+&lt;p&gt;唉，奇怪的心理．&lt;/p&gt;</summary><category term="自助餐"></category></entry><entry><title>北京遇上西雅图</title><link href="http://junfeng-hu.github.io/e58c97e4baace98187e4b88ae8a5bfe99b85e59bbe.html" rel="alternate"></link><updated>2013-04-04T23:47:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-04-04:e58c97e4baace98187e4b88ae8a5bfe99b85e59bbe.html</id><summary type="html">&lt;p&gt;一部物质和温情较量的爱情片．&lt;/p&gt;
 &lt;p&gt;影片开头文佳佳一身金色的行头，看起来十足的傍大款的小三形象．再看Frank
 ,那大叔形象．仿佛就把失败写在了脸上．大叔为人很好，但却遇到了比他要强的老婆，大叔遂成全了老婆的理想，但他老婆却不懂他的好，结局也只能是离婚．而文佳佳呢，发现她得到的仅仅是一个一个名牌包之后，心中有了困惑．她虽然能够毫无顾忌的花钱．　但并不怎么高兴．因为她想要的是有人关心她，照顾她．而不是仅仅满足物质上的需求．&lt;/p&gt;
 &lt;p&gt;六个月，对于爱情产生来说，不长不短．Frank
@@ -3344,19 +3333,13 @@ style="font-size: 1rem;"&gt;金钱固然很好，没有的羡慕有的．但当�
 style="font-size: 1rem;"&gt;真的&lt;/span&gt;&lt;span
 style="line-height: 1.714285714; font-size: 1rem;"&gt;喜欢你没什么关系．当然他喜欢你，肯定愿意为你效劳的．&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;而对于男人来说，真的不能靠女人养着．相信Frank被人叫着ＤＢ心里一定不好受．&lt;/p&gt;
-&lt;p&gt;找到真我，不放弃自我．这样的人生活着才有动力．&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://img3.douban.com/view/photo/photo/public/p1890826645.jpg" /&gt;&lt;/p&gt;</summary><category term="北京遇上西雅图"></category></entry><entry><title>喜欢一个人</title><link href="http://junfeng-hu.github.io/e5969ce6aca2e4b880e4b8aae4baba.html" rel="alternate"></link><updated>2013-03-20T23:53:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-03-20:e5969ce6aca2e4b880e4b8aae4baba.html</id><summary type="html">&lt;p&gt;喜欢一个人，应该是一件很幸福的事！漂泊的心有了依靠.不再焦虑，不再彷徨.远离了低级趣味,生活有了目标.&lt;br /&gt;
+&lt;p&gt;找到真我，不放弃自我．这样的人生活着才有动力．&lt;/p&gt;</summary><category term="北京遇上西雅图"></category></entry><entry><title>喜欢一个人</title><link href="http://junfeng-hu.github.io/e5969ce6aca2e4b880e4b8aae4baba.html" rel="alternate"></link><updated>2013-03-20T23:53:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-03-20:e5969ce6aca2e4b880e4b8aae4baba.html</id><summary type="html">&lt;p&gt;喜欢一个人，应该是一件很幸福的事！漂泊的心有了依靠.不再焦虑，不再彷徨.远离了低级趣味,生活有了目标.&lt;br /&gt;
 真心喜欢一个人，不会再想其她女生，走路都不再左顾右盼.&lt;br /&gt;
 喜欢一个人，碰巧她也喜欢你.世界为之晴朗.
 暖暖的阳光，可爱的绿叶，鲜艳的花朵，清新的空气，都在为你们祝福.  &lt;/p&gt;
 &lt;p&gt;喜欢一个人，不巧她不喜欢你，庆幸的是她没有喜欢的人.永远可以把她作为你女神，心中留有希望：突然间她会喜欢你.你喜欢她，她虽不喜欢你，但这都是你们两个人之间的事.不会心生无谓情绪.  &lt;/p&gt;
 &lt;p&gt;喜欢一个人，可她却有了喜欢的人，而且过的还很不错，你发现女神突然变成凡人，精神瞬间没了支柱.自卑，嫉妒，怨恨，无奈.多数人在这种局面选择忘记，一遍一遍伤着自己的心.最后直至不再喜欢.可能还是不够喜欢吧？很多人都做不了金岳霖老先生,一辈子只喜欢一个女子，而不论她嫁人与否.这就是爱吧！大多数人都承受不了其中的煎熬.我想金老先生也是凡人,他也能感受到那些情绪,但他一一承受，足件其对爱情之认真.&lt;br /&gt;
-真心喜欢一个人，就能承受她带来的所有，虽然会很难，但爱情战胜一切.&lt;/p&gt;</summary><category term="喜欢一个人"></category></entry><entry><title>html页面编码</title><link href="http://junfeng-hu.github.io/htmle9a1b5e99da2e7bc96e7a081.html" rel="alternate"></link><updated>2013-03-12T17:50:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-03-12:htmle9a1b5e99da2e7bc96e7a081.html</id><summary type="html">&lt;p&gt;html貌似比较简单，但今天程序却栽在设置html字符集上了．遇到这样一个页面．head头中这样写的：  &lt;/p&gt;
-&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/03/2013-03-12-175823_433x21_scrot.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2013/03/2013-03-12-175823_433x21_scrot-300x14.png" title="2013-03-12-175823_433x21_scrot" /&gt;&lt;/a&gt;  &lt;/p&gt;
-&lt;p&gt;本来是想把页面设置成utf-8编码的，但貌似这句meta没起作用，好像页面变成了gbk编码．我提交中文数据时，程序就因编码问题死掉了．等我注意到这上面的时候，整个程序的代码也快被我看完了．然后改成这样  &lt;/p&gt;
-&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/03/2013-03-12-180342_670x42_scrot.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2013/03/2013-03-12-180342_670x42_scrot-300x18.png" title="2013-03-12-180342_670x42_scrot" /&gt;&lt;/a&gt;&lt;br /&gt;
-果然顺利通过．这时间浪费的真冤枉．&lt;br /&gt;
-谁能想到错误竟然是由html页面造成的，看来细微之处别有洞天啊！&lt;/p&gt;</summary><category term="encode"></category><category term="html"></category></entry><entry><title>Python２编码小结</title><link href="http://junfeng-hu.github.io/pythonefbc92e7bc96e7a081e5b08fe7bb93.html" rel="alternate"></link><updated>2013-03-12T17:10:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-03-12:pythonefbc92e7bc96e7a081e5b08fe7bb93.html</id><summary type="html">&lt;p&gt;Python中的编码挺让人烦的．学习了一下，记录在此．首先查看你系统默认输入输出的编码．  &lt;/p&gt;
+真心喜欢一个人，就能承受她带来的所有，虽然会很难，但爱情战胜一切.&lt;/p&gt;</summary><category term="喜欢一个人"></category></entry><entry><title>Python２编码小结</title><link href="http://junfeng-hu.github.io/pythonefbc92e7bc96e7a081e5b08fe7bb93.html" rel="alternate"></link><updated>2013-03-12T17:10:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-03-12:pythonefbc92e7bc96e7a081e5b08fe7bb93.html</id><summary type="html">&lt;p&gt;Python中的编码挺让人烦的．学习了一下，记录在此．首先查看你系统默认输入输出的编码．  &lt;/p&gt;
 &lt;p&gt;&lt;code&gt;#!/usr/bin/env python #!---coding=utf-8--- import sys print 'stdin_encoding:%s' % sys.stdin.encoding print 'stdout_encoding:%s' % sys.stdout.encoding&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;OutpUt&lt;br /&gt;
 stdin_encoding:UTF-8&lt;br /&gt;
@@ -3389,23 +3372,7 @@ Intel集显的开源驱动，但它依赖mesa-libgl库，于是我明白怎么�
 &lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0051.jpg"&gt;&lt;img alt="image" src="http://jcodef.com/wp-content/uploads/2013/02/wpid-DSC_0045.jpg" title="DSC_0045.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;</summary><category term="雪景"></category></entry><entry><title>signal函数和sigaction函数</title><link href="http://junfeng-hu.github.io/signale587bde695b0e5928csigactione587bde695b0.html" rel="alternate"></link><updated>2013-02-16T13:43:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-02-16:signale587bde695b0e5928csigactione587bde695b0.html</id><summary type="html">&lt;p&gt;环境:Linux version 3.6.10-1-ARCH&lt;/p&gt;
 &lt;p&gt;当使用系统自带signal函数处理信号时,系统并未把被捕捉到的信号加到信号屏蔽字中.&lt;/p&gt;
 &lt;p&gt;使用sigaction函数实现的signal函数(apue),在调用信号处理程序时,捕捉到的信号屏蔽字被加入到信号屏蔽字,处理程序返回后,恢复到原来的屏蔽字.&lt;/p&gt;
-&lt;p&gt;看来敲敲代码还是能发现一些东西的.&lt;/p&gt;</summary><category term="signal"></category></entry><entry><title>不是所有的https链接都是利民的</title><link href="http://junfeng-hu.github.io/e4b88de698afe68980e69c89e79a84httpse993bee68ea5e983bde698afe588a9e6b091e79a84.html" rel="alternate"></link><updated>2013-02-02T21:23:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-02-02:e4b88de698afe68980e69c89e79a84httpse993bee68ea5e983bde698afe588a9e6b091e79a84.html</id><summary type="html">&lt;p&gt;话说git*hub又不能上了,开着代理,可以打开页面,但无法下载.&lt;/p&gt;
-&lt;p&gt;git clone显示:&lt;/p&gt;
-&lt;p&gt;&lt;span style="color: #0000ff;"&gt;\$ git clone
-https://github.com/bgolub/tornado-blog.git&lt;/span&gt;&lt;br /&gt;
-&lt;span style="color: #0000ff;"&gt; 正克隆到 'tornado-blog'...&lt;/span&gt;&lt;br /&gt;
-&lt;span style="color: #0000ff;"&gt; error: Could not resolve host: (nil);
-Unknown error while accessing
-https://github.com/bgolub/tornado-blog.git/info/refs?service=git-upload-pack&lt;/span&gt;&lt;br /&gt;
-&lt;span style="color: #0000ff;"&gt; fatal: HTTP request failed&lt;/span&gt;&lt;br /&gt;
-&lt;span style="color: #0000ff;"&gt;\$ ping github.com&lt;/span&gt;&lt;br /&gt;
-&lt;span style="color: #0000ff;"&gt; \^C&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;下载zip文件吧,又出现这种情况:&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/02/2013-02-02-210744_1366x768_scrot.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2013/02/2013-02-02-210744_1366x768_scrot-300x168.png" title="2013-02-02-210744_1366x768_scrot" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;我勒那个心情啊!让我们这些程序员情何以堪啊.&lt;/p&gt;
-&lt;p&gt;最后把那个zip文件地址复制出来去掉url前面的https://,竟然成功了.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2013/02/2013-02-02-210744_1366x768_scrot1.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2013/02/2013-02-02-210744_1366x768_scrot1-300x168.png" title="2013-02-02-210744_1366x768_scrot" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;看来什么都是被逼出来的.&lt;/p&gt;</summary><category term="goagent"></category><category term="https"></category></entry><entry><title>完美的goagent</title><link href="http://junfeng-hu.github.io/e5ae8ce7be8ee79a84goagent.html" rel="alternate"></link><updated>2013-01-28T17:30:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-01-28:e5ae8ce7be8ee79a84goagent.html</id><summary type="html">&lt;p&gt;给我们这些没钱买vpn又想出去的人带来了很大的方便。&lt;/p&gt;
+&lt;p&gt;看来敲敲代码还是能发现一些东西的.&lt;/p&gt;</summary><category term="signal"></category></entry><entry><title>完美的goagent</title><link href="http://junfeng-hu.github.io/e5ae8ce7be8ee79a84goagent.html" rel="alternate"></link><updated>2013-01-28T17:30:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2013-01-28:e5ae8ce7be8ee79a84goagent.html</id><summary type="html">&lt;p&gt;给我们这些没钱买vpn又想出去的人带来了很大的方便。&lt;/p&gt;
 &lt;p&gt;chromium 设置-&gt;高级设置-&gt; 管理证书-&gt;授权中心-&gt;导入&lt;/p&gt;
 &lt;p&gt;选择 goagent/local/CA.crt&lt;/p&gt;
 &lt;p&gt;全部打勾，确定。&lt;/p&gt;
@@ -3600,12 +3567,10 @@ for(i=1;i\&lt;G.vexnum;++i)
 &lt;p&gt;在选择java版本时纠结了，是选择sun-java呢，还是openjava？&lt;/p&gt;
 &lt;p&gt;刚开始选择sun-java，但网速过于慢了，就又换回了openjava&lt;/p&gt;
 &lt;p&gt;安装android-sdk，android-sdk-platform-tools无法解决依赖：&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-192629_740x485_scrot.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-192629_740x485_scrot-300x196.png" title="2012-12-09-192629_740x485_scrot" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;在/etc/pacman.conf中启用multilib源&lt;/p&gt;
 &lt;p&gt;sudo vim /etc/pacman.conf&lt;/p&gt;
 &lt;p&gt;安装android-sdk，android-sdk-platform-tools&lt;/p&gt;
 &lt;p&gt;sudo pacman -S android-sdk android-sdk-platform-tools&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-193119_737x460_scrot.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-193119_737x460_scrot-300x187.png" title="2012-12-09-193119_737x460_scrot" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;感觉文件好大啊！但到后面装eclipse-android时真的是小巫见大巫了。&lt;/p&gt;
 &lt;p&gt;android-sdk默认安装到/opt文件夹下。&lt;/p&gt;
 &lt;p&gt;使用yaourt安装eclipse-android 使用pacman无法解决依赖。&lt;/p&gt;
@@ -3619,7 +3584,6 @@ for(i=1;i\&lt;G.vexnum;++i)
 &lt;p&gt;sudo chown -R user：users /opt/android-sdk&lt;/p&gt;
 &lt;p&gt;sudo也可以。&lt;/p&gt;
 &lt;p&gt;选择android API版本下载安装。&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2012/12/2012-12-10-225726_668x470_scrot.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2012/12/2012-12-10-225726_668x470_scrot-300x211.png" title="2012-12-10-225726_668x470_scrot" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;启动eclipse，设置android-sdk路径。&lt;/p&gt;
 &lt;p&gt;android开发环境已配置完成。&lt;/p&gt;
 &lt;h6&gt;新建android虚拟机，测试环境：&lt;/h6&gt;
@@ -3627,18 +3591,15 @@ for(i=1;i\&lt;G.vexnum;++i)
 Device Manager。&lt;/p&gt;
 &lt;p&gt;new新建android虚拟机。&lt;/p&gt;
 &lt;p&gt;设置参数&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2012/12/2012-12-10-223822_470x689_scrot.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2012/12/2012-12-10-223822_470x689_scrot-204x300.png" title="2012-12-10-223822_470x689_scrot" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Start启动虚拟机&lt;/p&gt;
 &lt;p&gt;若出现问题无法启动，按照提示提供的执行命令。&lt;/p&gt;
 &lt;p&gt;若出现“fork(): Cannot allocate memory”错误，把内存调小一点试试。&lt;/p&gt;
 &lt;p&gt;启动过程较慢，以为死掉，造成关了重新启动多次。&lt;/p&gt;
 &lt;p&gt;最后出现android虚拟机：&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-233805_1366x768_scrot.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2012/12/2012-12-09-233805_1366x768_scrot-300x168.png" title="2012-12-09-233805_1366x768_scrot" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;成功&lt;/p&gt;
 &lt;p&gt;时间主要花在下载android-sdk和android-sdk-platform-tools上，学校源中无此软件包，只能在官网上下载，但官网已限速，而且多次出现下载完后，返回莫名错误。&lt;/p&gt;
 &lt;p&gt;用yaourt下载eclipse-android依赖包时也是花费较多时间。&lt;/p&gt;
-&lt;p&gt;参考：&lt;a href="https://wiki.archlinux.org/index.php/Android_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)"&gt;Android
-(简体中文)&lt;/a&gt;&lt;/p&gt;</summary><category term="android-sdk"></category></entry><entry><title>windows or linux ？</title><link href="http://junfeng-hu.github.io/windows-or-linux.html" rel="alternate"></link><updated>2012-12-07T22:59:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-12-07:windows-or-linux.html</id><summary type="html">&lt;p&gt;linux在友好度，和普及程度上确实比不上windows。&lt;/p&gt;
+&lt;p&gt;参考：&lt;a href="https://wiki.archlinux.org/index.php/Android_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)"&gt;Android(简体中文)&lt;/a&gt;&lt;/p&gt;</summary><category term="android-sdk"></category></entry><entry><title>windows or linux ？</title><link href="http://junfeng-hu.github.io/windows-or-linux.html" rel="alternate"></link><updated>2012-12-07T22:59:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-12-07:windows-or-linux.html</id><summary type="html">&lt;p&gt;linux在友好度，和普及程度上确实比不上windows。&lt;/p&gt;
 &lt;p&gt;但现在感觉ubuntu在图形界面上做的不比windows差，&lt;/p&gt;
 &lt;p&gt;而且windows的普及很大程度上是由于人事因素。&lt;/p&gt;
 &lt;p&gt;linux的优势在网络，服务器这一块。&lt;/p&gt;
@@ -5904,8 +5865,6 @@ int main()
 signal.SIGKILL),同样无法杀死，郁闷纠结之。在kill()后加上wait(),防止僵尸进程，同样无法结束。看来不是加不加wait()的事情。于是加了一条print
 "PID:%d" %
 proc.pid(),打印出子进程PID,发现问题了，打印出的进程号，和top显示的不一样，总是相差1，&lt;/p&gt;
-&lt;p&gt;RT&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2012/10/bug.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2012/10/bug-300x168.png" title="bug" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;于是把改成os.kill(proc.pid+1,signal.SIGKILL), 成功杀死子进程。&lt;/p&gt;
 &lt;p&gt;于是很激动以为发现了python的bug，想着跟python社区发个邮件报告一下。&lt;/p&gt;
 &lt;p&gt;当我查看subprocess的官方说明时，发现原来人家早有提示啊，&lt;/p&gt;
@@ -5929,10 +5888,6 @@ style="color: #000000;"&gt;这句话的google翻译结果是：&lt;/span&gt;&lt;
 style="color: #000000;"&gt;“需要注意的是，如果你的shell参数设置为True，这是衍生shell的进程ID。”&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;但为什么相差总是相差1呢？官方也没给出解释。&lt;/p&gt;
 &lt;p&gt;于是去掉shell=True,kill(),和os.kill(pid,signal.SIGKILL)都能工作。&lt;/p&gt;
-&lt;p&gt;最终源代码：&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2012/10/Screenshot-from-2012-10-24-195604.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2012/10/Screenshot-from-2012-10-24-195604-300x215.png" title="Screenshot from 2012-10-24 19:56:04" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;helloworld.c测试代码：&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://jcodef.com/wp-content/uploads/2012/10/Screenshot-from-2012-10-24-195532.png"&gt;&lt;img alt="" src="http://jcodef.com/wp-content/uploads/2012/10/Screenshot-from-2012-10-24-195532-300x122.png" title="Screenshot from 2012-10-24 19:55:32" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;主要是因为自己看文档不够细心，同时早就应该尝试把shell=True去掉的。也不至于浪费那么长时间。&lt;/p&gt;</summary><category term="subprocess"></category></entry><entry><title>linux下成功着陆facebook</title><link href="http://junfeng-hu.github.io/linux-e4b88b-e68890e58a9fe79d80e99986facebook.html" rel="alternate"></link><updated>2012-10-24T15:49:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-10-24:linux-e4b88b-e68890e58a9fe79d80e99986facebook.html</id><summary type="html">&lt;p&gt;许久不发日志，今天想发日志来着，发现我进不了我的网站了。生在和谐社会，无奈只好配置一下goagent。因为已换linux，虽然那个插件被google同步过来了，但程序还是要下载滴。简单配置一下，成功着陆facebook。貌似goagent那个软件包还是linux和windows下都可以用啊！看着那些exe文件挺怪异的。&lt;/p&gt;</summary><category term="goagent"></category></entry><entry><title>一周心情（一）</title><link href="http://junfeng-hu.github.io/e4b880e591a8e5bf83e68385efbc88e4b880efbc89.html" rel="alternate"></link><updated>2012-10-06T00:49:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-10-06:e4b880e591a8e5bf83e68385efbc88e4b880efbc89.html</id><summary type="html">&lt;ul&gt;
 &lt;li&gt;一年前的这个时候我们还是新人，然后我们就老了！&lt;/li&gt;
 &lt;li&gt;想学各种技术，还想一下子学完、学会，但我不是天才。有点累&lt;/li&gt;
@@ -5947,21 +5902,19 @@ style="color: #000000;"&gt;“需要注意的是，如果你的shell参数设置
  MySQLdb&lt;/p&gt;
 &lt;p&gt;出错。然后上网搜，各种教程。都没解决，抱着试一下的态度，重新装了Python2.7.3，再重装MySQLdb，装的时候，识别出Python2.7，就明白弄对了。cmd-&gt;python
 import MySQLdb 无异常抛出，成功。&lt;/p&gt;
-&lt;p&gt;看来有时更新版本是必须的，这样能节省很多麻烦。但MySQLdb竟然不能识别低版本的Python解释器，这有何尝不是一个小bug呢！&lt;/p&gt;</summary><category term="MySQLdb安装"></category></entry><entry><title>Django Template</title><link href="http://junfeng-hu.github.io/django-template.html" rel="alternate"></link><updated>2012-09-27T18:48:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-27:django-template.html</id><summary type="html">&lt;p&gt;跟着《The_Django_Book》敲代码，在第四章创建模版对象的时候遇到了问题，我按着书上的代码，敲了一遍又一遍，还是出错&lt;/p&gt;
-&lt;p&gt;RT：&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/template1.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/template1-300x184.jpg" title="template1" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;出错信息提示环境变量未设置，然后赶紧把/site-packages/django加入环境变量，再运行，还是不对，但我记得昨天明明成功了，遂上网百度，然后了解到昨天我是从我建立的那个项目进入的，于是试验之，&lt;/p&gt;
-&lt;p&gt;RT：&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/template2.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/template2-300x168.jpg" title="template2" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;看来有时更新版本是必须的，这样能节省很多麻烦。但MySQLdb竟然不能识别低版本的Python解释器，这有何尝不是一个小bug呢！&lt;/p&gt;</summary><category term="MySQLdb安装"></category></entry><entry><title>Django Template</title><link href="http://junfeng-hu.github.io/django-template.html" rel="alternate"></link><updated>2012-09-27T18:48:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-27:django-template.html</id><summary type="html">&lt;p&gt;跟着《The_Django_Book》敲代码，在第四章创建模版对象的时候遇到了问题，
+我按着书上的代码，敲了一遍又一遍，还是出错&lt;/p&gt;
+&lt;p&gt;出错信息提示环境变量未设置，然后赶紧把/site-packages/django加入环境变量，
+再运行，还是不对，但我记得昨天明明成功了，遂上网百度，
+然后了解到昨天我是从我建立的那个项目进入的，于是试验之，&lt;/p&gt;
 &lt;p&gt;从manage.py 进入python的交互式界面，mysite/settings.py
 会导入好所需程序的环境变量。然后python就不会抛出异常了&lt;/p&gt;
-&lt;p&gt;哎！引以为鉴&lt;/p&gt;</summary><category term="Django_Template"></category></entry><entry><title>python server.py</title><link href="http://junfeng-hu.github.io/python-server-py.html" rel="alternate"></link><updated>2012-09-21T23:25:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-21:python-server-py.html</id><summary type="html">&lt;p&gt;server.py源代码：&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/serverpy.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/serverpy-300x166.jpg" title="serverpy" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;运行结果：&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/telnetpy.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/telnetpy.jpg" title="telnetpy" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;通过服务器实现和本机交互！&lt;/p&gt;</summary><category term="python server"></category></entry><entry><title>Debian下安装Google Chrome</title><link href="http://junfeng-hu.github.io/debiane4b88be5ae89e8a385google-chrome.html" rel="alternate"></link><updated>2012-09-21T20:52:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-21:debiane4b88be5ae89e8a385google-chrome.html</id><summary type="html">&lt;p&gt;今天突然发现了一个小问题，wmaker下竟然没有一个可用的浏览器！自带的w3m实在过于奇葩，于是就在软件源里找可用的浏览器，可软件源今天也出问题了！不知怎么的竟然发现了我们学校的源没有公共许可密钥。于是开始自救。网上说在任意文件下新建个名为“key0x07DC563D1F41B907.asc”的文件。我建在home/下，键入命令：nano
-key0x07DC563D1F41B907.asc&lt;/p&gt;
-&lt;p&gt;输入以下内容：&lt;/p&gt;
+&lt;p&gt;哎！引以为鉴&lt;/p&gt;</summary><category term="Django_Template"></category></entry><entry><title>Debian下安装Google Chrome</title><link href="http://junfeng-hu.github.io/debiane4b88be5ae89e8a385google-chrome.html" rel="alternate"></link><updated>2012-09-21T20:52:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-21:debiane4b88be5ae89e8a385google-chrome.html</id><summary type="html">&lt;p&gt;今天突然发现了一个小问题，wmaker下竟然没有一个可用的浏览器！
+自带的w3m实在过于奇葩，于是就在软件源里找可用的浏览器，可软件源今天也出问题了！
+不知怎么的竟然发现了我们学校的源没有公共许可密钥。于是开始自救。
+网上说在任意文件下新建个名为“key0x07DC563D1F41B907.asc”的文件。
+我建在home/下，键入命令：nano key0x07DC563D1F41B907.asc
+输入以下内容：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;-----BEGIN PGP PUBLIC KEY BLOCK-----&lt;br /&gt;
  Version: PGP Universal 2.0.3&lt;br /&gt;
@@ -6002,58 +5955,16 @@ key0x07DC563D1F41B907.asc&lt;/p&gt;
 &lt;p&gt;Crtl+o保存，Crtl+x退出nano。&lt;/p&gt;
 &lt;p&gt;再在root下输入命令：apt-key add key0x07DC563D1F41B907.asc&lt;/p&gt;
 &lt;p&gt;更新源，成功认证！&lt;/p&gt;
-&lt;p&gt;但google，firefox，opera在源里都找不到！于是再次上网，由于对google的怀旧，就找装google
-chrome的方法：&lt;/p&gt;
+&lt;p&gt;但google，firefox，opera在源里都找不到！于是再次上网，
+由于对google的怀旧，就找装google chrome的方法：&lt;/p&gt;
 &lt;p&gt;nano /etc/apt/sources.list 打开源地址设置文件，追加google的源&lt;/p&gt;
 &lt;p&gt;deb http://dl.google.com/linux/deb/ stable main&lt;/p&gt;
 &lt;p&gt;同样要设置认证：&lt;/p&gt;
-&lt;p&gt;输入：wget -q -O –
-https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key
-add -&lt;/p&gt;
+&lt;p&gt;输入：wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -&lt;/p&gt;
 &lt;p&gt;然后：apt-get update&lt;/p&gt;
 &lt;p&gt;安装测试版：apt-get install google-chrome-beta&lt;/p&gt;
 &lt;p&gt;不稳定版：apt-get install google-chrome-unstable&lt;/p&gt;
-&lt;p&gt;不过貌似装下来比较大需要100多M的硬盘空间，这对爱惜内存、磁盘空间的linux用户可不算好。&lt;/p&gt;
-&lt;p&gt;最后秀一下自己的劳动成果&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/igc.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/igc-300x230.jpg" title="igc" /&gt;&lt;/a&gt;&lt;/p&gt;</summary><category term="Debian装google chrome"></category></entry><entry><title>Linux菜鸟瞎折腾</title><link href="http://junfeng-hu.github.io/linuxe88f9ce9b89fe79e8ee68a98e885be.html" rel="alternate"></link><updated>2012-09-20T23:37:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-20:linuxe88f9ce9b89fe79e8ee68a98e885be.html</id><summary type="html">&lt;p&gt;昨天在命令行下输入了aptitude
-upgrade命令之后不知怎么的，linux内核竟然升级了，升级也挺好的，可关键是旧的版本也还存在。这样在开机时就出现了这种情况：&lt;br /&gt;
-RT  &lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/buhuo1.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/buhuo1.jpg" title="buhuo1" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;然后我就不爽了，本来一个内核就有两个选项：一个是图形界面，一个是命令行。现在又多了一个内核，也就有四个选项可以选择了。&lt;/p&gt;
-&lt;p&gt;实在是看着不舒服，也就一个小小的虚拟机，看着貌似装了四个系统！&lt;/p&gt;
-&lt;p&gt;于是就在ChinaUnix论坛询问，感谢网友们的热心回答，我知道了怎么删除那个旧内核的方法:&lt;/p&gt;
-&lt;p&gt;在终端或命令行下输入：&lt;/p&gt;
-&lt;p&gt;dpkg --get-selections|grep linux&lt;/p&gt;
-&lt;p&gt;然后在root权限下输入：&lt;/p&gt;
-&lt;p&gt;dpkg --purge --force-remove-essential linux-image-XXX&lt;/p&gt;
-&lt;p&gt;XXX为要卸载的旧的版本号&lt;/p&gt;
-&lt;p&gt;就这样，成功卸载了旧的linux内核&lt;/p&gt;
-&lt;p&gt;如图：&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/buhuo2.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/buhuo2.jpg" title="buhuo2" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;但是前面还是有那个蓝色的画面。继续请教，得知;&lt;/p&gt;
-&lt;p&gt;grub需要升级到grub2。&lt;/p&gt;
-&lt;p&gt;我键入命令：&lt;/p&gt;
-&lt;p&gt;upgrade-from-grub-legacy&lt;/p&gt;
-&lt;p&gt;在让选择安装在哪个文件夹下的时候，我尝试了好几次，就是选不中，按enter键会提示你不装grub会怎么怎么。。。&lt;/p&gt;
-&lt;p&gt;我想装上啊，可是选不中！没办法，我只好选否！然后就悲剧了！&lt;/p&gt;
-&lt;p&gt;RT&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/buhou3.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/buhou3.jpg" title="buhou3" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;没了操作系统启动程序，然后就Error了！&lt;/p&gt;
-&lt;p&gt;我又向高手提问，可能是高手嫌我水平太次了，我也感觉很后悔！要是在服务器下，我这样的话那损失就大了！！&lt;/p&gt;
-&lt;p&gt;于是我上网搜解决方法，可网上很多都是删除GRUB的方法！！我无奈，只好重装系统。最笨的一种方法！&lt;/p&gt;
-&lt;p&gt;刚开始一切顺利，因为以前也装过几次，这次选的就是图形专家模式，可在选择linux内核版本的时候，我为了最求最新版，选了一个比较新的版本，可是快装成功的时候，竟然提示该内核版本不支持我的CPU，也多次退回去重新操作，可是还是没成功！&lt;/p&gt;
-&lt;p&gt;万般无奈，再次重装，这次选的是普通模式（install），在装到选择APT源的时候，发现无法更改APT源，只能从国外的源里下载，十几K的速度，麻木的再次重启、重装。依旧是Install模式，这次选择不从网上下载软件，可是选择之后，进度条却不走了！&lt;/p&gt;
-&lt;p&gt;心理哭着再次重装、这次还是坚持第一次的选择吧！选择Advanced-&gt;Graphic
-Advanced Install，这次选择较低的linux版本 ，设置了学校的源，安装成功！！&lt;/p&gt;
-&lt;p&gt;在安装的时候没选桌面环境，因为不想用默认的Gnome桌面管理环境。自己装了一个wmaker桌面环境，可是我水平比较菜，终端中文输出为乱码。也不知怎么解决，于是只好aptitude
-install gnome，然后就装好了！弄了一下午啊&lt;/p&gt;
-&lt;p&gt;秀秀自己的桌面，还不怎么会设置，比较难看。&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/09/buhuo4.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/buhuo4-300x229.jpg" title="buhuo4" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;最后得到了几个教训，在Debian linux下慎用aptitude
-upgrade！不知道会出现什么东东！&lt;/p&gt;
-&lt;p&gt;一定要养成做备份的习惯，关键时候会让你省很多力气的，&lt;/p&gt;
-&lt;p&gt;不然有你哭的！&lt;/p&gt;
-&lt;p&gt;当然“远离电脑，珍爱生命，没事不要瞎折腾！”是最好的了！！&lt;/p&gt;</summary><category term="Debian安装"></category></entry><entry><title>python-tornado起步</title><link href="http://junfeng-hu.github.io/python-tornadoe8b5b7e6ada5.html" rel="alternate"></link><updated>2012-09-19T00:01:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-19:python-tornadoe8b5b7e6ada5.html</id><summary type="html">&lt;p&gt;今天终于在linux、windows下把python tornado web server 搭建好了&lt;/p&gt;
+&lt;p&gt;不过貌似装下来比较大需要100多M的硬盘空间，这对爱惜内存、磁盘空间的linux用户可不算好。&lt;/p&gt;</summary><category term="Debian装google chrome"></category></entry><entry><title>python-tornado起步</title><link href="http://junfeng-hu.github.io/python-tornadoe8b5b7e6ada5.html" rel="alternate"></link><updated>2012-09-19T00:01:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-09-19:python-tornadoe8b5b7e6ada5.html</id><summary type="html">&lt;p&gt;今天终于在linux、windows下把python tornado web server 搭建好了&lt;/p&gt;
 &lt;p&gt;但在linux下编这个程序的时候发现通过不了（windows下可以通过）&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tornado.ioloop&lt;/span&gt;
@@ -6216,38 +6127,7 @@ style="color: #000000;"&gt;http://www.wbto.cn&lt;/span&gt;&lt;/a&gt;&lt;strong&g
 &lt;/ul&gt;
 &lt;p&gt;&lt;span
 style="color: #000000; position: relative; ; left: -2em;"&gt;其他还有诸如&lt;/span&gt;：  &lt;/p&gt;
-&lt;p&gt;另一个也叫微博通的网站（界面不是很漂亮，比较简洁），玛莎网（名字起得很好，功能和亨拍微博通也差不多，但不支持QQ空间的同步），这些算是比较出名的。提供微博同步的还有很多网站，找到你感觉顺眼、顺手的就可以了！&lt;/p&gt;</summary><category term="微博同步"></category></entry><entry><title>校园风光</title><link href="http://junfeng-hu.github.io/e6a0a1e59bade9a38ee58589.html" rel="alternate"></link><updated>2012-08-18T15:56:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-08-18:e6a0a1e59bade9a38ee58589.html</id><summary type="html">&lt;p&gt;一学期下来，也拍了不少照片，特选几张来和大家分享！&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/75/b2/e3/227509d8bf24efefee730c38ed3faa7e.jpg" title="世园会吉祥物" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span
-style="text-align: center; color: #ff9900;"&gt;萌到自然呆的世园会吉祥物&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/c3/f2/30/a5c6310c4cb277277e4a2a3e18618117.jpg" title="红花" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="color: #ff9900;"&gt;拍的不好，多亏美景帮衬&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/2e/9c/0b/01b7ab6f9b9d2c0646bf90edc0fd423a.jpg" title="白花" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span
-style="color: #ff9900;"&gt;春天，每天都要经过的地方。在我们学校，什么样的植物都会开花&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/da/e9/78/24cec76ee7bba7f777bed48e5db04fc4.jpg" title="立体的花" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span
-style="color: #ff9900;"&gt;在上完某一次体育课回来时，见到的，忍不住拍了下来。好惬意的蜜蜂&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/10/4b/ec/0df938f86af2fd6ae270e90f51e6fc93.jpg" title="旷远" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span
-style="color: #ff9900;"&gt;难得在西安见到这么蓝的天空，那几根柱子我也不知道是干什么，只知道这是雷达实验室&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/a8/9d/c0/e5a66f3dc405f9f11f829ef9a2f39716.jpg" title="天空" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="color: #ff9900;"&gt;空旷的天空却不缺乏韵味&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/f0/8b/bd/95f21ced2645619242e7a2c7f6e897d6.jpg" title="教学楼" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span
-style="color: #ff9900;"&gt;刚开始以为是亚洲最长的教学楼，一百度，原来是最长的教学楼群。把所有教学楼建成一排，还真亏他们想起出来&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/8a/9a/53/63f92467c52ee00d2d77330803eb087c.jpg" title="相接" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="color: #ff9900;"&gt;好像有一种江南水乡的味道&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/ef/ba/84/17c6f1a38836e6694c2602a8438a0e8f.jpg" title="夕阳" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="color: #ff9900;"&gt;夕阳下的火烧云&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/fb/e8/48/b13580b171d4382344cc2f0bb2d453be.jpg" title="宿舍" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="color: #ff9900;"&gt;有点像寺庙哦&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/f7/ca/bc/7d881afbffc07f1bfa7c009e846ef5ab.jpg" title="鎏金" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="color: #ff9900;"&gt;鎏金的天空，房屋只剩剪影&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/16/0b/30/149fa65eea1dbd9299faef7fb0153d96.jpg" title="篮球场上" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="color: #ff9900;"&gt;惬意，充满朝气的大学生活&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://i.6.cn/cvbnm/99/ee/26/6f7ff4b678994dc8e3e67010abf5d9ca.jpg" title="A楼" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="color: #ff9900;"&gt;算不上巍峨的教学楼吧&lt;/span&gt;&lt;/p&gt;</summary><category term="校园风景"></category></entry><entry><title>驾校怪谈</title><link href="http://junfeng-hu.github.io/e9a9bee6a0a1e680aae8b088.html" rel="alternate"></link><updated>2012-08-06T22:37:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-08-06:e9a9bee6a0a1e680aae8b088.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;前奏&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;另一个也叫微博通的网站（界面不是很漂亮，比较简洁），玛莎网（名字起得很好，功能和亨拍微博通也差不多，但不支持QQ空间的同步），这些算是比较出名的。提供微博同步的还有很多网站，找到你感觉顺眼、顺手的就可以了！&lt;/p&gt;</summary><category term="微博同步"></category></entry><entry><title>驾校怪谈</title><link href="http://junfeng-hu.github.io/e9a9bee6a0a1e680aae8b088.html" rel="alternate"></link><updated>2012-08-06T22:37:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-08-06:e9a9bee6a0a1e680aae8b088.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;前奏&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;要不是我昨天打电话问了一下，就会错过今天传说中的驾考第一试，虽然电话服务员态度不好，不过总算告诉我让今天早上六点半之前到驾校集合，我等了20多天终于有了进展（回来的时候，听见一哥们说等了1个多月才排到这次考试，我顿时感觉我太幸运了）。她当记一大功！可哪位神人让我们这么早就去集合啊！人家公务员八点才上班啊！&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;起床&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;为了我能够在六点半之前起床，特意设了六点的闹铃！可我今天才发现我的手机竟然快了一个小时，闹铃当然没听到了！幸亏老妈准时在六点叫醒了我！困得要了我的命了。到了驾校发现已经来了这么多人！赶巧，我刚到，教练就叫我们考科目一的集合了，当时一阵高兴！但还是有点迷糊、犯困。&lt;/p&gt;
@@ -6607,7 +6487,4 @@ bordercolor="#35a2f3"&gt;&lt;br /&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</summary><category term="html表格"></category></entry><entry><title>Hello，World</title><link href="http://junfeng-hu.github.io/helloefbc8cworld.html" rel="alternate"></link><updated>2012-07-07T16:58:00+08:00</updated><author><name>algu</name></author><id>tag:junfeng-hu.github.io,2012-07-07:helloefbc8cworld.html</id><summary type="html">&lt;p&gt;爱科学，爱文学，爱艺术，爱编程；&lt;/p&gt;
-&lt;p&gt;码农的世界你们永远不懂；&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.jcodef.com/wp-content/uploads/2012/07/image.jpg"&gt;&lt;img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/07/image.jpg" title="image" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="color: #00ccff;"&gt;（图片来自果壳）&lt;/span&gt;&lt;/p&gt;</summary><category term="码农"></category></entry></feed>
+&lt;/table&gt;</summary><category term="html表格"></category></entry><entry><title>Hello，World</title><link href="http://junfeng-hu.github.io/helloefbc8cworld.html" rel="alternate"></link><updated>2015-11-22T16:49:39+08:00</updated><author><name>junfeng</name></author><id>tag:junfeng-hu.github.io,2012-07-07:helloefbc8cworld.html</id><summary type="html">&lt;p&gt;爱科学，爱文学，爱艺术，爱编程，最爱女朋友；&lt;/p&gt;</summary><category term="码农"></category></entry></feed>

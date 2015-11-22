@@ -74,9 +74,12 @@
     
 </footer><!-- /.post-info -->
 
-        <p>今天突然发现了一个小问题，wmaker下竟然没有一个可用的浏览器！自带的w3m实在过于奇葩，于是就在软件源里找可用的浏览器，可软件源今天也出问题了！不知怎么的竟然发现了我们学校的源没有公共许可密钥。于是开始自救。网上说在任意文件下新建个名为“key0x07DC563D1F41B907.asc”的文件。我建在home/下，键入命令：nano
-key0x07DC563D1F41B907.asc</p>
-<p>输入以下内容：</p>
+        <p>今天突然发现了一个小问题，wmaker下竟然没有一个可用的浏览器！
+自带的w3m实在过于奇葩，于是就在软件源里找可用的浏览器，可软件源今天也出问题了！
+不知怎么的竟然发现了我们学校的源没有公共许可密钥。于是开始自救。
+网上说在任意文件下新建个名为“key0x07DC563D1F41B907.asc”的文件。
+我建在home/下，键入命令：nano key0x07DC563D1F41B907.asc
+输入以下内容：</p>
 <blockquote>
 <p>-----BEGIN PGP PUBLIC KEY BLOCK-----<br />
  Version: PGP Universal 2.0.3<br />
@@ -117,20 +120,16 @@ key0x07DC563D1F41B907.asc</p>
 <p>Crtl+o保存，Crtl+x退出nano。</p>
 <p>再在root下输入命令：apt-key add key0x07DC563D1F41B907.asc</p>
 <p>更新源，成功认证！</p>
-<p>但google，firefox，opera在源里都找不到！于是再次上网，由于对google的怀旧，就找装google
-chrome的方法：</p>
+<p>但google，firefox，opera在源里都找不到！于是再次上网，
+由于对google的怀旧，就找装google chrome的方法：</p>
 <p>nano /etc/apt/sources.list 打开源地址设置文件，追加google的源</p>
 <p>deb http://dl.google.com/linux/deb/ stable main</p>
 <p>同样要设置认证：</p>
-<p>输入：wget -q -O –
-https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key
-add -</p>
+<p>输入：wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -</p>
 <p>然后：apt-get update</p>
 <p>安装测试版：apt-get install google-chrome-beta</p>
 <p>不稳定版：apt-get install google-chrome-unstable</p>
 <p>不过貌似装下来比较大需要100多M的硬盘空间，这对爱惜内存、磁盘空间的linux用户可不算好。</p>
-<p>最后秀一下自己的劳动成果</p>
-<p><a href="http://www.jcodef.com/wp-content/uploads/2012/09/igc.jpg"><img alt="" src="http://www.jcodef.com/wp-content/uploads/2012/09/igc-300x230.jpg" title="igc" /></a></p>
 
       </div><!-- /.entry-content -->
 

@@ -154,40 +154,6 @@ yum install mysql-server #mysqld
                         <article>
                             <header>
                                 <h1 class="entry-title">
-                                    <a href="http://junfeng-hu.github.io/setjmp-and-longjmp.html" rel="bookmark" title="Permalink to setjmp and longjmp">
-                                       setjmp and longjmp
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="http://junfeng-hu.github.io/author/algu.html">algu</a>
-    </address>
-
-    in <a href="http://junfeng-hu.github.io/category/cheng-xu-yuan.html">程序猿</a>
-
-    on 2013-11-03
-
-        |
-        tags:         <a href="http://junfeng-hu.github.io/tag/nolocaljmp.html">nolocaljmp</a>
-
-
-
-    
-</footer><!-- /.post-info -->                                <p><img alt="" src="http://ww4.sinaimg.cn/large/894981ddtw1ea7v9y0qdsj20gx0stwj3.jpg" /></p>
-<p>全局,静态,易失变量不受优化影响保存在存储器中,存放在存储器中的变量具有调用longjmp()时的值;进行优化后自动,寄存器变量保存寄存器中,CPU和浮点寄存器中的值恢复为调用setjmp()时的值.不进行优化,五种变量全部保存在存储器中.(来自APUE)</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="http://junfeng-hu.github.io/setjmp-and-longjmp.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
                                     <a href="http://junfeng-hu.github.io/file-hole.html" rel="bookmark" title="Permalink to file hole">
                                        file hole
                                     </a>
@@ -479,9 +445,61 @@ dup2(STDOUT_FILENO,STDERR_FILENO);//STDERR_FILENO,STDOUT_FILENO指向同一文�
                             <hr/>
                         </article>
                     </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
+                                    <a href="http://junfeng-hu.github.io/file-descriptor.html" rel="bookmark" title="Permalink to file descriptor">
+                                       file descriptor
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://junfeng-hu.github.io/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://junfeng-hu.github.io/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-09-07
+
+        |
+        tags:         <a href="http://junfeng-hu.github.io/tag/wen-jian-miao-shu-fu.html">文件描述符</a>
+
+
+
+    
+</footer><!-- /.post-info -->                                <p>和文件描述符有关的函数：</p>
+<ul>
+<li>open</li>
+<li>close</li>
+<li>dup</li>
+<li>dup2</li>
+<li>fcntl</li>
+</ul>
+<p>文件描述符为int整型变量，范围0-OPEN_MAX;</p>
+<p>在linux下OPEN_MAX未在limits.h下定义，使用sysconf(_SC_OPEN_MAX)获得其值．</p>
+<p>open打开文件返回文件描述符没什么好说的．</p>
+<p>close()关闭文件描述符，注意当有多个文件描述符指向同一文件表项时，必须close所有与之关联的描述符才能真正关闭文件．</p>
+<blockquote>
+<p>When all file descriptors associated with an open file description
+have been closed, the open file  description shall be freed.</p>
+</blockquote>
+<p>此时无法再对文件进行更改．</p>
+<p>dup(),dup2()复制现存的文件描述符，在内核数据中一个新的文件描述符被创建．当总数达到OPEN_MAX时，进程无法再打开文件．</p>
+<p>当cmd=F_DUPFD时 fcntl和dup,dup2功能类似．</p>
+<p>附测试程序 ...</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://junfeng-hu.github.io/file-descriptor.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
                     </ol><!-- /#posts-list -->
 <p class="paginator">
-    Page 1 / 8
+    Page 1 / 7
         <a href="http://junfeng-hu.github.io/author/algu2.html">&raquo;</a>
 </p>
                 </section><!-- /#content -->

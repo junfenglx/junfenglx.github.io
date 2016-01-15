@@ -77,7 +77,7 @@
     
 </footer><!-- /.post-info -->
 
-        <h2>struct sockaddr</h2>
+        <h2 id="struct-sockaddr">struct sockaddr</h2>
 <blockquote>
 <p>Everytime one of the socket functions requires a pointer to a
   socket address structure, that pointer must be cast to a pointer to a generic socket
@@ -85,7 +85,7 @@
   so the void * pointer type was not available in the early 1980s when these functions
   were developed.[p41]</p>
 </blockquote>
-<h2>server model</h2>
+<h2 id="server-model">server model</h2>
 <ul>
 <li>iterative server</li>
 <li>concurrent server<ul>
@@ -95,16 +95,16 @@
 </ul>
 </li>
 </ul>
-<h2>OSI model and Internet protocol suite</h2>
+<h2 id="osi-model-and-internet-protocol-suite">OSI model and Internet protocol suite</h2>
 <p><img alt="img" src="./images/osi_mode_and_internet_protocol.png" /></p>
-<h2>Linux derived from Minix</h2>
+<h2 id="linux-derived-from-minix">Linux derived from Minix</h2>
 <blockquote>
 <p>We also note that Linux, a popular, freely
   available implementation of Unix, does not fit into the Berkeley-derived classification:
   Its networking code and sockets API were developed from scratch.</p>
 </blockquote>
-<h2>Exercises</h2>
-<h3>1.3</h3>
+<h2 id="exercises">Exercises</h2>
+<h3 id="13">1.3</h3>
 <p><code>errno: 97 socket error: Address family not supported by protocol</code></p>
 <p>define AF_* at include/linux/socket.h</p>
 <div class="highlight"><pre><span class="cm">/* Supported address families. */</span>
@@ -154,7 +154,7 @@
 </pre></div>
 
 
-<h3>1.4</h3>
+<h3 id="14">1.4</h3>
 <div class="highlight"><pre><span class="cp">#include    &quot;unp.h&quot;</span>
 
 <span class="kt">int</span>
@@ -201,7 +201,7 @@ counter: 1
 </pre></div>
 
 
-<h3>1.5</h3>
+<h3 id="15">1.5</h3>
 <p>Server:</p>
 <div class="highlight"><pre><span class="cp">#include    &quot;unp.h&quot;</span>
 <span class="cp">#include    &lt;time.h&gt;</span>
@@ -307,7 +307,7 @@ counter: 1
           var disqus_identifier = "unpv13e-chapter-1-notes.html";
           (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//junfenglx.disqus.com/embed.js';
+          dsq.src = '//junfeng.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
           })();
         </script>
@@ -333,7 +333,7 @@ counter: 1
     </footer>
 
 <script type="text/javascript">
-    var disqus_shortname = 'junfenglx';
+    var disqus_shortname = 'junfeng';
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';

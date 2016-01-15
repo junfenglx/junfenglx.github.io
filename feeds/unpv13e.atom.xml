@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfenglx.github.io/" rel="alternate"></link><link href="http://junfenglx.github.io/feeds/unpv13e.atom.xml" rel="self"></link><id>http://junfenglx.github.io/</id><updated>2014-07-03T14:45:00+08:00</updated><entry><title>unpv13e chapter 3 notes</title><link href="http://junfenglx.github.io/unpv13e-chapter-3-notes.html" rel="alternate"></link><updated>2014-07-03T14:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-07-03:unpv13e-chapter-3-notes.html</id><summary type="html">&lt;h3&gt;IPv4 Socket Address Structure&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfenglx.github.io/" rel="alternate"></link><link href="http://junfenglx.github.io/feeds/unpv13e.atom.xml" rel="self"></link><id>http://junfenglx.github.io/</id><updated>2014-07-03T14:45:00+08:00</updated><entry><title>unpv13e chapter 3 notes</title><link href="http://junfenglx.github.io/unpv13e-chapter-3-notes.html" rel="alternate"></link><updated>2014-07-03T14:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-07-03:unpv13e-chapter-3-notes.html</id><summary type="html">&lt;h3 id="ipv4-socket-address-structure"&gt;IPv4 Socket Address Structure&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="sockaddr_in.png" src="./images/sockaddr_in.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;Datatypes required by the POSIX specification&lt;/h3&gt;
+&lt;h3 id="datatypes-required-by-the-posix-specification"&gt;Datatypes required by the POSIX specification&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="datatypes.png" src="./images/datatypes.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;Generic Socket Address Structure&lt;/h3&gt;
+&lt;h3 id="generic-socket-address-structure"&gt;Generic Socket Address Structure&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="sockaddr.png" src="./images/sockaddr.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;IPv6 Socket Address Structure&lt;/h3&gt;
+&lt;h3 id="ipv6-socket-address-structure"&gt;IPv6 Socket Address Structure&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="sockaddr_in6.png" src="./images/sockaddr_in6.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;New Generic Socket Address Structure&lt;/h3&gt;
+&lt;h3 id="new-generic-socket-address-structure"&gt;New Generic Socket Address Structure&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="sockaddr_storage.png" src="./images/sockaddr_storage.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;Comparison of various socket address structures.&lt;/h3&gt;
+&lt;h3 id="comparison-of-various-socket-address-structures"&gt;Comparison of various socket address structures.&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="sockaddr_comparison.png" src="./images/sockaddr_comparison.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;Byte Ordering Functions&lt;/h3&gt;
+&lt;h3 id="byte-ordering-functions"&gt;Byte Ordering Functions&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="byte_ordering_functions.png" src="./images/byte_ordering_functions.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;Convert Addresses Between ASCII Strings And Network Byte Ordered Binary Values&lt;/h3&gt;
-&lt;h5&gt;Old Functions:&lt;/h5&gt;
+&lt;h3 id="convert-addresses-between-ascii-strings-and-network-byte-ordered-binary-values"&gt;Convert Addresses Between ASCII Strings And Network Byte Ordered Binary Values&lt;/h3&gt;
+&lt;h5 id="old-functions"&gt;Old Functions:&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="inet_aton-inet_addr-inet_ntoa.png" src="./images/inet_aton-inet_addr-inet_ntoa.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;note 1: INADDR_NONE is typically 32 one-bits, so inet_addr cannot convert string 255.255.255.255&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;note 2: inet_ntoa's return value is in static memory, so it is not reentrant&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;note 3: inet_ntoa takes structures as it's argument, not a point&lt;/em&gt;&lt;/p&gt;
-&lt;h5&gt;New Functions:&lt;/h5&gt;
+&lt;h5 id="new-functions"&gt;New Functions:&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="inet_pton-inet_ntop.png" src="./images/inet_pton-inet_ntop.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;#define INET_ADDRSTRLEN 16 /* for IPv4 dotted-decimal */&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;#define INET6_ADDRSTRLEN 46 /* for IPv6 hex string */&lt;/code&gt;&lt;/p&gt;
-&lt;h5&gt;Summary of address conversion functions&lt;/h5&gt;
+&lt;h5 id="summary-of-address-conversion-functions"&gt;Summary of address conversion functions&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="address_conversion_functions.png" src="./images/address_conversion_functions.png" /&gt;&lt;/p&gt;
-&lt;h2&gt;Exercises&lt;/h2&gt;
+&lt;h2 id="exercises"&gt;Exercises&lt;/h2&gt;
 &lt;p&gt;3.1 In C the function can modify arguments only if arguments passed by reference.&lt;/p&gt;
 &lt;p&gt;3.2 because &lt;code&gt;sizeof(char)&lt;/code&gt; is one byte, read or write n chars equals n bytes data.&lt;/p&gt;
 &lt;p&gt;3.3&lt;/p&gt;
@@ -89,42 +89,42 @@
     &lt;span class="p"&gt;}&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>unpv13e chapter 2 notes</title><link href="http://junfenglx.github.io/unpv13e-chapter-2-notes.html" rel="alternate"></link><updated>2014-06-08T15:41:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-06-08:unpv13e-chapter-2-notes.html</id><summary type="html">&lt;h2&gt;Overview of TCP/IP protocols.&lt;/h2&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>unpv13e chapter 2 notes</title><link href="http://junfenglx.github.io/unpv13e-chapter-2-notes.html" rel="alternate"></link><updated>2014-06-08T15:41:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-06-08:unpv13e-chapter-2-notes.html</id><summary type="html">&lt;h2 id="overview-of-tcpip-protocols"&gt;Overview of TCP/IP protocols.&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="unpv1_overview_TCP_IP_protocols.png" src="./images/unpv1_overview_TCP_IP_protocols.png" /&gt;&lt;/p&gt;
-&lt;h2&gt;TCP&lt;/h2&gt;
-&lt;h3&gt;Three-Way Handshake&lt;/h3&gt;
+&lt;h2 id="tcp"&gt;TCP&lt;/h2&gt;
+&lt;h3 id="three-way-handshake"&gt;Three-Way Handshake&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="TCP_three_way_handshake.png" src="./images/TCP_three_way_handshake.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;Packets exchanged when a TCP connection is closed.&lt;/h3&gt;
+&lt;h3 id="packets-exchanged-when-a-tcp-connection-is-closed"&gt;Packets exchanged when a TCP connection is closed.&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="packets_exchange_when_TCP_connections_terminal.png" src="./images/packets_exchange_when_TCP_connections_terminal.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;TCP State Transition Diagram&lt;/h3&gt;
+&lt;h3 id="tcp-state-transition-diagram"&gt;TCP State Transition Diagram&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="TCP_State_Transition_Diagram.png" src="./images/TCP_State_Transition_Diagram.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;TIME_WAIT State&lt;/h3&gt;
+&lt;h3 id="time_wait-state"&gt;TIME_WAIT State&lt;/h3&gt;
 &lt;p&gt;Time: 2MSL&lt;/p&gt;
 &lt;p&gt;Reasons:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;To implement TCP's full-duplex connection termination reliably&lt;/li&gt;
 &lt;li&gt;To allow old duplicate segments to expire in the network&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;SCTP&lt;/h2&gt;
-&lt;h3&gt;SCTP four-way handshake&lt;/h3&gt;
+&lt;h2 id="sctp"&gt;SCTP&lt;/h2&gt;
+&lt;h3 id="sctp-four-way-handshake"&gt;SCTP four-way handshake&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="SCTP_four_way_handshake.png" src="./images/SCTP_four_way_handshake.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;Packets exchanged when an SCTP association is closed&lt;/h3&gt;
+&lt;h3 id="packets-exchanged-when-an-sctp-association-is-closed"&gt;Packets exchanged when an SCTP association is closed&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="packets_exchanged_when_an_SCTP_association_is_closed.png" src="./images/packets_exchanged_when_an_SCTP_association_is_closed.png" /&gt;&lt;/p&gt;
 &lt;p&gt;SCTP does not permit a "half-closed" association, does not have a TIME_WAIT state.&lt;/p&gt;
-&lt;h3&gt;SCTP State Transition Diagram&lt;/h3&gt;
+&lt;h3 id="sctp-state-transition-diagram"&gt;SCTP State Transition Diagram&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="SCTP_State_Transition_Diagram.png" src="./images/SCTP_State_Transition_Diagram.png" /&gt;&lt;/p&gt;
-&lt;h2&gt;Socket Pair&lt;/h2&gt;
+&lt;h2 id="socket-pair"&gt;Socket Pair&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;TCP: the local IP address, local port, foreign IP address, and foreign port&lt;/li&gt;
 &lt;li&gt;SCTP: a set of local IP addresses, a local port, a set of foreign IP
   addresses, and a foreign port&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;Headers&lt;/h2&gt;
-&lt;h3&gt;IPv4 Header&lt;/h3&gt;
+&lt;h2 id="headers"&gt;Headers&lt;/h2&gt;
+&lt;h3 id="ipv4-header"&gt;IPv4 Header&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="IPv4_header.png" src="./images/IPv4_header.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;IPv6 Header&lt;/h3&gt;
+&lt;h3 id="ipv6-header"&gt;IPv6 Header&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="IPv6_header.png" src="./images/IPv6_header.png" /&gt;&lt;/p&gt;
-&lt;h2&gt;Buffer Sizes and Limitations&lt;/h2&gt;
+&lt;h2 id="buffer-sizes-and-limitations"&gt;Buffer Sizes and Limitations&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;The maximum size of an IPv4 datagram is 65,535 bytes, including the IPv4
   header.&lt;/li&gt;
@@ -148,33 +148,33 @@
 &lt;p&gt;Note:
 &lt;em&gt;Pv6 payload length field does not include the size of the IPv6header,&lt;/em&gt;
 &lt;em&gt;while the IPv4 total length field does include the header size.&lt;/em&gt;&lt;/p&gt;
-&lt;h3&gt;Retransmission&lt;/h3&gt;
+&lt;h3 id="retransmission"&gt;Retransmission&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Positive Acknowledgement&lt;/li&gt;
 &lt;li&gt;Negative Acknowledgment&lt;/li&gt;
 &lt;li&gt;Selective Acknowledgment&lt;/li&gt;
 &lt;li&gt;Cumulative Acknowledgment&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;Exercise&lt;/h2&gt;
-&lt;h3&gt;2.1&lt;/h3&gt;
+&lt;h2 id="exercise"&gt;Exercise&lt;/h2&gt;
+&lt;h3 id="21"&gt;2.1&lt;/h3&gt;
 &lt;p&gt;version 0-1: Reserved&lt;/p&gt;
 &lt;p&gt;version 2-3: Unassigned&lt;/p&gt;
 &lt;p&gt;version 5: Internet Stream Protocol&lt;/p&gt;
-&lt;h3&gt;2.2&lt;/h3&gt;
+&lt;h3 id="22"&gt;2.2&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://tools.ietf.org/html/rfc1190"&gt;rfc1190&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Internet_Stream_Protocol"&gt;Internet_Stream_Protocol&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;2.3&lt;/h3&gt;
+&lt;h3 id="23"&gt;2.3&lt;/h3&gt;
 &lt;p&gt;The minimum reassembly buffer size for IPv4 is 576, it minus the 20-byte IPv4 header and minus
 the 20-byte TCP header is 536&lt;/p&gt;
-&lt;h3&gt;2.4&lt;/h3&gt;
+&lt;h3 id="24"&gt;2.4&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="2.4.jpeg" src="./images/2.4.jpeg" /&gt;&lt;/p&gt;
-&lt;h3&gt;2.5&lt;/h3&gt;
+&lt;h3 id="25"&gt;2.5&lt;/h3&gt;
 &lt;p&gt;Token ring host can't send packets more than 1460 bytes of data, because peer MSS was 1460.
 Ethernet host can send no more than 4096 bytes data, but it's MTU is 1500 bytes, it will not exceed the MTU of the
 outgoing interface (the Ethernet) to avoid fragmentation. There for the max length of data is 1460 (1500-20-20)&lt;/p&gt;
-&lt;h3&gt;2.6&lt;/h3&gt;
+&lt;h3 id="26"&gt;2.6&lt;/h3&gt;
 &lt;p&gt;89&lt;/p&gt;
-&lt;h3&gt;2.7&lt;/h3&gt;
+&lt;h3 id="27"&gt;2.7&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;A selective acknowledgment only indicates that the data covered by the
 sequence numbers reflected in the selective acknowledgment message was
@@ -183,7 +183,7 @@ including the sequence number in the cumulative acknowledgment message
 was received. When freeing data from the send buffer based on a selective
 acknowledgment, the system may only free the exact data that was
 acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>unpv13e chapter 1 notes</title><link href="http://junfenglx.github.io/unpv13e-chapter-1-notes.html" rel="alternate"></link><updated>2014-06-04T14:16:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-06-04:unpv13e-chapter-1-notes.html</id><summary type="html">&lt;h2&gt;struct sockaddr&lt;/h2&gt;
+&lt;/blockquote&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>unpv13e chapter 1 notes</title><link href="http://junfenglx.github.io/unpv13e-chapter-1-notes.html" rel="alternate"></link><updated>2014-06-04T14:16:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-06-04:unpv13e-chapter-1-notes.html</id><summary type="html">&lt;h2 id="struct-sockaddr"&gt;struct sockaddr&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Everytime one of the socket functions requires a pointer to a
   socket address structure, that pointer must be cast to a pointer to a generic socket
@@ -191,7 +191,7 @@ acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt
   so the void * pointer type was not available in the early 1980s when these functions
   were developed.[p41]&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2&gt;server model&lt;/h2&gt;
+&lt;h2 id="server-model"&gt;server model&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;iterative server&lt;/li&gt;
 &lt;li&gt;concurrent server&lt;ul&gt;
@@ -201,16 +201,16 @@ acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;OSI model and Internet protocol suite&lt;/h2&gt;
+&lt;h2 id="osi-model-and-internet-protocol-suite"&gt;OSI model and Internet protocol suite&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="img" src="./images/osi_mode_and_internet_protocol.png" /&gt;&lt;/p&gt;
-&lt;h2&gt;Linux derived from Minix&lt;/h2&gt;
+&lt;h2 id="linux-derived-from-minix"&gt;Linux derived from Minix&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;We also note that Linux, a popular, freely
   available implementation of Unix, does not fit into the Berkeley-derived classification:
   Its networking code and sockets API were developed from scratch.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2&gt;Exercises&lt;/h2&gt;
-&lt;h3&gt;1.3&lt;/h3&gt;
+&lt;h2 id="exercises"&gt;Exercises&lt;/h2&gt;
+&lt;h3 id="13"&gt;1.3&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;errno: 97 socket error: Address family not supported by protocol&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;define AF_* at include/linux/socket.h&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/* Supported address families. */&lt;/span&gt;
@@ -260,7 +260,7 @@ acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;1.4&lt;/h3&gt;
+&lt;h3 id="14"&gt;1.4&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include    &amp;quot;unp.h&amp;quot;&lt;/span&gt;
 
 &lt;span class="kt"&gt;int&lt;/span&gt;
@@ -307,7 +307,7 @@ counter: 1
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;1.5&lt;/h3&gt;
+&lt;h3 id="15"&gt;1.5&lt;/h3&gt;
 &lt;p&gt;Server:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include    &amp;quot;unp.h&amp;quot;&lt;/span&gt;
 &lt;span class="cp"&gt;#include    &amp;lt;time.h&amp;gt;&lt;/span&gt;

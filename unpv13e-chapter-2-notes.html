@@ -77,42 +77,42 @@
     
 </footer><!-- /.post-info -->
 
-        <h2>Overview of TCP/IP protocols.</h2>
+        <h2 id="overview-of-tcpip-protocols">Overview of TCP/IP protocols.</h2>
 <p><img alt="unpv1_overview_TCP_IP_protocols.png" src="./images/unpv1_overview_TCP_IP_protocols.png" /></p>
-<h2>TCP</h2>
-<h3>Three-Way Handshake</h3>
+<h2 id="tcp">TCP</h2>
+<h3 id="three-way-handshake">Three-Way Handshake</h3>
 <p><img alt="TCP_three_way_handshake.png" src="./images/TCP_three_way_handshake.png" /></p>
-<h3>Packets exchanged when a TCP connection is closed.</h3>
+<h3 id="packets-exchanged-when-a-tcp-connection-is-closed">Packets exchanged when a TCP connection is closed.</h3>
 <p><img alt="packets_exchange_when_TCP_connections_terminal.png" src="./images/packets_exchange_when_TCP_connections_terminal.png" /></p>
-<h3>TCP State Transition Diagram</h3>
+<h3 id="tcp-state-transition-diagram">TCP State Transition Diagram</h3>
 <p><img alt="TCP_State_Transition_Diagram.png" src="./images/TCP_State_Transition_Diagram.png" /></p>
-<h3>TIME_WAIT State</h3>
+<h3 id="time_wait-state">TIME_WAIT State</h3>
 <p>Time: 2MSL</p>
 <p>Reasons:</p>
 <ul>
 <li>To implement TCP's full-duplex connection termination reliably</li>
 <li>To allow old duplicate segments to expire in the network</li>
 </ul>
-<h2>SCTP</h2>
-<h3>SCTP four-way handshake</h3>
+<h2 id="sctp">SCTP</h2>
+<h3 id="sctp-four-way-handshake">SCTP four-way handshake</h3>
 <p><img alt="SCTP_four_way_handshake.png" src="./images/SCTP_four_way_handshake.png" /></p>
-<h3>Packets exchanged when an SCTP association is closed</h3>
+<h3 id="packets-exchanged-when-an-sctp-association-is-closed">Packets exchanged when an SCTP association is closed</h3>
 <p><img alt="packets_exchanged_when_an_SCTP_association_is_closed.png" src="./images/packets_exchanged_when_an_SCTP_association_is_closed.png" /></p>
 <p>SCTP does not permit a "half-closed" association, does not have a TIME_WAIT state.</p>
-<h3>SCTP State Transition Diagram</h3>
+<h3 id="sctp-state-transition-diagram">SCTP State Transition Diagram</h3>
 <p><img alt="SCTP_State_Transition_Diagram.png" src="./images/SCTP_State_Transition_Diagram.png" /></p>
-<h2>Socket Pair</h2>
+<h2 id="socket-pair">Socket Pair</h2>
 <ul>
 <li>TCP: the local IP address, local port, foreign IP address, and foreign port</li>
 <li>SCTP: a set of local IP addresses, a local port, a set of foreign IP
   addresses, and a foreign port</li>
 </ul>
-<h2>Headers</h2>
-<h3>IPv4 Header</h3>
+<h2 id="headers">Headers</h2>
+<h3 id="ipv4-header">IPv4 Header</h3>
 <p><img alt="IPv4_header.png" src="./images/IPv4_header.png" /></p>
-<h3>IPv6 Header</h3>
+<h3 id="ipv6-header">IPv6 Header</h3>
 <p><img alt="IPv6_header.png" src="./images/IPv6_header.png" /></p>
-<h2>Buffer Sizes and Limitations</h2>
+<h2 id="buffer-sizes-and-limitations">Buffer Sizes and Limitations</h2>
 <ul>
 <li>The maximum size of an IPv4 datagram is 65,535 bytes, including the IPv4
   header.</li>
@@ -136,33 +136,33 @@
 <p>Note:
 <em>Pv6 payload length field does not include the size of the IPv6header,</em>
 <em>while the IPv4 total length field does include the header size.</em></p>
-<h3>Retransmission</h3>
+<h3 id="retransmission">Retransmission</h3>
 <ul>
 <li>Positive Acknowledgement</li>
 <li>Negative Acknowledgment</li>
 <li>Selective Acknowledgment</li>
 <li>Cumulative Acknowledgment</li>
 </ul>
-<h2>Exercise</h2>
-<h3>2.1</h3>
+<h2 id="exercise">Exercise</h2>
+<h3 id="21">2.1</h3>
 <p>version 0-1: Reserved</p>
 <p>version 2-3: Unassigned</p>
 <p>version 5: Internet Stream Protocol</p>
-<h3>2.2</h3>
+<h3 id="22">2.2</h3>
 <p><a href="http://tools.ietf.org/html/rfc1190">rfc1190</a></p>
 <p><a href="http://en.wikipedia.org/wiki/Internet_Stream_Protocol">Internet_Stream_Protocol</a></p>
-<h3>2.3</h3>
+<h3 id="23">2.3</h3>
 <p>The minimum reassembly buffer size for IPv4 is 576, it minus the 20-byte IPv4 header and minus
 the 20-byte TCP header is 536</p>
-<h3>2.4</h3>
+<h3 id="24">2.4</h3>
 <p><img alt="2.4.jpeg" src="./images/2.4.jpeg" /></p>
-<h3>2.5</h3>
+<h3 id="25">2.5</h3>
 <p>Token ring host can't send packets more than 1460 bytes of data, because peer MSS was 1460.
 Ethernet host can send no more than 4096 bytes data, but it's MTU is 1500 bytes, it will not exceed the MTU of the
 outgoing interface (the Ethernet) to avoid fragmentation. There for the max length of data is 1460 (1500-20-20)</p>
-<h3>2.6</h3>
+<h3 id="26">2.6</h3>
 <p>89</p>
-<h3>2.7</h3>
+<h3 id="27">2.7</h3>
 <blockquote>
 <p>A selective acknowledgment only indicates that the data covered by the
 sequence numbers reflected in the selective acknowledgment message was
@@ -181,7 +181,7 @@ acknowledged, and not any before or after the selective acknowledgment.</p>
           var disqus_identifier = "unpv13e-chapter-2-notes.html";
           (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//junfenglx.disqus.com/embed.js';
+          dsq.src = '//junfeng.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
           })();
         </script>
@@ -207,7 +207,7 @@ acknowledged, and not any before or after the selective acknowledgment.</p>
     </footer>
 
 <script type="text/javascript">
-    var disqus_shortname = 'junfenglx';
+    var disqus_shortname = 'junfeng';
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';

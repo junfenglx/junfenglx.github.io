@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="使用tesseract-ocr和opencv识别视频中文字"/>
+    <meta property="og:url" content="http://junfenglx.github.io/shi-yong-tesseract-ocrhe-opencvshi-bie-shi-pin-zhong-wen-zi.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://junfenglx.github.io/shi-yong-tesseract-ocrhe-opencvshi-bie-shi-pin-zhong-wen-zi.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>使用tesseract-ocr和opencv识别视频中文字 | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://junfenglx.github.io/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://junfenglx.github.io/theme/css/main.css" type="text/css" />
+    <link href="http://junfenglx.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://junfenglx.github.io/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="http://junfenglx.github.io/pages/about.html">关于我</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://junfenglx.github.io/shi-yong-tesseract-ocrhe-opencvshi-bie-shi-pin-zhong-wen-zi.html" rel="bookmark"
+             title="Permalink to 使用tesseract-ocr和opencv识别视频中文字">使用tesseract-ocr和opencv识别视频中文字</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://junfenglx.github.io/author/junfeng.html">junfeng</a>
+    </address>
+
+    in <a href="http://junfenglx.github.io/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2016-01-15
+
+        |
+        tags:         <a href="http://junfenglx.github.io/tag/c.html">C++</a>
+        <a href="http://junfenglx.github.io/tag/tesseract-ocr.html">tesseract-ocr</a>
+        <a href="http://junfenglx.github.io/tag/opencv.html">opencv</a>
+
+
+        |
+        <a href="http://junfenglx.github.io/shi-yong-tesseract-ocrhe-opencvshi-bie-shi-pin-zhong-wen-zi.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <div class="toc">
+<ul>
+<li><a href="#abstract">Abstract</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#implementation">Implementation</a><ul>
+<li><a href="#_1">环境准备</a></li>
+<li><a href="#coding">Coding</a></li>
+</ul>
+</li>
+<li><a href="#result">Result</a></li>
+<li><a href="#related-works">Related works</a></li>
+<li><a href="#limitation">Limitation</a></li>
+<li><a href="#future-works">Future works</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h3 id="abstract">Abstract</h3>
+<p>本文使用tesseract-ocr和opencv提取B站2015年舞蹈总排行榜视频中的Id号，
+然后使用you-get工具下载提取到的视频。视频包下载地址见<a href="#result">Result</a>。</p>
+<h3 id="introduction">Introduction</h3>
+<p>在B站看到有人出了2015年舞蹈区总排行榜TOP100视频(<a href="http://www.bilibili.com/video/av3484492/">链接</a>)，看完视频感觉都还不错，
+有些还没看过，想着既然能在这个排行榜上，那就应该不错，值得下载下来收藏。</p>
+<p>那怎么把里面的视频下载下来呢？</p>
+<p>我的思路是这样的：
+1. 排行榜视频中提到的所有舞蹈区视频都贴上了Id号，就是av后面跟的六位数字。
+2. 获取到Id号，通过you-get(<a href="https://you-get.org/">官网</a>)工具将相应视频下载下来。</p>
+<p>那怎么获取视频的Id呢？</p>
+<p>简单的做法是对着排行榜视频，一个一个的手动记录下来。
+这种方法精确率应该能达到100%，但是伤害眼睛。</p>
+<p><em>程序猿可是要好好保护眼睛的。</em></p>
+<p>也学了4, 5年coding了，想着通过程序能不能提取出排行榜视频里的所有Id号。</p>
+<h3 id="implementation">Implementation</h3>
+<p>有了想法，当然也要有方法。</p>
+<p>想到之前在cloudera blog上看到的一篇文章(<a href="http://blog.cloudera.com/blog/2015/10/how-to-index-scanned-pdfs-at-scale-using-fewer-than-50-lines-of-code/">链接</a>)中提到使用ocr工具
+提取PDF文件中的文字，那么自然考虑能不能使用ocr工具提取视频中的文字呢。</p>
+<p>文章中提到他们使用Ghostscript先把PDF文件分割成图片，
+再交给tesseract-ocr(<a href="https://github.com/tesseract-ocr/tesseract">GitHub</a>)处理，获取到文字。
+那样的话，我只需要把视频分割成一帧一帧的图片，
+tesseract-ocr也应该能处理。</p>
+<p>Google搜索出通过使用ffmpeg就可以将视频分割成图片了，如下命令</p>
+<div class="highlight"><pre>ffmpeg -i 【年刊】2015年哔哩哔哩舞蹈区总排行榜TOP100.flv image_%d.png
+</pre></div>
+
+
+<p>但是该方法将产生5万多张图片，而且每张图片平均有2、3MB，
+显然该方法并不现实，首先转换速度慢，非常占用CPU，同时视频转换到一半，
+磁盘已经写了60多GB的图片了。担心实验室的配置不怎么样的机子被自己给写坏了，
+就没继续转换下去。</p>
+<p>听说OpenCV(<a href="http://opencv.org/">官网</a>)比较擅长处理图片和视频，于是想到能不能通过OpenCV将
+视频一帧一帧的交给tesseract-ocr处理，获取每个帧图片中的Id号，最后再做个
+去重。</p>
+<p>Google一下，在stackoverflow搜到了类似的问题(<a href="http://stackoverflow.com/questions/14041025/how-can-i-use-tesseract-and-opencv-to-extract-the-text-from-the-camera">链接</a>)，该问题是询问用OpenCV
+和tesseract-ocr从摄像头的视频中提取文字的，类比到已经存在的视频，那么OpenCV加上
+tesseract-ocr应该也是可以处理的。</p>
+<h4 id="_1">环境准备</h4>
+<p>OS: Arch Linux</p>
+<p>安装OpenCV和tesseract-ocr：</p>
+<div class="highlight"><pre>sudo pacman -S tesseract
+<span class="c"># tesseract-data</span>
+sudo pacman -S tesseract-data-eng
+sudo pacman -S tesseract-data-chi_sim
+sudo pacman -S opencv
+</pre></div>
+
+
+<p>g++编译flag脚本：</p>
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<span class="c"># lept是tesseract-ocr的依赖leptonica</span>
+g++ -std<span class="o">=</span>c++11  <span class="sb">`</span>pkg-config --libs tesseract opencv lept<span class="sb">`</span> <span class="nv">$1</span> -o <span class="si">${</span><span class="nv">1</span><span class="si">}</span>.out
+</pre></div>
+
+
+<h4 id="coding">Coding</h4>
+<p>代码基于stackoverflow上贴出的<a href="http://stackoverflow.com/questions/14041025/how-can-i-use-tesseract-and-opencv-to-extract-the-text-from-the-camera">代码</a>，结合OpenCV官方给出的使用VideoCapture的
+<a href="http://docs.opencv.org/3.0-last-rst/modules/videoio/doc/reading_and_writing_video.html#videocapture">示例代码</a>，加上stackoverflow上另外一个<a href="http://stackoverflow.com/questions/11464397/image-preprocessing-for-text-recognition">问题</a>的回答贴出的代码，
+对视频帧进行预处理，如下：</p>
+<div class="highlight"><pre><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">new_img</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">bitwise_not</span><span class="p">(</span><span class="n">new_img</span><span class="p">,</span> <span class="n">new_img</span><span class="p">);</span>
+
+<span class="kt">double</span> <span class="n">thres</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">color</span> <span class="o">=</span> <span class="mi">255</span><span class="p">;</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">threshold</span><span class="p">(</span><span class="n">new_img</span><span class="p">,</span> <span class="n">new_img</span><span class="p">,</span> <span class="n">thres</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">CV_THRESH_BINARY</span><span class="p">);</span>
+
+<span class="n">cv</span><span class="o">::</span><span class="n">imwrite</span><span class="p">(</span><span class="s">&quot;inv_thres.png&quot;</span><span class="p">,</span> <span class="n">new_img</span><span class="p">);</span>
+</pre></div>
+
+
+<p>由于tesseract-ocr对白纸黑字的图片处理效果才比较好，所以需要对视频帧预处理，
+可以说图片预处理的好坏直接影响识别文字的精确程序，而我并不懂图形学，仅仅是
+看着处理效果调的。</p>
+<p>代码还使用了stackoverflow中另外一个<a href="http://stackoverflow.com/questions/8115368/converting-cvmat-for-tesseract">问题</a>中的回答的代码，适配OpenCV数据结构<code>Mat</code>到tesseract-ocr
+中的API函数SetImage的代码：</p>
+<div class="highlight"><pre><span class="n">tesseract</span><span class="o">::</span><span class="n">TessBaseAPI</span> <span class="n">tess</span><span class="p">;</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">sub</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">100</span><span class="p">));</span>
+<span class="n">tess</span><span class="p">.</span><span class="n">SetImage</span><span class="p">((</span><span class="n">uchar</span><span class="o">*</span><span class="p">)</span><span class="n">sub</span><span class="p">.</span><span class="n">data</span><span class="p">,</span> <span class="n">sub</span><span class="p">.</span><span class="n">size</span><span class="p">().</span><span class="n">width</span><span class="p">,</span> <span class="n">sub</span><span class="p">.</span><span class="n">size</span><span class="p">().</span><span class="n">height</span><span class="p">,</span> <span class="n">sub</span><span class="p">.</span><span class="n">channels</span><span class="p">(),</span> <span class="n">sub</span><span class="p">.</span><span class="n">step1</span><span class="p">());</span>
+<span class="n">tess</span><span class="p">.</span><span class="n">Recognize</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">out</span> <span class="o">=</span> <span class="n">tess</span><span class="p">.</span><span class="n">GetUTF8Text</span><span class="p">();</span>
+</pre></div>
+
+
+<p>最终获取排行榜视频中ID号的代码见<a href="https://gist.github.com/junfenglx/ed966fb7ea41ed2a13a9">Gist</a>。</p>
+<p>至于包含Id号和Score的矩形区域是使用GIMP(<a href="https://www.gimp.org/">官网</a>)找出来的。
+缩小检测区域，有利于防止tesseract-ocr返回很多垃圾文字。</p>
+<p>开始使用chi_sim language data，发现效果并不是很好，总是把1识别成l，
+由于Id号和Score都是由数字和字母组成，因此换成eng language data精确度
+反而能提高一些。</p>
+<p>获取到Id号后，构造url和去重就很简单了。</p>
+<p>最后使用you-get下载视频：</p>
+<div class="highlight"><pre><span class="c"># using uniq removes duplicates</span>
+<span class="k">for</span> u in <span class="sb">`</span>uniq ../dance_url.out <span class="sb">`</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$u</span><span class="p">;</span> you-get <span class="nv">$u</span><span class="p">;</span> <span class="k">done</span>
+</pre></div>
+
+
+<h3 id="result">Result</h3>
+<p>最后下载到的视频见<a href="http://pan.baidu.com/s/1jHiXFeA">分享</a>，密码: 5gv3</p>
+<p>Id号并没有全部识别出来。</p>
+<h3 id="related-works">Related works</h3>
+<p>主要的相关工作就是cloudera blog上发表的那篇<a href="http://blog.cloudera.com/blog/2015/10/how-to-index-scanned-pdfs-at-scale-using-fewer-than-50-lines-of-code/">文章</a>。他们在那篇文章中
+使用tesseract-ocr识别扫描PDF文件，并将结果存在HBase中。受那篇文章启发，
+才有了本篇文章的想法。</p>
+<h3 id="limitation">Limitation</h3>
+<p>OpenCV和tesseract-ocr识别视频中文字，预处理很重要，而且对字体变化很敏感。
+一般识别正确率达不到100%，本文例子中，由于排行榜视频前期和后期Id号字体发生
+改变，导致视频中后半部分的Id号基本上识别不出来。100个Id号，仅仅正确识别40个
+左右，精确率为40%。</p>
+<p>想法可行，但要提高精确率的话，需要花很大功夫。</p>
+<h3 id="future-works">Future works</h3>
+<p>使用该方法，对于字体没有什么变化的排行视频，识别率能达到90%，以鬼畜区某个
+排行榜视频为例，40多个视频能精确识别出30多个，识别性能还是不错的。</p>
+<p>同样该方法可以应用到B站类似排行视频，例如舞蹈区每周排行视频，只要字体不发生
+改变，预处理做好，基本上还是能识别出大部分Id号的。</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>OpenCV和tesseract-ocr结合，对于视频文件、实时视频流中的文本识别问题，
+是一个不错的可行方案。</p>
+<h3 id="references">References</h3>
+<div class="highlight"><pre>[1]: http://www.bilibili.com/video/av3484492/
+[2]: https://you-get.org/
+[3]: http://blog.cloudera.com/blog/2015/10/how-to-index-scanned-pdfs-at-scale-using-fewer-than-50-lines-of-code/
+[4]: https://github.com/tesseract-ocr/tesseract
+[5]: http://opencv.org/
+[6]: http://stackoverflow.com/questions/14041025/how-can-i-use-tesseract-and-opencv-to-extract-the-text-from-the-camera
+[7]: http://docs.opencv.org/3.0-last-rst/modules/videoio/doc/reading_and_writing_video.html#videocapture
+[8]: http://stackoverflow.com/questions/11464397/image-preprocessing-for-text-recognition
+[9]: http://stackoverflow.com/questions/8115368/converting-cvmat-for-tesseract
+[10]: https://gist.github.com/junfenglx/ed966fb7ea41ed2a13a9
+[11]: https://www.gimp.org/
+</pre></div>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "shi-yong-tesseract-ocrhe-opencvshi-bie-shi-pin-zhong-wen-zi.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://junfenglx.github.io/theme/js/jquery.min.js"></script>
+    <script src="http://junfenglx.github.io/theme/js/bootstrap.min.js"></script>
+    <script src="http://junfenglx.github.io/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://junfenglx.github.io/theme/js/analyse.js"></script -->
+</body>
+</html>

@@ -8,7 +8,7 @@ The one from ~/.local/share/applications/defaults.list
 The one from /usr/local/share/applications/defaults.list
 The one from /usr/share/applications/defaults.list
 The first one from /usr/share/applications/mimeinfo.cache&lt;/p&gt;
-&lt;p&gt;From https://lkubaski.wordpress.com/2012/10/29/understanding-file-associations-in-lxde-and-pcmanfm/&lt;/p&gt;</summary><category term="mime"></category><category term="desktop"></category></entry><entry><title>mount and grep</title><link href="http://junfenglx.github.io/mount-and-grep.html" rel="alternate"></link><updated>2014-06-08T21:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-06-08:mount-and-grep.html</id><summary type="html">&lt;h2&gt;mount options&lt;/h2&gt;
+&lt;p&gt;From https://lkubaski.wordpress.com/2012/10/29/understanding-file-associations-in-lxde-and-pcmanfm/&lt;/p&gt;</summary><category term="mime"></category><category term="desktop"></category></entry><entry><title>mount and grep</title><link href="http://junfenglx.github.io/mount-and-grep.html" rel="alternate"></link><updated>2014-06-08T21:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-06-08:mount-and-grep.html</id><summary type="html">&lt;h2 id="mount-options"&gt;mount options&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;mount&lt;/code&gt;display current partions mount options.
 Output like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;/dev/sda2 on /home type ext4 (rw,relatime,data=ordered)
@@ -32,7 +32,7 @@ Output like this:&lt;/p&gt;
   as in the option line user,exec,dev,suid).&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;So if you want programs can run on these auto mount partions, add exec option if you setted user option.&lt;/p&gt;
-&lt;h2&gt;grep options&lt;/h2&gt;
+&lt;h2 id="grep-options"&gt;grep options&lt;/h2&gt;
 &lt;p&gt;If you want to search some words like &lt;code&gt;X-Forwarded-For&lt;/code&gt; recursively, you type
 &lt;code&gt;grep -i "X-Forwarded-For" -r *&lt;/code&gt;. It works, but search every type files.&lt;/p&gt;
 &lt;p&gt;Maybe you want to recursively search just some type files like "*.py".&lt;/p&gt;

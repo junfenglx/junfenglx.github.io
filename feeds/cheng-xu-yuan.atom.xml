@@ -1,5 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfenglx.github.io/" rel="alternate"></link><link href="http://junfenglx.github.io/feeds/cheng-xu-yuan.atom.xml" rel="self"></link><id>http://junfenglx.github.io/</id><updated>2015-08-07T16:58:57+08:00</updated><entry><title>Spring Rest server and Apache Avro objects</title><link href="http://junfenglx.github.io/spring-rest-server-and-apache-avro-objects.html" rel="alternate"></link><updated>2015-08-07T16:58:57+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-08-07:spring-rest-server-and-apache-avro-objects.html</id><summary type="html">&lt;h3&gt;1. Error handle class&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfenglx.github.io/" rel="alternate"></link><link href="http://junfenglx.github.io/feeds/cheng-xu-yuan.atom.xml" rel="self"></link><id>http://junfenglx.github.io/</id><updated>2016-01-15T16:10:00+08:00</updated><entry><title>使用tesseract-ocr和opencv识别视频中文字</title><link href="http://junfenglx.github.io/shi-yong-tesseract-ocrhe-opencvshi-bie-shi-pin-zhong-wen-zi.html" rel="alternate"></link><updated>2016-01-15T16:10:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2016-01-15:shi-yong-tesseract-ocrhe-opencvshi-bie-shi-pin-zhong-wen-zi.html</id><summary type="html">&lt;div class="toc"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#abstract"&gt;Abstract&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#introduction"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#implementation"&gt;Implementation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#_1"&gt;环境准备&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#coding"&gt;Coding&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#result"&gt;Result&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#related-works"&gt;Related works&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#limitation"&gt;Limitation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#future-works"&gt;Future works&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#references"&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h3 id="abstract"&gt;Abstract&lt;/h3&gt;
+&lt;p&gt;本文使用tesseract-ocr和opencv提取B站2015年舞蹈总排行榜视频中的Id号，
+然后使用you-get工具下载提取到的视频。视频包下载地址见&lt;a href="#result"&gt;Result&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id="introduction"&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;在B站看到有人出了2015年舞蹈区总排行榜TOP100视频(&lt;a href="http://www.bilibili.com/video/av3484492/"&gt;链接&lt;/a&gt;)，看完视频感觉都还不错，
+有些还没看过，想着既然能在这个排行榜上，那就应该不错，值得下载下来收藏。&lt;/p&gt;
+&lt;p&gt;那怎么把里面的视频下载下来呢？&lt;/p&gt;
+&lt;p&gt;我的思路是这样的：
+1. 排行榜视频中提到的所有舞蹈区视频都贴上了Id号，就是av后面跟的六位数字。
+2. 获取到Id号，通过you-get(&lt;a href="https://you-get.org/"&gt;官网&lt;/a&gt;)工具将相应视频下载下来。&lt;/p&gt;
+&lt;p&gt;那怎么获取视频的Id呢？&lt;/p&gt;
+&lt;p&gt;简单的做法是对着排行榜视频，一个一个的手动记录下来。
+这种方法精确率应该能达到100%，但是伤害眼睛。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;程序猿可是要好好保护眼睛的。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;也学了4, 5年coding了，想着通过程序能不能提取出排行榜视频里的所有Id号。&lt;/p&gt;
+&lt;h3 id="implementation"&gt;Implementation&lt;/h3&gt;
+&lt;p&gt;有了想法，当然也要有方法。&lt;/p&gt;
+&lt;p&gt;想到之前在cloudera blog上看到的一篇文章(&lt;a href="http://blog.cloudera.com/blog/2015/10/how-to-index-scanned-pdfs-at-scale-using-fewer-than-50-lines-of-code/"&gt;链接&lt;/a&gt;)中提到使用ocr工具
+提取PDF文件中的文字，那么自然考虑能不能使用ocr工具提取视频中的文字呢。&lt;/p&gt;
+&lt;p&gt;文章中提到他们使用Ghostscript先把PDF文件分割成图片，
+再交给tesseract-ocr(&lt;a href="https://github.com/tesseract-ocr/tesseract"&gt;GitHub&lt;/a&gt;)处理，获取到文字。
+那样的话，我只需要把视频分割成一帧一帧的图片，
+tesseract-ocr也应该能处理。&lt;/p&gt;
+&lt;p&gt;Google搜索出通过使用ffmpeg就可以将视频分割成图片了，如下命令&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ffmpeg -i 【年刊】2015年哔哩哔哩舞蹈区总排行榜TOP100.flv image_%d.png
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;但是该方法将产生5万多张图片，而且每张图片平均有2、3MB，
+显然该方法并不现实，首先转换速度慢，非常占用CPU，同时视频转换到一半，
+磁盘已经写了60多GB的图片了。担心实验室的配置不怎么样的机子被自己给写坏了，
+就没继续转换下去。&lt;/p&gt;
+&lt;p&gt;听说OpenCV(&lt;a href="http://opencv.org/"&gt;官网&lt;/a&gt;)比较擅长处理图片和视频，于是想到能不能通过OpenCV将
+视频一帧一帧的交给tesseract-ocr处理，获取每个帧图片中的Id号，最后再做个
+去重。&lt;/p&gt;
+&lt;p&gt;Google一下，在stackoverflow搜到了类似的问题(&lt;a href="http://stackoverflow.com/questions/14041025/how-can-i-use-tesseract-and-opencv-to-extract-the-text-from-the-camera"&gt;链接&lt;/a&gt;)，该问题是询问用OpenCV
+和tesseract-ocr从摄像头的视频中提取文字的，类比到已经存在的视频，那么OpenCV加上
+tesseract-ocr应该也是可以处理的。&lt;/p&gt;
+&lt;h4 id="_1"&gt;环境准备&lt;/h4&gt;
+&lt;p&gt;OS: Arch Linux&lt;/p&gt;
+&lt;p&gt;安装OpenCV和tesseract-ocr：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo pacman -S tesseract
+&lt;span class="c"&gt;# tesseract-data&lt;/span&gt;
+sudo pacman -S tesseract-data-eng
+sudo pacman -S tesseract-data-chi_sim
+sudo pacman -S opencv
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;g++编译flag脚本：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="c"&gt;# lept是tesseract-ocr的依赖leptonica&lt;/span&gt;
+g++ -std&lt;span class="o"&gt;=&lt;/span&gt;c++11  &lt;span class="sb"&gt;`&lt;/span&gt;pkg-config --libs tesseract opencv lept&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt; -o &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;1&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;.out
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4 id="coding"&gt;Coding&lt;/h4&gt;
+&lt;p&gt;代码基于stackoverflow上贴出的&lt;a href="http://stackoverflow.com/questions/14041025/how-can-i-use-tesseract-and-opencv-to-extract-the-text-from-the-camera"&gt;代码&lt;/a&gt;，结合OpenCV官方给出的使用VideoCapture的
+&lt;a href="http://docs.opencv.org/3.0-last-rst/modules/videoio/doc/reading_and_writing_video.html#videocapture"&gt;示例代码&lt;/a&gt;，加上stackoverflow上另外一个&lt;a href="http://stackoverflow.com/questions/11464397/image-preprocessing-for-text-recognition"&gt;问题&lt;/a&gt;的回答贴出的代码，
+对视频帧进行预处理，如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Mat&lt;/span&gt; &lt;span class="n"&gt;new_img&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;imread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;bitwise_not&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;new_img&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;thres&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;threshold&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;new_img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;thres&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;CV_THRESH_BINARY&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;imwrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;inv_thres.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;new_img&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;由于tesseract-ocr对白纸黑字的图片处理效果才比较好，所以需要对视频帧预处理，
+可以说图片预处理的好坏直接影响识别文字的精确程序，而我并不懂图形学，仅仅是
+看着处理效果调的。&lt;/p&gt;
+&lt;p&gt;代码还使用了stackoverflow中另外一个&lt;a href="http://stackoverflow.com/questions/8115368/converting-cvmat-for-tesseract"&gt;问题&lt;/a&gt;中的回答的代码，适配OpenCV数据结构&lt;code&gt;Mat&lt;/code&gt;到tesseract-ocr
+中的API函数SetImage的代码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tesseract&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;TessBaseAPI&lt;/span&gt; &lt;span class="n"&gt;tess&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Mat&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Rect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;300&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="n"&gt;tess&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SetImage&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;uchar&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;step1&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+&lt;span class="n"&gt;tess&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Recognize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tess&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GetUTF8Text&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;最终获取排行榜视频中ID号的代码见&lt;a href="https://gist.github.com/junfenglx/ed966fb7ea41ed2a13a9"&gt;Gist&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;至于包含Id号和Score的矩形区域是使用GIMP(&lt;a href="https://www.gimp.org/"&gt;官网&lt;/a&gt;)找出来的。
+缩小检测区域，有利于防止tesseract-ocr返回很多垃圾文字。&lt;/p&gt;
+&lt;p&gt;开始使用chi_sim language data，发现效果并不是很好，总是把1识别成l，
+由于Id号和Score都是由数字和字母组成，因此换成eng language data精确度
+反而能提高一些。&lt;/p&gt;
+&lt;p&gt;获取到Id号后，构造url和去重就很简单了。&lt;/p&gt;
+&lt;p&gt;最后使用you-get下载视频：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# using uniq removes duplicates&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; u in &lt;span class="sb"&gt;`&lt;/span&gt;uniq ../dance_url.out &lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$u&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; you-get &lt;span class="nv"&gt;$u&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="result"&gt;Result&lt;/h3&gt;
+&lt;p&gt;最后下载到的视频见&lt;a href="http://pan.baidu.com/s/1jHiXFeA"&gt;分享&lt;/a&gt;，密码: 5gv3&lt;/p&gt;
+&lt;p&gt;Id号并没有全部识别出来。&lt;/p&gt;
+&lt;h3 id="related-works"&gt;Related works&lt;/h3&gt;
+&lt;p&gt;主要的相关工作就是cloudera blog上发表的那篇&lt;a href="http://blog.cloudera.com/blog/2015/10/how-to-index-scanned-pdfs-at-scale-using-fewer-than-50-lines-of-code/"&gt;文章&lt;/a&gt;。他们在那篇文章中
+使用tesseract-ocr识别扫描PDF文件，并将结果存在HBase中。受那篇文章启发，
+才有了本篇文章的想法。&lt;/p&gt;
+&lt;h3 id="limitation"&gt;Limitation&lt;/h3&gt;
+&lt;p&gt;OpenCV和tesseract-ocr识别视频中文字，预处理很重要，而且对字体变化很敏感。
+一般识别正确率达不到100%，本文例子中，由于排行榜视频前期和后期Id号字体发生
+改变，导致视频中后半部分的Id号基本上识别不出来。100个Id号，仅仅正确识别40个
+左右，精确率为40%。&lt;/p&gt;
+&lt;p&gt;想法可行，但要提高精确率的话，需要花很大功夫。&lt;/p&gt;
+&lt;h3 id="future-works"&gt;Future works&lt;/h3&gt;
+&lt;p&gt;使用该方法，对于字体没有什么变化的排行视频，识别率能达到90%，以鬼畜区某个
+排行榜视频为例，40多个视频能精确识别出30多个，识别性能还是不错的。&lt;/p&gt;
+&lt;p&gt;同样该方法可以应用到B站类似排行视频，例如舞蹈区每周排行视频，只要字体不发生
+改变，预处理做好，基本上还是能识别出大部分Id号的。&lt;/p&gt;
+&lt;h3 id="conclusion"&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;OpenCV和tesseract-ocr结合，对于视频文件、实时视频流中的文本识别问题，
+是一个不错的可行方案。&lt;/p&gt;
+&lt;h3 id="references"&gt;References&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[1]: http://www.bilibili.com/video/av3484492/
+[2]: https://you-get.org/
+[3]: http://blog.cloudera.com/blog/2015/10/how-to-index-scanned-pdfs-at-scale-using-fewer-than-50-lines-of-code/
+[4]: https://github.com/tesseract-ocr/tesseract
+[5]: http://opencv.org/
+[6]: http://stackoverflow.com/questions/14041025/how-can-i-use-tesseract-and-opencv-to-extract-the-text-from-the-camera
+[7]: http://docs.opencv.org/3.0-last-rst/modules/videoio/doc/reading_and_writing_video.html#videocapture
+[8]: http://stackoverflow.com/questions/11464397/image-preprocessing-for-text-recognition
+[9]: http://stackoverflow.com/questions/8115368/converting-cvmat-for-tesseract
+[10]: https://gist.github.com/junfenglx/ed966fb7ea41ed2a13a9
+[11]: https://www.gimp.org/
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="C++"></category><category term="tesseract-ocr"></category><category term="opencv"></category></entry><entry><title>Spring Rest server and Apache Avro objects</title><link href="http://junfenglx.github.io/spring-rest-server-and-apache-avro-objects.html" rel="alternate"></link><updated>2015-08-07T16:58:57+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-08-07:spring-rest-server-and-apache-avro-objects.html</id><summary type="html">&lt;h3 id="1-error-handle-class"&gt;1. Error handle class&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@ControllerAdvice&lt;/span&gt;
 &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ErrorHandler&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
     &lt;span class="nd"&gt;@ExceptionHandler&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exception&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
@@ -13,17 +160,17 @@
 
 
 &lt;p&gt;then we can got clear error message&lt;/p&gt;
-&lt;h4&gt;Reference&lt;/h4&gt;
+&lt;h4 id="reference"&gt;Reference&lt;/h4&gt;
 &lt;p&gt;&lt;a href="http://www.importnew.com/7903.html"&gt;http://www.importnew.com/7903.html&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;2. Change response's content-type&lt;/h3&gt;
+&lt;h3 id="2-change-responses-content-type"&gt;2. Change response's content-type&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@RequestMapping&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RequestMethod&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;GET&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;produces&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MediaType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;APPLICATION_JSON_VALUE&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;need for just return JSON string&lt;/p&gt;
-&lt;h4&gt;Reference&lt;/h4&gt;
+&lt;h4 id="reference_1"&gt;Reference&lt;/h4&gt;
 &lt;p&gt;&lt;a href="http://stackoverflow.com/questions/4471584/in-spring-mvc-how-can-i-set-the-mime-type-header-when-using-responsebody"&gt;http://stackoverflow.com/questions/4471584/in-spring-mvc-how-can-i-set-the-mime-type-header-when-using-responsebody&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;3. Customize &lt;code&gt;MappingJackson2HttpMessageConverter&lt;/code&gt;'s behaviors&lt;/h3&gt;
+&lt;h3 id="3-customize-mappingjackson2httpmessageconverters-behaviors"&gt;3. Customize &lt;code&gt;MappingJackson2HttpMessageConverter&lt;/code&gt;'s behaviors&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@Bean&lt;/span&gt;
 &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Jackson2ObjectMapperBuilder&lt;/span&gt; &lt;span class="nf"&gt;objectMapperBuilder&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
     &lt;span class="n"&gt;Jackson2ObjectMapperBuilder&lt;/span&gt; &lt;span class="n"&gt;builder&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Jackson2ObjectMapperBuilder&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
@@ -36,9 +183,9 @@
 
 
 &lt;p&gt;add the above code snippet to any of your Configuration classes&lt;/p&gt;
-&lt;h4&gt;Reference&lt;/h4&gt;
+&lt;h4 id="reference_2"&gt;Reference&lt;/h4&gt;
 &lt;p&gt;&lt;a href="http://stackoverflow.com/questions/28324352/how-to-customise-the-jackson-json-mapper-implicitly-used-by-spring-boot"&gt;http://stackoverflow.com/questions/28324352/how-to-customise-the-jackson-json-mapper-implicitly-used-by-spring-boot&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;4. Let Spring &lt;code&gt;@RestController&lt;/code&gt; gives Avro objects a hug&lt;/h3&gt;
+&lt;h3 id="4-let-spring-restcontroller-gives-avro-objects-a-hug"&gt;4. Let Spring &lt;code&gt;@RestController&lt;/code&gt; gives Avro objects a hug&lt;/h3&gt;
 &lt;p&gt;make Avro generated class objects automatically converted to JSON string by
 &lt;code&gt;MappingJackson2HttpMessageConverter&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Two methods:&lt;/p&gt;
@@ -47,7 +194,7 @@
 &lt;li&gt;configure &lt;code&gt;MapperFeature.REQUIRE_SETTERS_FOR_GETTERS&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt;
    for Jackson's &lt;code&gt;ObjectMapper&lt;/code&gt;, use the method at above section.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h4&gt;References&lt;/h4&gt;
+&lt;h4 id="references"&gt;References&lt;/h4&gt;
 &lt;p&gt;&lt;a href="https://github.com/FasterXML/jackson-dataformat-avro/issues/16"&gt;https://github.com/FasterXML/jackson-dataformat-avro/issues/16&lt;/a&gt;&lt;/p&gt;</summary><category term="Spring"></category><category term="Rest"></category><category term="Avro"></category></entry><entry><title>C++ link and library usage</title><link href="http://junfenglx.github.io/c-link-and-library-usage.html" rel="alternate"></link><updated>2015-06-28T20:20:58+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-06-28:c-link-and-library-usage.html</id><summary type="html">&lt;p&gt;When use a programming language produtively,
 We need use third parties libraries.&lt;/p&gt;
 &lt;p&gt;If we install libraries and header files in
@@ -84,7 +231,7 @@ CMake provides lots of varaibles you can add paths for CMake to search.&lt;/p&gt
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3&gt;References:&lt;/h3&gt;
+&lt;h3 id="references"&gt;References:&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://www.rapidtables.com/code/linux/gcc.htm"&gt;http://www.rapidtables.com/code/linux/gcc.htm&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://manned.org/pkg-config.1"&gt;http://manned.org/pkg-config.1&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Rpath"&gt;https://en.wikipedia.org/wiki/Rpath&lt;/a&gt;&lt;/p&gt;
@@ -120,12 +267,12 @@ CMake provides lots of varaibles you can add paths for CMake to search.&lt;/p&gt
 
 
 &lt;p&gt;Maybe from now I need write one variable in one line, and document every variable.&lt;/p&gt;
-&lt;p&gt;Hope I can get &lt;em&gt;clean code&lt;/em&gt;&lt;/p&gt;</summary><category term="backslash"></category><category term="C++"></category></entry><entry><title>OAuth 2.0 Bearer Token Usage</title><link href="http://junfenglx.github.io/oauth-20-bearer-token-usage.html" rel="alternate"></link><updated>2015-06-08T16:17:44+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-06-08:oauth-20-bearer-token-usage.html</id><summary type="html">&lt;h3&gt;引入&lt;/h3&gt;
+&lt;p&gt;Hope I can get &lt;em&gt;clean code&lt;/em&gt;&lt;/p&gt;</summary><category term="backslash"></category><category term="C++"></category></entry><entry><title>OAuth 2.0 Bearer Token Usage</title><link href="http://junfenglx.github.io/oauth-20-bearer-token-usage.html" rel="alternate"></link><updated>2015-06-08T16:17:44+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-06-08:oauth-20-bearer-token-usage.html</id><summary type="html">&lt;h3 id="_1"&gt;引入&lt;/h3&gt;
 &lt;p&gt;在给Tornado编写豆瓣API的类时, 在查看文档时, 发现其access_token
 并不像其它网站那样是传在query或者body中的. 而是放入headers中.
 即: &lt;code&gt;headers["Authorization"] = Bearer &amp;lt;access_token&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;搜索OAuth2.0 Bearer, 在RFC 6750中找到了详细介绍&lt;/p&gt;
-&lt;h3&gt;使用access_token方法&lt;/h3&gt;
+&lt;h3 id="access_token"&gt;使用access_token方法&lt;/h3&gt;
 &lt;p&gt;标准中给出了3种access_token的使用方法:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;使用headers的Authorization字段(格式如上)&lt;/li&gt;
@@ -133,7 +280,7 @@ CMake provides lots of varaibles you can add paths for CMake to search.&lt;/p&gt
 &lt;li&gt;query形式放入url中&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;标准推荐使用第一种方法. 第三种并不推荐, 因为access_token有可能泄漏.&lt;/p&gt;
-&lt;h3&gt;参考&lt;/h3&gt;
+&lt;h3 id="_2"&gt;参考&lt;/h3&gt;
 &lt;p&gt;http://self-issued.info/docs/draft-ietf-oauth-v2-bearer.html&lt;/p&gt;</summary><category term="OAuth2.0"></category><category term="Bearer"></category></entry><entry><title>Python struct and Endianness</title><link href="http://junfenglx.github.io/python-struct-and-endianness.html" rel="alternate"></link><updated>2014-01-10T21:02:00+08:00</updated><author><name>algu</name></author><id>tag:junfenglx.github.io,2014-01-10:python-struct-and-endianness.html</id><summary type="html">&lt;p&gt;偶然间在stackoverflow上看到下面这个问题:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="s-Atom"&gt;explain&lt;/span&gt; &lt;span class="s-Atom"&gt;me&lt;/span&gt; &lt;span class="s-Atom"&gt;what&lt;/span&gt; &lt;span class="s-Atom"&gt;does&lt;/span&gt; &lt;span class="s-Atom"&gt;this&lt;/span&gt; &lt;span class="s-Atom"&gt;piece&lt;/span&gt; &lt;span class="s-Atom"&gt;of&lt;/span&gt; &lt;span class="s-Atom"&gt;code&lt;/span&gt; &lt;span class="s-Atom"&gt;do&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
@@ -2523,7 +2670,7 @@ for(i=1;i\&lt;G.vexnum;++i)
 &lt;p&gt;选择android API版本下载安装。&lt;/p&gt;
 &lt;p&gt;启动eclipse，设置android-sdk路径。&lt;/p&gt;
 &lt;p&gt;android开发环境已配置完成。&lt;/p&gt;
-&lt;h6&gt;新建android虚拟机，测试环境：&lt;/h6&gt;
+&lt;h6 id="android"&gt;新建android虚拟机，测试环境：&lt;/h6&gt;
 &lt;p&gt;在android-sdk-manager中找到tools-&gt;Manage AVDs，启动Android Virtual
 Device Manager。&lt;/p&gt;
 &lt;p&gt;new新建android虚拟机。&lt;/p&gt;

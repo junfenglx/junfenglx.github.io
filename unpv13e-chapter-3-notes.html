@@ -77,33 +77,33 @@
     
 </footer><!-- /.post-info -->
 
-        <h3>IPv4 Socket Address Structure</h3>
+        <h3 id="ipv4-socket-address-structure">IPv4 Socket Address Structure</h3>
 <p><img alt="sockaddr_in.png" src="./images/sockaddr_in.png" /></p>
-<h3>Datatypes required by the POSIX specification</h3>
+<h3 id="datatypes-required-by-the-posix-specification">Datatypes required by the POSIX specification</h3>
 <p><img alt="datatypes.png" src="./images/datatypes.png" /></p>
-<h3>Generic Socket Address Structure</h3>
+<h3 id="generic-socket-address-structure">Generic Socket Address Structure</h3>
 <p><img alt="sockaddr.png" src="./images/sockaddr.png" /></p>
-<h3>IPv6 Socket Address Structure</h3>
+<h3 id="ipv6-socket-address-structure">IPv6 Socket Address Structure</h3>
 <p><img alt="sockaddr_in6.png" src="./images/sockaddr_in6.png" /></p>
-<h3>New Generic Socket Address Structure</h3>
+<h3 id="new-generic-socket-address-structure">New Generic Socket Address Structure</h3>
 <p><img alt="sockaddr_storage.png" src="./images/sockaddr_storage.png" /></p>
-<h3>Comparison of various socket address structures.</h3>
+<h3 id="comparison-of-various-socket-address-structures">Comparison of various socket address structures.</h3>
 <p><img alt="sockaddr_comparison.png" src="./images/sockaddr_comparison.png" /></p>
-<h3>Byte Ordering Functions</h3>
+<h3 id="byte-ordering-functions">Byte Ordering Functions</h3>
 <p><img alt="byte_ordering_functions.png" src="./images/byte_ordering_functions.png" /></p>
-<h3>Convert Addresses Between ASCII Strings And Network Byte Ordered Binary Values</h3>
-<h5>Old Functions:</h5>
+<h3 id="convert-addresses-between-ascii-strings-and-network-byte-ordered-binary-values">Convert Addresses Between ASCII Strings And Network Byte Ordered Binary Values</h3>
+<h5 id="old-functions">Old Functions:</h5>
 <p><img alt="inet_aton-inet_addr-inet_ntoa.png" src="./images/inet_aton-inet_addr-inet_ntoa.png" /></p>
 <p><em>note 1: INADDR_NONE is typically 32 one-bits, so inet_addr cannot convert string 255.255.255.255</em></p>
 <p><em>note 2: inet_ntoa's return value is in static memory, so it is not reentrant</em></p>
 <p><em>note 3: inet_ntoa takes structures as it's argument, not a point</em></p>
-<h5>New Functions:</h5>
+<h5 id="new-functions">New Functions:</h5>
 <p><img alt="inet_pton-inet_ntop.png" src="./images/inet_pton-inet_ntop.png" /></p>
 <p><code>#define INET_ADDRSTRLEN 16 /* for IPv4 dotted-decimal */</code></p>
 <p><code>#define INET6_ADDRSTRLEN 46 /* for IPv6 hex string */</code></p>
-<h5>Summary of address conversion functions</h5>
+<h5 id="summary-of-address-conversion-functions">Summary of address conversion functions</h5>
 <p><img alt="address_conversion_functions.png" src="./images/address_conversion_functions.png" /></p>
-<h2>Exercises</h2>
+<h2 id="exercises">Exercises</h2>
 <p>3.1 In C the function can modify arguments only if arguments passed by reference.</p>
 <p>3.2 because <code>sizeof(char)</code> is one byte, read or write n chars equals n bytes data.</p>
 <p>3.3</p>
@@ -177,7 +177,7 @@
           var disqus_identifier = "unpv13e-chapter-3-notes.html";
           (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//junfenglx.disqus.com/embed.js';
+          dsq.src = '//junfeng.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
           })();
         </script>
@@ -203,7 +203,7 @@
     </footer>
 
 <script type="text/javascript">
-    var disqus_shortname = 'junfenglx';
+    var disqus_shortname = 'junfeng';
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';

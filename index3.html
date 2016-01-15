@@ -55,6 +55,67 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="http://junfenglx.github.io/vpse4b88blnmpe9858de7bdae.html" rel="bookmark" title="Permalink to vps下lnmp配置">
+                                       vps下lnmp配置
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://junfenglx.github.io/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://junfenglx.github.io/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2014-01-10
+
+        |
+        tags:         <a href="http://junfenglx.github.io/tag/mysqld.html">mysqld</a>
+        <a href="http://junfenglx.github.io/tag/vps128mb.html">vps(128MB)</a>
+
+
+        |
+        <a href="http://junfenglx.github.io/vpse4b88blnmpe9858de7bdae.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>换了hostigation的vps(128MB)之后，试了Debian，Ubuntu较新的版本都不行，总是提示说MySQL安装失败,最后不得已换上ubuntu
+10.04勉强把mysql装上,但网站连接十次要有9次连不上。知道是肯定是那装的那些软件版本太低，bug太多。但还是没管它。</p>
+<p>最近得有空闲时间，决定把问题给解决。<br />
+备份整个数据库：</p>
+<div class="highlight"><pre>mysqldump -p -u --all-databases &gt; all.sql
+</pre></div>
+
+
+<p>备份归档wordpress目录,nginx配置文件目录<br />
+然后安装fedora 18</p>
+<p>安装mysqld</p>
+<div class="highlight"><pre>yum update #升级现有包
+yum install mysql-server #mysqld
+</pre></div>
+
+
+<p>安装mysql-server<br />
+当启动mysqld时出现错误，无法启动。(折腾半天)<br />
+列出包里面的文件:</p>
+<div class="highlight"><pre>rpm -ql mysql-server
+</pre></div>
+
+
+<p>日志文件在/var/log/mysqld.log<br />
+查看mysqld.log发现错误信息：</p>
+<div class="highlight"><pre>vim ...</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/vpse4b88blnmpe9858de7bdae.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="http://junfenglx.github.io/setjmp-and-longjmp.html" rel="bookmark" title="Permalink to setjmp and longjmp">
                                        setjmp and longjmp
                                     </a>
@@ -449,42 +510,6 @@ have been closed, the open file  description shall be freed.</p>
                             <hr/>
                         </article>
                     </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="http://junfenglx.github.io/e4b8a2e8bda6e8b4bc.html" rel="bookmark" title="Permalink to 丢车贼">
-                                       丢车贼
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="http://junfenglx.github.io/author/algu.html">algu</a>
-    </address>
-
-    in <a href="http://junfenglx.github.io/category/xin-qing.html">心情</a>
-
-    on 2013-07-24
-
-        |
-        tags:         <a href="http://junfenglx.github.io/tag/diu-che-zei.html">丢车贼</a>
-
-
-        |
-        <a href="http://junfenglx.github.io/e4b8a2e8bda6e8b4bc.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>车丢了，心情极度郁闷.好吧，怪我，忘记锁上了.老妈可是刚买没俩月的车啊.我还真想偷别人一辆，无奈技术水平低，也就作罢.家里知道我丢了车之后，地位急转直下
-,虽说不让我自己买,但也是各种说我<strong>.</strong>又不能辩驳什么，是自己真的犯了错.不过，他们认为我就做不好事情，说我，以后不注意，会丢更多的东西.好吧，被他们说的差一点感觉自己矬了，要不是咱心理素质高，自信心强.哎，丢车确实感觉挺窝囊的.</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/e4b8a2e8bda6e8b4bc.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
                     </ol><!-- /#posts-list -->
 <p class="paginator">
         <a href="http://junfenglx.github.io/index2.html">&laquo;</a>
@@ -535,7 +560,7 @@ have been closed, the open file  description shall be freed.</p>
     </footer>
 
 <script type="text/javascript">
-    var disqus_shortname = 'junfenglx';
+    var disqus_shortname = 'junfeng';
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';

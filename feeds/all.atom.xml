@@ -1,5 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfenglx.github.io/" rel="alternate"></link><link href="http://junfenglx.github.io/feeds/all.atom.xml" rel="self"></link><id>http://junfenglx.github.io/</id><updated>2015-11-22T16:49:39+08:00</updated><entry><title>Spring Rest server and Apache Avro objects</title><link href="http://junfenglx.github.io/spring-rest-server-and-apache-avro-objects.html" rel="alternate"></link><updated>2015-08-07T16:58:57+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-08-07:spring-rest-server-and-apache-avro-objects.html</id><summary type="html">&lt;h3&gt;1. Error handle class&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfenglx.github.io/" rel="alternate"></link><link href="http://junfenglx.github.io/feeds/all.atom.xml" rel="self"></link><id>http://junfenglx.github.io/</id><updated>2016-01-15T16:10:00+08:00</updated><entry><title>使用tesseract-ocr和opencv识别视频中文字</title><link href="http://junfenglx.github.io/shi-yong-tesseract-ocrhe-opencvshi-bie-shi-pin-zhong-wen-zi.html" rel="alternate"></link><updated>2016-01-15T16:10:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2016-01-15:shi-yong-tesseract-ocrhe-opencvshi-bie-shi-pin-zhong-wen-zi.html</id><summary type="html">&lt;div class="toc"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#abstract"&gt;Abstract&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#introduction"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#implementation"&gt;Implementation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#_1"&gt;环境准备&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#coding"&gt;Coding&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#result"&gt;Result&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#related-works"&gt;Related works&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#limitation"&gt;Limitation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#future-works"&gt;Future works&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#references"&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h3 id="abstract"&gt;Abstract&lt;/h3&gt;
+&lt;p&gt;本文使用tesseract-ocr和opencv提取B站2015年舞蹈总排行榜视频中的Id号，
+然后使用you-get工具下载提取到的视频。视频包下载地址见&lt;a href="#result"&gt;Result&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id="introduction"&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;在B站看到有人出了2015年舞蹈区总排行榜TOP100视频(&lt;a href="http://www.bilibili.com/video/av3484492/"&gt;链接&lt;/a&gt;)，看完视频感觉都还不错，
+有些还没看过，想着既然能在这个排行榜上，那就应该不错，值得下载下来收藏。&lt;/p&gt;
+&lt;p&gt;那怎么把里面的视频下载下来呢？&lt;/p&gt;
+&lt;p&gt;我的思路是这样的：
+1. 排行榜视频中提到的所有舞蹈区视频都贴上了Id号，就是av后面跟的六位数字。
+2. 获取到Id号，通过you-get(&lt;a href="https://you-get.org/"&gt;官网&lt;/a&gt;)工具将相应视频下载下来。&lt;/p&gt;
+&lt;p&gt;那怎么获取视频的Id呢？&lt;/p&gt;
+&lt;p&gt;简单的做法是对着排行榜视频，一个一个的手动记录下来。
+这种方法精确率应该能达到100%，但是伤害眼睛。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;程序猿可是要好好保护眼睛的。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;也学了4, 5年coding了，想着通过程序能不能提取出排行榜视频里的所有Id号。&lt;/p&gt;
+&lt;h3 id="implementation"&gt;Implementation&lt;/h3&gt;
+&lt;p&gt;有了想法，当然也要有方法。&lt;/p&gt;
+&lt;p&gt;想到之前在cloudera blog上看到的一篇文章(&lt;a href="http://blog.cloudera.com/blog/2015/10/how-to-index-scanned-pdfs-at-scale-using-fewer-than-50-lines-of-code/"&gt;链接&lt;/a&gt;)中提到使用ocr工具
+提取PDF文件中的文字，那么自然考虑能不能使用ocr工具提取视频中的文字呢。&lt;/p&gt;
+&lt;p&gt;文章中提到他们使用Ghostscript先把PDF文件分割成图片，
+再交给tesseract-ocr(&lt;a href="https://github.com/tesseract-ocr/tesseract"&gt;GitHub&lt;/a&gt;)处理，获取到文字。
+那样的话，我只需要把视频分割成一帧一帧的图片，
+tesseract-ocr也应该能处理。&lt;/p&gt;
+&lt;p&gt;Google搜索出通过使用ffmpeg就可以将视频分割成图片了，如下命令&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ffmpeg -i 【年刊】2015年哔哩哔哩舞蹈区总排行榜TOP100.flv image_%d.png
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;但是该方法将产生5万多张图片，而且每张图片平均有2、3MB，
+显然该方法并不现实，首先转换速度慢，非常占用CPU，同时视频转换到一半，
+磁盘已经写了60多GB的图片了。担心实验室的配置不怎么样的机子被自己给写坏了，
+就没继续转换下去。&lt;/p&gt;
+&lt;p&gt;听说OpenCV(&lt;a href="http://opencv.org/"&gt;官网&lt;/a&gt;)比较擅长处理图片和视频，于是想到能不能通过OpenCV将
+视频一帧一帧的交给tesseract-ocr处理，获取每个帧图片中的Id号，最后再做个
+去重。&lt;/p&gt;
+&lt;p&gt;Google一下，在stackoverflow搜到了类似的问题(&lt;a href="http://stackoverflow.com/questions/14041025/how-can-i-use-tesseract-and-opencv-to-extract-the-text-from-the-camera"&gt;链接&lt;/a&gt;)，该问题是询问用OpenCV
+和tesseract-ocr从摄像头的视频中提取文字的，类比到已经存在的视频，那么OpenCV加上
+tesseract-ocr应该也是可以处理的。&lt;/p&gt;
+&lt;h4 id="_1"&gt;环境准备&lt;/h4&gt;
+&lt;p&gt;OS: Arch Linux&lt;/p&gt;
+&lt;p&gt;安装OpenCV和tesseract-ocr：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo pacman -S tesseract
+&lt;span class="c"&gt;# tesseract-data&lt;/span&gt;
+sudo pacman -S tesseract-data-eng
+sudo pacman -S tesseract-data-chi_sim
+sudo pacman -S opencv
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;g++编译flag脚本：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="c"&gt;# lept是tesseract-ocr的依赖leptonica&lt;/span&gt;
+g++ -std&lt;span class="o"&gt;=&lt;/span&gt;c++11  &lt;span class="sb"&gt;`&lt;/span&gt;pkg-config --libs tesseract opencv lept&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt; -o &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;1&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;.out
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4 id="coding"&gt;Coding&lt;/h4&gt;
+&lt;p&gt;代码基于stackoverflow上贴出的&lt;a href="http://stackoverflow.com/questions/14041025/how-can-i-use-tesseract-and-opencv-to-extract-the-text-from-the-camera"&gt;代码&lt;/a&gt;，结合OpenCV官方给出的使用VideoCapture的
+&lt;a href="http://docs.opencv.org/3.0-last-rst/modules/videoio/doc/reading_and_writing_video.html#videocapture"&gt;示例代码&lt;/a&gt;，加上stackoverflow上另外一个&lt;a href="http://stackoverflow.com/questions/11464397/image-preprocessing-for-text-recognition"&gt;问题&lt;/a&gt;的回答贴出的代码，
+对视频帧进行预处理，如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Mat&lt;/span&gt; &lt;span class="n"&gt;new_img&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;imread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;bitwise_not&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;new_img&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;thres&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;threshold&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;new_img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;thres&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;CV_THRESH_BINARY&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;imwrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;inv_thres.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;new_img&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;由于tesseract-ocr对白纸黑字的图片处理效果才比较好，所以需要对视频帧预处理，
+可以说图片预处理的好坏直接影响识别文字的精确程序，而我并不懂图形学，仅仅是
+看着处理效果调的。&lt;/p&gt;
+&lt;p&gt;代码还使用了stackoverflow中另外一个&lt;a href="http://stackoverflow.com/questions/8115368/converting-cvmat-for-tesseract"&gt;问题&lt;/a&gt;中的回答的代码，适配OpenCV数据结构&lt;code&gt;Mat&lt;/code&gt;到tesseract-ocr
+中的API函数SetImage的代码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tesseract&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;TessBaseAPI&lt;/span&gt; &lt;span class="n"&gt;tess&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Mat&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Rect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;300&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="n"&gt;tess&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SetImage&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;uchar&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;step1&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+&lt;span class="n"&gt;tess&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Recognize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tess&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GetUTF8Text&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;最终获取排行榜视频中ID号的代码见&lt;a href="https://gist.github.com/junfenglx/ed966fb7ea41ed2a13a9"&gt;Gist&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;至于包含Id号和Score的矩形区域是使用GIMP(&lt;a href="https://www.gimp.org/"&gt;官网&lt;/a&gt;)找出来的。
+缩小检测区域，有利于防止tesseract-ocr返回很多垃圾文字。&lt;/p&gt;
+&lt;p&gt;开始使用chi_sim language data，发现效果并不是很好，总是把1识别成l，
+由于Id号和Score都是由数字和字母组成，因此换成eng language data精确度
+反而能提高一些。&lt;/p&gt;
+&lt;p&gt;获取到Id号后，构造url和去重就很简单了。&lt;/p&gt;
+&lt;p&gt;最后使用you-get下载视频：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# using uniq removes duplicates&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; u in &lt;span class="sb"&gt;`&lt;/span&gt;uniq ../dance_url.out &lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$u&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; you-get &lt;span class="nv"&gt;$u&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="result"&gt;Result&lt;/h3&gt;
+&lt;p&gt;最后下载到的视频见&lt;a href="http://pan.baidu.com/s/1jHiXFeA"&gt;分享&lt;/a&gt;，密码: 5gv3&lt;/p&gt;
+&lt;p&gt;Id号并没有全部识别出来。&lt;/p&gt;
+&lt;h3 id="related-works"&gt;Related works&lt;/h3&gt;
+&lt;p&gt;主要的相关工作就是cloudera blog上发表的那篇&lt;a href="http://blog.cloudera.com/blog/2015/10/how-to-index-scanned-pdfs-at-scale-using-fewer-than-50-lines-of-code/"&gt;文章&lt;/a&gt;。他们在那篇文章中
+使用tesseract-ocr识别扫描PDF文件，并将结果存在HBase中。受那篇文章启发，
+才有了本篇文章的想法。&lt;/p&gt;
+&lt;h3 id="limitation"&gt;Limitation&lt;/h3&gt;
+&lt;p&gt;OpenCV和tesseract-ocr识别视频中文字，预处理很重要，而且对字体变化很敏感。
+一般识别正确率达不到100%，本文例子中，由于排行榜视频前期和后期Id号字体发生
+改变，导致视频中后半部分的Id号基本上识别不出来。100个Id号，仅仅正确识别40个
+左右，精确率为40%。&lt;/p&gt;
+&lt;p&gt;想法可行，但要提高精确率的话，需要花很大功夫。&lt;/p&gt;
+&lt;h3 id="future-works"&gt;Future works&lt;/h3&gt;
+&lt;p&gt;使用该方法，对于字体没有什么变化的排行视频，识别率能达到90%，以鬼畜区某个
+排行榜视频为例，40多个视频能精确识别出30多个，识别性能还是不错的。&lt;/p&gt;
+&lt;p&gt;同样该方法可以应用到B站类似排行视频，例如舞蹈区每周排行视频，只要字体不发生
+改变，预处理做好，基本上还是能识别出大部分Id号的。&lt;/p&gt;
+&lt;h3 id="conclusion"&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;OpenCV和tesseract-ocr结合，对于视频文件、实时视频流中的文本识别问题，
+是一个不错的可行方案。&lt;/p&gt;
+&lt;h3 id="references"&gt;References&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[1]: http://www.bilibili.com/video/av3484492/
+[2]: https://you-get.org/
+[3]: http://blog.cloudera.com/blog/2015/10/how-to-index-scanned-pdfs-at-scale-using-fewer-than-50-lines-of-code/
+[4]: https://github.com/tesseract-ocr/tesseract
+[5]: http://opencv.org/
+[6]: http://stackoverflow.com/questions/14041025/how-can-i-use-tesseract-and-opencv-to-extract-the-text-from-the-camera
+[7]: http://docs.opencv.org/3.0-last-rst/modules/videoio/doc/reading_and_writing_video.html#videocapture
+[8]: http://stackoverflow.com/questions/11464397/image-preprocessing-for-text-recognition
+[9]: http://stackoverflow.com/questions/8115368/converting-cvmat-for-tesseract
+[10]: https://gist.github.com/junfenglx/ed966fb7ea41ed2a13a9
+[11]: https://www.gimp.org/
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="C++"></category><category term="tesseract-ocr"></category><category term="opencv"></category></entry><entry><title>Spring Rest server and Apache Avro objects</title><link href="http://junfenglx.github.io/spring-rest-server-and-apache-avro-objects.html" rel="alternate"></link><updated>2015-08-07T16:58:57+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-08-07:spring-rest-server-and-apache-avro-objects.html</id><summary type="html">&lt;h3 id="1-error-handle-class"&gt;1. Error handle class&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@ControllerAdvice&lt;/span&gt;
 &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ErrorHandler&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
     &lt;span class="nd"&gt;@ExceptionHandler&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exception&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
@@ -13,17 +160,17 @@
 
 
 &lt;p&gt;then we can got clear error message&lt;/p&gt;
-&lt;h4&gt;Reference&lt;/h4&gt;
+&lt;h4 id="reference"&gt;Reference&lt;/h4&gt;
 &lt;p&gt;&lt;a href="http://www.importnew.com/7903.html"&gt;http://www.importnew.com/7903.html&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;2. Change response's content-type&lt;/h3&gt;
+&lt;h3 id="2-change-responses-content-type"&gt;2. Change response's content-type&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@RequestMapping&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RequestMethod&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;GET&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;produces&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MediaType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;APPLICATION_JSON_VALUE&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;need for just return JSON string&lt;/p&gt;
-&lt;h4&gt;Reference&lt;/h4&gt;
+&lt;h4 id="reference_1"&gt;Reference&lt;/h4&gt;
 &lt;p&gt;&lt;a href="http://stackoverflow.com/questions/4471584/in-spring-mvc-how-can-i-set-the-mime-type-header-when-using-responsebody"&gt;http://stackoverflow.com/questions/4471584/in-spring-mvc-how-can-i-set-the-mime-type-header-when-using-responsebody&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;3. Customize &lt;code&gt;MappingJackson2HttpMessageConverter&lt;/code&gt;'s behaviors&lt;/h3&gt;
+&lt;h3 id="3-customize-mappingjackson2httpmessageconverters-behaviors"&gt;3. Customize &lt;code&gt;MappingJackson2HttpMessageConverter&lt;/code&gt;'s behaviors&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@Bean&lt;/span&gt;
 &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Jackson2ObjectMapperBuilder&lt;/span&gt; &lt;span class="nf"&gt;objectMapperBuilder&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
     &lt;span class="n"&gt;Jackson2ObjectMapperBuilder&lt;/span&gt; &lt;span class="n"&gt;builder&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Jackson2ObjectMapperBuilder&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
@@ -36,9 +183,9 @@
 
 
 &lt;p&gt;add the above code snippet to any of your Configuration classes&lt;/p&gt;
-&lt;h4&gt;Reference&lt;/h4&gt;
+&lt;h4 id="reference_2"&gt;Reference&lt;/h4&gt;
 &lt;p&gt;&lt;a href="http://stackoverflow.com/questions/28324352/how-to-customise-the-jackson-json-mapper-implicitly-used-by-spring-boot"&gt;http://stackoverflow.com/questions/28324352/how-to-customise-the-jackson-json-mapper-implicitly-used-by-spring-boot&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;4. Let Spring &lt;code&gt;@RestController&lt;/code&gt; gives Avro objects a hug&lt;/h3&gt;
+&lt;h3 id="4-let-spring-restcontroller-gives-avro-objects-a-hug"&gt;4. Let Spring &lt;code&gt;@RestController&lt;/code&gt; gives Avro objects a hug&lt;/h3&gt;
 &lt;p&gt;make Avro generated class objects automatically converted to JSON string by
 &lt;code&gt;MappingJackson2HttpMessageConverter&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Two methods:&lt;/p&gt;
@@ -47,11 +194,11 @@
 &lt;li&gt;configure &lt;code&gt;MapperFeature.REQUIRE_SETTERS_FOR_GETTERS&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt;
    for Jackson's &lt;code&gt;ObjectMapper&lt;/code&gt;, use the method at above section.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h4&gt;References&lt;/h4&gt;
-&lt;p&gt;&lt;a href="https://github.com/FasterXML/jackson-dataformat-avro/issues/16"&gt;https://github.com/FasterXML/jackson-dataformat-avro/issues/16&lt;/a&gt;&lt;/p&gt;</summary><category term="Spring"></category><category term="Rest"></category><category term="Avro"></category></entry><entry><title>Hadoop secure Mode配置</title><link href="http://junfenglx.github.io/hadoop-secure-modepei-zhi.html" rel="alternate"></link><updated>2015-07-25T18:55:33+08:00</updated><author><name>pfw, junfeng</name></author><id>tag:junfenglx.github.io,2015-07-25:hadoop-secure-modepei-zhi.html</id><summary type="html">&lt;h3&gt;介绍&lt;/h3&gt;
+&lt;h4 id="references"&gt;References&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://github.com/FasterXML/jackson-dataformat-avro/issues/16"&gt;https://github.com/FasterXML/jackson-dataformat-avro/issues/16&lt;/a&gt;&lt;/p&gt;</summary><category term="Spring"></category><category term="Rest"></category><category term="Avro"></category></entry><entry><title>Hadoop secure Mode配置</title><link href="http://junfenglx.github.io/hadoop-secure-modepei-zhi.html" rel="alternate"></link><updated>2015-07-25T18:55:33+08:00</updated><author><name>pfw, junfeng</name></author><id>tag:junfenglx.github.io,2015-07-25:hadoop-secure-modepei-zhi.html</id><summary type="html">&lt;h3 id="_1"&gt;介绍&lt;/h3&gt;
 &lt;p&gt;老板让配Hadoop的安全模式,网上搜了些资料,
 具体过程略有出入,下面记录详细配置过程,&lt;/p&gt;
-&lt;h3&gt;环境&lt;/h3&gt;
+&lt;h3 id="_2"&gt;环境&lt;/h3&gt;
 &lt;p&gt;Hadoop Version: Apache Hadoop 2.7.1&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;/etc/hosts&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;192.168.1.100   hadoop1
@@ -78,7 +225,7 @@ note:&lt;strong&gt;确保域名解析和反向域名解析在集群中正常工�
 &lt;p&gt;三台机器同步&lt;code&gt;/etc/hosts&lt;/code&gt;和&lt;code&gt;/etc/profile&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;OS: Ubuntu 14.04.2 LTS&lt;/p&gt;
 &lt;p&gt;kdc和kadmind运行在hadoop1上&lt;/p&gt;
-&lt;h3&gt;Process&lt;/h3&gt;
+&lt;h3 id="process"&gt;Process&lt;/h3&gt;
 &lt;p&gt;首先确保非安全模式下Hadoop集群能够正常运行,
 确保集群各个节点时间同步&lt;/p&gt;
 &lt;p&gt;在hadoop1上安装Kerberos:
@@ -477,7 +624,7 @@ CMake provides lots of varaibles you can add paths for CMake to search.&lt;/p&gt
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3&gt;References:&lt;/h3&gt;
+&lt;h3 id="references"&gt;References:&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://www.rapidtables.com/code/linux/gcc.htm"&gt;http://www.rapidtables.com/code/linux/gcc.htm&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://manned.org/pkg-config.1"&gt;http://manned.org/pkg-config.1&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Rpath"&gt;https://en.wikipedia.org/wiki/Rpath&lt;/a&gt;&lt;/p&gt;
@@ -513,12 +660,12 @@ CMake provides lots of varaibles you can add paths for CMake to search.&lt;/p&gt
 
 
 &lt;p&gt;Maybe from now I need write one variable in one line, and document every variable.&lt;/p&gt;
-&lt;p&gt;Hope I can get &lt;em&gt;clean code&lt;/em&gt;&lt;/p&gt;</summary><category term="backslash"></category><category term="C++"></category></entry><entry><title>PEPS doc Kindle版本</title><link href="http://junfenglx.github.io/peps-doc-kindleban-ben.html" rel="alternate"></link><updated>2015-06-09T22:07:32+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-06-09:peps-doc-kindleban-ben.html</id><summary type="html">&lt;h3&gt;介绍&lt;/h3&gt;
+&lt;p&gt;Hope I can get &lt;em&gt;clean code&lt;/em&gt;&lt;/p&gt;</summary><category term="backslash"></category><category term="C++"></category></entry><entry><title>PEPS doc Kindle版本</title><link href="http://junfenglx.github.io/peps-doc-kindleban-ben.html" rel="alternate"></link><updated>2015-06-09T22:07:32+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-06-09:peps-doc-kindleban-ben.html</id><summary type="html">&lt;h3 id="_1"&gt;介绍&lt;/h3&gt;
 &lt;p&gt;Python上遇到的很多问题搜到最后经常链接到PEP, 觉得PEPS需要研读一下.
 一时半会儿看不完的东西总想着放到Kindle里看(很有可能不会再看), 于是
 就制作了这个mobi版本的Python Enhancement Proposals.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://raw.githubusercontent.com/grepcook/peps_mobi/master/Python%20Enhancement%20Proposals.mobi"&gt;下载地址&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;过程&lt;/h3&gt;
+&lt;h3 id="_2"&gt;过程&lt;/h3&gt;
 &lt;p&gt;hg clone下来, 然后转成html. 使用&lt;a href="https://github.com/grepcook/peps_mobi/blob/master/pep2mobi.py"&gt;代码&lt;/a&gt;解析html, 用kindlegen生成
 mobi文件.&lt;/p&gt;
 &lt;p&gt;吐槽:&lt;/p&gt;
@@ -530,17 +677,17 @@ mobi文件.&lt;/p&gt;
 &lt;li&gt;PEP的两种格式处理起来带来不少麻烦, 并且其生成的html文档结构
    很简单, 没有程序处理需要的元信息.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3&gt;TODO&lt;/h3&gt;
+&lt;h3 id="todo"&gt;TODO&lt;/h3&gt;
 &lt;p&gt;本来应该按照分类做成类似期刊格式的文档, 但时间不够用, 没有制作
 期刊的模板, 以后有时间再做.&lt;/p&gt;
 &lt;p&gt;应该免去转成html那一步, 直接利用原生格式, 需要学习PEP文档的两种
 格式.&lt;/p&gt;
-&lt;p&gt;Python应该统一PEP格式, 把两种格式使用程序转成一种.&lt;/p&gt;</summary><category term="Python"></category><category term="Kindle"></category></entry><entry><title>OAuth 2.0 Bearer Token Usage</title><link href="http://junfenglx.github.io/oauth-20-bearer-token-usage.html" rel="alternate"></link><updated>2015-06-08T16:17:44+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-06-08:oauth-20-bearer-token-usage.html</id><summary type="html">&lt;h3&gt;引入&lt;/h3&gt;
+&lt;p&gt;Python应该统一PEP格式, 把两种格式使用程序转成一种.&lt;/p&gt;</summary><category term="Python"></category><category term="Kindle"></category></entry><entry><title>OAuth 2.0 Bearer Token Usage</title><link href="http://junfenglx.github.io/oauth-20-bearer-token-usage.html" rel="alternate"></link><updated>2015-06-08T16:17:44+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-06-08:oauth-20-bearer-token-usage.html</id><summary type="html">&lt;h3 id="_1"&gt;引入&lt;/h3&gt;
 &lt;p&gt;在给Tornado编写豆瓣API的类时, 在查看文档时, 发现其access_token
 并不像其它网站那样是传在query或者body中的. 而是放入headers中.
 即: &lt;code&gt;headers["Authorization"] = Bearer &amp;lt;access_token&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;搜索OAuth2.0 Bearer, 在RFC 6750中找到了详细介绍&lt;/p&gt;
-&lt;h3&gt;使用access_token方法&lt;/h3&gt;
+&lt;h3 id="access_token"&gt;使用access_token方法&lt;/h3&gt;
 &lt;p&gt;标准中给出了3种access_token的使用方法:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;使用headers的Authorization字段(格式如上)&lt;/li&gt;
@@ -548,7 +695,7 @@ mobi文件.&lt;/p&gt;
 &lt;li&gt;query形式放入url中&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;标准推荐使用第一种方法. 第三种并不推荐, 因为access_token有可能泄漏.&lt;/p&gt;
-&lt;h3&gt;参考&lt;/h3&gt;
+&lt;h3 id="_2"&gt;参考&lt;/h3&gt;
 &lt;p&gt;http://self-issued.info/docs/draft-ietf-oauth-v2-bearer.html&lt;/p&gt;</summary><category term="OAuth2.0"></category><category term="Bearer"></category></entry><entry><title>right click menu items</title><link href="http://junfenglx.github.io/right-click-menu-items.html" rel="alternate"></link><updated>2015-05-16T18:42:50+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-05-16:right-click-menu-items.html</id><summary type="html">&lt;p&gt;The list of program that is displayed when right-clicking on a file in PCManFM is the combination of:
 mimeinfo.cache
 mimeapps.list
@@ -559,17 +706,17 @@ The one from /usr/local/share/applications/defaults.list
 The one from /usr/share/applications/defaults.list
 The first one from /usr/share/applications/mimeinfo.cache&lt;/p&gt;
 &lt;p&gt;From https://lkubaski.wordpress.com/2012/10/29/understanding-file-associations-in-lxde-and-pcmanfm/&lt;/p&gt;</summary><category term="mime"></category><category term="desktop"></category></entry><entry><title>The Little Redis Book 笔记</title><link href="http://junfenglx.github.io/the-little-redis-book-bi-ji.html" rel="alternate"></link><updated>2015-04-15T12:25:16+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-04-15:the-little-redis-book-bi-ji.html</id><summary type="html">&lt;p&gt;query limitations, data structures and Redis' way to store data in memory&lt;/p&gt;
-&lt;h3&gt;strings&lt;/h3&gt;
+&lt;h3 id="strings"&gt;strings&lt;/h3&gt;
 &lt;p&gt;use cases: storing objects (complex or not) and counters&lt;/p&gt;
-&lt;h3&gt;hashes&lt;/h3&gt;
+&lt;h3 id="hashes"&gt;hashes&lt;/h3&gt;
 &lt;p&gt;hash suits for structed objects
 hash implemention&lt;/p&gt;
-&lt;h3&gt;sets&lt;/h3&gt;
+&lt;h3 id="sets"&gt;sets&lt;/h3&gt;
 &lt;p&gt;in op is O(1)?&lt;/p&gt;
 &lt;p&gt;use cases: Sets are great for tagging or tracking any other properties
 of a value for which duplicates don't make any sense
 (or where we want to apply set operations such as intersections and unions).&lt;/p&gt;
-&lt;h3&gt;sorted sets&lt;/h3&gt;
+&lt;h3 id="sorted-sets"&gt;sorted sets&lt;/h3&gt;
 &lt;p&gt;hashes are like strings but with fields,
 then sorted sets are like sets but with a score&lt;/p&gt;
 &lt;p&gt;use cases:&lt;/p&gt;
@@ -578,18 +725,18 @@ then sorted sets are like sets but with a score&lt;/p&gt;
 &lt;li&gt;anything you want sorted by an some integer,
   and be able to efficiently manipulate based on that score,&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3&gt;Pseudo Multi Key Queries&lt;/h3&gt;
+&lt;h3 id="pseudo-multi-key-queries"&gt;Pseudo Multi Key Queries&lt;/h3&gt;
 &lt;p&gt;using hashes to make querying a little easier&lt;/p&gt;
-&lt;h3&gt;References and Indexes&lt;/h3&gt;
+&lt;h3 id="references-and-indexes"&gt;References and Indexes&lt;/h3&gt;
 &lt;p&gt;manage/update/delete these references manually is defficult&lt;/p&gt;
-&lt;h3&gt;Round Trips and Pipelining&lt;/h3&gt;
-&lt;h3&gt;Transactions&lt;/h3&gt;
+&lt;h3 id="round-trips-and-pipelining"&gt;Round Trips and Pipelining&lt;/h3&gt;
+&lt;h3 id="transactions"&gt;Transactions&lt;/h3&gt;
 &lt;p&gt;Every Redis command is atomic, including the ones that do multiple things.
 Additionally, Redis has support for transactions when using multiple commands.&lt;/p&gt;
 &lt;p&gt;Redis is actually single-threaded,
 which is how every command is guaranteed to be atomic&lt;/p&gt;
 &lt;p&gt;starts &lt;em&gt;multi&lt;/em&gt; then some &lt;em&gt;commands&lt;/em&gt; ends with exec or discard&lt;/p&gt;
-&lt;h3&gt;Expiration&lt;/h3&gt;
+&lt;h3 id="expiration"&gt;Expiration&lt;/h3&gt;
 &lt;p&gt;commands:
 - EXPIRE
 - EXPIREAT
@@ -597,23 +744,23 @@ which is how every command is guaranteed to be atomic&lt;/p&gt;
 - PERSIST
 - SETEX&lt;/p&gt;
 &lt;p&gt;ideal caching engine&lt;/p&gt;
-&lt;h3&gt;Lua Scripting&lt;/h3&gt;
+&lt;h3 id="lua-scripting"&gt;Lua Scripting&lt;/h3&gt;
 &lt;p&gt;keys with a TTL won't expire half-way through script execution&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;lua-time-limit&lt;/em&gt; defines how long a Lua script is allowed to
 execute before being terminated. Default is 5 seconds.&lt;/p&gt;
-&lt;h3&gt;Replication&lt;/h3&gt;
+&lt;h3 id="replication"&gt;Replication&lt;/h3&gt;
 &lt;p&gt;Redis replication doesn't yet provide automated failover,
 If the master dies, a slave needs to be manually promoted&lt;/p&gt;
 &lt;p&gt;Some commands are more expensive than others (sort for example)
 and offloading their execution to a slave can keep the overall
 system responsive to incoming queries&lt;/p&gt;
-&lt;h3&gt;Backups&lt;/h3&gt;
+&lt;h3 id="backups"&gt;Backups&lt;/h3&gt;
 &lt;p&gt;disable both snapshotting and the append-only file (aof) on
 the master and let a slave take care of this&lt;/p&gt;
-&lt;h3&gt;Redis Cluster&lt;/h3&gt;
+&lt;h3 id="redis-cluster"&gt;Redis Cluster&lt;/h3&gt;
 &lt;p&gt;Not only will this offer horizontal scaling, including rebalancing,
 but it'll also provide automated failover for high availability.&lt;/p&gt;
-&lt;h3&gt;End&lt;/h3&gt;
+&lt;h3 id="end"&gt;End&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;Redis is easy to learn&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;the real benefits Redis has to offer with its simplicity&lt;/em&gt;&lt;/p&gt;</summary><category term="Redis"></category><category term="learning"></category></entry><entry><title>天朝火车硬座的乱想</title><link href="http://junfenglx.github.io/tian-zhao-huo-che-ying-zuo-de-luan-xiang.html" rel="alternate"></link><updated>2015-01-06T22:00:00+08:00</updated><author><name>junfeng_hu</name></author><id>tag:junfenglx.github.io,2015-01-06:tian-zhao-huo-che-ying-zuo-de-luan-xiang.html</id><summary type="html">&lt;p&gt;明里着让你好好休息，然后光明正大的卖着什么租电影的服务，偏偏还有傻X,
 愿意看“铁路工作人员”嘴里所谓的最新的电影。其实你想多了，让你好好休息
@@ -625,33 +772,33 @@ but it'll also provide automated failover for high availability.&lt;/p&gt;
 但仅剩一个星期之际，却搞什么搬书移书，直接把
 那间馆藏室给关了。又正值考试临近，换的位置感
 觉不舒坦。图书馆里整个闹嗡嗡的，配上此天的心情，
-也是一种滋味。&lt;/p&gt;</summary><category term="exams"></category></entry><entry><title>unpv13e chapter 3 notes</title><link href="http://junfenglx.github.io/unpv13e-chapter-3-notes.html" rel="alternate"></link><updated>2014-07-03T14:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-07-03:unpv13e-chapter-3-notes.html</id><summary type="html">&lt;h3&gt;IPv4 Socket Address Structure&lt;/h3&gt;
+也是一种滋味。&lt;/p&gt;</summary><category term="exams"></category></entry><entry><title>unpv13e chapter 3 notes</title><link href="http://junfenglx.github.io/unpv13e-chapter-3-notes.html" rel="alternate"></link><updated>2014-07-03T14:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-07-03:unpv13e-chapter-3-notes.html</id><summary type="html">&lt;h3 id="ipv4-socket-address-structure"&gt;IPv4 Socket Address Structure&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="sockaddr_in.png" src="./images/sockaddr_in.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;Datatypes required by the POSIX specification&lt;/h3&gt;
+&lt;h3 id="datatypes-required-by-the-posix-specification"&gt;Datatypes required by the POSIX specification&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="datatypes.png" src="./images/datatypes.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;Generic Socket Address Structure&lt;/h3&gt;
+&lt;h3 id="generic-socket-address-structure"&gt;Generic Socket Address Structure&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="sockaddr.png" src="./images/sockaddr.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;IPv6 Socket Address Structure&lt;/h3&gt;
+&lt;h3 id="ipv6-socket-address-structure"&gt;IPv6 Socket Address Structure&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="sockaddr_in6.png" src="./images/sockaddr_in6.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;New Generic Socket Address Structure&lt;/h3&gt;
+&lt;h3 id="new-generic-socket-address-structure"&gt;New Generic Socket Address Structure&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="sockaddr_storage.png" src="./images/sockaddr_storage.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;Comparison of various socket address structures.&lt;/h3&gt;
+&lt;h3 id="comparison-of-various-socket-address-structures"&gt;Comparison of various socket address structures.&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="sockaddr_comparison.png" src="./images/sockaddr_comparison.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;Byte Ordering Functions&lt;/h3&gt;
+&lt;h3 id="byte-ordering-functions"&gt;Byte Ordering Functions&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="byte_ordering_functions.png" src="./images/byte_ordering_functions.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;Convert Addresses Between ASCII Strings And Network Byte Ordered Binary Values&lt;/h3&gt;
-&lt;h5&gt;Old Functions:&lt;/h5&gt;
+&lt;h3 id="convert-addresses-between-ascii-strings-and-network-byte-ordered-binary-values"&gt;Convert Addresses Between ASCII Strings And Network Byte Ordered Binary Values&lt;/h3&gt;
+&lt;h5 id="old-functions"&gt;Old Functions:&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="inet_aton-inet_addr-inet_ntoa.png" src="./images/inet_aton-inet_addr-inet_ntoa.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;note 1: INADDR_NONE is typically 32 one-bits, so inet_addr cannot convert string 255.255.255.255&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;note 2: inet_ntoa's return value is in static memory, so it is not reentrant&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;note 3: inet_ntoa takes structures as it's argument, not a point&lt;/em&gt;&lt;/p&gt;
-&lt;h5&gt;New Functions:&lt;/h5&gt;
+&lt;h5 id="new-functions"&gt;New Functions:&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="inet_pton-inet_ntop.png" src="./images/inet_pton-inet_ntop.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;#define INET_ADDRSTRLEN 16 /* for IPv4 dotted-decimal */&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;#define INET6_ADDRSTRLEN 46 /* for IPv6 hex string */&lt;/code&gt;&lt;/p&gt;
-&lt;h5&gt;Summary of address conversion functions&lt;/h5&gt;
+&lt;h5 id="summary-of-address-conversion-functions"&gt;Summary of address conversion functions&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="address_conversion_functions.png" src="./images/address_conversion_functions.png" /&gt;&lt;/p&gt;
-&lt;h2&gt;Exercises&lt;/h2&gt;
+&lt;h2 id="exercises"&gt;Exercises&lt;/h2&gt;
 &lt;p&gt;3.1 In C the function can modify arguments only if arguments passed by reference.&lt;/p&gt;
 &lt;p&gt;3.2 because &lt;code&gt;sizeof(char)&lt;/code&gt; is one byte, read or write n chars equals n bytes data.&lt;/p&gt;
 &lt;p&gt;3.3&lt;/p&gt;
@@ -715,7 +862,7 @@ but it'll also provide automated failover for high availability.&lt;/p&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>mount and grep</title><link href="http://junfenglx.github.io/mount-and-grep.html" rel="alternate"></link><updated>2014-06-08T21:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-06-08:mount-and-grep.html</id><summary type="html">&lt;h2&gt;mount options&lt;/h2&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="unpv13e"></category><category term="notes"></category></entry><entry><title>mount and grep</title><link href="http://junfenglx.github.io/mount-and-grep.html" rel="alternate"></link><updated>2014-06-08T21:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-06-08:mount-and-grep.html</id><summary type="html">&lt;h2 id="mount-options"&gt;mount options&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;mount&lt;/code&gt;display current partions mount options.
 Output like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;/dev/sda2 on /home type ext4 (rw,relatime,data=ordered)
@@ -739,7 +886,7 @@ Output like this:&lt;/p&gt;
   as in the option line user,exec,dev,suid).&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;So if you want programs can run on these auto mount partions, add exec option if you setted user option.&lt;/p&gt;
-&lt;h2&gt;grep options&lt;/h2&gt;
+&lt;h2 id="grep-options"&gt;grep options&lt;/h2&gt;
 &lt;p&gt;If you want to search some words like &lt;code&gt;X-Forwarded-For&lt;/code&gt; recursively, you type
 &lt;code&gt;grep -i "X-Forwarded-For" -r *&lt;/code&gt;. It works, but search every type files.&lt;/p&gt;
 &lt;p&gt;Maybe you want to recursively search just some type files like "*.py".&lt;/p&gt;
@@ -747,42 +894,42 @@ Output like this:&lt;/p&gt;
 It equals to &lt;code&gt;grep -i "X-Forwarded-For" *.py&lt;/code&gt;, just search current directory "*.py" files.&lt;/p&gt;
 &lt;p&gt;The right solution is:
 &lt;code&gt;grep -i "X-Forwarded-For" --include=*.py -r&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;recursively search *.py files for &lt;code&gt;X-Forwarded-For&lt;/code&gt;&lt;/p&gt;</summary><category term="mount"></category><category term="grep"></category></entry><entry><title>unpv13e chapter 2 notes</title><link href="http://junfenglx.github.io/unpv13e-chapter-2-notes.html" rel="alternate"></link><updated>2014-06-08T15:41:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-06-08:unpv13e-chapter-2-notes.html</id><summary type="html">&lt;h2&gt;Overview of TCP/IP protocols.&lt;/h2&gt;
+&lt;p&gt;recursively search *.py files for &lt;code&gt;X-Forwarded-For&lt;/code&gt;&lt;/p&gt;</summary><category term="mount"></category><category term="grep"></category></entry><entry><title>unpv13e chapter 2 notes</title><link href="http://junfenglx.github.io/unpv13e-chapter-2-notes.html" rel="alternate"></link><updated>2014-06-08T15:41:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-06-08:unpv13e-chapter-2-notes.html</id><summary type="html">&lt;h2 id="overview-of-tcpip-protocols"&gt;Overview of TCP/IP protocols.&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="unpv1_overview_TCP_IP_protocols.png" src="./images/unpv1_overview_TCP_IP_protocols.png" /&gt;&lt;/p&gt;
-&lt;h2&gt;TCP&lt;/h2&gt;
-&lt;h3&gt;Three-Way Handshake&lt;/h3&gt;
+&lt;h2 id="tcp"&gt;TCP&lt;/h2&gt;
+&lt;h3 id="three-way-handshake"&gt;Three-Way Handshake&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="TCP_three_way_handshake.png" src="./images/TCP_three_way_handshake.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;Packets exchanged when a TCP connection is closed.&lt;/h3&gt;
+&lt;h3 id="packets-exchanged-when-a-tcp-connection-is-closed"&gt;Packets exchanged when a TCP connection is closed.&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="packets_exchange_when_TCP_connections_terminal.png" src="./images/packets_exchange_when_TCP_connections_terminal.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;TCP State Transition Diagram&lt;/h3&gt;
+&lt;h3 id="tcp-state-transition-diagram"&gt;TCP State Transition Diagram&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="TCP_State_Transition_Diagram.png" src="./images/TCP_State_Transition_Diagram.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;TIME_WAIT State&lt;/h3&gt;
+&lt;h3 id="time_wait-state"&gt;TIME_WAIT State&lt;/h3&gt;
 &lt;p&gt;Time: 2MSL&lt;/p&gt;
 &lt;p&gt;Reasons:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;To implement TCP's full-duplex connection termination reliably&lt;/li&gt;
 &lt;li&gt;To allow old duplicate segments to expire in the network&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;SCTP&lt;/h2&gt;
-&lt;h3&gt;SCTP four-way handshake&lt;/h3&gt;
+&lt;h2 id="sctp"&gt;SCTP&lt;/h2&gt;
+&lt;h3 id="sctp-four-way-handshake"&gt;SCTP four-way handshake&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="SCTP_four_way_handshake.png" src="./images/SCTP_four_way_handshake.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;Packets exchanged when an SCTP association is closed&lt;/h3&gt;
+&lt;h3 id="packets-exchanged-when-an-sctp-association-is-closed"&gt;Packets exchanged when an SCTP association is closed&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="packets_exchanged_when_an_SCTP_association_is_closed.png" src="./images/packets_exchanged_when_an_SCTP_association_is_closed.png" /&gt;&lt;/p&gt;
 &lt;p&gt;SCTP does not permit a "half-closed" association, does not have a TIME_WAIT state.&lt;/p&gt;
-&lt;h3&gt;SCTP State Transition Diagram&lt;/h3&gt;
+&lt;h3 id="sctp-state-transition-diagram"&gt;SCTP State Transition Diagram&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="SCTP_State_Transition_Diagram.png" src="./images/SCTP_State_Transition_Diagram.png" /&gt;&lt;/p&gt;
-&lt;h2&gt;Socket Pair&lt;/h2&gt;
+&lt;h2 id="socket-pair"&gt;Socket Pair&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;TCP: the local IP address, local port, foreign IP address, and foreign port&lt;/li&gt;
 &lt;li&gt;SCTP: a set of local IP addresses, a local port, a set of foreign IP
   addresses, and a foreign port&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;Headers&lt;/h2&gt;
-&lt;h3&gt;IPv4 Header&lt;/h3&gt;
+&lt;h2 id="headers"&gt;Headers&lt;/h2&gt;
+&lt;h3 id="ipv4-header"&gt;IPv4 Header&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="IPv4_header.png" src="./images/IPv4_header.png" /&gt;&lt;/p&gt;
-&lt;h3&gt;IPv6 Header&lt;/h3&gt;
+&lt;h3 id="ipv6-header"&gt;IPv6 Header&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="IPv6_header.png" src="./images/IPv6_header.png" /&gt;&lt;/p&gt;
-&lt;h2&gt;Buffer Sizes and Limitations&lt;/h2&gt;
+&lt;h2 id="buffer-sizes-and-limitations"&gt;Buffer Sizes and Limitations&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;The maximum size of an IPv4 datagram is 65,535 bytes, including the IPv4
   header.&lt;/li&gt;
@@ -806,33 +953,33 @@ It equals to &lt;code&gt;grep -i "X-Forwarded-For" *.py&lt;/code&gt;, just searc
 &lt;p&gt;Note:
 &lt;em&gt;Pv6 payload length field does not include the size of the IPv6header,&lt;/em&gt;
 &lt;em&gt;while the IPv4 total length field does include the header size.&lt;/em&gt;&lt;/p&gt;
-&lt;h3&gt;Retransmission&lt;/h3&gt;
+&lt;h3 id="retransmission"&gt;Retransmission&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Positive Acknowledgement&lt;/li&gt;
 &lt;li&gt;Negative Acknowledgment&lt;/li&gt;
 &lt;li&gt;Selective Acknowledgment&lt;/li&gt;
 &lt;li&gt;Cumulative Acknowledgment&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;Exercise&lt;/h2&gt;
-&lt;h3&gt;2.1&lt;/h3&gt;
+&lt;h2 id="exercise"&gt;Exercise&lt;/h2&gt;
+&lt;h3 id="21"&gt;2.1&lt;/h3&gt;
 &lt;p&gt;version 0-1: Reserved&lt;/p&gt;
 &lt;p&gt;version 2-3: Unassigned&lt;/p&gt;
 &lt;p&gt;version 5: Internet Stream Protocol&lt;/p&gt;
-&lt;h3&gt;2.2&lt;/h3&gt;
+&lt;h3 id="22"&gt;2.2&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://tools.ietf.org/html/rfc1190"&gt;rfc1190&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Internet_Stream_Protocol"&gt;Internet_Stream_Protocol&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;2.3&lt;/h3&gt;
+&lt;h3 id="23"&gt;2.3&lt;/h3&gt;
 &lt;p&gt;The minimum reassembly buffer size for IPv4 is 576, it minus the 20-byte IPv4 header and minus
 the 20-byte TCP header is 536&lt;/p&gt;
-&lt;h3&gt;2.4&lt;/h3&gt;
+&lt;h3 id="24"&gt;2.4&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="2.4.jpeg" src="./images/2.4.jpeg" /&gt;&lt;/p&gt;
-&lt;h3&gt;2.5&lt;/h3&gt;
+&lt;h3 id="25"&gt;2.5&lt;/h3&gt;
 &lt;p&gt;Token ring host can't send packets more than 1460 bytes of data, because peer MSS was 1460.
 Ethernet host can send no more than 4096 bytes data, but it's MTU is 1500 bytes, it will not exceed the MTU of the
 outgoing interface (the Ethernet) to avoid fragmentation. There for the max length of data is 1460 (1500-20-20)&lt;/p&gt;
-&lt;h3&gt;2.6&lt;/h3&gt;
+&lt;h3 id="26"&gt;2.6&lt;/h3&gt;
 &lt;p&gt;89&lt;/p&gt;
-&lt;h3&gt;2.7&lt;/h3&gt;
+&lt;h3 id="27"&gt;2.7&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;A selective acknowledgment only indicates that the data covered by the
 sequence numbers reflected in the selective acknowledgment message was
@@ -874,7 +1021,7 @@ acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt
 &lt;ul&gt;
 &lt;li&gt;http://www.server-world.info/en/note?os=Debian_7.0&amp;amp;p=nfs&amp;amp;f=2&lt;/li&gt;
 &lt;li&gt;https://lug.ustc.edu.cn/wiki/mirrors/help/debian&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Debian"></category><category term="NFS"></category></entry><entry><title>unpv13e chapter 1 notes</title><link href="http://junfenglx.github.io/unpv13e-chapter-1-notes.html" rel="alternate"></link><updated>2014-06-04T14:16:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-06-04:unpv13e-chapter-1-notes.html</id><summary type="html">&lt;h2&gt;struct sockaddr&lt;/h2&gt;
+&lt;/ul&gt;</summary><category term="Debian"></category><category term="NFS"></category></entry><entry><title>unpv13e chapter 1 notes</title><link href="http://junfenglx.github.io/unpv13e-chapter-1-notes.html" rel="alternate"></link><updated>2014-06-04T14:16:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-06-04:unpv13e-chapter-1-notes.html</id><summary type="html">&lt;h2 id="struct-sockaddr"&gt;struct sockaddr&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Everytime one of the socket functions requires a pointer to a
   socket address structure, that pointer must be cast to a pointer to a generic socket
@@ -882,7 +1029,7 @@ acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt
   so the void * pointer type was not available in the early 1980s when these functions
   were developed.[p41]&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2&gt;server model&lt;/h2&gt;
+&lt;h2 id="server-model"&gt;server model&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;iterative server&lt;/li&gt;
 &lt;li&gt;concurrent server&lt;ul&gt;
@@ -892,16 +1039,16 @@ acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;OSI model and Internet protocol suite&lt;/h2&gt;
+&lt;h2 id="osi-model-and-internet-protocol-suite"&gt;OSI model and Internet protocol suite&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="img" src="./images/osi_mode_and_internet_protocol.png" /&gt;&lt;/p&gt;
-&lt;h2&gt;Linux derived from Minix&lt;/h2&gt;
+&lt;h2 id="linux-derived-from-minix"&gt;Linux derived from Minix&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;We also note that Linux, a popular, freely
   available implementation of Unix, does not fit into the Berkeley-derived classification:
   Its networking code and sockets API were developed from scratch.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2&gt;Exercises&lt;/h2&gt;
-&lt;h3&gt;1.3&lt;/h3&gt;
+&lt;h2 id="exercises"&gt;Exercises&lt;/h2&gt;
+&lt;h3 id="13"&gt;1.3&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;errno: 97 socket error: Address family not supported by protocol&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;define AF_* at include/linux/socket.h&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/* Supported address families. */&lt;/span&gt;
@@ -951,7 +1098,7 @@ acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;1.4&lt;/h3&gt;
+&lt;h3 id="14"&gt;1.4&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include    &amp;quot;unp.h&amp;quot;&lt;/span&gt;
 
 &lt;span class="kt"&gt;int&lt;/span&gt;
@@ -998,7 +1145,7 @@ counter: 1
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;1.5&lt;/h3&gt;
+&lt;h3 id="15"&gt;1.5&lt;/h3&gt;
 &lt;p&gt;Server:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include    &amp;quot;unp.h&amp;quot;&lt;/span&gt;
 &lt;span class="cp"&gt;#include    &amp;lt;time.h&amp;gt;&lt;/span&gt;
@@ -3586,7 +3733,7 @@ for(i=1;i\&lt;G.vexnum;++i)
 &lt;p&gt;选择android API版本下载安装。&lt;/p&gt;
 &lt;p&gt;启动eclipse，设置android-sdk路径。&lt;/p&gt;
 &lt;p&gt;android开发环境已配置完成。&lt;/p&gt;
-&lt;h6&gt;新建android虚拟机，测试环境：&lt;/h6&gt;
+&lt;h6 id="android"&gt;新建android虚拟机，测试环境：&lt;/h6&gt;
 &lt;p&gt;在android-sdk-manager中找到tools-&gt;Manage AVDs，启动Android Virtual
 Device Manager。&lt;/p&gt;
 &lt;p&gt;new新建android虚拟机。&lt;/p&gt;

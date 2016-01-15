@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfenglx.github.io/" rel="alternate"></link><link href="http://junfenglx.github.io/feeds/yun-wei.atom.xml" rel="self"></link><id>http://junfenglx.github.io/</id><updated>2015-07-25T18:55:33+08:00</updated><entry><title>Hadoop secure Mode配置</title><link href="http://junfenglx.github.io/hadoop-secure-modepei-zhi.html" rel="alternate"></link><updated>2015-07-25T18:55:33+08:00</updated><author><name>pfw, junfeng</name></author><id>tag:junfenglx.github.io,2015-07-25:hadoop-secure-modepei-zhi.html</id><summary type="html">&lt;h3&gt;介绍&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfenglx.github.io/" rel="alternate"></link><link href="http://junfenglx.github.io/feeds/yun-wei.atom.xml" rel="self"></link><id>http://junfenglx.github.io/</id><updated>2015-07-25T18:55:33+08:00</updated><entry><title>Hadoop secure Mode配置</title><link href="http://junfenglx.github.io/hadoop-secure-modepei-zhi.html" rel="alternate"></link><updated>2015-07-25T18:55:33+08:00</updated><author><name>pfw, junfeng</name></author><id>tag:junfenglx.github.io,2015-07-25:hadoop-secure-modepei-zhi.html</id><summary type="html">&lt;h3 id="_1"&gt;介绍&lt;/h3&gt;
 &lt;p&gt;老板让配Hadoop的安全模式,网上搜了些资料,
 具体过程略有出入,下面记录详细配置过程,&lt;/p&gt;
-&lt;h3&gt;环境&lt;/h3&gt;
+&lt;h3 id="_2"&gt;环境&lt;/h3&gt;
 &lt;p&gt;Hadoop Version: Apache Hadoop 2.7.1&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;/etc/hosts&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;192.168.1.100   hadoop1
@@ -29,7 +29,7 @@ note:&lt;strong&gt;确保域名解析和反向域名解析在集群中正常工�
 &lt;p&gt;三台机器同步&lt;code&gt;/etc/hosts&lt;/code&gt;和&lt;code&gt;/etc/profile&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;OS: Ubuntu 14.04.2 LTS&lt;/p&gt;
 &lt;p&gt;kdc和kadmind运行在hadoop1上&lt;/p&gt;
-&lt;h3&gt;Process&lt;/h3&gt;
+&lt;h3 id="process"&gt;Process&lt;/h3&gt;
 &lt;p&gt;首先确保非安全模式下Hadoop集群能够正常运行,
 确保集群各个节点时间同步&lt;/p&gt;
 &lt;p&gt;在hadoop1上安装Kerberos:

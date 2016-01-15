@@ -55,6 +55,56 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="http://junfenglx.github.io/tieba-sign.html" rel="bookmark" title="Permalink to tieba sign">
+                                       tieba sign
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://junfenglx.github.io/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://junfenglx.github.io/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-05-09
+
+        |
+        tags:         <a href="http://junfenglx.github.io/tag/tie-ba.html">贴吧</a>
+
+
+        |
+        <a href="http://junfenglx.github.io/tieba-sign.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>贴吧批量签到</p>
+<p>使用requests,bs4</p>
+<p>[code language="python"]</p>
+<p>#!/usr/bin/env python<br />
+#!---coding=utf8---<br />
+import requests<br />
+import bs4</p>
+<p>urlt='http://tieba.baidu.com/f?kw='<br />
+signurl='http://tieba.baidu.com/sign/add'</p>
+<p>tieba=[]<br />
+f=open('tiebas.txt','r')<br />
+tieba=f.read().splitlines()<br />
+f.close()<br />
+headers={}<br />
+f=open('configs.txt','r')<br />
+for line ...</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/tieba-sign.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="http://junfenglx.github.io/e890a4e781abe899abe4b98be5a293.html" rel="bookmark" title="Permalink to 萤火虫之墓">
                                        萤火虫之墓
                                     </a>
@@ -453,44 +503,6 @@ CPU占用率百分之三十几，都是因为我的nvidia显卡没正常工作�
                             <hr/>
                         </article>
                     </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="http://junfenglx.github.io/signale587bde695b0e5928csigactione587bde695b0.html" rel="bookmark" title="Permalink to signal函数和sigaction函数">
-                                       signal函数和sigaction函数
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="http://junfenglx.github.io/author/algu.html">algu</a>
-    </address>
-
-    in <a href="http://junfenglx.github.io/category/cheng-xu-yuan.html">程序猿</a>
-
-    on 2013-02-16
-
-        |
-        tags:         <a href="http://junfenglx.github.io/tag/signal.html">signal</a>
-
-
-        |
-        <a href="http://junfenglx.github.io/signale587bde695b0e5928csigactione587bde695b0.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>环境:Linux version 3.6.10-1-ARCH</p>
-<p>当使用系统自带signal函数处理信号时,系统并未把被捕捉到的信号加到信号屏蔽字中.</p>
-<p>使用sigaction函数实现的signal函数(apue),在调用信号处理程序时,捕捉到的信号屏蔽字被加入到信号屏蔽字,处理程序返回后,恢复到原来的屏蔽字.</p>
-<p>看来敲敲代码还是能发现一些东西的.</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/signale587bde695b0e5928csigactione587bde695b0.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
                     </ol><!-- /#posts-list -->
 <p class="paginator">
         <a href="http://junfenglx.github.io/index4.html">&laquo;</a>
@@ -541,7 +553,7 @@ CPU占用率百分之三十几，都是因为我的nvidia显卡没正常工作�
     </footer>
 
 <script type="text/javascript">
-    var disqus_shortname = 'junfenglx';
+    var disqus_shortname = 'junfeng';
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';

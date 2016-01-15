@@ -77,12 +77,12 @@
     
 </footer><!-- /.post-info -->
 
-        <h3>引入</h3>
+        <h3 id="_1">引入</h3>
 <p>在给Tornado编写豆瓣API的类时, 在查看文档时, 发现其access_token
 并不像其它网站那样是传在query或者body中的. 而是放入headers中.
 即: <code>headers["Authorization"] = Bearer &lt;access_token&gt;</code></p>
 <p>搜索OAuth2.0 Bearer, 在RFC 6750中找到了详细介绍</p>
-<h3>使用access_token方法</h3>
+<h3 id="access_token">使用access_token方法</h3>
 <p>标准中给出了3种access_token的使用方法:</p>
 <ol>
 <li>使用headers的Authorization字段(格式如上)</li>
@@ -90,7 +90,7 @@
 <li>query形式放入url中</li>
 </ol>
 <p>标准推荐使用第一种方法. 第三种并不推荐, 因为access_token有可能泄漏.</p>
-<h3>参考</h3>
+<h3 id="_2">参考</h3>
 <p>http://self-issued.info/docs/draft-ietf-oauth-v2-bearer.html</p>
 
       </div><!-- /.entry-content -->
@@ -101,7 +101,7 @@
           var disqus_identifier = "oauth-20-bearer-token-usage.html";
           (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//junfenglx.disqus.com/embed.js';
+          dsq.src = '//junfeng.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
           })();
         </script>
@@ -127,7 +127,7 @@
     </footer>
 
 <script type="text/javascript">
-    var disqus_shortname = 'junfenglx';
+    var disqus_shortname = 'junfeng';
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';

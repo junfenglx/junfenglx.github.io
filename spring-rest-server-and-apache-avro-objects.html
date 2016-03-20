@@ -79,7 +79,7 @@
 </footer><!-- /.post-info -->
 
         <h3 id="1-error-handle-class">1. Error handle class</h3>
-<div class="highlight"><pre><span class="nd">@ControllerAdvice</span>
+<div class="highlight"><pre><span></span><span class="nd">@ControllerAdvice</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ErrorHandler</span> <span class="o">{</span>
     <span class="nd">@ExceptionHandler</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="n">Exception</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
     <span class="nd">@ResponseStatus</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">BAD_REQUEST</span><span class="o">)</span>
@@ -95,7 +95,7 @@
 <h4 id="reference">Reference</h4>
 <p><a href="http://www.importnew.com/7903.html">http://www.importnew.com/7903.html</a></p>
 <h3 id="2-change-responses-content-type">2. Change response's content-type</h3>
-<div class="highlight"><pre><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">,</span> <span class="n">produces</span> <span class="o">=</span> <span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON_VALUE</span><span class="o">)</span>
+<div class="highlight"><pre><span></span><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">,</span> <span class="n">produces</span> <span class="o">=</span> <span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON_VALUE</span><span class="o">)</span>
 </pre></div>
 
 
@@ -103,7 +103,7 @@
 <h4 id="reference_1">Reference</h4>
 <p><a href="http://stackoverflow.com/questions/4471584/in-spring-mvc-how-can-i-set-the-mime-type-header-when-using-responsebody">http://stackoverflow.com/questions/4471584/in-spring-mvc-how-can-i-set-the-mime-type-header-when-using-responsebody</a></p>
 <h3 id="3-customize-mappingjackson2httpmessageconverters-behaviors">3. Customize <code>MappingJackson2HttpMessageConverter</code>'s behaviors</h3>
-<div class="highlight"><pre><span class="nd">@Bean</span>
+<div class="highlight"><pre><span></span><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">Jackson2ObjectMapperBuilder</span> <span class="nf">objectMapperBuilder</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">Jackson2ObjectMapperBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Jackson2ObjectMapperBuilder</span><span class="o">();</span>
     <span class="c1">// configure ObjectMapper here</span>

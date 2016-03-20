@@ -107,7 +107,7 @@
 <h3 id="13">1.3</h3>
 <p><code>errno: 97 socket error: Address family not supported by protocol</code></p>
 <p>define AF_* at include/linux/socket.h</p>
-<div class="highlight"><pre><span class="cm">/* Supported address families. */</span>
+<div class="highlight"><pre><span></span><span class="cm">/* Supported address families. */</span>
 <span class="cp">#define AF_UNSPEC   0</span>
 <span class="cp">#define AF_UNIX     1   </span><span class="cm">/* Unix domain sockets      */</span><span class="cp"></span>
 <span class="cp">#define AF_LOCAL    1   </span><span class="cm">/* POSIX name for AF_UNIX   */</span><span class="cp"></span>
@@ -155,7 +155,7 @@
 
 
 <h3 id="14">1.4</h3>
-<div class="highlight"><pre><span class="cp">#include    &quot;unp.h&quot;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span>    <span class="cpf">&quot;unp.h&quot;</span><span class="cp"></span>
 
 <span class="kt">int</span>
 <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
@@ -196,15 +196,15 @@
 
 
 <p><em>Output:</em></p>
-<div class="highlight"><pre>Sun Jun  <span class="m">8</span> 14:36:06 2014
+<div class="highlight"><pre><span></span>Sun Jun  <span class="m">8</span> 14:36:06 2014
 counter: 1
 </pre></div>
 
 
 <h3 id="15">1.5</h3>
 <p>Server:</p>
-<div class="highlight"><pre><span class="cp">#include    &quot;unp.h&quot;</span>
-<span class="cp">#include    &lt;time.h&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span>    <span class="cpf">&quot;unp.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span>    <span class="cpf">&lt;time.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span>
 <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
@@ -248,7 +248,7 @@ counter: 1
 
 
 <p>Client:</p>
-<div class="highlight"><pre><span class="cp">#include    &quot;unp.h&quot;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span>    <span class="cpf">&quot;unp.h&quot;</span><span class="cp"></span>
 
 <span class="kt">int</span>
 <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
@@ -289,7 +289,7 @@ counter: 1
 
 
 <p>localhost test:</p>
-<div class="highlight"><pre>./daytimetcpsrv &amp;
+<div class="highlight"><pre><span></span>./daytimetcpsrv &amp;
 ./daytimetcpcli 127.0.0.1
 #output:
 Sun Jun  8 14:53:29 2014

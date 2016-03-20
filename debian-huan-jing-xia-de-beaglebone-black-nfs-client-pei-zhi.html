@@ -83,14 +83,14 @@
 <p>client 使用 Debian. 需要安装 nfs-common package</p>
 <p>配置 BB-black 联网:</p>
 <p>在板子下输入命令:</p>
-<div class="highlight"><pre>/sbin/route add default gw 192.168.7.1
+<div class="highlight"><pre><span></span>/sbin/route add default gw 192.168.7.1
 <span class="nb">echo</span> <span class="s2">&quot;nameserver 114.114.114.114&quot;</span> &gt;&gt; /etc/resolv.conf
 </pre></div>
 
 
 <p>在宿主机上输入:</p>
-<div class="highlight"><pre>sudo iptables -A POSTROUTING -t nat -j MASQUERADE
-<span class="nb">echo </span><span class="m">1</span> <span class="p">|</span> sudo tee /proc/sys/net/ipv4/ip_forward &gt; /dev/null
+<div class="highlight"><pre><span></span>sudo iptables -A POSTROUTING -t nat -j MASQUERADE
+<span class="nb">echo</span> <span class="m">1</span> <span class="p">|</span> sudo tee /proc/sys/net/ipv4/ip_forward &gt; /dev/null
 </pre></div>
 
 

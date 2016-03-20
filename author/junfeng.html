@@ -152,7 +152,7 @@
 
     
 </footer><!-- /.post-info -->                                <h3 id="1-error-handle-class">1. Error handle class</h3>
-<div class="highlight"><pre><span class="nd">@ControllerAdvice</span>
+<div class="highlight"><pre><span></span><span class="nd">@ControllerAdvice</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ErrorHandler</span> <span class="o">{</span>
     <span class="nd">@ExceptionHandler</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="n">Exception</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
     <span class="nd">@ResponseStatus</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">BAD_REQUEST</span><span class="o">)</span>
@@ -168,7 +168,7 @@
 <h4 id="reference">Reference</h4>
 <p><a href="http://www.importnew.com/7903.html">http://www.importnew.com/7903.html</a></p>
 <h3 id="2-change-responses-content-type">2. Change response's content-type</h3>
-<div class="highlight"><pre><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">,</span> <span class="n">produces</span> <span class="o">=</span> <span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON_VALUE ...</span></pre></div>
+<div class="highlight"><pre><span></span><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">,</span> <span class="n">produces</span> <span class="o">=</span> <span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON_VALUE ...</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/spring-rest-server-and-apache-avro-objects.html">Read more...</a>
                                 </p>
@@ -249,8 +249,8 @@ do you tell ...</p>
 </footer><!-- /.post-info -->                                <p>Use backslash to format long long lines. Oops, I nerver use it in C++.</p>
 <p>How to use backslash?</p>
 <p>This is an example:</p>
-<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;string&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> \
             <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
@@ -545,7 +545,7 @@ of a ...</p>
 </footer><!-- /.post-info -->                                <h2 id="mount-options">mount options</h2>
 <p><code>mount</code>display current partions mount options.
 Output like this:</p>
-<div class="highlight"><pre>/dev/sda2 on /home type ext4 (rw,relatime,data=ordered)
+<div class="highlight"><pre><span></span>/dev/sda2 on /home type ext4 (rw,relatime,data=ordered)
 /dev/sda5 on /media/sda5 type ext4 (rw,nosuid,nodev,noexec,relatime,data=ordered,user)
 /dev/sda7 on /media/sda7 type ext4 (rw,nosuid,nodev,noexec,relatime,data=ordered ...</pre></div>
                                 <p class="readmore">

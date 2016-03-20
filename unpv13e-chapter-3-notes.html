@@ -107,13 +107,13 @@
 <p>3.1 In C the function can modify arguments only if arguments passed by reference.</p>
 <p>3.2 because <code>sizeof(char)</code> is one byte, read or write n chars equals n bytes data.</p>
 <p>3.3</p>
-<div class="highlight"><pre><span class="cm">/*inet_pton_loose</span>
+<div class="highlight"><pre><span></span><span class="cm">/*inet_pton_loose</span>
 <span class="cm"> * author: junfeng*/</span>
 
-<span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;string.h&gt;</span>
-<span class="cp">#include &lt;netinet/in.h&gt;</span>
-<span class="cp">#include &lt;arpa/inet.h&gt;</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;arpa/inet.h&gt;</span><span class="cp"></span>
 <span class="kt">int</span> <span class="nf">inet_pton_loose</span><span class="p">(</span><span class="kt">int</span> <span class="n">family</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">strptr</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">addrptr</span><span class="p">);</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>

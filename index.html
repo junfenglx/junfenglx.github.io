@@ -152,7 +152,7 @@
 
     
 </footer><!-- /.post-info -->                                <h3 id="1-error-handle-class">1. Error handle class</h3>
-<div class="highlight"><pre><span class="nd">@ControllerAdvice</span>
+<div class="highlight"><pre><span></span><span class="nd">@ControllerAdvice</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ErrorHandler</span> <span class="o">{</span>
     <span class="nd">@ExceptionHandler</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="n">Exception</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
     <span class="nd">@ResponseStatus</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">BAD_REQUEST</span><span class="o">)</span>
@@ -168,7 +168,7 @@
 <h4 id="reference">Reference</h4>
 <p><a href="http://www.importnew.com/7903.html">http://www.importnew.com/7903.html</a></p>
 <h3 id="2-change-responses-content-type">2. Change response's content-type</h3>
-<div class="highlight"><pre><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">,</span> <span class="n">produces</span> <span class="o">=</span> <span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON_VALUE ...</span></pre></div>
+<div class="highlight"><pre><span></span><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">,</span> <span class="n">produces</span> <span class="o">=</span> <span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON_VALUE ...</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/spring-rest-server-and-apache-avro-objects.html">Read more...</a>
                                 </p>
@@ -210,7 +210,7 @@
 <h3 id="_2">环境</h3>
 <p>Hadoop Version: Apache Hadoop 2.7.1</p>
 <p><code>/etc/hosts</code>:</p>
-<div class="highlight"><pre>192.168.1.100   hadoop1
+<div class="highlight"><pre><span></span>192.168.1.100   hadoop1
 192.168.1.101   hadoop2
 192.168.1.102   hadoop3
 </pre></div>
@@ -219,10 +219,10 @@
 <p>hadoop1是master, 另外两台是slaves
 note:<strong>确保域名解析和反向域名解析在集群中正常工作</strong></p>
 <p><code>/etc/profile</code>:</p>
-<div class="highlight"><pre><span class="c">#Hadoop</span>
+<div class="highlight"><pre><span></span><span class="c1">#Hadoop</span>
 <span class="nv">HADOOP_VERSION</span><span class="o">=</span>2.7.1
-<span class="nb">export </span><span class="nv">HADOOP_PREFIX</span><span class="o">=</span>/opt/hadoop-<span class="si">${</span><span class="nv">HADOOP_VERSION</span><span class="si">}</span>
-<span class="nb">export </span><span class="nv">HADOOP_HOME</span><span class="o">=</span><span class="si">${</span><span class="nv">HADOOP_PREFIX</span><span class="si">}</span>
+<span class="nb">export</span> <span class="nv">HADOOP_PREFIX</span><span class="o">=</span>/opt/hadoop-<span class="si">${</span><span class="nv">HADOOP_VERSION</span><span class="si">}</span>
+<span class="nb">export</span> <span class="nv">HADOOP_HOME</span><span class="o">=</span><span class="si">${</span><span class="nv">HADOOP_PREFIX</span><span class="si">}</span>
 <span class="nb">export ...</span></pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/hadoop-secure-modepei-zhi.html">Read more...</a>
@@ -304,8 +304,8 @@ do you tell ...</p>
 </footer><!-- /.post-info -->                                <p>Use backslash to format long long lines. Oops, I nerver use it in C++.</p>
 <p>How to use backslash?</p>
 <p>This is an example:</p>
-<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;string&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> \
             <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>

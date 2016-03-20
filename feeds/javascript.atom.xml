@@ -3,12 +3,12 @@
 &lt;p&gt;只想寻找解决办法：&lt;a href="https://github.com/juffy/RecoverUrl/raw/master/recover%20url.0.0.1.crx"&gt;点击这里&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;于是想着能不能改改那个插件的代码，修复这个bug，找到那个插件的源代码，发现一下子1200多行代码，这么复杂。感觉移除一个重定向链接不需要这么麻烦吧，决定自己实现一个。&lt;/p&gt;
 &lt;p&gt;用的时候发现google在你点击一个链接时，会被替换成google的重定向链接。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;http://en.wikipedia.org/wiki/Continuous_integration
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;http://en.wikipedia.org/wiki/Continuous_integration
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;会被替换成&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;https://www.google.com/url?sa=t&amp;amp;rct=j&amp;amp;q=&amp;amp;esrc=s&amp;amp;source=web&amp;amp;cd=1&amp;amp;cad=rja&amp;amp;uact=8&amp;amp;sqi=2&amp;amp;ved=0CDUQFjAA&amp;amp;url=%68%74%74%70%3a%2f%2f%65%6e%2e%77%69%6b%69%70%65%64%69%61%2e%6f%72%67%2f%77%69%6b%69%2f%43%6f%6e%74%69%6e%75%6f%75%73%5f%69%6e%74%65%67%72%61%74%69%6f%6e&amp;amp;ei=W0NuU-OSBImQrQe0lYBw&amp;amp;usg=AFQjCNHxUWTtSC_MArGdeBXVTWRAUUkL5Q&amp;amp;sig2=dTBasnGxLNpeCYshC_LnbA
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;https://www.google.com/url?sa=t&amp;amp;rct=j&amp;amp;q=&amp;amp;esrc=s&amp;amp;source=web&amp;amp;cd=1&amp;amp;cad=rja&amp;amp;uact=8&amp;amp;sqi=2&amp;amp;ved=0CDUQFjAA&amp;amp;url=%68%74%74%70%3a%2f%2f%65%6e%2e%77%69%6b%69%70%65%64%69%61%2e%6f%72%67%2f%77%69%6b%69%2f%43%6f%6e%74%69%6e%75%6f%75%73%5f%69%6e%74%65%67%72%61%74%69%6f%6e&amp;amp;ei=W0NuU-OSBImQrQe0lYBw&amp;amp;usg=AFQjCNHxUWTtSC_MArGdeBXVTWRAUUkL5Q&amp;amp;sig2=dTBasnGxLNpeCYshC_LnbA
 &lt;/pre&gt;&lt;/div&gt;
 
 

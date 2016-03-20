@@ -140,13 +140,13 @@
 <p>client 使用 Debian. 需要安装 nfs-common package</p>
 <p>配置 BB-black 联网:</p>
 <p>在板子下输入命令:</p>
-<div class="highlight"><pre>/sbin/route add default gw 192.168.7.1
+<div class="highlight"><pre><span></span>/sbin/route add default gw 192.168.7.1
 <span class="nb">echo</span> <span class="s2">&quot;nameserver 114.114.114.114&quot;</span> &gt;&gt; /etc/resolv.conf
 </pre></div>
 
 
 <p>在宿主机上输入:</p>
-<div class="highlight"><pre>sudo iptables -A POSTROUTING -t nat -j MASQUERADE ...</pre></div>
+<div class="highlight"><pre><span></span>sudo iptables -A POSTROUTING -t nat -j MASQUERADE ...</pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/debian-huan-jing-xia-de-beaglebone-black-nfs-client-pei-zhi.html">Read more...</a>
                                 </p>
@@ -310,12 +310,12 @@
 <p>只想寻找解决办法：<a href="https://github.com/juffy/RecoverUrl/raw/master/recover%20url.0.0.1.crx">点击这里</a></p>
 <p>于是想着能不能改改那个插件的代码，修复这个bug，找到那个插件的源代码，发现一下子1200多行代码，这么复杂。感觉移除一个重定向链接不需要这么麻烦吧，决定自己实现一个。</p>
 <p>用的时候发现google在你点击一个链接时，会被替换成google的重定向链接。</p>
-<div class="highlight"><pre>http://en.wikipedia.org/wiki/Continuous_integration
+<div class="highlight"><pre><span></span>http://en.wikipedia.org/wiki/Continuous_integration
 </pre></div>
 
 
 <p>会被替换成</p>
-<div class="highlight"><pre>https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;sqi=2 ...</pre></div>
+<div class="highlight"><pre><span></span>https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;sqi=2 ...</pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/cong-remove-google-redirect-shi-xiao-shuo-qi.html">Read more...</a>
                                 </p>

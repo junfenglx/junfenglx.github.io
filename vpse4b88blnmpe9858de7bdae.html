@@ -81,14 +81,14 @@
 10.04勉强把mysql装上,但网站连接十次要有9次连不上。知道是肯定是那装的那些软件版本太低，bug太多。但还是没管它。</p>
 <p>最近得有空闲时间，决定把问题给解决。<br />
 备份整个数据库：</p>
-<div class="highlight"><pre>mysqldump -p -u --all-databases &gt; all.sql
+<div class="highlight"><pre><span></span>mysqldump -p -u --all-databases &gt; all.sql
 </pre></div>
 
 
 <p>备份归档wordpress目录,nginx配置文件目录<br />
 然后安装fedora 18</p>
 <p>安装mysqld</p>
-<div class="highlight"><pre>yum update #升级现有包
+<div class="highlight"><pre><span></span>yum update #升级现有包
 yum install mysql-server #mysqld
 </pre></div>
 
@@ -96,13 +96,13 @@ yum install mysql-server #mysqld
 <p>安装mysql-server<br />
 当启动mysqld时出现错误，无法启动。(折腾半天)<br />
 列出包里面的文件:</p>
-<div class="highlight"><pre>rpm -ql mysql-server
+<div class="highlight"><pre><span></span>rpm -ql mysql-server
 </pre></div>
 
 
 <p>日志文件在/var/log/mysqld.log<br />
 查看mysqld.log发现错误信息：</p>
-<div class="highlight"><pre>vim /var/log/mysqld.log
+<div class="highlight"><pre><span></span>vim /var/log/mysqld.log
 InnoDB: Error: pthread_create returned 11
 </pre></div>
 
@@ -111,18 +111,18 @@ InnoDB: Error: pthread_create returned 11
 好像是明白了，<br />
 128MB的小内存VPS运行InnoDB直接运行不了。</p>
 <p>用my-small.cnf替换/etc/my.cnf</p>
-<div class="highlight"><pre>cp /usr/share/mysql/my-small.cnf /etc/my.cnf
+<div class="highlight"><pre><span></span>cp /usr/share/mysql/my-small.cnf /etc/my.cnf
 </pre></div>
 
 
 <p>同时修改my.cnf,在[mysqld]项下添加以下两行:</p>
-<div class="highlight"><pre>default-storage-engine=MYISAM
+<div class="highlight"><pre><span></span>default-storage-engine=MYISAM
 innodb=OFF
 </pre></div>
 
 
 <p>用MYISAM替换InnoDB。</p>
-<div class="highlight"><pre>systemctl start mysqld  #没有错误
+<div class="highlight"><pre><span></span>systemctl start mysqld  #没有错误
 systemctl enable mysqld #开机自启动
 /usr/bin/mysql_secure_installation #安全安装
 echo &quot;flush privileges;&quot; | mysql -p -u root #登陆到mysql,刷新权限,不然将出现数据库连接错误.
@@ -130,7 +130,7 @@ echo &quot;flush privileges;&quot; | mysql -p -u root #登陆到mysql,刷新权�
 
 
 <p>安装nginx</p>
-<div class="highlight"><pre>yum install nginx
+<div class="highlight"><pre><span></span>yum install nginx
 systemctl stop httpd
 #and
 yum erase httpd
@@ -142,7 +142,7 @@ systemctl reload nginx #配置信息生效
 
 
 <p>安装php(注意依赖)</p>
-<div class="highlight"><pre>yum install php-pecl-apc php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongo php-sqlite php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml php-fpm
+<div class="highlight"><pre><span></span>yum install php-pecl-apc php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongo php-sqlite php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml php-fpm
 
 systemctl start php-fpm
 systemctl enable php-fpm

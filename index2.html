@@ -174,7 +174,7 @@
 </footer><!-- /.post-info -->                                <h2 id="mount-options">mount options</h2>
 <p><code>mount</code>display current partions mount options.
 Output like this:</p>
-<div class="highlight"><pre>/dev/sda2 on /home type ext4 (rw,relatime,data=ordered)
+<div class="highlight"><pre><span></span>/dev/sda2 on /home type ext4 (rw,relatime,data=ordered)
 /dev/sda5 on /media/sda5 type ext4 (rw,nosuid,nodev,noexec,relatime,data=ordered,user)
 /dev/sda7 on /media/sda7 type ext4 (rw,nosuid,nodev,noexec,relatime,data=ordered ...</pre></div>
                                 <p class="readmore">
@@ -273,13 +273,13 @@ Output like this:</p>
 <p>client 使用 Debian. 需要安装 nfs-common package</p>
 <p>配置 BB-black 联网:</p>
 <p>在板子下输入命令:</p>
-<div class="highlight"><pre>/sbin/route add default gw 192.168.7.1
+<div class="highlight"><pre><span></span>/sbin/route add default gw 192.168.7.1
 <span class="nb">echo</span> <span class="s2">&quot;nameserver 114.114.114.114&quot;</span> &gt;&gt; /etc/resolv.conf
 </pre></div>
 
 
 <p>在宿主机上输入:</p>
-<div class="highlight"><pre>sudo iptables -A POSTROUTING -t nat -j MASQUERADE ...</pre></div>
+<div class="highlight"><pre><span></span>sudo iptables -A POSTROUTING -t nat -j MASQUERADE ...</pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/debian-huan-jing-xia-de-beaglebone-black-nfs-client-pei-zhi.html">Read more...</a>
                                 </p>
@@ -443,12 +443,12 @@ Output like this:</p>
 <p>只想寻找解决办法：<a href="https://github.com/juffy/RecoverUrl/raw/master/recover%20url.0.0.1.crx">点击这里</a></p>
 <p>于是想着能不能改改那个插件的代码，修复这个bug，找到那个插件的源代码，发现一下子1200多行代码，这么复杂。感觉移除一个重定向链接不需要这么麻烦吧，决定自己实现一个。</p>
 <p>用的时候发现google在你点击一个链接时，会被替换成google的重定向链接。</p>
-<div class="highlight"><pre>http://en.wikipedia.org/wiki/Continuous_integration
+<div class="highlight"><pre><span></span>http://en.wikipedia.org/wiki/Continuous_integration
 </pre></div>
 
 
 <p>会被替换成</p>
-<div class="highlight"><pre>https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;sqi=2 ...</pre></div>
+<div class="highlight"><pre><span></span>https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;sqi=2 ...</pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/cong-remove-google-redirect-shi-xiao-shuo-qi.html">Read more...</a>
                                 </p>
@@ -486,11 +486,11 @@ Output like this:</p>
     
 </footer><!-- /.post-info -->                                <p>偶然间在stackoverflow上看到下面这个问题:</p>
 <blockquote>
-<div class="highlight"><pre><span class="nv">Please</span> <span class="s-Atom">explain</span> <span class="s-Atom">me</span> <span class="s-Atom">what</span> <span class="s-Atom">does</span> <span class="s-Atom">this</span> <span class="s-Atom">piece</span> <span class="s-Atom">of</span> <span class="s-Atom">code</span> <span class="s-Atom">do</span><span class="p">.</span>
+<div class="highlight"><pre><span></span><span class="nv">Please</span> <span class="s s-Atom">explain</span> <span class="s s-Atom">me</span> <span class="s s-Atom">what</span> <span class="s s-Atom">does</span> <span class="s s-Atom">this</span> <span class="s s-Atom">piece</span> <span class="s s-Atom">of</span> <span class="s s-Atom">code</span> <span class="s s-Atom">do</span><span class="p">.</span>
 
-<span class="s-Atom">h</span> <span class="s-Atom">should</span> <span class="s-Atom">be</span> <span class="mi">32</span><span class="nv">Byte</span> <span class="s-Atom">result</span> <span class="s-Atom">from</span> <span class="s-Atom">sha256</span> <span class="s-Atom">calculation</span><span class="p">.</span>
+<span class="s s-Atom">h</span> <span class="s s-Atom">should</span> <span class="s s-Atom">be</span> <span class="mi">32</span><span class="nv">Byte</span> <span class="s s-Atom">result</span> <span class="s s-Atom">from</span> <span class="s s-Atom">sha256</span> <span class="s s-Atom">calculation</span><span class="p">.</span>
 
-<span class="nv">I</span> <span class="s-Atom">am</span> <span class="s-Atom">rewriting</span> <span class="s-Atom">parts</span> <span class="s-Atom">of</span> <span class="s-Atom">this</span> <span class="s-Atom">code</span> <span class="s-Atom">for</span> <span class="s-Atom">my</span> <span class="s-Atom">project</span> <span class="s-Atom">in</span> <span class="nv">C</span><span class="s-Atom">++</span> <span class="s-Atom">and</span> <span class="nv">I</span><span class="s-Atom">&#39;m not sure if this switches byte order per 4byte chunk or change byte order on ...</span></pre></div></blockquote>
+<span class="nv">I</span> <span class="s s-Atom">am</span> <span class="s s-Atom">rewriting</span> <span class="s s-Atom">parts</span> <span class="s s-Atom">of</span> <span class="s s-Atom">this</span> <span class="s s-Atom">code</span> <span class="s s-Atom">for</span> <span class="s s-Atom">my</span> <span class="s s-Atom">project</span> <span class="s s-Atom">in</span> <span class="nv">C</span><span class="s s-Atom">++</span> <span class="s s-Atom">and</span> <span class="nv">I</span><span class="s s-Atom">&#39;m not sure if this switches byte order per 4byte chunk or change byte order on ...</span></pre></div></blockquote>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/python-struct-and-endianness.html">Read more...</a>
                                 </p>

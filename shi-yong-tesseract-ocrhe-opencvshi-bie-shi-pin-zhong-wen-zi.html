@@ -119,7 +119,7 @@
 那样的话，我只需要把视频分割成一帧一帧的图片，
 tesseract-ocr也应该能处理。</p>
 <p>Google搜索出通过使用ffmpeg就可以将视频分割成图片了，如下命令</p>
-<div class="highlight"><pre>ffmpeg -i 【年刊】2015年哔哩哔哩舞蹈区总排行榜TOP100.flv image_%d.png
+<div class="highlight"><pre><span></span>ffmpeg -i 【年刊】2015年哔哩哔哩舞蹈区总排行榜TOP100.flv image_%d.png
 </pre></div>
 
 
@@ -136,8 +136,8 @@ tesseract-ocr应该也是可以处理的。</p>
 <h4 id="_1">环境准备</h4>
 <p>OS: Arch Linux</p>
 <p>安装OpenCV和tesseract-ocr：</p>
-<div class="highlight"><pre>sudo pacman -S tesseract
-<span class="c"># tesseract-data</span>
+<div class="highlight"><pre><span></span>sudo pacman -S tesseract
+<span class="c1"># tesseract-data</span>
 sudo pacman -S tesseract-data-eng
 sudo pacman -S tesseract-data-chi_sim
 sudo pacman -S opencv
@@ -145,8 +145,8 @@ sudo pacman -S opencv
 
 
 <p>g++编译flag脚本：</p>
-<div class="highlight"><pre><span class="c">#!/bin/bash</span>
-<span class="c"># lept是tesseract-ocr的依赖leptonica</span>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># lept是tesseract-ocr的依赖leptonica</span>
 g++ -std<span class="o">=</span>c++11  <span class="sb">`</span>pkg-config --libs tesseract opencv lept<span class="sb">`</span> <span class="nv">$1</span> -o <span class="si">${</span><span class="nv">1</span><span class="si">}</span>.out
 </pre></div>
 
@@ -155,7 +155,7 @@ g++ -std<span class="o">=</span>c++11  <span class="sb">`</span>pkg-config --lib
 <p>代码基于stackoverflow上贴出的<a href="http://stackoverflow.com/questions/14041025/how-can-i-use-tesseract-and-opencv-to-extract-the-text-from-the-camera">代码</a>，结合OpenCV官方给出的使用VideoCapture的
 <a href="http://docs.opencv.org/3.0-last-rst/modules/videoio/doc/reading_and_writing_video.html#videocapture">示例代码</a>，加上stackoverflow上另外一个<a href="http://stackoverflow.com/questions/11464397/image-preprocessing-for-text-recognition">问题</a>的回答贴出的代码，
 对视频帧进行预处理，如下：</p>
-<div class="highlight"><pre><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">new_img</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<div class="highlight"><pre><span></span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">new_img</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
 <span class="n">cv</span><span class="o">::</span><span class="n">bitwise_not</span><span class="p">(</span><span class="n">new_img</span><span class="p">,</span> <span class="n">new_img</span><span class="p">);</span>
 
 <span class="kt">double</span> <span class="n">thres</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
@@ -171,7 +171,7 @@ g++ -std<span class="o">=</span>c++11  <span class="sb">`</span>pkg-config --lib
 看着处理效果调的。</p>
 <p>代码还使用了stackoverflow中另外一个<a href="http://stackoverflow.com/questions/8115368/converting-cvmat-for-tesseract">问题</a>中的回答的代码，适配OpenCV数据结构<code>Mat</code>到tesseract-ocr
 中的API函数SetImage的代码：</p>
-<div class="highlight"><pre><span class="n">tesseract</span><span class="o">::</span><span class="n">TessBaseAPI</span> <span class="n">tess</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="n">tesseract</span><span class="o">::</span><span class="n">TessBaseAPI</span> <span class="n">tess</span><span class="p">;</span>
 <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">sub</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">100</span><span class="p">));</span>
 <span class="n">tess</span><span class="p">.</span><span class="n">SetImage</span><span class="p">((</span><span class="n">uchar</span><span class="o">*</span><span class="p">)</span><span class="n">sub</span><span class="p">.</span><span class="n">data</span><span class="p">,</span> <span class="n">sub</span><span class="p">.</span><span class="n">size</span><span class="p">().</span><span class="n">width</span><span class="p">,</span> <span class="n">sub</span><span class="p">.</span><span class="n">size</span><span class="p">().</span><span class="n">height</span><span class="p">,</span> <span class="n">sub</span><span class="p">.</span><span class="n">channels</span><span class="p">(),</span> <span class="n">sub</span><span class="p">.</span><span class="n">step1</span><span class="p">());</span>
 <span class="n">tess</span><span class="p">.</span><span class="n">Recognize</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
@@ -187,7 +187,7 @@ g++ -std<span class="o">=</span>c++11  <span class="sb">`</span>pkg-config --lib
 反而能提高一些。</p>
 <p>获取到Id号后，构造url和去重就很简单了。</p>
 <p>最后使用you-get下载视频：</p>
-<div class="highlight"><pre><span class="c"># using uniq removes duplicates</span>
+<div class="highlight"><pre><span></span><span class="c1"># using uniq removes duplicates</span>
 <span class="k">for</span> u in <span class="sb">`</span>uniq ../dance_url.out <span class="sb">`</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$u</span><span class="p">;</span> you-get <span class="nv">$u</span><span class="p">;</span> <span class="k">done</span>
 </pre></div>
 
@@ -214,7 +214,7 @@ g++ -std<span class="o">=</span>c++11  <span class="sb">`</span>pkg-config --lib
 <p>OpenCV和tesseract-ocr结合，对于视频文件、实时视频流中的文本识别问题，
 是一个不错的可行方案。</p>
 <h3 id="references">References</h3>
-<div class="highlight"><pre>[1]: http://www.bilibili.com/video/av3484492/
+<div class="highlight"><pre><span></span>[1]: http://www.bilibili.com/video/av3484492/
 [2]: https://you-get.org/
 [3]: http://blog.cloudera.com/blog/2015/10/how-to-index-scanned-pdfs-at-scale-using-fewer-than-50-lines-of-code/
 [4]: https://github.com/tesseract-ocr/tesseract

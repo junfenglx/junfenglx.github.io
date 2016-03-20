@@ -11,7 +11,7 @@ The first one from /usr/share/applications/mimeinfo.cache&lt;/p&gt;
 &lt;p&gt;From https://lkubaski.wordpress.com/2012/10/29/understanding-file-associations-in-lxde-and-pcmanfm/&lt;/p&gt;</summary><category term="mime"></category><category term="desktop"></category></entry><entry><title>mount and grep</title><link href="http://junfenglx.github.io/mount-and-grep.html" rel="alternate"></link><updated>2014-06-08T21:45:00+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2014-06-08:mount-and-grep.html</id><summary type="html">&lt;h2 id="mount-options"&gt;mount options&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;mount&lt;/code&gt;display current partions mount options.
 Output like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;/dev/sda2 on /home type ext4 (rw,relatime,data=ordered)
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/dev/sda2 on /home type ext4 (rw,relatime,data=ordered)
 /dev/sda5 on /media/sda5 type ext4 (rw,nosuid,nodev,noexec,relatime,data=ordered,user)
 /dev/sda7 on /media/sda7 type ext4 (rw,nosuid,nodev,noexec,relatime,data=ordered,user)
 /dev/sda6 on /media/sda6 type ext4 (rw,nosuid,nodev,noexec,relatime,data=ordered,user)

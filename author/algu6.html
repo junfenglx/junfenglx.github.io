@@ -173,7 +173,7 @@
 </footer><!-- /.post-info -->                                <p>今天终于在linux、windows下把python tornado web server 搭建好了</p>
 <p>但在linux下编这个程序的时候发现通过不了（windows下可以通过）</p>
 <blockquote>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">tornado.ioloop</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tornado.ioloop</span>
 
 <span class="kn">import</span> <span class="nn">tornado.web</span>
 
@@ -185,7 +185,7 @@
 def get(self):</code></p>
 <p><code>{style="padding-left: 60px;"}
 self.write("Hello Python-Tornado！")</code></p>
-<div class="highlight"><pre>application = tornado.web.Application([ (r&quot;/&quot;, MainHandler), ])
+<div class="highlight"><pre><span></span>application = tornado.web.Application([ (r&quot;/&quot;, MainHandler), ])
 
  if __name__ == &quot;__main__&quot;:
 </pre></div>

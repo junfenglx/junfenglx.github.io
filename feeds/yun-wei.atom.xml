@@ -5,7 +5,7 @@
 &lt;h3 id="_2"&gt;环境&lt;/h3&gt;
 &lt;p&gt;Hadoop Version: Apache Hadoop 2.7.1&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;/etc/hosts&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;192.168.1.100   hadoop1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;192.168.1.100   hadoop1
 192.168.1.101   hadoop2
 192.168.1.102   hadoop3
 &lt;/pre&gt;&lt;/div&gt;
@@ -14,15 +14,15 @@
 &lt;p&gt;hadoop1是master, 另外两台是slaves
 note:&lt;strong&gt;确保域名解析和反向域名解析在集群中正常工作&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;/etc/profile&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#Hadoop&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#Hadoop&lt;/span&gt;
 &lt;span class="nv"&gt;HADOOP_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2.7.1
-&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/opt/hadoop-&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_VERSION&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
-&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;HADOOP_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
-&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;YARN_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
-&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;YARN_CONF_DIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/etc/hadoop
-&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;HADOOP_COMMON_LIB_NATIVE_DIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$HADOOP_PREFIX&lt;/span&gt;/lib/native
-&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;HADOOP_OPTS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-Djava.library.path=&lt;/span&gt;&lt;span class="nv"&gt;$HADOOP_PREFIX&lt;/span&gt;&lt;span class="s2"&gt;/lib&amp;quot;&lt;/span&gt;
-&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/bin:&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/sbin:&lt;span class="nv"&gt;$PATH&lt;/span&gt;
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/opt/hadoop-&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_VERSION&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;HADOOP_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;YARN_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;YARN_CONF_DIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/etc/hadoop
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;HADOOP_COMMON_LIB_NATIVE_DIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$HADOOP_PREFIX&lt;/span&gt;/lib/native
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;HADOOP_OPTS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-Djava.library.path=&lt;/span&gt;&lt;span class="nv"&gt;$HADOOP_PREFIX&lt;/span&gt;&lt;span class="s2"&gt;/lib&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/bin:&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;HADOOP_PREFIX&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/sbin:&lt;span class="nv"&gt;$PATH&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -44,25 +44,25 @@ hdfs,yarn,mapred取决于个人. 此处遵照官方文档.
 &lt;p&gt;在Kerberos中创建服务所需principals:
 按照官方文档的划分,不同服务器上的不同进程使用
 不同的principal. 创建了如下这些principals:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# principals about http service, need starts with HTTP&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# principals about http service, need starts with HTTP&lt;/span&gt;
 HTTP/hadoop1@EXAMPLE.COM
 HTTP/hadoop2@EXAMPLE.COM
 HTTP/hadoop3@EXAMPLE.COM
-&lt;span class="c"&gt;# maybe used by ssh, just creates host/*&lt;/span&gt;
-&lt;span class="c"&gt;# to conform office document&lt;/span&gt;
+&lt;span class="c1"&gt;# maybe used by ssh, just creates host/*&lt;/span&gt;
+&lt;span class="c1"&gt;# to conform office document&lt;/span&gt;
 host/hadoop1@EXAMPLE.COM
 host/hadoop2@EXAMPLE.COM
 host/hadoop3@EXAMPLE.COM
-&lt;span class="c"&gt;# principals about hdfs&lt;/span&gt;
+&lt;span class="c1"&gt;# principals about hdfs&lt;/span&gt;
 nn/hadoop1@EXAMPLE.COM
 sn/hadoop1@EXAMPLE.COM
 dn/hadoop2@EXAMPLE.COM
 dn/hadoop3@EXAMPLE.COM
-&lt;span class="c"&gt;# principals about yarn&lt;/span&gt;
+&lt;span class="c1"&gt;# principals about yarn&lt;/span&gt;
 rm/hadoop1@EXAMPLE.COM
 nm/hadoop2@EXAMPLE.COM
 nm/hadoop3@EXAMPLE.COM
-&lt;span class="c"&gt;# principal about job historyserver&lt;/span&gt;
+&lt;span class="c1"&gt;# principal about job historyserver&lt;/span&gt;
 jhs/hadoop1@EXAMPLE.COM
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -70,7 +70,7 @@ jhs/hadoop1@EXAMPLE.COM
 &lt;p&gt;有些principal应该是不需要创建的,但为了防出错,也一并创建.
 &lt;em&gt;需要进一步加深对Kerberos的了解&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;创建keytab, keytab的主要作用是使services自动通过Kerberos认证&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;hdfs@hadoop1:/opt/hadoop-2.7.1/etc/keytabs&lt;span class="nv"&gt;$ &lt;/span&gt;ls
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hdfs@hadoop1:/opt/hadoop-2.7.1/etc/keytabs$ ls
 总用量 24K
 -r-------- &lt;span class="m"&gt;1&lt;/span&gt; hdfs   hadoop &lt;span class="m"&gt;806&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 19:05 HTTP.keytab
 -r-------- &lt;span class="m"&gt;1&lt;/span&gt; mapred hadoop &lt;span class="m"&gt;802&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 11:07 jhs.keytab
@@ -81,7 +81,7 @@ jhs/hadoop1@EXAMPLE.COM
 
 
 &lt;p&gt;各个keytab中内容和官方文档所列类似,如下示例:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;hdfs@hadoop1:/opt/hadoop-2.7.1/etc/keytabs&lt;span class="nv"&gt;$ &lt;/span&gt;sudo klist -e -t -k nn.keytab
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hdfs@hadoop1:/opt/hadoop-2.7.1/etc/keytabs$ sudo klist -e -t -k nn.keytab
 Keytab name: FILE:nn.keytab
 KVNO Timestamp           Principal
 ---- ------------------- ------------------------------------------------------
@@ -98,7 +98,7 @@ KVNO Timestamp           Principal
 
 &lt;p&gt;并没有用到host/* principals&lt;/p&gt;
 &lt;p&gt;HTTP.keytab主要用于Web相关的服务, 内容如下:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;hdfs@hadoop1:/opt/hadoop-2.7.1/etc/keytabs&lt;span class="nv"&gt;$ &lt;/span&gt;sudo klist -e -t -k HTTP.keytab
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hdfs@hadoop1:/opt/hadoop-2.7.1/etc/keytabs$ sudo klist -e -t -k HTTP.keytab
 Keytab name: FILE:HTTP.keytab
 KVNO Timestamp           Principal
 ---- ------------------- ------------------------------------------------------
@@ -123,7 +123,7 @@ KVNO Timestamp           Principal
 &lt;p&gt;生成keytab后,分发keytab到集群中所有节点,最终如下所示:
 hadoop1见上
 hadoop2:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;hdfs@hadoop2:/opt/hadoop-2.7.1/etc/keytabs&lt;span class="nv"&gt;$ &lt;/span&gt;ls -lh
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hdfs@hadoop2:/opt/hadoop-2.7.1/etc/keytabs$ ls -lh
 总用量 16K
 -r-------- &lt;span class="m"&gt;1&lt;/span&gt; hdfs hadoop &lt;span class="m"&gt;798&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 11:17 dn.keytab
 -r-------- &lt;span class="m"&gt;1&lt;/span&gt; hdfs hadoop &lt;span class="m"&gt;806&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 19:05 HTTP.keytab
@@ -132,7 +132,7 @@ hadoop2:&lt;/p&gt;
 
 
 &lt;p&gt;hadoop3:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;hdfs@hadoop3:/opt/hadoop-2.7.1/etc/keytabs&lt;span class="nv"&gt;$ &lt;/span&gt;ls -lh
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hdfs@hadoop3:/opt/hadoop-2.7.1/etc/keytabs$ ls -lh
 总用量 16K
 -r-------- &lt;span class="m"&gt;1&lt;/span&gt; hdfs hadoop &lt;span class="m"&gt;798&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 13:26 dn.keytab
 -r-------- &lt;span class="m"&gt;1&lt;/span&gt; hdfs hadoop &lt;span class="m"&gt;806&lt;/span&gt;  7月 &lt;span class="m"&gt;21&lt;/span&gt; 19:05 HTTP.keytab
@@ -146,7 +146,7 @@ hadoop服务无法通过验证.
 官方Java 8版本的对于Java 7来说也可以正常使用.&lt;/p&gt;
 &lt;p&gt;下面开始对Hadoop进行配置:
 core-site.xml:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;
 &lt;span class="cp"&gt;&amp;lt;?xml-stylesheet type=&amp;quot;text/xsl&amp;quot; href=&amp;quot;configuration.xsl&amp;quot;?&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
   &lt;span class="c"&gt;&amp;lt;!-- change to avoid Deprecated --&amp;gt;&lt;/span&gt;
@@ -188,7 +188,7 @@ core-site.xml:&lt;/p&gt;
 
 
 &lt;p&gt;hdfs-site.xml:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;
 &lt;span class="cp"&gt;&amp;lt;?xml-stylesheet type=&amp;quot;text/xsl&amp;quot; href=&amp;quot;configuration.xsl&amp;quot;?&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
   &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
@@ -270,7 +270,7 @@ core-site.xml:&lt;/p&gt;
 
 
 &lt;p&gt;yarn-site.xml&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;
 &lt;span class="cp"&gt;&amp;lt;?xml-stylesheet type=&amp;quot;text/xsl&amp;quot; href=&amp;quot;configuration.xsl&amp;quot;?&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
   &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
@@ -352,12 +352,12 @@ core-site.xml:&lt;/p&gt;
 
 
 &lt;p&gt;container-executor.cfg&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;hdfs@hadoop1:/opt/hadoop-2.7.1/etc/hadoop&lt;span class="nv"&gt;$ &lt;/span&gt;ls container-executor.cfg
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hdfs@hadoop1:/opt/hadoop-2.7.1/etc/hadoop$ ls container-executor.cfg
 -r-------- &lt;span class="m"&gt;1&lt;/span&gt; root hadoop &lt;span class="m"&gt;217&lt;/span&gt;  7月 &lt;span class="m"&gt;20&lt;/span&gt; 16:10 container-executor.cfg
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="na"&gt;yarn.nodemanager.linux-container-executor.group&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;hadoop&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="na"&gt;yarn.nodemanager.linux-container-executor.group&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;hadoop&lt;/span&gt;
 &lt;span class="na"&gt;banned.users&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;hdfs,yarn,mapred,bin&lt;/span&gt;
 &lt;span class="na"&gt;min.user.id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;1000#Prevent other super-users&lt;/span&gt;
 &lt;span class="na"&gt;allowed.system.users&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;##comma separated list of system users who CAN run applications&lt;/span&gt;
@@ -367,7 +367,7 @@ core-site.xml:&lt;/p&gt;
 &lt;p&gt;note:&lt;strong&gt;container-executor.cfg必须配置为如上权限,&lt;/strong&gt;
 &lt;strong&gt;并且其所在所有父文件夹需要设置为组和其ta不可写&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;mapred-site.xml:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&lt;/span&gt;
 &lt;span class="cp"&gt;&amp;lt;?xml-stylesheet type=&amp;quot;text/xsl&amp;quot; href=&amp;quot;configuration.xsl&amp;quot;?&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;

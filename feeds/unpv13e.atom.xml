@@ -29,13 +29,13 @@
 &lt;p&gt;3.1 In C the function can modify arguments only if arguments passed by reference.&lt;/p&gt;
 &lt;p&gt;3.2 because &lt;code&gt;sizeof(char)&lt;/code&gt; is one byte, read or write n chars equals n bytes data.&lt;/p&gt;
 &lt;p&gt;3.3&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*inet_pton_loose&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/*inet_pton_loose&lt;/span&gt;
 &lt;span class="cm"&gt; * author: junfeng*/&lt;/span&gt;
 
-&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;string.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;netinet/in.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;arpa/inet.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;string.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;netinet/in.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;arpa/inet.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;inet_pton_loose&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;family&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;strptr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;addrptr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
@@ -213,7 +213,7 @@ acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt
 &lt;h3 id="13"&gt;1.3&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;errno: 97 socket error: Address family not supported by protocol&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;define AF_* at include/linux/socket.h&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/* Supported address families. */&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* Supported address families. */&lt;/span&gt;
 &lt;span class="cp"&gt;#define AF_UNSPEC   0&lt;/span&gt;
 &lt;span class="cp"&gt;#define AF_UNIX     1   &lt;/span&gt;&lt;span class="cm"&gt;/* Unix domain sockets      */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#define AF_LOCAL    1   &lt;/span&gt;&lt;span class="cm"&gt;/* POSIX name for AF_UNIX   */&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
@@ -261,7 +261,7 @@ acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt
 
 
 &lt;h3 id="14"&gt;1.4&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include    &amp;quot;unp.h&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt;    &lt;span class="cpf"&gt;&amp;quot;unp.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
 &lt;span class="kt"&gt;int&lt;/span&gt;
 &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -302,15 +302,15 @@ acknowledged, and not any before or after the selective acknowledgment.&lt;/p&gt
 
 
 &lt;p&gt;&lt;em&gt;Output:&lt;/em&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Sun Jun  &lt;span class="m"&gt;8&lt;/span&gt; 14:36:06 2014
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Sun Jun  &lt;span class="m"&gt;8&lt;/span&gt; 14:36:06 2014
 counter: 1
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3 id="15"&gt;1.5&lt;/h3&gt;
 &lt;p&gt;Server:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include    &amp;quot;unp.h&amp;quot;&lt;/span&gt;
-&lt;span class="cp"&gt;#include    &amp;lt;time.h&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt;    &lt;span class="cpf"&gt;&amp;quot;unp.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt;    &lt;span class="cpf"&gt;&amp;lt;time.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
 &lt;span class="kt"&gt;int&lt;/span&gt;
 &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -354,7 +354,7 @@ counter: 1
 
 
 &lt;p&gt;Client:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include    &amp;quot;unp.h&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt;    &lt;span class="cpf"&gt;&amp;quot;unp.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
 &lt;span class="kt"&gt;int&lt;/span&gt;
 &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -395,7 +395,7 @@ counter: 1
 
 
 &lt;p&gt;localhost test:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;./daytimetcpsrv &amp;amp;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;./daytimetcpsrv &amp;amp;
 ./daytimetcpcli 127.0.0.1
 #output:
 Sun Jun  8 14:53:29 2014

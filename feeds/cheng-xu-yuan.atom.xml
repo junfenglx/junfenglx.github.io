@@ -40,7 +40,7 @@
 那样的话，我只需要把视频分割成一帧一帧的图片，
 tesseract-ocr也应该能处理。&lt;/p&gt;
 &lt;p&gt;Google搜索出通过使用ffmpeg就可以将视频分割成图片了，如下命令&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ffmpeg -i 【年刊】2015年哔哩哔哩舞蹈区总排行榜TOP100.flv image_%d.png
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ffmpeg -i 【年刊】2015年哔哩哔哩舞蹈区总排行榜TOP100.flv image_%d.png
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -57,8 +57,8 @@ tesseract-ocr应该也是可以处理的。&lt;/p&gt;
 &lt;h4 id="_1"&gt;环境准备&lt;/h4&gt;
 &lt;p&gt;OS: Arch Linux&lt;/p&gt;
 &lt;p&gt;安装OpenCV和tesseract-ocr：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;sudo pacman -S tesseract
-&lt;span class="c"&gt;# tesseract-data&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pacman -S tesseract
+&lt;span class="c1"&gt;# tesseract-data&lt;/span&gt;
 sudo pacman -S tesseract-data-eng
 sudo pacman -S tesseract-data-chi_sim
 sudo pacman -S opencv
@@ -66,8 +66,8 @@ sudo pacman -S opencv
 
 
 &lt;p&gt;g++编译flag脚本：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
-&lt;span class="c"&gt;# lept是tesseract-ocr的依赖leptonica&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="c1"&gt;# lept是tesseract-ocr的依赖leptonica&lt;/span&gt;
 g++ -std&lt;span class="o"&gt;=&lt;/span&gt;c++11  &lt;span class="sb"&gt;`&lt;/span&gt;pkg-config --libs tesseract opencv lept&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt; -o &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;1&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;.out
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -76,7 +76,7 @@ g++ -std&lt;span class="o"&gt;=&lt;/span&gt;c++11  &lt;span class="sb"&gt;`&lt;/
 &lt;p&gt;代码基于stackoverflow上贴出的&lt;a href="http://stackoverflow.com/questions/14041025/how-can-i-use-tesseract-and-opencv-to-extract-the-text-from-the-camera"&gt;代码&lt;/a&gt;，结合OpenCV官方给出的使用VideoCapture的
 &lt;a href="http://docs.opencv.org/3.0-last-rst/modules/videoio/doc/reading_and_writing_video.html#videocapture"&gt;示例代码&lt;/a&gt;，加上stackoverflow上另外一个&lt;a href="http://stackoverflow.com/questions/11464397/image-preprocessing-for-text-recognition"&gt;问题&lt;/a&gt;的回答贴出的代码，
 对视频帧进行预处理，如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Mat&lt;/span&gt; &lt;span class="n"&gt;new_img&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;imread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Mat&lt;/span&gt; &lt;span class="n"&gt;new_img&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;imread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
 &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;bitwise_not&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;new_img&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
 &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;thres&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -92,7 +92,7 @@ g++ -std&lt;span class="o"&gt;=&lt;/span&gt;c++11  &lt;span class="sb"&gt;`&lt;/
 看着处理效果调的。&lt;/p&gt;
 &lt;p&gt;代码还使用了stackoverflow中另外一个&lt;a href="http://stackoverflow.com/questions/8115368/converting-cvmat-for-tesseract"&gt;问题&lt;/a&gt;中的回答的代码，适配OpenCV数据结构&lt;code&gt;Mat&lt;/code&gt;到tesseract-ocr
 中的API函数SetImage的代码：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;tesseract&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;TessBaseAPI&lt;/span&gt; &lt;span class="n"&gt;tess&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;tesseract&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;TessBaseAPI&lt;/span&gt; &lt;span class="n"&gt;tess&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Mat&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Rect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;300&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
 &lt;span class="n"&gt;tess&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SetImage&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;uchar&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;step1&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
 &lt;span class="n"&gt;tess&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Recognize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -108,7 +108,7 @@ g++ -std&lt;span class="o"&gt;=&lt;/span&gt;c++11  &lt;span class="sb"&gt;`&lt;/
 反而能提高一些。&lt;/p&gt;
 &lt;p&gt;获取到Id号后，构造url和去重就很简单了。&lt;/p&gt;
 &lt;p&gt;最后使用you-get下载视频：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# using uniq removes duplicates&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# using uniq removes duplicates&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; u in &lt;span class="sb"&gt;`&lt;/span&gt;uniq ../dance_url.out &lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$u&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; you-get &lt;span class="nv"&gt;$u&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -135,7 +135,7 @@ g++ -std&lt;span class="o"&gt;=&lt;/span&gt;c++11  &lt;span class="sb"&gt;`&lt;/
 &lt;p&gt;OpenCV和tesseract-ocr结合，对于视频文件、实时视频流中的文本识别问题，
 是一个不错的可行方案。&lt;/p&gt;
 &lt;h3 id="references"&gt;References&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;[1]: http://www.bilibili.com/video/av3484492/
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[1]: http://www.bilibili.com/video/av3484492/
 [2]: https://you-get.org/
 [3]: http://blog.cloudera.com/blog/2015/10/how-to-index-scanned-pdfs-at-scale-using-fewer-than-50-lines-of-code/
 [4]: https://github.com/tesseract-ocr/tesseract
@@ -147,7 +147,7 @@ g++ -std&lt;span class="o"&gt;=&lt;/span&gt;c++11  &lt;span class="sb"&gt;`&lt;/
 [10]: https://gist.github.com/junfenglx/ed966fb7ea41ed2a13a9
 [11]: https://www.gimp.org/
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="C++"></category><category term="tesseract-ocr"></category><category term="opencv"></category></entry><entry><title>Spring Rest server and Apache Avro objects</title><link href="http://junfenglx.github.io/spring-rest-server-and-apache-avro-objects.html" rel="alternate"></link><updated>2015-08-07T16:58:57+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-08-07:spring-rest-server-and-apache-avro-objects.html</id><summary type="html">&lt;h3 id="1-error-handle-class"&gt;1. Error handle class&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@ControllerAdvice&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@ControllerAdvice&lt;/span&gt;
 &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ErrorHandler&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
     &lt;span class="nd"&gt;@ExceptionHandler&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exception&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
     &lt;span class="nd"&gt;@ResponseStatus&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HttpStatus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;BAD_REQUEST&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
@@ -163,7 +163,7 @@ g++ -std&lt;span class="o"&gt;=&lt;/span&gt;c++11  &lt;span class="sb"&gt;`&lt;/
 &lt;h4 id="reference"&gt;Reference&lt;/h4&gt;
 &lt;p&gt;&lt;a href="http://www.importnew.com/7903.html"&gt;http://www.importnew.com/7903.html&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id="2-change-responses-content-type"&gt;2. Change response's content-type&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@RequestMapping&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RequestMethod&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;GET&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;produces&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MediaType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;APPLICATION_JSON_VALUE&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@RequestMapping&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RequestMethod&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;GET&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;produces&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MediaType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;APPLICATION_JSON_VALUE&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -171,7 +171,7 @@ g++ -std&lt;span class="o"&gt;=&lt;/span&gt;c++11  &lt;span class="sb"&gt;`&lt;/
 &lt;h4 id="reference_1"&gt;Reference&lt;/h4&gt;
 &lt;p&gt;&lt;a href="http://stackoverflow.com/questions/4471584/in-spring-mvc-how-can-i-set-the-mime-type-header-when-using-responsebody"&gt;http://stackoverflow.com/questions/4471584/in-spring-mvc-how-can-i-set-the-mime-type-header-when-using-responsebody&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id="3-customize-mappingjackson2httpmessageconverters-behaviors"&gt;3. Customize &lt;code&gt;MappingJackson2HttpMessageConverter&lt;/code&gt;'s behaviors&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@Bean&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@Bean&lt;/span&gt;
 &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Jackson2ObjectMapperBuilder&lt;/span&gt; &lt;span class="nf"&gt;objectMapperBuilder&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
     &lt;span class="n"&gt;Jackson2ObjectMapperBuilder&lt;/span&gt; &lt;span class="n"&gt;builder&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Jackson2ObjectMapperBuilder&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
     &lt;span class="c1"&gt;// configure ObjectMapper here&lt;/span&gt;
@@ -238,8 +238,8 @@ CMake provides lots of varaibles you can add paths for CMake to search.&lt;/p&gt
 &lt;p&gt;&lt;a href="http://www.cmake.org/documentation/"&gt;http://www.cmake.org/documentation/&lt;/a&gt;&lt;/p&gt;</summary><category term="C++"></category><category term="CMake"></category></entry><entry><title>backslash in C++</title><link href="http://junfenglx.github.io/backslash-in-c.html" rel="alternate"></link><updated>2015-06-21T18:24:19+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2015-06-21:backslash-in-c.html</id><summary type="html">&lt;p&gt;Use backslash to format long long lines. Oops, I nerver use it in C++.&lt;/p&gt;
 &lt;p&gt;How to use backslash?&lt;/p&gt;
 &lt;p&gt;This is an example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;string&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; \
             &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -283,18 +283,18 @@ CMake provides lots of varaibles you can add paths for CMake to search.&lt;/p&gt
 &lt;h3 id="_2"&gt;参考&lt;/h3&gt;
 &lt;p&gt;http://self-issued.info/docs/draft-ietf-oauth-v2-bearer.html&lt;/p&gt;</summary><category term="OAuth2.0"></category><category term="Bearer"></category></entry><entry><title>Python struct and Endianness</title><link href="http://junfenglx.github.io/python-struct-and-endianness.html" rel="alternate"></link><updated>2014-01-10T21:02:00+08:00</updated><author><name>algu</name></author><id>tag:junfenglx.github.io,2014-01-10:python-struct-and-endianness.html</id><summary type="html">&lt;p&gt;偶然间在stackoverflow上看到下面这个问题:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="s-Atom"&gt;explain&lt;/span&gt; &lt;span class="s-Atom"&gt;me&lt;/span&gt; &lt;span class="s-Atom"&gt;what&lt;/span&gt; &lt;span class="s-Atom"&gt;does&lt;/span&gt; &lt;span class="s-Atom"&gt;this&lt;/span&gt; &lt;span class="s-Atom"&gt;piece&lt;/span&gt; &lt;span class="s-Atom"&gt;of&lt;/span&gt; &lt;span class="s-Atom"&gt;code&lt;/span&gt; &lt;span class="s-Atom"&gt;do&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="s s-Atom"&gt;explain&lt;/span&gt; &lt;span class="s s-Atom"&gt;me&lt;/span&gt; &lt;span class="s s-Atom"&gt;what&lt;/span&gt; &lt;span class="s s-Atom"&gt;does&lt;/span&gt; &lt;span class="s s-Atom"&gt;this&lt;/span&gt; &lt;span class="s s-Atom"&gt;piece&lt;/span&gt; &lt;span class="s s-Atom"&gt;of&lt;/span&gt; &lt;span class="s s-Atom"&gt;code&lt;/span&gt; &lt;span class="s s-Atom"&gt;do&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 
-&lt;span class="s-Atom"&gt;h&lt;/span&gt; &lt;span class="s-Atom"&gt;should&lt;/span&gt; &lt;span class="s-Atom"&gt;be&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="nv"&gt;Byte&lt;/span&gt; &lt;span class="s-Atom"&gt;result&lt;/span&gt; &lt;span class="s-Atom"&gt;from&lt;/span&gt; &lt;span class="s-Atom"&gt;sha256&lt;/span&gt; &lt;span class="s-Atom"&gt;calculation&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;h&lt;/span&gt; &lt;span class="s s-Atom"&gt;should&lt;/span&gt; &lt;span class="s s-Atom"&gt;be&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="nv"&gt;Byte&lt;/span&gt; &lt;span class="s s-Atom"&gt;result&lt;/span&gt; &lt;span class="s s-Atom"&gt;from&lt;/span&gt; &lt;span class="s s-Atom"&gt;sha256&lt;/span&gt; &lt;span class="s s-Atom"&gt;calculation&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 
-&lt;span class="nv"&gt;I&lt;/span&gt; &lt;span class="s-Atom"&gt;am&lt;/span&gt; &lt;span class="s-Atom"&gt;rewriting&lt;/span&gt; &lt;span class="s-Atom"&gt;parts&lt;/span&gt; &lt;span class="s-Atom"&gt;of&lt;/span&gt; &lt;span class="s-Atom"&gt;this&lt;/span&gt; &lt;span class="s-Atom"&gt;code&lt;/span&gt; &lt;span class="s-Atom"&gt;for&lt;/span&gt; &lt;span class="s-Atom"&gt;my&lt;/span&gt; &lt;span class="s-Atom"&gt;project&lt;/span&gt; &lt;span class="s-Atom"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;C&lt;/span&gt;&lt;span class="s-Atom"&gt;++&lt;/span&gt; &lt;span class="s-Atom"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;I&lt;/span&gt;&lt;span class="s-Atom"&gt;&amp;#39;m not sure if this switches byte order per 4byte chunk or change byte order on whole 32byte number.&lt;/span&gt;
+&lt;span class="nv"&gt;I&lt;/span&gt; &lt;span class="s s-Atom"&gt;am&lt;/span&gt; &lt;span class="s s-Atom"&gt;rewriting&lt;/span&gt; &lt;span class="s s-Atom"&gt;parts&lt;/span&gt; &lt;span class="s s-Atom"&gt;of&lt;/span&gt; &lt;span class="s s-Atom"&gt;this&lt;/span&gt; &lt;span class="s s-Atom"&gt;code&lt;/span&gt; &lt;span class="s s-Atom"&gt;for&lt;/span&gt; &lt;span class="s s-Atom"&gt;my&lt;/span&gt; &lt;span class="s s-Atom"&gt;project&lt;/span&gt; &lt;span class="s s-Atom"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;C&lt;/span&gt;&lt;span class="s s-Atom"&gt;++&lt;/span&gt; &lt;span class="s s-Atom"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;I&lt;/span&gt;&lt;span class="s s-Atom"&gt;&amp;#39;m not sure if this switches byte order per 4byte chunk or change byte order on whole 32byte number.&lt;/span&gt;
 
-&lt;span class="s-Atom"&gt;def reverse_hash(h):&lt;/span&gt;
-&lt;span class="s-Atom"&gt;    return struct.pack(&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nv"&gt;IIIIIIII&lt;/span&gt;&lt;span class="s-Atom"&gt;&amp;#39;, *struct.unpack(&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nv"&gt;IIIIIIII&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s-Atom"&gt;h&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="s-Atom"&gt;::-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])[&lt;/span&gt;&lt;span class="s-Atom"&gt;::-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="nv"&gt;And&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s-Atom"&gt;how&lt;/span&gt; &lt;span class="s-Atom"&gt;does&lt;/span&gt; &lt;span class="s-Atom"&gt;this&lt;/span&gt; &lt;span class="s-Atom"&gt;array&lt;/span&gt; &lt;span class="s-Atom"&gt;index&lt;/span&gt; &lt;span class="s-Atom"&gt;work&lt;/span&gt; &lt;span class="s-Atom"&gt;?&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;def reverse_hash(h):&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;    return struct.pack(&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nv"&gt;IIIIIIII&lt;/span&gt;&lt;span class="s s-Atom"&gt;&amp;#39;, *struct.unpack(&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nv"&gt;IIIIIIII&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s s-Atom"&gt;h&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="s s-Atom"&gt;::-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])[&lt;/span&gt;&lt;span class="s s-Atom"&gt;::-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="nv"&gt;And&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s s-Atom"&gt;how&lt;/span&gt; &lt;span class="s s-Atom"&gt;does&lt;/span&gt; &lt;span class="s s-Atom"&gt;this&lt;/span&gt; &lt;span class="s s-Atom"&gt;array&lt;/span&gt; &lt;span class="s s-Atom"&gt;index&lt;/span&gt; &lt;span class="s s-Atom"&gt;work&lt;/span&gt; &lt;span class="s s-Atom"&gt;?&lt;/span&gt;
 
-   &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s-Atom"&gt;::-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="nv"&gt;Thanks&lt;/span&gt; &lt;span class="s-Atom"&gt;for&lt;/span&gt; &lt;span class="s-Atom"&gt;any&lt;/span&gt; &lt;span class="s-Atom"&gt;and&lt;/span&gt; &lt;span class="s-Atom"&gt;all&lt;/span&gt; &lt;span class="s-Atom"&gt;info&lt;/span&gt;
+   &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;::-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="nv"&gt;Thanks&lt;/span&gt; &lt;span class="s s-Atom"&gt;for&lt;/span&gt; &lt;span class="s s-Atom"&gt;any&lt;/span&gt; &lt;span class="s s-Atom"&gt;and&lt;/span&gt; &lt;span class="s s-Atom"&gt;all&lt;/span&gt; &lt;span class="s s-Atom"&gt;info&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -344,14 +344,14 @@ XRAY 字符值表:&lt;/p&gt;
 &lt;dd&gt;addresses from right to left&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;p&gt;测试代码:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# coding: utf-8&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# coding: utf-8&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;struct&lt;/span&gt;
-&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;XRAY&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;little_s_uchar_hex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;hex&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;BBBB&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;big_s_uchar_hex:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;big_s_uchar_hex&lt;/span&gt;
-&lt;span class="n"&gt;big_s_ushort_hex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;hex&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;gt;HH&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;big_s_ushort_hex:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;big_s_ushort_hex&lt;/span&gt;
-&lt;span class="c"&gt;#output:&lt;/span&gt;
+&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;XRAY&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;little_s_uchar_hex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;hex&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;BBBB&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;big_s_uchar_hex:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;big_s_uchar_hex&lt;/span&gt;
+&lt;span class="n"&gt;big_s_ushort_hex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;hex&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;gt;HH&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;big_s_ushort_hex:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;big_s_ushort_hex&lt;/span&gt;
+&lt;span class="c1"&gt;#output:&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
 &lt;span class="sd"&gt;little_s_uchar_hex: [&amp;#39;0x58&amp;#39;, &amp;#39;0x52&amp;#39;, &amp;#39;0x41&amp;#39;, &amp;#39;0x59&amp;#39;]&lt;/span&gt;
 &lt;span class="sd"&gt;little_s_ushort_hex: [&amp;#39;0x5258&amp;#39;, &amp;#39;0x5941&amp;#39;]&lt;/span&gt;
@@ -450,46 +450,46 @@ int,1个unsigned long long&lt;/p&gt;
 79
 80
 81
-82&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/usr/bin/env python2&lt;/span&gt;
-&lt;span class="c"&gt;# coding: utf-8&lt;/span&gt;
+82&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/env python2&lt;/span&gt;
+&lt;span class="c1"&gt;# coding: utf-8&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;struct&lt;/span&gt;
 
-&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;hjflyllx&amp;#39;&lt;/span&gt; &lt;span class="c"&gt;# my prefered string&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;string:&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hjflyllx&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;# my prefered string&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;string:&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;string_hex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;hex&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;ord&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;string_hex:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;string_hex:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string_hex&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="n"&gt;little_uchar_string&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;BBBBBBBB&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;big_uchar_string:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;little_uchar_string&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;BBBBBBBB&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;big_uchar_string:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;big_uchar_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;big_uchar_string_hex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;hex&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;big_uchar_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;big_uchar_string_hex:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;big_uchar_string_hex:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;big_uchar_string_hex&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="n"&gt;little_ushort_string&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;HHHH&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;big_ushort_string:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;little_ushort_string&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;HHHH&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;big_ushort_string:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;big_ushort_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;big_ushort_string_hex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;hex&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;big_ushort_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;big_ushort_string_hex:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;big_ushort_string_hex:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;big_ushort_string_hex&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="n"&gt;little_uint_string&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;II&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;big_uint_string:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;little_uint_string&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;II&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;big_uint_string:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;big_uint_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;big_uint_string_hex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;hex&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;big_uint_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;big_uint_string_hex:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;big_uint_string_hex:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;big_uint_string_hex&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="n"&gt;little_ullong_string&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Q&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;big_ullong_string:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;little_ullong_string&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Q&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;big_ullong_string:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;big_ullong_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;big_ullong_string_hex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;hex&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;big_ullong_string&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;big_ullong_string_hex:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;big_ullong_string_hex:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;big_ullong_string_hex&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="c"&gt;#output:&lt;/span&gt;
+&lt;span class="c1"&gt;#output:&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
 &lt;span class="sd"&gt;string:hjflyllx&lt;/span&gt;
 &lt;span class="sd"&gt;--------------------&lt;/span&gt;
@@ -583,21 +583,21 @@ int,1个unsigned long long&lt;/p&gt;
 &lt;p&gt;而其它多于1个字节的内存单元,可以看到&lt;strong&gt;相对应的项的字节顺序正好颠倒.但单元与单元之间的顺势都是递增的.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;现在我们来看其中一个人的回答:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="s-Atom"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="s-Atom"&gt;h&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s-Atom"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s-Atom"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nf"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;span class="s-Atom"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="s-Atom"&gt;h&lt;/span&gt;
-&lt;span class="s-Atom"&gt;&amp;#39;01234567891011121314151617181920&amp;#39;&lt;/span&gt;
-&lt;span class="s-Atom"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="s-Atom"&gt;struct&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;pack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s-Atom"&gt;&amp;#39;&amp;gt;IIIIIIII&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="s-Atom"&gt;struct&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s-Atom"&gt;&amp;#39;&amp;gt;IIIIIIII&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s-Atom"&gt;h&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="s-Atom"&gt;::-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])[&lt;/span&gt;&lt;span class="s-Atom"&gt;::-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="s-Atom"&gt;&amp;#39;32107654019821114131615181710291&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="s s-Atom"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="s s-Atom"&gt;h&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s s-Atom"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nf"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="s s-Atom"&gt;h&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;&amp;#39;01234567891011121314151617181920&amp;#39;&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="s s-Atom"&gt;struct&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;pack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;&amp;#39;&amp;gt;IIIIIIII&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="s s-Atom"&gt;struct&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;&amp;#39;&amp;gt;IIIIIIII&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s s-Atom"&gt;h&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="s s-Atom"&gt;::-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])[&lt;/span&gt;&lt;span class="s s-Atom"&gt;::-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;&amp;#39;32107654019821114131615181710291&amp;#39;&lt;/span&gt;
 &lt;span class="nv"&gt;Equivalent&lt;/span&gt; &lt;span class="nn"&gt;expression&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 
-&lt;span class="s-Atom"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="s-Atom"&gt;struct&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;pack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s-Atom"&gt;&amp;#39;&amp;lt;IIIIIIII&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="s-Atom"&gt;struct&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s-Atom"&gt;&amp;#39;&amp;gt;IIIIIIII&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s-Atom"&gt;h&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="s-Atom"&gt;&amp;#39;32107654019821114131615181710291&amp;#39;&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="s s-Atom"&gt;struct&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;pack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;&amp;#39;&amp;lt;IIIIIIII&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="s s-Atom"&gt;struct&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;&amp;#39;&amp;gt;IIIIIIII&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s s-Atom"&gt;h&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;&amp;#39;32107654019821114131615181710291&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;/blockquote&gt;
 &lt;p&gt;主要看其给出的相等实现:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&amp;gt;&amp;gt;&amp;gt; struct.pack(&amp;#39;&amp;lt;IIIIIIII&amp;#39;, *struct.unpack(&amp;#39;&amp;gt;IIIIIIII&amp;#39;, h))
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;&amp;gt;&amp;gt; struct.pack(&amp;#39;&amp;lt;IIIIIIII&amp;#39;, *struct.unpack(&amp;#39;&amp;gt;IIIIIIII&amp;#39;, h))
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -621,14 +621,14 @@ http://en.wikipedia.org/wiki/Endianness  &lt;/p&gt;
 10.04勉强把mysql装上,但网站连接十次要有9次连不上。知道是肯定是那装的那些软件版本太低，bug太多。但还是没管它。&lt;/p&gt;
 &lt;p&gt;最近得有空闲时间，决定把问题给解决。&lt;br /&gt;
 备份整个数据库：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;mysqldump -p -u --all-databases &amp;gt; all.sql
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mysqldump -p -u --all-databases &amp;gt; all.sql
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;备份归档wordpress目录,nginx配置文件目录&lt;br /&gt;
 然后安装fedora 18&lt;/p&gt;
 &lt;p&gt;安装mysqld&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;yum update #升级现有包
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;yum update #升级现有包
 yum install mysql-server #mysqld
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -636,13 +636,13 @@ yum install mysql-server #mysqld
 &lt;p&gt;安装mysql-server&lt;br /&gt;
 当启动mysqld时出现错误，无法启动。(折腾半天)&lt;br /&gt;
 列出包里面的文件:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;rpm -ql mysql-server
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rpm -ql mysql-server
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;日志文件在/var/log/mysqld.log&lt;br /&gt;
 查看mysqld.log发现错误信息：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;vim /var/log/mysqld.log
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vim /var/log/mysqld.log
 InnoDB: Error: pthread_create returned 11
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -651,18 +651,18 @@ InnoDB: Error: pthread_create returned 11
 好像是明白了，&lt;br /&gt;
 128MB的小内存VPS运行InnoDB直接运行不了。&lt;/p&gt;
 &lt;p&gt;用my-small.cnf替换/etc/my.cnf&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;cp /usr/share/mysql/my-small.cnf /etc/my.cnf
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cp /usr/share/mysql/my-small.cnf /etc/my.cnf
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;同时修改my.cnf,在[mysqld]项下添加以下两行:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;default-storage-engine=MYISAM
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;default-storage-engine=MYISAM
 innodb=OFF
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;用MYISAM替换InnoDB。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;systemctl start mysqld  #没有错误
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;systemctl start mysqld  #没有错误
 systemctl enable mysqld #开机自启动
 /usr/bin/mysql_secure_installation #安全安装
 echo &amp;quot;flush privileges;&amp;quot; | mysql -p -u root #登陆到mysql,刷新权限,不然将出现数据库连接错误.
@@ -670,7 +670,7 @@ echo &amp;quot;flush privileges;&amp;quot; | mysql -p -u root #登陆到mysql,�
 
 
 &lt;p&gt;安装nginx&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;yum install nginx
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;yum install nginx
 systemctl stop httpd
 #and
 yum erase httpd
@@ -682,7 +682,7 @@ systemctl reload nginx #配置信息生效
 
 
 &lt;p&gt;安装php(注意依赖)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;yum install php-pecl-apc php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongo php-sqlite php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml php-fpm
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;yum install php-pecl-apc php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongo php-sqlite php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml php-fpm
 
 systemctl start php-fpm
 systemctl enable php-fpm
@@ -1042,7 +1042,7 @@ pre { font-family: monospace; color: #000000; background-color: #ffffff; } body 
 
 &lt;p&gt;ZOJ Problem Set - 1005 Jugs  &lt;/p&gt;
 &lt;p&gt;题目：&lt;a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1005"&gt;来源&lt;/a&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;Ca&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;Cb&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;work&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -1109,8 +1109,8 @@ pre { font-family: monospace; color: #000000; background-color: #ffffff; } body 
 
 &lt;p&gt;ZOJ Problem Set - 1004 Anagrams by Stack  &lt;/p&gt;
 &lt;p&gt;题目：&lt;a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1004"&gt;来源&lt;/a&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include&amp;lt;cstring&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt;&lt;span class="cpf"&gt;&amp;lt;cstring&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="cp"&gt;#define N 100&lt;/span&gt;
 &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;&lt;span class="c1"&gt;//原word&lt;/span&gt;
@@ -1172,8 +1172,8 @@ pre { font-family: monospace; color: #000000; background-color: #ffffff; } body 
 --&gt;&lt;/style&gt;
 
 &lt;p&gt;ZOJ Problem Set - 1003 Crashing Balloon&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include&amp;lt;iostream&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include&amp;lt;cstring&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt;&lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt;&lt;span class="cpf"&gt;&amp;lt;cstring&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;cur&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;101&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;&lt;span class="c1"&gt;//记录1~100的数的使用与否。&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;af&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;101&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;&lt;span class="c1"&gt;//记录数a的因式足迹以便回溯&lt;/span&gt;
@@ -1280,7 +1280,7 @@ pre { font-family: monospace; color: #000000; background-color: #ffffff; } body 
 pre { font-family: monospace; color: #000000; background-color: #ffffff; } body { font-family: monospace; color: #000000; background-color: #ffffff; } .PreProc { color: #a020f0; } .Special { color: #6a5acd; } .Constant { color: #ff00ff; } .Identifier { color: #008080; } .Statement { color: #804040; font-weight: bold; } --&gt;&lt;br&gt;&lt;/br&gt;
 --&gt;&lt;/style&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;def Input(L,n):
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;def Input(L,n):
         if type(L)==list:
                 for i in range(0,n):
                         L.append([t for t in sys.stdin.readline().rstrip(&amp;#39;\n&amp;#39;)])
@@ -3333,7 +3333,7 @@ v0v3v4v2
 &lt;p&gt;# pacstrap /mnt base base-devel ／mnt是你挂载的根分区目录。&lt;br /&gt;
 # genfstab -p /mnt &gt;&gt; /mnt/etc/fstab
 如果忘记这部，重启后文件系统会变成只读，不知道为什么。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# arch-chroot /mnt 若出现“chroot failed to run command /bin/sh&amp;#39; no such file or directory”
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# arch-chroot /mnt 若出现“chroot failed to run command /bin/sh&amp;#39; no such file or directory”
 
  则再依次键入上面三个命令，就不知道什么时候成功了。
 
@@ -4998,7 +4998,7 @@ import MySQLdb 无异常抛出，成功。&lt;/p&gt;
 &lt;p&gt;不过貌似装下来比较大需要100多M的硬盘空间，这对爱惜内存、磁盘空间的linux用户可不算好。&lt;/p&gt;</summary><category term="Debian装google chrome"></category></entry><entry><title>python-tornado起步</title><link href="http://junfenglx.github.io/python-tornadoe8b5b7e6ada5.html" rel="alternate"></link><updated>2012-09-19T00:01:00+08:00</updated><author><name>algu</name></author><id>tag:junfenglx.github.io,2012-09-19:python-tornadoe8b5b7e6ada5.html</id><summary type="html">&lt;p&gt;今天终于在linux、windows下把python tornado web server 搭建好了&lt;/p&gt;
 &lt;p&gt;但在linux下编这个程序的时候发现通过不了（windows下可以通过）&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tornado.ioloop&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tornado.ioloop&lt;/span&gt;
 
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tornado.web&lt;/span&gt;
 
@@ -5010,7 +5010,7 @@ import MySQLdb 无异常抛出，成功。&lt;/p&gt;
 def get(self):&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;{style="padding-left: 60px;"}
 self.write("Hello Python-Tornado！")&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;application = tornado.web.Application([ (r&amp;quot;/&amp;quot;, MainHandler), ])
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;application = tornado.web.Application([ (r&amp;quot;/&amp;quot;, MainHandler), ])
 
  if __name__ == &amp;quot;__main__&amp;quot;:
 &lt;/pre&gt;&lt;/div&gt;
@@ -5021,7 +5021,7 @@ self.write("Hello Python-Tornado！")&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;{style="padding-left: 30px;"}
 tornado.ioloop.IOLoop.instance().start()&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;按照这个代码敲，提示Application类无listen方法，然后又纠结了半天，
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;按照这个代码敲，提示Application类无listen方法，然后又纠结了半天，
 
 在网上看到了另一种写法，就改成了这样：
 

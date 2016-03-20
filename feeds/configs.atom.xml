@@ -5,14 +5,14 @@
 &lt;p&gt;client 使用 Debian. 需要安装 nfs-common package&lt;/p&gt;
 &lt;p&gt;配置 BB-black 联网:&lt;/p&gt;
 &lt;p&gt;在板子下输入命令:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;/sbin/route add default gw 192.168.7.1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/sbin/route add default gw 192.168.7.1
 &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;nameserver 114.114.114.114&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; /etc/resolv.conf
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;在宿主机上输入:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;sudo iptables -A POSTROUTING -t nat -j MASQUERADE
-&lt;span class="nb"&gt;echo &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sudo tee /proc/sys/net/ipv4/ip_forward &amp;gt; /dev/null
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo iptables -A POSTROUTING -t nat -j MASQUERADE
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sudo tee /proc/sys/net/ipv4/ip_forward &amp;gt; /dev/null
 &lt;/pre&gt;&lt;/div&gt;
 
 

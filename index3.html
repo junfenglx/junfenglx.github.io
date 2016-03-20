@@ -55,6 +55,48 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="http://junfenglx.github.io/python-struct-and-endianness.html" rel="bookmark" title="Permalink to Python struct and Endianness">
+                                       Python struct and Endianness
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://junfenglx.github.io/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://junfenglx.github.io/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2014-01-10
+
+        |
+        tags:         <a href="http://junfenglx.github.io/tag/endianness.html">endianness</a>
+        <a href="http://junfenglx.github.io/tag/struct.html">struct</a>
+
+
+        |
+        <a href="http://junfenglx.github.io/python-struct-and-endianness.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>偶然间在stackoverflow上看到下面这个问题:</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="nv">Please</span> <span class="s s-Atom">explain</span> <span class="s s-Atom">me</span> <span class="s s-Atom">what</span> <span class="s s-Atom">does</span> <span class="s s-Atom">this</span> <span class="s s-Atom">piece</span> <span class="s s-Atom">of</span> <span class="s s-Atom">code</span> <span class="s s-Atom">do</span><span class="p">.</span>
+
+<span class="s s-Atom">h</span> <span class="s s-Atom">should</span> <span class="s s-Atom">be</span> <span class="mi">32</span><span class="nv">Byte</span> <span class="s s-Atom">result</span> <span class="s s-Atom">from</span> <span class="s s-Atom">sha256</span> <span class="s s-Atom">calculation</span><span class="p">.</span>
+
+<span class="nv">I</span> <span class="s s-Atom">am</span> <span class="s s-Atom">rewriting</span> <span class="s s-Atom">parts</span> <span class="s s-Atom">of</span> <span class="s s-Atom">this</span> <span class="s s-Atom">code</span> <span class="s s-Atom">for</span> <span class="s s-Atom">my</span> <span class="s s-Atom">project</span> <span class="s s-Atom">in</span> <span class="nv">C</span><span class="s s-Atom">++</span> <span class="s s-Atom">and</span> <span class="nv">I</span><span class="s s-Atom">&#39;m not sure if this switches byte order per 4byte chunk or change byte order on ...</span></pre></div></blockquote>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/python-struct-and-endianness.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="http://junfenglx.github.io/vpse4b88blnmpe9858de7bdae.html" rel="bookmark" title="Permalink to vps下lnmp配置">
                                        vps下lnmp配置
                                     </a>
@@ -451,60 +493,6 @@ dup2(STDOUT_FILENO,STDERR_FILENO);//STDERR_FILENO,STDOUT_FILENO指向同一文�
 <p>而./a.out ...</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/21.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="http://junfenglx.github.io/file-descriptor.html" rel="bookmark" title="Permalink to file descriptor">
-                                       file descriptor
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="http://junfenglx.github.io/author/algu.html">algu</a>
-    </address>
-
-    in <a href="http://junfenglx.github.io/category/cheng-xu-yuan.html">程序猿</a>
-
-    on 2013-09-07
-
-        |
-        tags:         <a href="http://junfenglx.github.io/tag/wen-jian-miao-shu-fu.html">文件描述符</a>
-
-
-        |
-        <a href="http://junfenglx.github.io/file-descriptor.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>和文件描述符有关的函数：</p>
-<ul>
-<li>open</li>
-<li>close</li>
-<li>dup</li>
-<li>dup2</li>
-<li>fcntl</li>
-</ul>
-<p>文件描述符为int整型变量，范围0-OPEN_MAX;</p>
-<p>在linux下OPEN_MAX未在limits.h下定义，使用sysconf(_SC_OPEN_MAX)获得其值．</p>
-<p>open打开文件返回文件描述符没什么好说的．</p>
-<p>close()关闭文件描述符，注意当有多个文件描述符指向同一文件表项时，必须close所有与之关联的描述符才能真正关闭文件．</p>
-<blockquote>
-<p>When all file descriptors associated with an open file description
-have been closed, the open file  description shall be freed.</p>
-</blockquote>
-<p>此时无法再对文件进行更改．</p>
-<p>dup(),dup2()复制现存的文件描述符，在内核数据中一个新的文件描述符被创建．当总数达到OPEN_MAX时，进程无法再打开文件．</p>
-<p>当cmd=F_DUPFD时 fcntl和dup,dup2功能类似．</p>
-<p>附测试程序 ...</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/file-descriptor.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

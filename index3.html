@@ -55,6 +55,51 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="http://junfenglx.github.io/cong-remove-google-redirect-shi-xiao-shuo-qi.html" rel="bookmark" title="Permalink to 从remove google redirect 失效说起">
+                                       从remove google redirect 失效说起
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://junfenglx.github.io/author/junfeng.html">junfeng</a>
+    </address>
+
+    in <a href="http://junfenglx.github.io/category/javascript.html">JavaScript</a>
+
+    on 2014-05-11
+
+        |
+        tags:         <a href="http://junfenglx.github.io/tag/extensions.html">extensions</a>
+        <a href="http://junfenglx.github.io/tag/js-event.html">js event</a>
+
+
+        |
+        <a href="http://junfenglx.github.io/cong-remove-google-redirect-shi-xiao-shuo-qi.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>前段时间发现remove google redirect突然不能用了，在chrome web store的页面也没了。难道被google和谐了？对于我这个重度google使用者来说可不是一件好事情，搜索的结果都要先被google重定向，增加了不必要的加载时间。</p>
+<p>只想寻找解决办法：<a href="https://github.com/juffy/RecoverUrl/raw/master/recover%20url.0.0.1.crx">点击这里</a></p>
+<p>于是想着能不能改改那个插件的代码，修复这个bug，找到那个插件的源代码，发现一下子1200多行代码，这么复杂。感觉移除一个重定向链接不需要这么麻烦吧，决定自己实现一个。</p>
+<p>用的时候发现google在你点击一个链接时，会被替换成google的重定向链接。</p>
+<div class="highlight"><pre><span></span>http://en.wikipedia.org/wiki/Continuous_integration
+</pre></div>
+
+
+<p>会被替换成</p>
+<div class="highlight"><pre><span></span>https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;sqi=2 ...</pre></div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/cong-remove-google-redirect-shi-xiao-shuo-qi.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="http://junfenglx.github.io/python-struct-and-endianness.html" rel="bookmark" title="Permalink to Python struct and Endianness">
                                        Python struct and Endianness
                                     </a>
@@ -436,63 +481,6 @@ Node.造成至少有半个小时的调试.</p>
 <p>Chromium自带的开发者工具看某个element的属性比www.w3schools.com的JavaScript在线教程舒服多了.</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/javascripte5ae9ee8b7b5e5889de6ada5.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="http://junfenglx.github.io/21.html" rel="bookmark" title="Permalink to 2>&1">
-                                       2>&1
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="http://junfenglx.github.io/author/algu.html">algu</a>
-    </address>
-
-    in <a href="http://junfenglx.github.io/category/cheng-xu-yuan.html">程序猿</a>
-
-    on 2013-09-13
-
-        |
-        tags:         <a href="http://junfenglx.github.io/tag/2gt.html">2&gt</a>
-        <a href="http://junfenglx.github.io/tag/amp.html">&amp</a>
-        <a href="http://junfenglx.github.io/tag/1.html">1</a>
-
-
-        |
-        <a href="http://junfenglx.github.io/21.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p><span
-style="font-size: 1rem; line-height: 1.714285714;">在shell中,digit1 >&amp;
-digit2表示将描述符digit1重定向到描述符digit2的同一文件.</span></p>
-<p>那么:</p>
-<p>./a.out > out 2>&amp;1</p>
-<p>将标准输出和标准出错输出重定向到out文件</p>
-<p>./a.out  2>&amp;1 > out<br />
-将标准出错输出重定向到标准输出，标准输出重定向到out文件。</p>
-<div>
-
-</div>
-
-<p>两者功能并不相同。</p>
-<p>为什么顺序不一样产生的效果就不一样呢？</p>
-<p>实质上shell解释器是在内部调用dup2()类似的函数来实现重定向的．</p>
-<p>因为shell从左向右解释命令.</p>
-<p>对于 ./a.out > out 2>&amp;1</p>
-<p>先调用 dup2(out,STDOUT_FILENO);//out,STDOUT_FILENO指向同一文件表项</p>
-<p>然后再是
-dup2(STDOUT_FILENO,STDERR_FILENO);//STDERR_FILENO,STDOUT_FILENO指向同一文件表项</p>
-<p>而./a.out ...</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/21.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

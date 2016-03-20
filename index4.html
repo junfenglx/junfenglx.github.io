@@ -55,6 +55,63 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="http://junfenglx.github.io/21.html" rel="bookmark" title="Permalink to 2>&1">
+                                       2>&1
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://junfenglx.github.io/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://junfenglx.github.io/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-09-13
+
+        |
+        tags:         <a href="http://junfenglx.github.io/tag/2gt.html">2&gt</a>
+        <a href="http://junfenglx.github.io/tag/amp.html">&amp</a>
+        <a href="http://junfenglx.github.io/tag/1.html">1</a>
+
+
+        |
+        <a href="http://junfenglx.github.io/21.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p><span
+style="font-size: 1rem; line-height: 1.714285714;">在shell中,digit1 >&amp;
+digit2表示将描述符digit1重定向到描述符digit2的同一文件.</span></p>
+<p>那么:</p>
+<p>./a.out > out 2>&amp;1</p>
+<p>将标准输出和标准出错输出重定向到out文件</p>
+<p>./a.out  2>&amp;1 > out<br />
+将标准出错输出重定向到标准输出，标准输出重定向到out文件。</p>
+<div>
+
+</div>
+
+<p>两者功能并不相同。</p>
+<p>为什么顺序不一样产生的效果就不一样呢？</p>
+<p>实质上shell解释器是在内部调用dup2()类似的函数来实现重定向的．</p>
+<p>因为shell从左向右解释命令.</p>
+<p>对于 ./a.out > out 2>&amp;1</p>
+<p>先调用 dup2(out,STDOUT_FILENO);//out,STDOUT_FILENO指向同一文件表项</p>
+<p>然后再是
+dup2(STDOUT_FILENO,STDERR_FILENO);//STDERR_FILENO,STDOUT_FILENO指向同一文件表项</p>
+<p>而./a.out ...</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/21.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="http://junfenglx.github.io/file-descriptor.html" rel="bookmark" title="Permalink to file descriptor">
                                        file descriptor
                                     </a>
@@ -441,108 +498,6 @@ pre { font-family: monospace; color: #000000; background-color: #ffffff; } body 
                         L ...</pre></div>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/fire-net.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="http://junfenglx.github.io/8e79a87e5908ee997aee9a298.html" rel="bookmark" title="Permalink to 8皇后问题">
-                                       8皇后问题
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="http://junfenglx.github.io/author/algu.html">algu</a>
-    </address>
-
-    in <a href="http://junfenglx.github.io/category/cheng-xu-yuan.html">程序猿</a>
-
-    on 2013-05-19
-
-        |
-        tags:         <a href="http://junfenglx.github.io/tag/huang-hou-wen-ti.html">皇后问题</a>
-
-
-        |
-        <a href="http://junfenglx.github.io/8e79a87e5908ee997aee9a298.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>传说中的问题。</p>
-<p>传说中的算法：回溯法</p>
-<p>Python实现：</p>
-<div>
-
-def place\_queen(l):
-
-</div>
-
-<div>
-
-    if type(l)==list:
-
-</div>
-
-<div>
-
-        tq=l[-1]
-
-</div>
-
-<div>
-
-        k=len(l)
-
-</div>
-
-<div>
-
-        for i,iq in enumerate(l[0:-1],start=1):
-
-</div>
-
-<div>
-
-            if iq==tq or abs(iq-tq)==abs(i-k):
-
-</div>
-
-<div>
-
-                return False
-
-</div>
-
-<div>
-
-</div>
-
-<div>
-
-        return True
-
-</div>
-
-<div>
-
-</div>
-
-<div>
-
-def output\_queens(number,l,n):
-
-</div>
-
-<div>
-
-    print "Solution:%d" % number ...</div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/8e79a87e5908ee997aee9a298.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

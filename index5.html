@@ -55,6 +55,108 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="http://junfenglx.github.io/8e79a87e5908ee997aee9a298.html" rel="bookmark" title="Permalink to 8皇后问题">
+                                       8皇后问题
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://junfenglx.github.io/author/algu.html">algu</a>
+    </address>
+
+    in <a href="http://junfenglx.github.io/category/cheng-xu-yuan.html">程序猿</a>
+
+    on 2013-05-19
+
+        |
+        tags:         <a href="http://junfenglx.github.io/tag/huang-hou-wen-ti.html">皇后问题</a>
+
+
+        |
+        <a href="http://junfenglx.github.io/8e79a87e5908ee997aee9a298.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <p>传说中的问题。</p>
+<p>传说中的算法：回溯法</p>
+<p>Python实现：</p>
+<div>
+
+def place\_queen(l):
+
+</div>
+
+<div>
+
+    if type(l)==list:
+
+</div>
+
+<div>
+
+        tq=l[-1]
+
+</div>
+
+<div>
+
+        k=len(l)
+
+</div>
+
+<div>
+
+        for i,iq in enumerate(l[0:-1],start=1):
+
+</div>
+
+<div>
+
+            if iq==tq or abs(iq-tq)==abs(i-k):
+
+</div>
+
+<div>
+
+                return False
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+        return True
+
+</div>
+
+<div>
+
+</div>
+
+<div>
+
+def output\_queens(number,l,n):
+
+</div>
+
+<div>
+
+    print "Solution:%d" % number ...</div>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/8e79a87e5908ee997aee9a298.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="http://junfenglx.github.io/we-are-belong-to-each-other.html" rel="bookmark" title="Permalink to We are belong to each other">
                                        We are belong to each other
                                     </a>
@@ -454,45 +556,6 @@ stdout_encoding:UTF-8<br />
 <p><code>&gt;&gt;&gt; a='你好' &gt;&gt;&gt; a 'xe4xbdxa0xe5xa5xbd' &gt;&gt;&gt; type(a) &lt;type 'str'&gt; &gt;&gt;&gt; b=a.decode('utf-8') &gt;&gt;&gt; type(b) &lt;type 'unicode'&gt; &gt;&gt;&gt; a.encode('gbk') Traceback (most ...</code></p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/pythonefbc92e7bc96e7a081e5b08fe7bb93.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="http://junfenglx.github.io/linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html" rel="bookmark" title="Permalink to Linux和Nvidia显卡驱动">
-                                       Linux和Nvidia显卡驱动
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="http://junfenglx.github.io/author/algu.html">algu</a>
-    </address>
-
-    in <a href="http://junfenglx.github.io/category/cheng-xu-yuan.html">程序猿</a>
-
-    on 2013-03-10
-
-        |
-        tags:         <a href="http://junfenglx.github.io/tag/xia-zhe-teng.html">瞎折腾</a>
-
-
-        |
-        <a href="http://junfenglx.github.io/linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>由于lxde也用了将近一学期了，虽说lxde比较轻量，但显示效果实在不能说美观！又不想用GNOME或者KDE之流.它们会携带一大堆莫名其妙的软件，也受不了arch下GNOME那个样子，至于KDE,比GNOME好不了哪去.而xfce4也是直追GNOME.于是再次忍不住装上Enlightenment17,上次因为感觉e17CPU占用太多，删了.但这次为了显示效果，下决心把e17装了.跟着网上的教程算是把它配置的满意了.<br />
-但风扇也呼呼的转了起来,top命令下去，果然，Enlightenment
-CPU占用率百分之三十几，都是因为我的nvidia显卡没正常工作的缘故！而且貌似还在发热！你说你不工作去就算了，还拖累整个系统.BIOS中也没有关闭n卡的选项.无奈只有自食其力，上网搜解决方法.  </p>
-<p>貌似官方源里有nvidia驱动，但无奈nvidia-utility和mesa-libgl冲突,而后者被我系统里的大部分软件依赖.也就不敢装它了.然后用了aur中的bumblebee软件,但在装nvidia-bumblebee时无法安装，看wiki中说bbswitch可以关闭独显，但我也没装成功,bbswitch-git倒是装
-成功了，却不工作！无奈我又去nvidia官网下载驱动，倒是没有依赖问题,但装好之后，X服务器又启动不了了.把由nvidia-xconfig自动生成在/etc/X11/Xorg.conf删了之后才能启动桌面环境！可能是我没配置好什么.于是狠心去装官方源中的n卡驱动，大概把我电脑里的桌面程序都给删了 ...</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/linuxe5928cnvidiae698bee58da1e9a9b1e58aa8-2.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

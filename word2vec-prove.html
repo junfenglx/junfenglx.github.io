@@ -147,11 +147,14 @@
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -249,6 +252,11 @@ $$
 \cdot
 hs'_j
 $$</p>
+<p>simplify
+$$
+\nabla \log p(w | w_I) = \sum_{j=1}^{L(w)-1}
+[ 1 - \sigma (hs_j) ] \cdot hs'_j
+$$</p>
 </div>
 </div>
 </div>
@@ -260,13 +268,9 @@ $$</p>
 <p>When update $ v_{w_I} $, we got gradient is:</p>
 $$
 \nabla \log p(w | w_I) = \sum_{j=1}^{L(w)-1}
-\frac{1} {\sigma (hs_j)}
-\cdot
-\sigma (hs_j) \cdot [ 1 - \sigma (hs_j) ]
-\cdot
+[ 1 - \sigma (hs_j) ] \cdot
 [\![ n(w, j+1) = ch(n(w, j)) ]\!]
-\cdot
-v'_{n(w, j)}
+\cdot v'_{n(w, j)}
 $$
 </div>
 </div>
@@ -279,9 +283,7 @@ $$
 <p>When update $ v'_{n(w, j)} $, we got gradient is:</p>
 $$
 \nabla \log p(w | w_I) = \sum_{j=1}^{L(w)-1}
-\frac{1} {\sigma (hs_j)}
-\cdot
-\sigma (hs_j) \cdot [ 1 - \sigma (hs_j) ]
+[ 1 - \sigma (hs_j) ]
 \cdot
 [\![ n(w, j+1) = ch(n(w, j)) ]\!]
 \cdot
@@ -304,9 +306,23 @@ $$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="the-negative-sampling-gradient">the negative sampling gradient<a class="anchor-link" href="#the-negative-sampling-gradient">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>(2)
-$$ \log \sigma( {v'_{w_O}}^T v_{w_I} ) + \sum_{i}^{k} E_{w_i \sim P_n(w)}  \left[ \log \sigma( {-v'_{w_i}}^T v_{w_I}
-) \right] $$</p>
+$$
+p(w_O | w_I) = \log \sigma( {v'_{w_O}}^T v_{w_I} ) + 
+\sum_{i}^{k} E_{w_i \sim P_n(w)}
+\left[
+\log \sigma( {-v'_{w_i}}^T v_{w_I} )
+\right]
+$$</p>
 </div>
 </div>
 </div>
@@ -317,7 +333,117 @@ $$ \log \sigma( {v'_{w_O}}^T v_{w_I} ) + \sum_{i}^{k} E_{w_i \sim P_n(w)}  \left
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>First let</p>
 $$
-
+ns_{OI} = {v'_{w_O}}^T \cdot v_{w_I}
+$$$$
+ns_{iI} = -{v'_{w_i}}^T \cdot v_{w_I}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And</p>
+<p>the gradients $ns_{OI}$ according to ${v'_{w_O}}$ and $v_{w_I}$ are:</p>
+$$
+\frac {d ns_{OI}} {v'_{w_O}} = v_{w_I}
+$$$$
+\frac {d ns_{OI}} {v_{w_I}} = v'_{w_O}
+$$<p>the gradients $ns_{iI}$ according to ${v'_{w_i}}$ and $v_{w_I}$ are:</p>
+$$
+\frac {d ns_{iI}} {v'_{w_i}} = -v_{w_I}
+$$$$
+\frac {d ns_{iI}} {v_{w_I}} = -v'_{w_i}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then</p>
+$$
+\nabla p(w_O | w_I) = \frac {1} { \sigma(ns_{OI}) }
+\cdot
+\sigma'(ns_{OI})
+\cdot
+ns'_{OI}
++
+\sum_{i}^{k} E_{w_i \sim P_n(w)}
+\left[
+\frac {1} { \sigma(ns_{iI}) } \cdot
+\sigma'( ns_{iI} ) \cdot
+ns'_{iI}
+\right]
+$$<p>According to equation (0)</p>
+$$
+\nabla p(w_O | w_I) = \frac {1} { \sigma(ns_{OI}) }
+\cdot
+\sigma(ns_{OI}) \cdot [ 1 - \sigma(ns_{OI}) ]
+\cdot
+ns'_{OI}
++
+\sum_{i}^{k} E_{w_i \sim P_n(w)}
+\left[
+\frac {1} { \sigma(ns_{iI}) } \cdot
+\sigma ( ns_{iI} ) \cdot
+[ 1 - \sigma(ns_{iI}) ] \cdot
+ns'_{iI}
+\right]
+$$<p>simplify</p>
+$$
+\nabla p(w_O | w_I) = [ 1 - \sigma(ns_{OI}) ] \cdot ns'_{OI}
++
+\sum_{i}^{k} E_{w_i \sim P_n(w)}
+\left[
+[ 1 - \sigma(ns_{iI}) ] \cdot
+ns'_{iI}
+\right]
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When update $ v'_{w_O} $, we got gradient is:</p>
+$$
+\nabla p(w_O | w_I) = [ 1 - \sigma(ns_{OI}) ] \cdot v_{w_I}
+$$<p>When update $ v_{w_I} $, we got gradient is:</p>
+$$
+\nabla p(w_O | w_I) = [ 1 - \sigma(ns_{OI}) ] \cdot v'_{w_O}
++
+\sum_{i}^{k} E_{w_i \sim P_n(w)}
+\left[
+[ 1 - \sigma(ns_{iI}) ] \cdot
+-v'_{w_i}
+\right]
+$$<p>When update $ v'_{w_i} $, we got gradient is:</p>
+$$
+\nabla p(w_O | w_I) = \sum_{i}^{k} E_{w_i \sim P_n(w)}
+\left[
+[ 1 - \sigma(ns_{iI}) ] \cdot
+-v_{w_I}
+\right]
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally the gradient of $ \log( p(w_O | w_I) )$ is:</p>
+$$
+\nabla \log( p(w_O | w_I) ) = \frac{1} {p(w_O | w_I)} \cdot
+\nabla p(w_O | w_I)
 $$
 </div>
 </div>

@@ -186,74 +186,8 @@ $$</div>
 
     
 </footer><!-- /.post-info -->                                
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="word2vec-formula-prove">word2vec formula prove<a class="anchor-link" href="#word2vec-formula-prove">¶</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>(0)</p>
-$$
-\sigma' (y) = \sigma (y) \cdot [ 1 - \sigma (y) ] \cdot y'
-$$
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="hierarchical-softmax">hierarchical softmax<a class="anchor-link" href="#hierarchical-softmax">¶</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>(1)
-$$ p(w | w_I) = \prod_{j=1}^{L(w)-1} \sigma \left( [\![ n(w, j+1) = ch(n(w, j)) ]\!] \cdot {v'_{n(w, j)}}^T v_{w_I} 
-\right) $$</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="the-hierarchical-softmax-gradient">the hierarchical softmax gradient<a class="anchor-link" href="#the-hierarchical-softmax-gradient">¶</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>First let</p>
-$$
-hs_j = [\![ n(w, j+1) = ch(n(w, j)) ]\!] \cdot {v'_{n(w, j)}}^T v_{w_I}
-$$
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/word2vec-prove.html">Read more...</a>
                                 </p>

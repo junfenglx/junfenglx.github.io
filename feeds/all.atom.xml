@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfenglx.github.io/" rel="alternate"></link><link href="http://junfenglx.github.io/feeds/all.atom.xml" rel="self"></link><id>http://junfenglx.github.io/</id><updated>2016-03-22T18:34:31+08:00</updated><entry><title>word2vec prove</title><link href="http://junfenglx.github.io/word2vec-prove.html" rel="alternate"></link><updated>2016-03-22T18:34:31+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2016-03-22:word2vec-prove.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfenglx.github.io/" rel="alternate"></link><link href="http://junfenglx.github.io/feeds/all.atom.xml" rel="self"></link><id>http://junfenglx.github.io/</id><updated>2016-03-22T18:34:31+08:00</updated><entry><title>word2vec train procedure explained</title><link href="http://junfenglx.github.io/word2vec-train-procedure-explained.html" rel="alternate"></link><updated>2016-03-22T18:34:31+08:00</updated><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2016-03-22:word2vec-train-procedure-explained.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -69,14 +69,12 @@
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [ ]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
-&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="Introduction"&gt;Introduction&lt;a class="anchor-link" href="#Introduction"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -85,7 +83,16 @@
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="word2vec-formula-prove"&gt;word2vec formula prove&lt;a class="anchor-link" href="#word2vec-formula-prove"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This article gives a detailed explanation of the weight vector updates in word2vec C implementation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="some-properties-of-sigmoid-function"&gt;some properties of sigmoid function&lt;a class="anchor-link" href="#some-properties-of-sigmoid-function"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -694,18 +701,9 @@ $$
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h4 id="the-negative-sampling-gradient"&gt;the negative sampling gradient&lt;a class="anchor-link" href="#the-negative-sampling-gradient"&gt;¶&lt;/a&gt;&lt;/h4&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;(2)
 $$
-p(w_O | w_I) = \log \sigma( {v'_{w_O}}^T v_{w_I} ) + 
+\log p(w_O | w_I) = \log \sigma( {v'_{w_O}}^T v_{w_I} ) + 
 \sum_{i}^{k} E_{w_i \sim P_n(w)}
 \left[
 \log \sigma( {-v'_{w_i}}^T v_{w_I} )
@@ -719,12 +717,19 @@ $$&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h4 id="the-negative-sampling-gradient"&gt;the negative sampling gradient&lt;a class="anchor-link" href="#the-negative-sampling-gradient"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;First let&lt;/p&gt;
 $$
-ns_{OI} = {v'_{w_O}}^T \cdot v_{w_I}
-$$$$
-ns_{iI} = -{v'_{w_i}}^T \cdot v_{w_I}
-$$
+ns_{xI} = {v'_{w_x}}^T \cdot v_{w_I}
+$$&lt;p&gt;$w_x \in \{ w_O, w_i \sim P_n(w) \}$&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -734,16 +739,11 @@ $$
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;And&lt;/p&gt;
-&lt;p&gt;the gradients $ns_{OI}$ according to ${v'_{w_O}}$ and $v_{w_I}$ are:&lt;/p&gt;
+&lt;p&gt;the gradients $ns_{xI}$ according to ${v'_{w_x}}$ and $v_{w_I}$ are:&lt;/p&gt;
 $$
-\frac {d ns_{OI}} {v'_{w_O}} = v_{w_I}
+\frac {d ns_{xI}} {v'_{w_x}} = v_{w_I}
 $$$$
-\frac {d ns_{OI}} {v_{w_I}} = v'_{w_O}
-$$&lt;p&gt;the gradients $ns_{iI}$ according to ${v'_{w_i}}$ and $v_{w_I}$ are:&lt;/p&gt;
-$$
-\frac {d ns_{iI}} {v'_{w_i}} = -v_{w_I}
-$$$$
-\frac {d ns_{iI}} {v_{w_I}} = -v'_{w_i}
+\frac {d ns_{xI}} {v_{w_I}} = v'_{w_x}
 $$
 &lt;/div&gt;
 &lt;/div&gt;
@@ -755,7 +755,7 @@ $$
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Then&lt;/p&gt;
 $$
-\nabla p(w_O | w_I) = \frac {1} { \sigma(ns_{OI}) }
+\nabla \log p(w_O | w_I) = \frac {1} { \sigma(ns_{OI}) }
 \cdot
 \sigma'(ns_{OI})
 \cdot
@@ -763,13 +763,22 @@ ns'_{OI}
 +
 \sum_{i}^{k} E_{w_i \sim P_n(w)}
 \left[
-\frac {1} { \sigma(ns_{iI}) } \cdot
-\sigma'( ns_{iI} ) \cdot
-ns'_{iI}
+\frac {1} { \sigma(-ns_{iI}) } \cdot
+\sigma'( -ns_{iI} ) \cdot
+-ns'_{iI}
 \right]
-$$&lt;p&gt;According to equation (0)&lt;/p&gt;
 $$
-\nabla p(w_O | w_I) = \frac {1} { \sigma(ns_{OI}) }
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;According to equation (0)&lt;/p&gt;
+$$
+\nabla \log p(w_O | w_I) = \frac {1} { \sigma(ns_{OI}) }
 \cdot
 \sigma(ns_{OI}) \cdot [ 1 - \sigma(ns_{OI}) ]
 \cdot
@@ -777,19 +786,28 @@ ns'_{OI}
 +
 \sum_{i}^{k} E_{w_i \sim P_n(w)}
 \left[
-\frac {1} { \sigma(ns_{iI}) } \cdot
-\sigma ( ns_{iI} ) \cdot
-[ 1 - \sigma(ns_{iI}) ] \cdot
-ns'_{iI}
+\frac {1} { \sigma(-ns_{iI}) } \cdot
+\sigma ( -ns_{iI} ) \cdot
+[ 1 - \sigma(-ns_{iI}) ] \cdot
+-ns'_{iI}
 \right]
-$$&lt;p&gt;simplify&lt;/p&gt;
 $$
-\nabla p(w_O | w_I) = [ 1 - \sigma(ns_{OI}) ] \cdot ns'_{OI}
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;simplify&lt;/p&gt;
+$$
+\nabla \log p(w_O | w_I) = [ 1 - \sigma(ns_{OI}) ] \cdot ns'_{OI}
 +
 \sum_{i}^{k} E_{w_i \sim P_n(w)}
 \left[
-[ 1 - \sigma(ns_{iI}) ] \cdot
-ns'_{iI}
+[ 1 - \sigma(-ns_{iI}) ] \cdot
+-ns'_{iI}
 \right]
 $$
 &lt;/div&gt;
@@ -802,36 +820,19 @@ $$
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;When update $ v'_{w_O} $, we got gradient is:&lt;/p&gt;
 $$
-\nabla p(w_O | w_I) = [ 1 - \sigma(ns_{OI}) ] \cdot v_{w_I}
+\nabla \log p(w_O | w_I) = [ 1 - \sigma(ns_{OI}) ] \cdot v_{w_I}
 $$&lt;p&gt;When update $ v_{w_I} $, we got gradient is:&lt;/p&gt;
 $$
-\nabla p(w_O | w_I) = [ 1 - \sigma(ns_{OI}) ] \cdot v'_{w_O}
+\nabla \log p(w_O | w_I) = [ 1 - \sigma(ns_{OI}) ] \cdot v'_{w_O}
 +
 \sum_{i}^{k} E_{w_i \sim P_n(w)}
 \left[
-[ 1 - \sigma(ns_{iI}) ] \cdot
+[ 1 - \sigma(-ns_{iI}) ] \cdot
 -v'_{w_i}
 \right]
-$$&lt;p&gt;When update $ v'_{w_i} $, we got gradient is:&lt;/p&gt;
+$$&lt;p&gt;When update $ v'_{w_i}, w_i \sim P_n{w} $, we got gradient is:&lt;/p&gt;
 $$
-\nabla p(w_O | w_I) = \sum_{i}^{k} E_{w_i \sim P_n(w)}
-\left[
-[ 1 - \sigma(ns_{iI}) ] \cdot
--v_{w_I}
-\right]
-$$
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Finally the gradient of $ \log( p(w_O | w_I) )$ is:&lt;/p&gt;
-$$
-\nabla \log( p(w_O | w_I) ) = \frac{1} {p(w_O | w_I)} \cdot
-\nabla p(w_O | w_I)
+\nabla \log p(w_O | w_I) = [ 1 - \sigma(-ns_{iI}) ] \cdot -v_{w_I}
 $$
 &lt;/div&gt;
 &lt;/div&gt;
@@ -937,7 +938,7 @@ $$&lt;/p&gt;
         &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;layer1_size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;neu1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;/=&lt;/span&gt; &lt;span class="n"&gt;cw&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
         &lt;span class="c1"&gt;// ...&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;em&gt;&lt;code&gt;neu1&lt;/code&gt; is $v_{mcw}$&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;code&gt;"neu1"&lt;/code&gt; is $v_{mcw}$&lt;/em&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -967,7 +968,7 @@ $$&lt;/p&gt;
 &lt;p&gt;And&lt;/p&gt;
 $$
 hs_j = [\![ n(w_t, j+1) = ch(n(w_t, j)) ]\!] \cdot {v'_{n(w_t, j)}}^T v_{w_{t+q}}
-$$
+$$&lt;p&gt;$q \in [-c, c], q\neq{0}$&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1063,14 +1064,14 @@ $$
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;&lt;code&gt;syn1[l2]&lt;/code&gt; is $v'_{n(w_t, j)}$, then &lt;code&gt;f&lt;/code&gt; in the above code before &lt;code&gt;expTable&lt;/code&gt;
+&lt;p&gt;&lt;code&gt;"syn1[l2]"&lt;/code&gt; is $v'_{n(w_t, j)}$, then &lt;code&gt;"f"&lt;/code&gt; in the above code before &lt;code&gt;"expTable"&lt;/code&gt;
 is $\pm hs_j$.&lt;/p&gt;
 &lt;p&gt;And $[ 1 - \sigma (hs_j) ] \cdot
-[\![ n(w_t, j+1) = ch(n(w_t, j)) ]\!]$ is &lt;code&gt;"1 - vocab[word].code[d] - f"&lt;/code&gt; after &lt;code&gt;expTable&lt;/code&gt;, because of the equation:&lt;/p&gt;
+[\![ n(w_t, j+1) = ch(n(w_t, j)) ]\!]$ is &lt;code&gt;"1 - vocab[word].code[d] - f"&lt;/code&gt; after &lt;code&gt;"expTable"&lt;/code&gt;, because of the equation:&lt;/p&gt;
 $$
 \sigma(x) = 1 - \sigma(-x)
-$$&lt;p&gt;So &lt;code&gt;vocab[word].code[d] == 0&lt;/code&gt; for $[\![ n(w_t, j+1) = ch(n(w_t, j)) ]\!] = +1$,&lt;/p&gt;
-&lt;p&gt;and &lt;code&gt;vocab[word].code[d] == 0&lt;/code&gt; for $[\![ n(w_t, j+1) = ch(n(w_t, j)) ]\!] = -1$,&lt;/p&gt;
+$$&lt;p&gt;So &lt;code&gt;"vocab[word].code[d] == 0"&lt;/code&gt; for $[\![ n(w_t, j+1) = ch(n(w_t, j)) ]\!] = +1$,&lt;/p&gt;
+&lt;p&gt;and &lt;code&gt;"vocab[word].code[d] == 1"&lt;/code&gt; for $[\![ n(w_t, j+1) = ch(n(w_t, j)) ]\!] = -1$,&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1129,7 +1130,182 @@ $$
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;&lt;em&gt;TODO&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;$w_t is\, w_O$, $w_{t+q} is\, w_I$ in equation(2)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;And&lt;/p&gt;
+$$
+ns_{x(t+q)} = {v'_{w_x}}^T \cdot v_{w_{t+q}}
+$$&lt;p&gt;$w_x \in \{ w_t, w_i \sim P_n(w) \}$, $q \in [-c, c], q\neq{0}$&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Then&lt;/p&gt;
+&lt;p&gt;When update $ v'_{w_t} $, we got gradient is:&lt;/p&gt;
+$$
+\nabla \log p(w_t | w_{t+q}) = [ 1 - \sigma(ns_{t(t+q)}) ] \cdot v_{w_{t+q}}
+$$$$
+\nabla \sum_{-c \leq{q} \leq{c},q\neq{0}} \log{p(w_t | w_{t+q})} = \sum_{-c \leq{q} \leq{c},q\neq{0}}
+[ 1 - \sigma(ns_{t(t+q)}) ] \cdot v_{w_{t+q}}
+$$
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;When update $ v'_{w_i}, w_i \sim P_n{w} $, we got gradient is:&lt;/p&gt;
+$$
+\nabla \log p(w_t | w_{t+q}) = [ 1 - \sigma(-ns_{i(t+q)}) ] \cdot -v_{w_{t+q}}
+$$$$
+\nabla \sum_{-c \leq{q} \leq{c},q\neq{0}} \log{p(w_t | w_{t+q})} = \sum_{-c \leq{q} \leq{c},q\neq{0}}
+[ 1 - \sigma(-ns_{i(t+q)}) ] \cdot -v_{w_{t+q}}
+$$
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;When update $ v_{w_{t+q}} $, we got gradient is:&lt;/p&gt;
+$$
+\nabla \log p(w_t | w_{t+q}) = [ 1 - \sigma(ns_{t(t+q)}) ] \cdot v'_{w_t}
++
+\sum_{i}^{k} E_{w_i \sim P_n(w)}
+\left[
+[ 1 - \sigma(-ns_{i(t+q)}) ] \cdot
+-v'_{w_i}
+\right]
+$$$$
+\nabla \sum_{-c \leq{q} \leq{c},q\neq{0}} \log{p(w_t | w_{t+q})} =
+\nabla \log p(w_t | w_{t+q})
+$$
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;negative&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;negative&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+          &lt;span class="c1"&gt;// target is w_O, w_i&lt;/span&gt;
+          &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;label&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+          &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// random sample negative weight vector&lt;/span&gt;
+            &lt;span class="n"&gt;next_random&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;next_random&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="mi"&gt;25214903917&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;next_random&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;table_size&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;next_random&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vocab_size&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;continue&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;label&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+          &lt;span class="p"&gt;}&lt;/span&gt;
+          &lt;span class="n"&gt;l2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;layer1_size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+          &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+          &lt;span class="c1"&gt;// caculate ns&lt;/span&gt;
+          &lt;span class="c1"&gt;// syn1neg[l2] is v', neu1 is v_mcw&lt;/span&gt;
+          &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;layer1_size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;neu1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;syn1neg&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;l2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+          &lt;span class="c1"&gt;// caculate gradient&lt;/span&gt;
+          &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;MAX_EXP&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;alpha&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+          &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="nf"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;MAX_EXP&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;alpha&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+          &lt;span class="c1"&gt;// \sigma(x) = 1 - \sigma(-x), and 0 label for -ns&lt;/span&gt;
+          &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;expTable&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)((&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;MAX_EXP&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;EXP_TABLE_SIZE&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;MAX_EXP&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))])&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;alpha&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+          &lt;span class="c1"&gt;// neu1e is added weight vector for each w_{t+q}&lt;/span&gt;
+          &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;layer1_size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;neu1e&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;syn1neg&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;l2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+          &lt;span class="c1"&gt;// update v'&lt;/span&gt;
+          &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;layer1_size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;syn1neg&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;l2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;neu1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;The code uses $v_{mcw}$ in place of $v_{w_{t+q}}$&lt;/p&gt;
+$$
+ns_{x(t+q)} = {v'_{w_x}}^T \cdot v_{mcw}
+$$&lt;p&gt;$w_x \in \{ w_t, w_i \sim P_n(w) \}$, $q \in [-c, c], q\neq{0}$&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;the gradient of ${v'_{w_x}},\, w_x \in \{ w_t, w_i \sim P_n(w) \}$ is caculated as:&lt;/p&gt;
+$$
+\nabla \sum_{-c \leq{q} \leq{c},q\neq{0}} \log{p(w_t | w_{t+q})} = cw \cdot
+[ 1 - \sigma(\pm ns_{x(mcw)} ) ]
+\cdot
+\pm v_{w_{mcw}}
+$$&lt;p&gt;The code doesn't multiply &lt;code&gt;"cw"&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Because the equation $ \sigma(x) = 1 - \sigma(-x)$,&lt;/p&gt;
+&lt;p&gt;the gradient of ${v'_{w_x}},\, w_x \in \{ w_t, w_i \sim P_n(w) \}$ is caculated as:&lt;/p&gt;
+$$
+\nabla \sum_{-c \leq{q} \leq{c},q\neq{0}} \log{p(w_t | w_{t+q})} =
+  \begin{cases}
+    - \sigma( ns_{x(mcw)} ) \cdot v_{w_{mcw}}       &amp;amp; \quad \text{if } -ns_{x(mcw)} \\
+    [ 1 - \sigma(ns_{x(mcw)} ) ] \cdot v_{w_{mcw}}  &amp;amp; \quad \text{if } ns_{x(mcw)} \\
+  \end{cases}
+$$&lt;p&gt;The code above uses &lt;code&gt;"label = 0"&lt;/code&gt; to caculate the gradient of $v'_{w_t}$,
+&lt;code&gt;"label = 1"&lt;/code&gt; to caculate the gradient of $v'_{w_i}$,&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;The gradient of $ v_{w_{t+q}} $ is caculated as:&lt;/p&gt;
+$$
+\nabla \sum_{-c \leq{q} \leq{c},q\neq{0}} \log p(w_t | w_{t+q}) =
+[ 1 - \sigma(ns_{x(mcw)} ) ] \cdot v_{w_{mcw}}
++
+\sum_{i}^{k} E_{w_i \sim P_n(w)}
+\left[
+- \sigma( ns_{x(mcw)} ) \cdot v_{w_{mcw}}
+\right]
+$$
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;layer1_size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;neu1e&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;syn1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;l2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;caculates the gradient of $ v_{w_{t+q}} $ for each $q \in [-c, c], q\neq{0}$&lt;/p&gt;
+&lt;p&gt;After &lt;code&gt;for loop "neu1e"&lt;/code&gt; is the added weight vector for each $v_{w_{t+q}}$.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1169,6 +1345,42 @@ $$ \frac{1}{T} \sum_{t=1}^{T} \sum_{-c \leq{j} \leq{c},j\neq{0}} \log{p(w_{t+j} 
 &lt;p&gt;Same reason, I change the index $j$ to index $q$ due to conflict with index $j$ in hierarchical softmax.&lt;/p&gt;
 &lt;p&gt;(4)
 $$ \frac{1}{T} \sum_{t=1}^{T} \sum_{-c \leq{q} \leq{c}, q\neq{0}} \log{p(w_{t+q} | w_t)} $$&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h4 id="when-using-hierarchical-softmax"&gt;when using hierarchical softmax&lt;a class="anchor-link" href="#when-using-hierarchical-softmax"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;em&gt;TODO&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h4 id="when-using-negative-sampling"&gt;when using negative sampling&lt;a class="anchor-link" href="#when-using-negative-sampling"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;em&gt;TODO&lt;/em&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

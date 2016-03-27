@@ -55,8 +55,8 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
-                                    <a href="http://junfenglx.github.io/word2vec-prove.html" rel="bookmark" title="Permalink to word2vec prove">
-                                       word2vec prove
+                                    <a href="http://junfenglx.github.io/word2vec-train-procedure-explained.html" rel="bookmark" title="Permalink to word2vec train procedure explained">
+                                       word2vec train procedure explained
                                     </a>
                                 </h1>
                             </header>
@@ -76,14 +76,78 @@
 
 
         |
-        <a href="http://junfenglx.github.io/word2vec-prove.html#disqus_thread">comments</a>
+        <a href="http://junfenglx.github.io/word2vec-train-procedure-explained.html#disqus_thread">comments</a>
 
     
 </footer><!-- /.post-info -->                                
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This article gives a detailed explanation of the weight vector updates in word2vec C implementation.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="some-properties-of-sigmoid-function">some properties of sigmoid function<a class="anchor-link" href="#some-properties-of-sigmoid-function">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>(0)</p>
+$$
+\sigma' (y) = \sigma (y) \cdot [ 1 - \sigma (y) ] \cdot y'
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="visualize-a-property-of-sigmoid-function">visualize a property of sigmoid function<a class="anchor-link" href="#visualize-a-property-of-sigmoid-function">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
+\frac {1} {N} \sum_{i=1}^{N} \sigma(x_i) \approx
+\sigma( \frac {1} {N} \sum_{i=1}^{N} x_i )
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I can't prove it, my major is not math</p>
                                 <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/word2vec-prove.html">Read more...</a>
+                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/word2vec-train-procedure-explained.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

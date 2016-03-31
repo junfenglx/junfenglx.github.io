@@ -85,7 +85,7 @@
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h3>
+<h3 id="Abstract">Abstract<a class="anchor-link" href="#Abstract">¶</a></h3>
 </div>
 </div>
 </div>
@@ -95,6 +95,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This article gives a detailed explanation of the weight vector updates in word2vec C implementation.</p>
+<p>And find some not correct procedures that used train skip-gram model in the code.</p>
 </div>
 </div>
 </div>
@@ -103,7 +104,34 @@
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="some-properties-of-sigmoid-function">some properties of sigmoid function<a class="anchor-link" href="#some-properties-of-sigmoid-function">¶</a></h3>
+<h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Word2vec is a famous word embeddings approch. See detailed at <a href="https://en.wikipedia.org/wiki/Word2vec">Word2vec</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Prerequisite">Prerequisite<a class="anchor-link" href="#Prerequisite">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="some-properties-of-sigmoid-function">some properties of sigmoid function<a class="anchor-link" href="#some-properties-of-sigmoid-function">¶</a></h4>
 </div>
 </div>
 </div>
@@ -117,35 +145,6 @@ $$
 \sigma' (y) = \sigma (y) \cdot [ 1 - \sigma (y) ] \cdot y'
 $$
 </div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="visualize-a-property-of-sigmoid-function">visualize a property of sigmoid function<a class="anchor-link" href="#visualize-a-property-of-sigmoid-function">¶</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-$$
-\frac {1} {N} \sum_{i=1}^{N} \sigma(x_i) \approx
-\sigma( \frac {1} {N} \sum_{i=1}^{N} x_i )
-$$
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>I can't prove it, my major is not math</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/word2vec-train-procedure-explained.html">Read more...</a>
                                 </p>

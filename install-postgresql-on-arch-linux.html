@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="junfeng" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="Install PostgreSQL on Arch Linux"/>
+    <meta property="og:url" content="http://junfenglx.github.io/install-postgresql-on-arch-linux.html"/>
+    <meta property="og:site_name" content="jf.h"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="http://junfenglx.github.io/install-postgresql-on-arch-linux.html" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <title>Install PostgreSQL on Arch Linux | jf.h</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://junfenglx.github.io/theme/css/bootstrap-combined.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://junfenglx.github.io/theme/css/main.css" type="text/css" />
+    <link href="http://junfenglx.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jf.h Atom Feed" />
+
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="http://junfenglx.github.io/">jf.h
+ <h3><strong>lylx</strong></h3>                    </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="http://junfenglx.github.io/pages/about.html">About Me</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="http://junfenglx.github.io/install-postgresql-on-arch-linux.html" rel="bookmark"
+             title="Permalink to Install PostgreSQL on Arch Linux">Install PostgreSQL on Arch Linux</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://junfenglx.github.io/author/junfeng.html">junfeng</a>
+    </address>
+
+    in <a href="http://junfenglx.github.io/category/memo.html">memo</a>
+
+    on 2016-05-17
+
+        |
+        tags:         <a href="http://junfenglx.github.io/tag/postgresql.html">postgresql</a>
+
+
+        |
+        <a href="http://junfenglx.github.io/install-postgresql-on-arch-linux.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->
+
+        <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#content">Content</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</div>
+<h3 id="introduction">Introduction</h3>
+<p>For myself to remember.</p>
+<h3 id="content">Content</h3>
+<p>First do</p>
+<div class="highlight"><pre><span></span>$ sudo -i -u postgres
+</pre></div>
+
+
+<p>or</p>
+<div class="highlight"><pre><span></span>$ su
+$ su - postgres
+</pre></div>
+
+
+<p>Then initializes database cluster:</p>
+<div class="highlight"><pre><span></span><span class="x">[postgres]</span><span class="p">$</span><span class="x"> initdb --locale </span><span class="p">$</span><span class="nv">LANG</span><span class="x"> -E UTF8 -D &#39;/var/lib/postgres/data&#39;</span>
+</pre></div>
+
+
+<p>Where:</p>
+<ul>
+<li>the --locale is the one defined in the file /etc/locale.conf;</li>
+<li>the -E is the default encoding of the database that will be created in the future;</li>
+<li>and -D is the default location where the database cluster must be stored.</li>
+</ul>
+<p>Changes <code>listen_address</code> setting at <code>/var/lib/postgres/data/postgresql.conf</code>, if you want to
+postgres server listens on different addresses, default is localhost, need restarts</p>
+<p>Maybe you also want to add a line to <code>/var/lib/postgres/data/pg_hba.conf</code>:</p>
+<div class="highlight"><pre><span></span>host       all all  network_address/23  md5
+</pre></div>
+
+
+<p>Creates new user using:</p>
+<div class="highlight"><pre><span></span>[postgres]$ createuser --interactive
+</pre></div>
+
+
+<p>For convenience, create a user named your login name.</p>
+<p>Then create a database:</p>
+<div class="highlight"><pre><span></span>$ createdb myDatabaseName
+</pre></div>
+
+
+<h3 id="reference">Reference</h3>
+<ol>
+<li>https://wiki.archlinux.org/index.php/PostgreSQL</li>
+</ol>
+
+      </div><!-- /.entry-content -->
+      <div class="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          var disqus_identifier = "install-postgresql-on-arch-linux.html";
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//junfeng.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        UI Designed By <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a>
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+<script type="text/javascript">
+    var disqus_shortname = 'junfeng';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    <script src="http://junfenglx.github.io/theme/js/jquery.min.js"></script>
+    <script src="http://junfenglx.github.io/theme/js/bootstrap.min.js"></script>
+    <script src="http://junfenglx.github.io/theme/js/jquery.cookie.js"></script>
+    <!--script src="http://junfenglx.github.io/theme/js/analyse.js"></script -->
+</body>
+</html>

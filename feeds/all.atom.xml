@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfenglx.github.io/" rel="alternate"></link><link href="http://junfenglx.github.io/feeds/all.atom.xml" rel="self"></link><id>http://junfenglx.github.io/</id><updated>2016-04-29T09:53:34+08:00</updated><entry><title>Textual Entailment on Skip-Thoughts</title><link href="http://junfenglx.github.io/textual-entailment-on-skip-thoughts.html" rel="alternate"></link><published>2016-04-29T09:53:34+08:00</published><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2016-04-26:textual-entailment-on-skip-thoughts.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfenglx.github.io/" rel="alternate"></link><link href="http://junfenglx.github.io/feeds/all.atom.xml" rel="self"></link><id>http://junfenglx.github.io/</id><updated>2016-05-17T19:13:53+08:00</updated><entry><title>Install PostgreSQL on Arch Linux</title><link href="http://junfenglx.github.io/install-postgresql-on-arch-linux.html" rel="alternate"></link><published>2016-05-17T19:13:53+08:00</published><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2016-05-17:install-postgresql-on-arch-linux.html</id><summary type="html">&lt;div class="toc"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#introduction"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#content"&gt;Content&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#reference"&gt;Reference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h3 id="introduction"&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;For myself to remember.&lt;/p&gt;
+&lt;h3 id="content"&gt;Content&lt;/h3&gt;
+&lt;p&gt;First do&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo -i -u postgres
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;or&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ su
+$ su - postgres
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then initializes database cluster:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;[postgres]&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt; initdb --locale &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LANG&lt;/span&gt;&lt;span class="x"&gt; -E UTF8 -D &amp;#39;/var/lib/postgres/data&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the --locale is the one defined in the file /etc/locale.conf;&lt;/li&gt;
+&lt;li&gt;the -E is the default encoding of the database that will be created in the future;&lt;/li&gt;
+&lt;li&gt;and -D is the default location where the database cluster must be stored.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Changes &lt;code&gt;listen_address&lt;/code&gt; setting at &lt;code&gt;/var/lib/postgres/data/postgresql.conf&lt;/code&gt;, if you want to
+postgres server listens on different addresses, default is localhost, need restarts&lt;/p&gt;
+&lt;p&gt;Maybe you also want to add a line to &lt;code&gt;/var/lib/postgres/data/pg_hba.conf&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;host       all all  network_address/23  md5
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Creates new user using:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[postgres]$ createuser --interactive
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;For convenience, create a user named your login name.&lt;/p&gt;
+&lt;p&gt;Then create a database:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ createdb myDatabaseName
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="reference"&gt;Reference&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;https://wiki.archlinux.org/index.php/PostgreSQL&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="postgresql"></category></entry><entry><title>Textual Entailment on Skip-Thoughts</title><link href="http://junfenglx.github.io/textual-entailment-on-skip-thoughts.html" rel="alternate"></link><published>2016-04-29T09:53:34+08:00</published><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2016-04-26:textual-entailment-on-skip-thoughts.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *

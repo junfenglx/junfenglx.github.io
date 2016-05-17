@@ -55,6 +55,56 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="http://junfenglx.github.io/oauth-20-bearer-token-usage.html" rel="bookmark" title="Permalink to OAuth 2.0 Bearer Token Usage">
+                                       OAuth 2.0 Bearer Token Usage
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://junfenglx.github.io/author/junfeng.html">junfeng</a>
+    </address>
+
+    in <a href="http://junfenglx.github.io/category/cheng-xu-yuan.html">程序员</a>
+
+    on 2015-06-08
+
+        |
+        tags:         <a href="http://junfenglx.github.io/tag/oauth20.html">OAuth2.0</a>
+        <a href="http://junfenglx.github.io/tag/bearer.html">Bearer</a>
+
+
+        |
+        <a href="http://junfenglx.github.io/oauth-20-bearer-token-usage.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h3 id="_1">引入</h3>
+<p>在给Tornado编写豆瓣API的类时, 在查看文档时, 发现其access_token
+并不像其它网站那样是传在query或者body中的. 而是放入headers中.
+即: <code>headers["Authorization"] = Bearer &lt;access_token&gt;</code></p>
+<p>搜索OAuth2.0 Bearer, 在RFC 6750中找到了详细介绍</p>
+<h3 id="access_token">使用access_token方法</h3>
+<p>标准中给出了3种access_token的使用方法:</p>
+<ol>
+<li>使用headers的Authorization字段(格式如上)</li>
+<li>form字段形式放入POST请求的body中</li>
+<li>query形式放入url中</li>
+</ol>
+<p>标准推荐使用第一种方法. 第三种并不推荐, 因为access_token有可能泄漏.</p>
+<h3 id="_2">参考</h3>
+<p>http://self-issued.info/docs/draft-ietf-oauth-v2-bearer.html</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/oauth-20-bearer-token-usage.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="http://junfenglx.github.io/right-click-menu-items.html" rel="bookmark" title="Permalink to right click menu items">
                                        right click menu items
                                     </a>
@@ -450,47 +500,6 @@ Output like this:</p>
   so the void * pointer type was not available in ...</p></blockquote>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/unpv13e-chapter-1-notes.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="http://junfenglx.github.io/bian-yi-unpv13eyuan-dai-ma.html" rel="bookmark" title="Permalink to 编译unpv13e源代码">
-                                       编译unpv13e源代码
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="http://junfenglx.github.io/author/junfeng.html">junfeng</a>
-    </address>
-
-    in <a href="http://junfenglx.github.io/category/unpv13e.html">unpv13e</a>
-
-    on 2014-06-03
-
-        |
-        tags:         <a href="http://junfenglx.github.io/tag/unpv13e.html">unpv13e</a>
-
-
-        |
-        <a href="http://junfenglx.github.io/bian-yi-unpv13eyuan-dai-ma.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>在<a href="http://www.unpbook.com/unpv13e.tar.gz">这里</a>下载源代码，根据README进行编译．</p>
-<p>在make libfree下时需要修改inet_ntop.c, 将第60行的
-<code>size_t size</code> 改成 <code>socklen_t size</code>.</p>
-<p>貌似Linux不支持4.4BSD style routing sockets, 所以不需要编译libroute</p>
-<p>测试intro/daytimetcpcli: <code>./daytimetcpcli 216.171.112.36</code></p>
-<p>而书上给的IP地址会一直block.</p>
-<p>Then start reading the famous classic book.</p>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/bian-yi-unpv13eyuan-dai-ma.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

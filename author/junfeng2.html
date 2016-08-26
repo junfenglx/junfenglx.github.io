@@ -55,6 +55,56 @@
                         <article>
                             <header>
                                 <h1 class="entry-title">
+                                    <a href="http://junfenglx.github.io/oauth-20-bearer-token-usage.html" rel="bookmark" title="Permalink to OAuth 2.0 Bearer Token Usage">
+                                       OAuth 2.0 Bearer Token Usage
+                                    </a>
+                                </h1>
+                            </header>
+                            <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="http://junfenglx.github.io/author/junfeng.html">junfeng</a>
+    </address>
+
+    in <a href="http://junfenglx.github.io/category/cheng-xu-yuan.html">程序员</a>
+
+    on 2015-06-08
+
+        |
+        tags:         <a href="http://junfenglx.github.io/tag/oauth20.html">OAuth2.0</a>
+        <a href="http://junfenglx.github.io/tag/bearer.html">Bearer</a>
+
+
+        |
+        <a href="http://junfenglx.github.io/oauth-20-bearer-token-usage.html#disqus_thread">comments</a>
+
+    
+</footer><!-- /.post-info -->                                <h3 id="_1">引入</h3>
+<p>在给Tornado编写豆瓣API的类时, 在查看文档时, 发现其access_token
+并不像其它网站那样是传在query或者body中的. 而是放入headers中.
+即: <code>headers["Authorization"] = Bearer &lt;access_token&gt;</code></p>
+<p>搜索OAuth2.0 Bearer, 在RFC 6750中找到了详细介绍</p>
+<h3 id="access_token">使用access_token方法</h3>
+<p>标准中给出了3种access_token的使用方法:</p>
+<ol>
+<li>使用headers的Authorization字段(格式如上)</li>
+<li>form字段形式放入POST请求的body中</li>
+<li>query形式放入url中</li>
+</ol>
+<p>标准推荐使用第一种方法. 第三种并不推荐, 因为access_token有可能泄漏.</p>
+<h3 id="_2">参考</h3>
+<p>http://self-issued.info/docs/draft-ietf-oauth-v2-bearer.html</p>
+                                <p class="readmore">
+                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/oauth-20-bearer-token-usage.html">Read more...</a>
+                                </p>
+                            </div><!-- /.entry-content -->
+                            <hr/>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <h1 class="entry-title">
                                     <a href="http://junfenglx.github.io/right-click-menu-items.html" rel="bookmark" title="Permalink to right click menu items">
                                        right click menu items
                                     </a>
@@ -453,51 +503,6 @@ Output like this:</p>
 <p>过去永远支配着现在的你，而现在又将过去。</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="http://junfenglx.github.io/history.html">Read more...</a>
-                                </p>
-                            </div><!-- /.entry-content -->
-                            <hr/>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <h1 class="entry-title">
-                                    <a href="http://junfenglx.github.io/cong-remove-google-redirect-shi-xiao-shuo-qi.html" rel="bookmark" title="Permalink to 从remove google redirect 失效说起">
-                                       从remove google redirect 失效说起
-                                    </a>
-                                </h1>
-                            </header>
-                            <div class="entry-content">
-<footer class="post-info">
-    <address class="vcard author">
-        by <a class="url fn" href="http://junfenglx.github.io/author/junfeng.html">junfeng</a>
-    </address>
-
-    in <a href="http://junfenglx.github.io/category/javascript.html">JavaScript</a>
-
-    on 2014-05-11
-
-        |
-        tags:         <a href="http://junfenglx.github.io/tag/extensions.html">extensions</a>
-        <a href="http://junfenglx.github.io/tag/js-event.html">js event</a>
-
-
-        |
-        <a href="http://junfenglx.github.io/cong-remove-google-redirect-shi-xiao-shuo-qi.html#disqus_thread">comments</a>
-
-    
-</footer><!-- /.post-info -->                                <p>前段时间发现remove google redirect突然不能用了，在chrome web store的页面也没了。难道被google和谐了？对于我这个重度google使用者来说可不是一件好事情，搜索的结果都要先被google重定向，增加了不必要的加载时间。</p>
-<p>只想寻找解决办法：<a href="https://github.com/juffy/RecoverUrl/raw/master/recover%20url.0.0.1.crx">点击这里</a></p>
-<p>于是想着能不能改改那个插件的代码，修复这个bug，找到那个插件的源代码，发现一下子1200多行代码，这么复杂。感觉移除一个重定向链接不需要这么麻烦吧，决定自己实现一个。</p>
-<p>用的时候发现google在你点击一个链接时，会被替换成google的重定向链接。</p>
-<div class="highlight"><pre><span></span>http://en.wikipedia.org/wiki/Continuous_integration
-</pre></div>
-
-
-<p>会被替换成</p>
-<div class="highlight"><pre><span></span>https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;sqi=2 ...</pre></div>
-                                <p class="readmore">
-                                    <a class="btn btn-small btn-info" href="http://junfenglx.github.io/cong-remove-google-redirect-shi-xiao-shuo-qi.html">Read more...</a>
                                 </p>
                             </div><!-- /.entry-content -->
                             <hr/>

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfenglx.github.io/" rel="alternate"></link><link href="http://junfenglx.github.io/feeds/all.atom.xml" rel="self"></link><id>http://junfenglx.github.io/</id><updated>2016-05-17T19:13:53+08:00</updated><entry><title>Install PostgreSQL on Arch Linux</title><link href="http://junfenglx.github.io/install-postgresql-on-arch-linux.html" rel="alternate"></link><published>2016-05-17T19:13:53+08:00</published><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2016-05-17:install-postgresql-on-arch-linux.html</id><summary type="html">&lt;div class="toc"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jf.h</title><link href="http://junfenglx.github.io/" rel="alternate"></link><link href="http://junfenglx.github.io/feeds/all.atom.xml" rel="self"></link><id>http://junfenglx.github.io/</id><updated>2016-08-26T16:51:17+08:00</updated><entry><title>Install GTX 1080 on the motherboard</title><link href="http://junfenglx.github.io/install-gtx-1080-on-the-motherboard.html" rel="alternate"></link><published>2016-08-26T16:51:17+08:00</published><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2016-08-26:install-gtx-1080-on-the-motherboard.html</id><summary type="html">&lt;p&gt;When I insert GTX 1080 on a motherboard,
+I get the following error:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="img" src="./images/DSC_0371_small.png" /&gt;&lt;/p&gt;
+&lt;p&gt;After Google, I get the solution:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Please change your BIOS settings:
+BIOS &amp;gt; Advanced &amp;gt; PCIe/PCI/PnP Configuration &amp;gt; Above 4G Decoding and set it to Enabled.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;From the link &lt;a href="https://www.supermicro.com/support/faqs/faq.cfm?faq=15556"&gt;https://www.supermicro.com/support/faqs/faq.cfm?faq=15556&lt;/a&gt;&lt;/p&gt;</summary><category term="gpu"></category><category term="1080"></category></entry><entry><title>Install PostgreSQL on Arch Linux</title><link href="http://junfenglx.github.io/install-postgresql-on-arch-linux.html" rel="alternate"></link><published>2016-05-17T19:13:53+08:00</published><author><name>junfeng</name></author><id>tag:junfenglx.github.io,2016-05-17:install-postgresql-on-arch-linux.html</id><summary type="html">&lt;div class="toc"&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#introduction"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#content"&gt;Content&lt;/a&gt;&lt;/li&gt;
